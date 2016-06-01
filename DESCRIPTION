@@ -1,0 +1,20 @@
+Package: imputeTS
+Version: 1.5
+Date: 2016-04-27
+Title: Time Series Missing Value Imputation
+Description: Imputation (replacement) of missing values in univariate time
+    series.
+Author: Steffen Moritz
+Maintainer: Steffen Moritz <steffen.moritz10@gmail.com>
+LazyData: yes
+Type: Package
+ByteCompile: TRUE
+Depends:
+    R (>= 3.0.1)
+Imports:
+    stats,
+    stinepack,
+    graphics,
+    forecast
+License: GPL (>= 2)
+RoxygenNote: 5.0.0

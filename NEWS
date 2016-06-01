@@ -1,0 +1,91 @@
+Changes in Version 1.6
+  o Fix in documentation for na.interpolation 
+   (due to outdated descriptions)
+   
+  o Fix in documentation plotNA.distribution / plotNA.distributionBar
+    (due to interchanged descriptions)
+
+
+
+Changes in Version 1.5
+
+  o Allows now also numeric vectors as input
+
+  o Removed na.identifier parameter for all functions (too error prone, better handled 
+    individually by the user)
+
+  o Minor changes in na.interpolation with option = "stine"
+  
+  o Added na.ma imputation function
+
+  o Replaced "data" in all function parameters with the more common "x"
+
+  o Improvent of all code examples
+
+  o Renamed heating/heatingComplete dataset to tsHeating/tsHeatingComplete
+
+  o Renamed nh4/nh4Complete dataset to tsNH4/tsNH4Complete
+
+  o Added tsAirgap / tsAirgapComplete datasets
+
+  o Improved imputeTS-package documentation
+
+  o Added na.kalman imputation function
+
+  o Added README.md function
+
+  o Added statsNA function
+
+  o Added plotNA.gapsize function
+  
+  o Renamed vis.imputations to plotNA.imputations
+
+  o Renamed vis.barMissing to plotNA.distributionBar
+
+  o Renamed vis.missing to plotNA.distribution
+  
+  o Fixed issues with parameter pass trough and legend for
+    all plotting functions
+    
+  o Improved dataset documentation 
+
+
+
+Changes in Version 0.4
+
+  o Update of vis.differences (better looking plot now)
+  
+  o Added vis.missing to visualize the distribution of missing data in a time series
+  
+  o Added vis.barMissing, which is especially suited to visualize missing data in very huge ts
+  
+  o Update na.interpolate (added Stineman interpolation and enabled ... parameter 
+    for all interpolation algortihms to pass through parameters to the underlying functions)
+
+
+Changes in Version 0.3
+
+  o Added two datasets of sensor data
+  
+  o vis.differences for plotting differences between real and imputed values
+
+  
+
+Changes in Version 0.2
+
+  o Removed internal functions from visable package documentation
+
+  o Added additional algorithms: na.seasplit and na.seadec
+  
+  o internal function for algorithm selection
+  
+ 
+
+Changes in Version 0.1
+
+  o Created initial version of imputeTS package for univariate time series imputation
+
+  o added the simple imputation functions: na.locf, na.mean, na.random, na.interpolation, 
+    na.replace
+
+  o added na.remove function for removing all NAs from a time series
