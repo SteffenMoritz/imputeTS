@@ -33,7 +33,7 @@
 #' #Example 3: Perform stine interpolation
 #' na.interpolation(x, option ="stine")
 #' 
-#' @references Johannesson, Tomas, et al. "Package 'stinepack'." (2015).
+#' @references Johannesson, Tomas, et al. (2015). "Package stinepack".
 #' 
 #' @import stats
 #' @import stinepack
@@ -41,7 +41,7 @@
 
 
 na.interpolation <- function(x, option = "linear", ...) { 
- 
+  
   data <- x
   
   #Check for wrong input 
@@ -56,7 +56,7 @@ na.interpolation <- function(x, option = "linear", ...) {
   ## Imputation Code
   ##
   missindx <- is.na(data)  
-
+  
   n <- length(data)
   
   allindx <- 1:n

@@ -63,8 +63,8 @@
 #' usermodel <- arima(x,order = c(1,0,1))$model
 #' na.kalman(x,model = usermodel)
 #' 
-#' @references Hyndman RJ and Khandakar Y (2008). "Automatic time series forecasting: the forecast package for R." Journal of Statistical Software, 26(3), pp. 1–22.
-#' 
+#' @references Hyndman RJ and Khandakar Y (2008). "Automatic time series forecasting: the forecast package for R". Journal of Statistical Software, 26(3).
+#'
 #' @import stats
 #' @import forecast
 #' @export
@@ -72,72 +72,72 @@
 
 na.kalman <- function(x, model = "StructTS" , smooth =T,nit=-1, ...) { 
   
-    data <- x
+  data <- x
   
-    #Check for wrong input 
-    data <- precheck(data)
-    
-    #if no missing data, do nothing
-    if(!anyNA(data)) {
-      return(data)
-    }
-    
-    ##
-    ## Imputation Code
-    ##
-    missindx <- is.na(data)
-    
-    ##Selection of state space model
-    
-    #State space representation of a arima model 
-    if (model =="auto.arima") {
-       mod <- auto.arima(data,...)$model
-    }
-    #State space model, default is BSM - basic structural model
-    else if(model == "StructTS") {
-      #Fallback, because for StructTS first value is not allowed to be NA
-      if(is.na(data[1])) {data[1] <- na.locf(data,option = "nocb",na.remaining = "rev")[1]}
-      mod <- StructTS(data,...)$model0
-    }
-    #User supplied model e.g. created with arima() or other state space models from other packages
-    else {
-      mod <- model
-      if(is.null(mod$Z) | length(mod) < 7) {
-        stop("Something is wrong with the user supplied model. Either choose auto.arima or StructTS
-             or supply a state space model with at least components T, Z, h , V, a, P, Pn as specified 
-             under Details on help page for KalmanLike")
-      }
-    }
-
-    #Selection if KalmanSmooth or KalmanRun
-    if (smooth ==T) {
-      kal <- KalmanSmooth(data, mod, nit )
-      erg <- kal$smooth  #for kalmanSmooth
-    }
-    else {
-      kal <- KalmanRun(data, mod, nit )
-      erg <- kal$states #for kalmanrun
-    }
-    
-    #Check if everything is right with the model
-    if(dim(erg)[2]!= length(mod$Z)){
-      stop("Error with number of components $Z")
-    }
-    
-    #Out of all components in $states or$smooth only the ones
-    #which have 1 or -1 in $Z are in the model
-    #Therefore matrix multiplication is done
-    for ( i in 1:length(mod$Z)) {
-      erg[,i] = erg[,i] * mod$Z[i]
-    }
-    #Add remaining values in the rows
-    karima <-rowSums(erg)
-    
-    #Add imputations to the initial dataset
-    for (i in 1:length(data)) {
-      if (is.na(data[i])) {
-        data[i] <- karima[i]
-      }
-    }
+  #Check for wrong input 
+  data <- precheck(data)
+  
+  #if no missing data, do nothing
+  if(!anyNA(data)) {
     return(data)
   }
+  
+  ##
+  ## Imputation Code
+  ##
+  missindx <- is.na(data)
+  
+  ##Selection of state space model
+  
+  #State space representation of a arima model 
+  if (model =="auto.arima") {
+    mod <- auto.arima(data,...)$model
+  }
+  #State space model, default is BSM - basic structural model
+  else if(model == "StructTS") {
+    #Fallback, because for StructTS first value is not allowed to be NA
+    if(is.na(data[1])) {data[1] <- na.locf(data,option = "nocb",na.remaining = "rev")[1]}
+    mod <- StructTS(data,...)$model0
+  }
+  #User supplied model e.g. created with arima() or other state space models from other packages
+  else {
+    mod <- model
+    if(is.null(mod$Z) | length(mod) < 7) {
+      stop("Something is wrong with the user supplied model. Either choose auto.arima or StructTS
+           or supply a state space model with at least components T, Z, h , V, a, P, Pn as specified 
+           under Details on help page for KalmanLike")
+    }
+    }
+  
+  #Selection if KalmanSmooth or KalmanRun
+  if (smooth ==T) {
+    kal <- KalmanSmooth(data, mod, nit )
+    erg <- kal$smooth  #for kalmanSmooth
+  }
+  else {
+    kal <- KalmanRun(data, mod, nit )
+    erg <- kal$states #for kalmanrun
+  }
+  
+  #Check if everything is right with the model
+  if(dim(erg)[2]!= length(mod$Z)){
+    stop("Error with number of components $Z")
+  }
+  
+  #Out of all components in $states or$smooth only the ones
+  #which have 1 or -1 in $Z are in the model
+  #Therefore matrix multiplication is done
+  for ( i in 1:length(mod$Z)) {
+    erg[,i] = erg[,i] * mod$Z[i]
+  }
+  #Add remaining values in the rows
+  karima <-rowSums(erg)
+  
+  #Add imputations to the initial dataset
+  for (i in 1:length(data)) {
+    if (is.na(data[i])) {
+      data[i] <- karima[i]
+    }
+  }
+  return(data)
+    }
