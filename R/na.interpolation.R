@@ -33,7 +33,7 @@
 #' #Example 3: Perform stine interpolation
 #' na.interpolation(x, option ="stine")
 #' 
-#' @references Johannesson, Tomas, et al. "Package ‘stinepack’." (2015).
+#' @references Johannesson, Tomas, et al. "Package 'stinepack'." (2015).
 #' 
 #' @import stats
 #' @import stinepack
