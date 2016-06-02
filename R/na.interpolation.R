@@ -41,7 +41,7 @@
 
 
 na.interpolation <- function(x, option = "linear", ...) { 
- 
+  
   data <- x
   
   #Check for wrong input 
@@ -56,7 +56,7 @@ na.interpolation <- function(x, option = "linear", ...) {
   ## Imputation Code
   ##
   missindx <- is.na(data)  
-
+  
   n <- length(data)
   
   allindx <- 1:n
