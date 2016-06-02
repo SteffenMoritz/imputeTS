@@ -63,7 +63,8 @@
 #' usermodel <- arima(x,order = c(1,0,1))$model
 #' na.kalman(x,model = usermodel)
 #' 
-#' @references Hyndman RJ and Khandakar Y (2008). "Automatic time series forecasting: the forecast package for R". Journal of Statistical Software, 26(3).#' @import stats
+#' @references Hyndman RJ and Khandakar Y (2008). "Automatic time series forecasting: the forecast package for R". Journal of Statistical Software, 26(3).
+#' @import stats
 #' @import forecast
 #' @export
 
