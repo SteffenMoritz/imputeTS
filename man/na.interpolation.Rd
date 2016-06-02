@@ -45,7 +45,7 @@ na.interpolation(x, option ="stine")
 Steffen Moritz
 }
 \references{
-Johannesson, Tomas, et al. "Package ‘stinepack’." (2015).
+Johannesson, Tomas, et al. (2015). "Package stinepack".
 }
 \seealso{
 \code{\link[imputeTS]{na.kalman}}, \code{\link[imputeTS]{na.locf}},
