@@ -1,8 +1,5 @@
 always: imports anpassen!!!
 
-to do: readme badges like forecast
-to do: add own citation file
-to do: github + anpassen readme + anpassen description file
 to do: internal ToDO List to github issues
 
 add: na.forecast
@@ -33,8 +30,9 @@ abgelehnt: remove mit from - to erweitern (kann einfach mit x[1:50] gemacht werd
 abgelehnt: multivariate package wrapper with lagged data -VIM -mice -...
 abgelehnt: option to apply on multivar missing data datasets(iterate over each variable)
 
-
-done: cite eigne dependencies: forecast, stinepack
+to do: readme badges
+done: add own citation file
+done: cite own dependencies: forecast, stinepack
 done: cite Moritz et al. 15 in imputeTS-package
 done: fix plotNA.distribution und plotNA.distributionBar help page (beschreibungen passen nicht!)
 done: kalman im algo interface adden saisonal decr.
