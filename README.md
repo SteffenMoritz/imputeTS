@@ -1,4 +1,5 @@
 [![Build](https://travis-ci.org/SteffenMoritz/imputeTS.svg?branch=master)](https://travis-ci.org/SteffenMoritz/imputeTS)
+[![Coverage Status](https://coveralls.io/repos/github/SteffenMoritz/imputeTS/badge.svg?branch=master)](https://coveralls.io/github/SteffenMoritz/imputeTS?branch=master)
 [![CRAN Version](http://www.r-pkg.org/badges/version/imputeTS)](https://cran.r-project.org/package=imputeTS)
 [![Downloads](http://cranlogs.r-pkg.org/badges/imputeTS)](https://cran.r-project.org/package=imputeTS)
 

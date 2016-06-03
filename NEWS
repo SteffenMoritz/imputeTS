@@ -1,10 +1,18 @@
 Changes in Version 1.6
+  
+  o Added github links to description file
+  
+  o Added citation file
+  
+  o Updated Readme (badges for travis ci and cran status)
+  
   o Fix in documentation for na.interpolation 
    (due to outdated descriptions)
    
   o Fix in documentation plotNA.distribution / plotNA.distributionBar
     (due to interchanged descriptions)
-
+    
+  o Added references to used packages in na.kalman and na.interpolation documentation
 
 
 Changes in Version 1.5
