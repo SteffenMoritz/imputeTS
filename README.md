@@ -133,7 +133,7 @@ If you found a bug or have suggestions, feel free to get in contact via steffen.
 **1.6**
 
 ### License
-GPL (>= 2)
+GPL-3
 
 
    [CRAN]: <https://cran.r-project.org/package=imputeTS>  
