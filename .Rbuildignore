@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^.*\.yml$
 ^.*\.ini$
+^.*\.txt$

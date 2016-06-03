@@ -1,7 +1,10 @@
-[![Build](https://travis-ci.org/SteffenMoritz/imputeTS.svg?branch=master)](https://travis-ci.org/SteffenMoritz/imputeTS)
+[![Maintenance](https://img.shields.io/badge/maintenance-active-brightgreen.svg)](https://github.com/SteffenMoritz/imputeTS/issues)
+[![Build Status](https://travis-ci.org/SteffenMoritz/imputeTS.svg?branch=master)](https://travis-ci.org/SteffenMoritz/imputeTS)
 [![Coverage Status](https://coveralls.io/repos/github/SteffenMoritz/imputeTS/badge.svg?branch=master)](https://coveralls.io/github/SteffenMoritz/imputeTS?branch=master)
 [![CRAN Version](http://www.r-pkg.org/badges/version/imputeTS)](https://cran.r-project.org/package=imputeTS)
-[![Downloads](http://cranlogs.r-pkg.org/badges/imputeTS)](https://cran.r-project.org/package=imputeTS)
+[![Build](https://img.shields.io/github/license/steffenmoritz/imputeTS.svg
+)](https://github.com/SteffenMoritz/imputeTS/blob/master/LICENSE.txt)
+[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/imputeTS)](https://cran.r-project.org/package=imputeTS)
 
 
 # imputeTS: Time Series Missing Value Imputation
