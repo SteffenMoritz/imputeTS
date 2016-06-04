@@ -19,5 +19,7 @@ Imports:
     stinepack,
     graphics,
     forecast
+Suggests: testthat,
+    covr
 License: GPL-3
 RoxygenNote: 5.0.0

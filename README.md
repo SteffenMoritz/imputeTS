@@ -1,5 +1,6 @@
 [![Maintenance](https://img.shields.io/badge/maintenance-active-brightgreen.svg)](https://github.com/SteffenMoritz/imputeTS/issues)
 [![Build Status](https://travis-ci.org/SteffenMoritz/imputeTS.svg?branch=master)](https://travis-ci.org/SteffenMoritz/imputeTS)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/steffenmoritz/imputeTS?branch=master&svg=true)](https://ci.appveyor.com/project/steffenmoritz/imputeTS)
 [![Coverage Status](https://coveralls.io/repos/github/SteffenMoritz/imputeTS/badge.svg?branch=master)](https://coveralls.io/github/SteffenMoritz/imputeTS?branch=master)
 [![CRAN Version](http://www.r-pkg.org/badges/version/imputeTS)](https://cran.r-project.org/package=imputeTS)
 [![Build](https://img.shields.io/github/license/steffenmoritz/imputeTS.svg

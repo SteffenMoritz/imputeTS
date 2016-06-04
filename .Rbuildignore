@@ -3,3 +3,4 @@
 ^.*\.yml$
 ^.*\.ini$
 ^.*\.txt$
+^appveyor\.yml$

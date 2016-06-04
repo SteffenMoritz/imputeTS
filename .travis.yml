@@ -1,2 +1,5 @@
 language: r
 cache: packages
+
+after_success:
+  - Rscript -e 'covr::coveralls(repo_token="FNnNZbfJVJf0DZtqvvbeU2G2sosJpCh8I")
