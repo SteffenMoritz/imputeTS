@@ -19,7 +19,8 @@ Imports:
     stinepack,
     graphics,
     forecast
-Suggests: testthat,
+Suggests:
+    testthat,
     covr
 License: GPL-3
-RoxygenNote: 5.0.0
+RoxygenNote: 5.0.1

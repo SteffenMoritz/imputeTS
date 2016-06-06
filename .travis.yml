@@ -1,5 +1,8 @@
 language: r
 cache: packages
 
+r_packages:
+  - covr
+
 after_success:
-  - Rscript -e 'covr::coveralls(repo_token="FNnNZbfJVJf0DZtqvvbeU2G2sosJpCh8I")
+  - bash <(curl -s https://codecov.io/bash)
