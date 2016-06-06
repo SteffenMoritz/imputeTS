@@ -20,7 +20,6 @@ Imports:
     graphics,
     forecast
 Suggests:
-    testthat,
-    covr
+    testthat
 License: GPL-3
 RoxygenNote: 5.0.1
