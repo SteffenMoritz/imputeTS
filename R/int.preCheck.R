@@ -24,6 +24,9 @@ precheck <- function(x) {
   if(!is.numeric(data))
   {stop("Input x has to be completely numeric")}
   
+  if(length(data) < 2)
+  {stop("Input x may not be of length = 1")}
+  
   return(data)
   
 }

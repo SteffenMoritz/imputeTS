@@ -76,6 +76,11 @@ na.kalman <- function(x, model = "StructTS" , smooth =T,nit=-1, ...) {
   #Check for wrong input 
   data <- precheck(data)
   
+  if(!is.logical(smooth)) {
+    stop("Parameter smooth must be of type logical ( TRUE / FALSE)")
+  }
+  
+  
   #if no missing data, do nothing
   if(!anyNA(data)) {
     return(data)
@@ -101,12 +106,17 @@ na.kalman <- function(x, model = "StructTS" , smooth =T,nit=-1, ...) {
   #User supplied model e.g. created with arima() or other state space models from other packages
   else {
     mod <- model
-    if(is.null(mod$Z) | length(mod) < 7) {
-      stop("Something is wrong with the user supplied model. Either choose auto.arima or StructTS
+    if (length(mod) < 7)
+        {stop("Parameter model has either to be \"StructTS\"/\"auto.arima\" or a user supplied model in 
+          form of a list with at least components T, Z, h , V, a, P, Pn specified")
+    }
+    
+    if(is.null(mod$Z)) {
+      stop("Something is wrong with the user supplied model. Either choose \"auto.arima\" or \"StructTS\"
            or supply a state space model with at least components T, Z, h , V, a, P, Pn as specified 
            under Details on help page for KalmanLike")
     }
-    }
+  }
   
   #Selection if KalmanSmooth or KalmanRun
   if (smooth ==T) {
