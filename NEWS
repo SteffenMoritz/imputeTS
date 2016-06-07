@@ -1,5 +1,14 @@
 Changes in Version 1.6
   
+  o Added several things for unit tests with pkg 'testthat'
+  
+  o Added unit tests for every function
+  
+  o Internal preCheck function checks now that input length > 1
+  
+
+Changes in Version 1.6
+  
   o Added github links to description file
   
   o Added citation file
