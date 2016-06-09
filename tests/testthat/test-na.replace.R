@@ -1,7 +1,6 @@
 context("na.replace")
 
 
-
 test_that("Test NA at beginning",
           {
             x <- tsAirgap
@@ -38,6 +37,13 @@ test_that("Over 90% NAs",
             x[10:140] <- NA
             expect_that(anyNA(na.replace(x, fill = -5)), is_false())
             expect_that(anyNA(na.replace(x, fill = 1000)), is_false())
+            expect_that(anyNA(na.replace(x)), is_false())
+            
+          })
+
+test_that("Handling for no NAs",
+          {
+            x <- tsAirgapComplete
             expect_that(anyNA(na.replace(x)), is_false())
             
           })

@@ -120,5 +120,4 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
     stop("Wrong parameter 'na.remaining' given. Value must be either 'keep', 'rm', 'mean' or 'rev'.") 
   }
   
-  return(data)
 }

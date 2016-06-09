@@ -21,6 +21,8 @@ test_that("Test NA at beginning",
             expect_that(anyNA(na.locf(x, option="nocb", na.remaining = "rev")), is_false())
             expect_that(length(na.locf(x, option="nocb", na.remaining = "rm")), equals(144))
             expect_that(length(na.locf(x, option="locf", na.remaining = "rm")), equals(142))
+            expect_that(length(na.locf(x, option="nocb", na.remaining = "keep")), equals(144))
+            
             expect_that(anyNA(na.locf(x)), is_false())
             
           })
