@@ -75,3 +75,10 @@ test_that("No Seasonality in series",
             expect_that(anyNA(na.seadec(x)), is_false())
             
           })
+
+test_that("Handling for no NAs",
+          {
+            x <- tsAirgapComplete
+            expect_that(anyNA(na.seadec(x)), is_false())
+            
+          })

@@ -5,6 +5,8 @@ test_that("Error for wrong input for option parameter",
             expect_that( na.interpolation(tsAirgap, option="wrongOption"), throws_error())
           })
 
+
+
 test_that("Test NA at beginning",
           {
           x <- tsAirgap
