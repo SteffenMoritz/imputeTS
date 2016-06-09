@@ -131,6 +131,9 @@ na.ma <- function(x, k =4, weighting = "exponential") {
         weightedData <- (tempdata[usedIndices]* weightsData)/ sumWeights
         data[i] <- sum(weightedData, na.rm=T)
       }
+      else {
+        stop("Wrong input for parameter weighting. Has to be \"simple\",\"linear\" or \"exponential\"." )
+      }
       
     }
   }

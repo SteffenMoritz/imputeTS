@@ -54,8 +54,8 @@ na.random <- function(x, lowerBound = min(data, na.rm = T) , upperBound = max(da
   missindx <- is.na(data)  
   
   #Check that lower bound is not higher than upper boun
-  if (lowerBound > upperBound)
-    {stop("Lower Bound for Random Number larger than Upper Bound ")}
+  if (lowerBound >= upperBound)
+    {stop("Error for parameter lowerBound: Lower Bound must be smaller than Upper Bound ")}
   
   data[missindx] <- runif(1,min=lowerBound,max=upperBound)
 

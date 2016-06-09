@@ -15,34 +15,46 @@ test_that("Test NA at beginning",
           {
             x <- tsAirgap
             x[1:2] <- NA
-            expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="stine")), is_false())
+            expect_that(anyNA(na.kalman(x, model="auto.arima", smooth = T)), is_false())
+            expect_that(anyNA(na.kalman(x, model="auto.arima", smooth = F)), is_false())
+            expect_that(anyNA(na.kalman(x, model="StructTS", smooth = T)), is_false())
+            expect_that(anyNA(na.kalman(x, model="StructTS", smooth = F)), is_false())
+            expect_that(anyNA(na.kalman(x)), is_false())
+            
           })
 
 test_that("Test NA at end",
           {
             x <- tsAirgap
             x[143:144] <- NA
-            expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="stine")), is_false())
+            expect_that(anyNA(na.kalman(x, model="auto.arima", smooth = T)), is_false())
+            expect_that(anyNA(na.kalman(x, model="auto.arima", smooth = F)), is_false())
+            expect_that(anyNA(na.kalman(x, model="StructTS", smooth = T)), is_false())
+            expect_that(anyNA(na.kalman(x, model="StructTS", smooth = F)), is_false())
+            expect_that(anyNA(na.kalman(x)), is_false())
+            
           })
 
 test_that("Multiple NAs in a row",
           {
             x <- tsAirgap
             x[40:80] <- NA
-            expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="stine")), is_false())   
+            expect_that(anyNA(na.kalman(x, model="auto.arima", smooth = T)), is_false())
+            expect_that(anyNA(na.kalman(x, model="auto.arima", smooth = F)), is_false())
+            expect_that(anyNA(na.kalman(x, model="StructTS", smooth = T)), is_false())
+            expect_that(anyNA(na.kalman(x, model="StructTS", smooth = F)), is_false()) 
+            expect_that(anyNA(na.kalman(x)), is_false())
+            
           })
 
-test_that("Over 90% NAs",
+test_that("Over 50% NAs",
           {
             x <- tsAirgap
-            x[10:140] <- NA
-            expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="stine")), is_false()) 
+            x[30:100] <- NA
+            expect_that(anyNA(na.kalman(x, model="auto.arima", smooth = T)), is_false())
+            expect_that(anyNA(na.kalman(x, model="auto.arima", smooth = F)), is_false())
+            expect_that(anyNA(na.kalman(x, model="StructTS", smooth = T)), is_false())
+            expect_that(anyNA(na.kalman(x, model="StructTS", smooth = F)), is_false()) 
+            expect_that(anyNA(na.kalman(x)), is_false())
+            
           })

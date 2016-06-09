@@ -12,6 +12,8 @@ test_that("Test NA at beginning",
           expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
           expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
           expect_that(anyNA(na.interpolation(x, option="stine")), is_false())
+          expect_that(anyNA(na.interpolation(x)), is_false())   
+          
           })
 
 test_that("Test NA at end",
@@ -21,6 +23,8 @@ test_that("Test NA at end",
             expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
             expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
             expect_that(anyNA(na.interpolation(x, option="stine")), is_false())
+            expect_that(anyNA(na.interpolation(x)), is_false())   
+            
           })
 
 test_that("Multiple NAs in a row",
@@ -30,6 +34,8 @@ test_that("Multiple NAs in a row",
             expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
             expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
             expect_that(anyNA(na.interpolation(x, option="stine")), is_false())   
+            expect_that(anyNA(na.interpolation(x)), is_false())   
+            
             })
 
 test_that("Over 90% NAs",
@@ -39,4 +45,6 @@ test_that("Over 90% NAs",
             expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
             expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
             expect_that(anyNA(na.interpolation(x, option="stine")), is_false()) 
+            expect_that(anyNA(na.interpolation(x)), is_false())   
+            
             })
