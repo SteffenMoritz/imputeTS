@@ -12,7 +12,7 @@ na.locf(x, option = "locf", na.remaining = "rev")
 \item{option}{Algorithm to be used. Accepts the following input:
 \itemize{
    \item{"locf" - for Last Observation Carried Forward}
-   \item{"nocb" - for Next Obervation Carried Backward}
+   \item{"nocb" - for Next Observation Carried Backward}
    }}
 
 \item{na.remaining}{Method to be used for remaining NAs.
@@ -35,7 +35,7 @@ Replaces each missing value with the most recent present value prior to it
 Replaces each missing value with the most recent present value prior to it
  (Last Observation Carried Forward- LOCF). This can also be done from the reverse direction -starting from the back
  (Next Observation Carried Backward - NOCB). Both options have the issue, that NAs at the beginning 
- (or for nocb at the end) of the time series can not be imputed (since there is no last value to 
+ (or for nocb at the end) of the time series cannot be imputed (since there is no last value to 
  be carried forward present yet). In this case there are remaining NAs in the imputed time series.
  Since this only concerns very few values at the beginning of the series,
   na.remaining offers some quick solutions to get a series without NAs back.

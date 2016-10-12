@@ -15,7 +15,7 @@ na.seasplit(x, algorithm = "interpolation", ...)
    \item{"locf" - Imputation by Last Observation Carried Forward}
    \item{"mean" - Imputation by Mean Value}
    \item{"random" - Imputation by Random Sample}
-   \item{"kalman" - Imputation by Kalman Smooting and State Space Models}
+   \item{"kalman" - Imputation by Kalman Smoothing and State Space Models}
    \item{"ma" - Imputation by Weighted Moving Average}
    }}
 
@@ -27,18 +27,15 @@ Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object (dependen
 }
 \description{
 Splits the times series into seasons and afterwards performs imputation
-seperatly for each of the resulting time series datasets (each containing the data 
+separately for each of the resulting time series datasets (each containing the data 
 for one specific season).
 }
 \examples{
-#Prerequisite: Load a time series with missing values
-x <- tsAirgap
+#Example 1: Perform seasonal splitted imputation using algorithm = "interpolation"
+na.seasplit(tsAirgap, algorithm = "interpolation")
 
-#Example 1: Perform seasonal splitted imputation using algortihm = "interpolation"
-na.seasplit(x, algorithm = "interpolation")
-
-#Example 2: Perform seasonal splitted imputation using algortihm = "mean"
-na.seasplit(x, algorithm = "mean")
+#Example 2: Perform seasonal splitted imputation using algorithm = "mean"
+na.seasplit(tsAirgap, algorithm = "mean")
 
 }
 \author{

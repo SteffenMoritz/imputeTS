@@ -4,8 +4,8 @@
 \alias{na.random}
 \title{Missing Value Imputation by Random Sample}
 \usage{
-na.random(x, lowerBound = min(data, na.rm = T), upperBound = max(data, na.rm
-  = T))
+na.random(x, lowerBound = min(data, na.rm = TRUE), upperBound = max(data,
+  na.rm = TRUE))
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object in which missing values shall be replaced}
@@ -21,15 +21,15 @@ Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object (dependen
 Replaces each missing value by drawing a random sample between two given bounds.
 }
 \details{
-Replaces each missing value by drawing a random sample bewteen two given bounds. The 
-default bounds are the minimum and the maximum value in the non-NAs from the time series. Funtion uses
+Replaces each missing value by drawing a random sample between two given bounds. The 
+default bounds are the minimum and the maximum value in the non-NAs from the time series. Function uses
 \link{runif} function to get the random values.
 }
 \examples{
 #Prerequisite: Create Time series with missing values
 x <- ts(c(2,3,NA,5,6,NA,7,8))
 
-#Example 1: Replace all NAs by random values between min and max of the inpute time series
+#Example 1: Replace all NAs by random values that are between min and max of the input time series
 na.random(x)
 
 #Example 2: Replace all NAs by random values between 1 and 10

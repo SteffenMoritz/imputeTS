@@ -10,21 +10,22 @@ na.remove(x)
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object in which missing values shall be replaced}
 }
 \value{
-Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object (dependent on given input at parameter x)
+Vector (\code{\link{vector}})
 }
 \description{
 Removes all missing values from a time series.
 }
 \details{
-Removes all missing values from a time series. This shortens the time series by
+Removes all missing values from a input time series. This shortens the time series by
 the number of missing values in the series. Should be handled with care, because this can affect
-the seasonality of the time series. Seasonal patterns might be destroyed and/or frequency parameter of the 
-ts object might be no more correct.
+the seasonality of the time series. Seasonal patterns might be destroyed. Independent from the input, this 
+function only returns a vector. (the time information of a resulting time series object wouldn't be correct any more).
 }
 \examples{
 #Example 1: Remove all NAs
 #Create Time series with missing values
 x <- ts(c(2,3,NA,5,6,NA,7,8))
+
 #Remove all NAs
 na.remove(x)
 

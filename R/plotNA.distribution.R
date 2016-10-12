@@ -14,7 +14,7 @@
 #' @param col Color for the lines.
 #' @param ... Additional graphical parameters that can be passed through to plot 
 #' 
-#' @details This function visualizes the distribution of missing values within a time series. Therefore
+#' @details This function visualizes the distribution of missing values within a time series. Therefore, 
 #' the time series is plotted and whenever a value is NA the background is colored differently.
 #' This gives a nice overview, where in the time series most of the missing values occur.
 #' 
@@ -25,11 +25,12 @@
 #'  \code{\link[imputeTS]{plotNA.gapsize}}, \code{\link[imputeTS]{plotNA.imputations}}
 #' 
 #' @examples
-#' #Prerequisite: Load a time series with missing values
-#' x <- tsAirgap
-#' 
-#' #Example 1: Visualize the missing values in this time series
+#' #Example 1: Visualize the missing values in x
+#' x <- ts(c(1:11, 4:9,NA,NA,NA,11:15,7:15,15:6,NA,NA,2:5,3:7))
 #' plotNA.distribution(x)
+#' 
+#' #Example 2: Visualize the missing values in tsAirgap time series
+#' plotNA.distribution(tsAirgap)
 #' 
 #' @importFrom graphics par plot points barplot
 #' @export
@@ -39,15 +40,27 @@ plotNA.distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "i
   
   data <- x
   
-  #Check for wrong input 
-  data <- precheck(data)
+  ##
+  ## Input check
+  ## 
+  
+  if(!is.null(dim(data)))
+  {stop("Input x is not univariate")}
+  
+  if(!is.numeric(data))
+  {stop("Input x is not numeric")}
+  
+  
+  ##
+  ## Plotting Code
+  ## 
 
   id.na <- which(is.na(data))
   barplotData <- rep(NA,length(data))
   
   
   #make sure the end of the bar can not be seen
-  barplotData[id.na] <- max(data, na.rm =T )*100
+  barplotData[id.na] <- max(data, na.rm =TRUE )*100
   
   ##Plot the red in background for unknown values
   barplot(barplotData, col = colBackgroundMV,xaxt = "n", yaxt = "n",   xlab = "", ylab = "", border = colBackgroundMV)

@@ -8,7 +8,7 @@
 #' @param option Algorithm to be used. Accepts the following input:
 #' \itemize{
 #'    \item{"locf" - for Last Observation Carried Forward}
-#'    \item{"nocb" - for Next Obervation Carried Backward}
+#'    \item{"nocb" - for Next Observation Carried Backward}
 #'    }
 #'    
 #' @param na.remaining Method to be used for remaining NAs.
@@ -23,7 +23,7 @@
 #' @details Replaces each missing value with the most recent present value prior to it
 #'  (Last Observation Carried Forward- LOCF). This can also be done from the reverse direction -starting from the back
 #'  (Next Observation Carried Backward - NOCB). Both options have the issue, that NAs at the beginning 
-#'  (or for nocb at the end) of the time series can not be imputed (since there is no last value to 
+#'  (or for nocb at the end) of the time series cannot be imputed (since there is no last value to 
 #'  be carried forward present yet). In this case there are remaining NAs in the imputed time series.
 #'  Since this only concerns very few values at the beginning of the series,
 #'   na.remaining offers some quick solutions to get a series without NAs back.
@@ -51,73 +51,93 @@
 #' @import stats
 #' @export
 
-
 na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
   
   data <- x
   
-  #Check for wrong input 
-  data <- precheck(data)
-  
-  #if no missing data, do nothing
-  if(!anyNA(data)) {
+  # Multivariate Input Handling (loop through all columns)
+  # No imputation code in this part. 
+  if (!is.null( dim(data)[2]) && dim(data)[2] != 1  ) {
+    for (i in 1:dim(data)[2]) {
+      #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
+      tryCatch(data[,i] <- na.locf(data[ ,i], option, na.remaining), error=function(cond) {
+        warning(paste("imputeTS: No imputation performed for column",i,"because of this",cond), call. = FALSE)
+      })
+    }
     return(data)
   }
   
-  ##
-  ## Imputation Code
-  ##
-  
-  ## option - what kind of imputation to perform
-  #Last observation carried forward
-  if (option == "locf") {
-    for (i in 2:length(data)) {
-      if (is.na(data[i])) {
-        data[i] <- data[i-1]
+  # Univariate Input
+  # All imputation code is within this part
+  else {
+    
+    ##
+    ## Input check
+    ## 
+    
+    if(!anyNA(data)) {
+      return(data)
+    }
+    
+    if(!is.numeric(data))
+    {stop("Input x is not numeric")}
+    
+    if(!is.null(dim(data)))
+    {stop("Wrong input type for parameter x")}
+    
+    
+    ##
+    ## Imputation Code
+    ##
+    
+    ## option - what kind of imputation to perform
+    #Last observation carried forward
+    if (option == "locf") {
+      for (i in 2:length(data)) {
+        if (is.na(data[i])) {
+          data[i] <- data[i-1]
+        }
       }
     }
-  }
-  #Next observation carried backward
-  else if (option == "nocb") {
-    for (i in (length(data)-1):1) {
-      if (is.na(data[i])) {
-        data[i] <- data[i+1]
+    #Next observation carried backward
+    else if (option == "nocb") {
+      for (i in (length(data)-1):1) {
+        if (is.na(data[i])) {
+          data[i] <- data[i+1]
+        }
       }
     }
-  }
-  #Wrong input
-  else {
-    stop("Wrong parameter 'option' given. Value must be either 'locf' or 'nocb'.")
-  }
-  
-  
-  
-  ##na.remaining - what to do with remaining NAs after imputation
-  
-  #keep NAs untouched
-  if (na.remaining == "keep") {
-    return(data)
-  }
-  #Remove all NAs
-  else if(na.remaining == "rm"){
-    return(na.remove(data))
-  }
-  #Replace NAs with overall mean
-  else if(na.remaining == "mean") {
-    return(na.mean(data))
-  }
-  #Perform locf/nocb from opposite direction
-  else if(na.remaining == "rev") {
-    if(option =="locf") {
-      return(na.locf(data, option ="nocb"))
+    #Wrong input
+    else {
+      stop("Wrong parameter 'option' given. Value must be either 'locf' or 'nocb'.")
     }
-    else{
-      return(na.locf(data))
+    
+    ##na.remaining - what to do with remaining NAs after imputation
+    
+    #keep NAs untouched
+    if (na.remaining == "keep") {
+      return(data)
     }
-  }  
-  #Wrong Input
-  else {
-    stop("Wrong parameter 'na.remaining' given. Value must be either 'keep', 'rm', 'mean' or 'rev'.") 
+    #Remove all NAs
+    else if(na.remaining == "rm"){
+      return(na.remove(data))
+    }
+    #Replace NAs with overall mean
+    else if(na.remaining == "mean") {
+      return(na.mean(data))
+    }
+    #Perform locf/nocb from opposite direction
+    else if(na.remaining == "rev") {
+      if(option =="locf") {
+        return(na.locf(data, option ="nocb"))
+      }
+      else{
+        return(na.locf(data))
+      }
+    }  
+    #Wrong Input
+    else {
+      stop("Wrong parameter 'na.remaining' given. Value must be either 'keep', 'rm', 'mean' or 'rev'.") 
+    }
   }
-  
 }

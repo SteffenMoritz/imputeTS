@@ -13,7 +13,7 @@
 #' 
 #' @details Missing values get replaced by overall mean values. The function calculates the mean, median or mode
 #' over all the non-NA values and replaces all NAs with this value. Option 'mode' replaces NAs with the 
-#' most frequent value in the time series. If two or more values occur equally frequent, the funtion imputes
+#' most frequent value in the time series. If two or more values occur equally frequent, the function imputes
 #' with the lower value. That's why 'mode' is not the best option for decimal values.
 #' 
 #' @author Steffen Moritz
@@ -23,7 +23,7 @@
 #'  \code{\link[imputeTS]{na.ma}},
 #'  \code{\link[imputeTS]{na.random}}, \code{\link[imputeTS]{na.replace}},
 #'  \code{\link[imputeTS]{na.seadec}}, \code{\link[imputeTS]{na.seasplit}}
-#'  
+#'
 #' @examples
 #' #Prerequisite: Create Time series with missing values
 #' x <- ts(c(2,3,4,5,6,NA,7,8))
@@ -33,48 +33,72 @@
 #' 
 #' #Example 2: Perform imputation with overall median
 #' na.mean(x, option ="median")
-#' 
 #' @import stats
-#' @export
-
+#' @export na.mean
+#' 
 na.mean <- function(x, option ="mean") {
   
   data <- x
   
-  #Check for wrong input 
-  data <- precheck(data)
-  
-  #if no missing data, do nothing
-  if(!anyNA(data)) {
+  # Multivariate Input Handling (loop through all columns)
+  # No imputation code in this part. 
+  if (!is.null( dim(data)[2]) && dim(data)[2] != 1  ) {
+    for (i in 1:dim(data)[2]) {
+      #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
+      tryCatch(data[,i] <- na.mean(data[ ,i], option), error=function(cond) {
+        warning(paste("imputeTS: No imputation performed for column",i,"because of this",cond), call. = FALSE)
+      })
+    }
     return(data)
   }
   
-  ##
-  ## Imputation Code
-  ##
-  
-  missindx <- is.na(data)  
-  
-  if(option=="median") {
-      median <- median(data, na.rm = T)    
+  # Univariate Input
+  # All imputation code is within this part
+  else {
+    
+    ##
+    ## Input check
+    ## 
+    
+    if(!anyNA(data)) {
+      return(data)
+    }
+    
+    if(!is.numeric(data))
+    {stop("Input x is not numeric")}
+    
+    if(!is.null(dim(data)))
+    {stop("Wrong input type for parameter x")}
+    
+    ##
+    ## Imputation Code
+    ##
+    
+    missindx <- is.na(data)  
+    
+    if(option == "median") {
+      #Use Median
+      median <- median(data, na.rm = TRUE)    
       data[missindx] <- median 
-  }
-  else if(option=="mode") {
-    #Calculate Mode
-    temp <- table(as.vector(data))
-    mode <- names(temp)[temp == max(temp)]
-    mode <- (as.numeric(mode))[1]
+    }
+    else if(option == "mode") {
+      #Calculate Mode
+      temp <- table(as.vector(data))
+      mode <- names(temp)[temp == max(temp)]
+      mode <- (as.numeric(mode))[1]
+      
+      data[missindx] <- mode 
+      
+    }
+    else if(option == "mean") {  
+      #Use Mean
+      mean <- mean(data, na.rm = TRUE)
+      data[missindx] <- mean 
+    }
+    else
+    {stop("Wrong option parameter given, must be 'mean', 'mode' or 'median'")}
     
-    data[missindx] <- mode 
-    
+    return(data)
   }
-  else if(option =="mean") {  
-    #Use Mean
-    mean <- mean(data, na.rm = T)
-    data[missindx] <- mean 
-  }
-  else
-  {stop("Wrong option given, must be 'mean', 'mode' or 'median'")}
   
-  return(data)
 }

@@ -29,25 +29,48 @@
 #' @import stats
 #' @export
 
-
 na.replace <- function(x, fill = 0) {
+  
   
   data <- x
   
-  #Check for wrong input 
-  data <- precheck(data)
-  
-  #if no missing data, do nothing
-  if(!anyNA(data)) {
+  # Multivariate Input Handling (loop through all columns)
+  # No imputation code in this part. 
+  if (!is.null( dim(data)[2]) && dim(data)[2] != 1  ) {
+    for (i in 1:dim(data)[2]) {
+      #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
+      tryCatch(data[,i] <- na.replace(data[ ,i], fill), error=function(cond) {
+        warning(paste("imputeTS: No imputation performed for column",i,"because of this",cond), call. = FALSE)
+      })
+    }
     return(data)
   }
   
-  ##
-  ## Imputation Code
-  ##
-  
-  missindx <- is.na(data)   
-  data[missindx] <- fill
-  
-  return(data)
+  # Univariate Input
+  # All imputation code is within this part
+  else {
+    
+    ##
+    ## Input check
+    ## 
+    
+    if(!anyNA(data)) {
+      return(data)
+    }
+    
+    if(!is.numeric(data))
+    {stop("Input x is not numeric")}
+    
+    if(!is.null(dim(data)))
+    {stop("Wrong input type for parameter x")}
+    
+    ##
+    ## Imputation Code
+    ##
+    
+    missindx <- is.na(data)   
+    data[missindx] <- fill
+    
+    return(data)
+  }
 }

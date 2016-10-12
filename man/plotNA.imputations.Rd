@@ -5,12 +5,12 @@
 \title{Visualize Imputed Values}
 \usage{
 plotNA.imputations(x.withNA, x.withImputations, x.withTruth = NULL,
-  legend = T, main = "Visualization Imputed Values", xlab = "Time",
+  legend = TRUE, main = "Visualization Imputed Values", xlab = "Time",
   ylab = "Value", colWithTruth = "green3", colLines = "black",
   colWithImputations = "indianred2", colWithNA = "steelblue2",
-  ylim = c(min(c(x.withImputations, x.withTruth), na.rm = T),
-  max(c(x.withImputations, x.withTruth), na.rm = T)), pch = 20, cex = 0.8,
-  ...)
+  ylim = c(min(c(x.withImputations, x.withTruth), na.rm = TRUE),
+  max(c(x.withImputations, x.withTruth), na.rm = TRUE)), pch = 20,
+  cex = 0.8, ...)
 }
 \arguments{
 \item{x.withNA}{Numeric Vector or Time Series (\code{\link{ts}}) object with NAs before imputation}
@@ -48,24 +48,19 @@ setting this parameter to FALSE and using  \code{\link[graphics]{legend}} functi
 Visualize the imputed values in a time series.
 }
 \details{
-This plot can be used, to visualize the imputed values for a time series. Therefore
+This plot can be used, to visualize the imputed values for a time series. Therefore, 
 the imputed values (filled NA gaps) are shown in a different color than the other values.
 If the real values (truth) behind the NA gaps are known these are also added in a different color.
 }
 \examples{
-#Prerequisite: Load a time series with missing values and perform an imputation
-x <- tsAirgap
-
-#Perform imputation for x using na.mean
-x.imp <- na.mean(x)
+#Example 1: Visualize the values that were imputed by na.mean in the time series
+impMean.Airgap <- na.mean(tsAirgap)
+plotNA.imputations(tsAirgap, impMean.Airgap)
 
 
-#Example 1: Visualize the imputed values in the time series
-plotNA.imputations(x, x.imp)
-
-
-#Example 2: Visualize the imputed values and the true values in the time series
-plotNA.imputations(x, x.imp, tsAirgapComplete)
+#Example 2: Visualize the values that were imputed by na.locf and the true values in the time series
+impLOCF.Airgap <- na.locf(tsAirgap)
+plotNA.imputations(tsAirgap, impLOCF.Airgap, tsAirgapComplete)
 
 }
 \author{

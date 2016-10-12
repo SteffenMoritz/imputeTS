@@ -9,7 +9,7 @@
 #'    \item{"locf" - Imputation by Last Observation Carried Forward}
 #'    \item{"mean" - Imputation by Mean Value}
 #'    \item{"random" - Imputation by Random Sample}
-#'    \item{"kalman" - Imputation by Kalman Smooting and State Space Models}
+#'    \item{"kalman" - Imputation by Kalman Smoothing and State Space Models}
 #'    \item{"ma" - Imputation by Weighted Moving Average}
 #'    }
 #'
@@ -27,58 +27,79 @@
 #'  \code{\link[imputeTS]{na.seasplit}}
 #' 
 #' @examples
-#' #Prerequisite: Load a time series with missing values
-#' x <- tsAirgap
+#' #Example 1: Perform seasonal imputation using algorithm = "interpolation"
+#' na.seadec(tsAirgap, algorithm = "interpolation")
 #' 
-#' #Example 1: Perform seasonal imputation using algortihm = "interpolation"
-#' na.seadec(x, algorithm = "interpolation")
-#' 
-#' #Example 2: Perform seasonal imputation using algortihm = "mean"
-#' na.seadec(x, algorithm = "mean")
+#' #Example 2: Perform seasonal imputation using algorithm = "mean"
+#' na.seadec(tsAirgap, algorithm = "mean")
 #' 
 #' @import stats
 #' @export
 
-
-
-na.seadec <- function(x, algorithm="interpolation" , ...) { 
+na.seadec <- function(x, algorithm = "interpolation" , ...) { 
+  
   
   data <- x
   
-  #Check for wrong input 
-  data <- precheck(data)
-  
-  #if no missing data, do nothing
-  if(!anyNA(data)) {
+  # Multivariate Input Handling (loop through all columns)
+  # No imputation code in this part. 
+  if (!is.null( dim(data)[2]) && dim(data)[2] != 1  ) {
+    for (i in 1:dim(data)[2]) {
+      #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
+      tryCatch(data[,i] <- na.seadec(data[ ,i], algorithm, ...), error=function(cond) {
+        warning(paste("imputeTS: No imputation performed for column",i,"because of this",cond), call. = FALSE)
+      })
+    }
     return(data)
   }
-  if(frequency(data)==1) {
-    warning("No seasonality information for dataset found, going on without decomposition")
-    data <- apply.base.algorithm(data, algorithm = algorithm,...)
+  
+  # Univariate Input
+  # All imputation code is within this part
+  else {
+    
+    ##
+    ## Input check
+    ## 
+    
+    if(!anyNA(data)) {
+      return(data)
+    }
+    
+    if(!is.numeric(data))
+    {stop("Input x is not numeric")}
+    
+    if(!is.null(dim(data)))
+    {stop("Wrong input type for parameter x")}
+    
+    if(frequency(data)==1) {
+      warning("No seasonality information for dataset found, going on without decomposition")
+      data <- apply.base.algorithm(data, algorithm = algorithm,...)
+      return(data)
+    }
+    
+    ##
+    ## Imputation Code
+    ##
+  
+    missindx <- is.na(data)  
+    
+    #approx NAs, to get complete series, because stl does not work with NAs
+    temp <- na.interpolation(data)
+    
+    stl <- stl(temp,robust=TRUE, s.window = 11)
+    # just take trend component + irregular  (remove seasonality)
+    ts.noSeasonality <- stl$time.series[,2]+stl$time.series[,3]
+    
+    #Fill in NAs again
+    ts.noSeasonality[missindx] <- NA
+    
+    #Perform imputation
+    ts.imputed <- apply.base.algorithm(ts.noSeasonality, algorithm = algorithm,...)
+    
+    # add seasonality 
+    data <- ts.imputed + stl$time.series[,1]
+    
+    
     return(data)
   }
-  ##
-  ## Imputation Code
-  ##
-
-  missindx <- is.na(data)  
-  
-  #approx NAs, to get complete series, because stl does not work with NAs
-  temp <- na.interpolation(data)
-  
-  stl <- stl(temp,robust=TRUE, s.window = 11)
-  # just take trend component + irregular  (remove seasonality)
-  ts.noSeasonality <- stl$time.series[,2]+stl$time.series[,3]
-  
-  #Fill in NAs again
-  ts.noSeasonality[missindx] <- NA
-  
-  #Perform imputation
-  ts.imputed <- apply.base.algorithm(ts.noSeasonality, algorithm = algorithm,...)
-  
-  # add seasonality 
-  data <- ts.imputed + stl$time.series[,1]
-  
-  
-  return(data)
 }

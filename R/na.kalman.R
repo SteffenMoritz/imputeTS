@@ -4,7 +4,7 @@
 #'  
 #' @param x Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object in which missing values shall be replaced
 #' 
-#' @param model Model to be used. With this parameter the State Space Model (on which KalmanSmooth is performed) can be choosen. Accepts the following input:
+#' @param model Model to be used. With this parameter the State Space Model (on which KalmanSmooth is performed) can be chosen. Accepts the following input:
 #' \itemize{
 #'    \item{"auto.arima" - For using the state space representation of arima model (using \link[forecast]{auto.arima})}
 #'    \item{"StructTS" - For using a structural model fitted by maximum likelihood (using \link[stats]{StructTS}) }
@@ -13,7 +13,7 @@
 #'  For both auto.arima and StructTS additional parameters for model building can be given with the \dots parameter  
 #'    
 #'  Additionally it is also possible to use a user created state space model (See code Example 5). This state space model could for example be obtained from another
-#'  R package for structral time series modeling. Furthermore providing the state space representation of a arima model from \link[stats]{arima}
+#'  R package for structural time series modeling. Furthermore providing the state space representation of a arima model from \link[stats]{arima}
 #'  is also possible. But it is important to note, that user created state space models must meet the requirements specified under \link[stats]{KalmanLike}. This means the user supplied state space model has to be in form of a list with at least components T, Z, h , V, a, P, Pn. 
 #'  (more details under \link[stats]{KalmanLike})
 #'  
@@ -44,109 +44,130 @@
 #'  \code{\link[imputeTS]{na.seadec}}, \code{\link[imputeTS]{na.seasplit}}
 #'  
 #' @examples
-#' #Prerequisite: Load a time series with missing values
-#' x <- tsAirgap
-#' 
 #' #Example 1: Perform imputation with KalmanSmoother and state space representation of arima model
-#' na.kalman(x)
+#' na.kalman(tsAirgap)
 #' 
 #' #Example 2: Perform imputation with KalmanRun and state space representation of arima model
-#' na.kalman(x, smooth = FALSE)
+#' na.kalman(tsAirgap, smooth = FALSE)
 #'
 #' #Example 3: Perform imputation with KalmanSmooth and StructTS model
-#' na.kalman(x, model ="StructTS", smooth = TRUE) 
+#' na.kalman(tsAirgap, model ="StructTS", smooth = TRUE) 
 #' 
 #' #Example 4: Perform imputation with KalmanSmooth and StructTS model with additional parameters 
-#' na.kalman(x, model ="StructTS", smooth = TRUE, type ="trend") 
+#' na.kalman(tsAirgap, model ="StructTS", smooth = TRUE, type ="trend") 
 #' 
 #' #Example 5:  Perform imputation with KalmanSmooth and user created model
-#' usermodel <- arima(x,order = c(1,0,1))$model
-#' na.kalman(x,model = usermodel)
+#' usermodel <- arima(tsAirgap,order = c(1,0,1))$model
+#' na.kalman(tsAirgap,model = usermodel)
 #' 
 #' @references Hyndman RJ and Khandakar Y (2008). "Automatic time series forecasting: the forecast package for R". Journal of Statistical Software, 26(3).
 #' @import stats 
 #' @import forecast
 #' @export
 
-
-na.kalman <- function(x, model = "StructTS" , smooth =T,nit=-1, ...) { 
+na.kalman <- function(x, model = "StructTS" , smooth =TRUE,nit=-1, ...) { 
+  
   
   data <- x
   
-  #Check for wrong input 
-  data <- precheck(data)
-  
-  if(!is.logical(smooth)) {
-    stop("Parameter smooth must be of type logical ( TRUE / FALSE)")
-  }
-  
-  
-  #if no missing data, do nothing
-  if(!anyNA(data)) {
+  # Multivariate Input Handling (loop through all columns)
+  # No imputation code in this part. 
+  if (!is.null( dim(data)[2]) && dim(data)[2] != 1  ) {
+    for (i in 1:dim(data)[2]) {
+      #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
+      tryCatch(data[,i] <- na.kalman(data[ ,i], model, smooth, nit, ...), error=function(cond) {
+        warning(paste("imputeTS: No imputation performed for column",i,"because of this",cond), call. = FALSE)
+      })
+    }
     return(data)
   }
   
-  ##
-  ## Imputation Code
-  ##
-  missindx <- is.na(data)
-  
-  ##Selection of state space model
-  
-  #State space representation of a arima model 
-  if (model =="auto.arima") {
-    mod <- auto.arima(data,...)$model
-  }
-  #State space model, default is BSM - basic structural model
-  else if(model == "StructTS") {
-    #Fallback, because for StructTS first value is not allowed to be NA
-    if(is.na(data[1])) {data[1] <- na.locf(data,option = "nocb",na.remaining = "rev")[1]}
-    mod <- StructTS(data,...)$model0
-  }
-  #User supplied model e.g. created with arima() or other state space models from other packages
+  # Univariate Input
+  # All imputation code is within this part
   else {
-    mod <- model
-    if (length(mod) < 7)
-        {stop("Parameter model has either to be \"StructTS\"/\"auto.arima\" or a user supplied model in 
-          form of a list with at least components T, Z, h , V, a, P, Pn specified")
+    
+    ##
+    ## Input check
+    ## 
+    
+    if(!anyNA(data)) {
+      return(data)
     }
     
-    if(is.null(mod$Z)) {
-      stop("Something is wrong with the user supplied model. Either choose \"auto.arima\" or \"StructTS\"
-           or supply a state space model with at least components T, Z, h , V, a, P, Pn as specified 
-           under Details on help page for KalmanLike")
+    if(!is.numeric(data))
+    {stop("Input x is not numeric")}
+    
+    if(!is.null(dim(data)))
+    {stop("Wrong input type for parameter x")}
+    
+    if(!is.logical(smooth)) {
+      stop("Parameter smooth must be of type logical ( TRUE / FALSE)")
     }
-  }
   
-  #Selection if KalmanSmooth or KalmanRun
-  if (smooth ==T) {
-    kal <- KalmanSmooth(data, mod, nit )
-    erg <- kal$smooth  #for kalmanSmooth
-  }
-  else {
-    kal <- KalmanRun(data, mod, nit )
-    erg <- kal$states #for kalmanrun
-  }
   
-  #Check if everything is right with the model
-  if(dim(erg)[2]!= length(mod$Z)){
-    stop("Error with number of components $Z")
-  }
-  
-  #Out of all components in $states or$smooth only the ones
-  #which have 1 or -1 in $Z are in the model
-  #Therefore matrix multiplication is done
-  for ( i in 1:length(mod$Z)) {
-    erg[,i] = erg[,i] * mod$Z[i]
-  }
-  #Add remaining values in the rows
-  karima <-rowSums(erg)
-  
-  #Add imputations to the initial dataset
-  for (i in 1:length(data)) {
-    if (is.na(data[i])) {
-      data[i] <- karima[i]
+    ##
+    ## Imputation Code
+    ##
+    
+    missindx <- is.na(data)
+    
+    ##Selection of state space model
+    
+    #State space representation of a arima model 
+    if (model =="auto.arima") {
+      mod <- auto.arima(data,...)$model
     }
-  }
-  return(data)
+    #State space model, default is BSM - basic structural model
+    else if(model == "StructTS") {
+      #Fallback, because for StructTS first value is not allowed to be NA
+      if(is.na(data[1])) {data[1] <- na.locf(data,option = "nocb",na.remaining = "rev")[1]}
+      mod <- StructTS(data,...)$model0
     }
+    #User supplied model e.g. created with arima() or other state space models from other packages
+    else {
+      mod <- model
+      if (length(mod) < 7)
+          {stop("Parameter model has either to be \"StructTS\"/\"auto.arima\" or a user supplied model in 
+            form of a list with at least components T, Z, h , V, a, P, Pn specified")
+      }
+      
+      if(is.null(mod$Z)) {
+        stop("Something is wrong with the user supplied model. Either choose \"auto.arima\" or \"StructTS\"
+             or supply a state space model with at least components T, Z, h , V, a, P, Pn as specified 
+             under Details on help page for KalmanLike")
+      }
+    }
+    
+    #Selection if KalmanSmooth or KalmanRun
+    if (smooth ==TRUE) {
+      kal <- KalmanSmooth(data, mod, nit )
+      erg <- kal$smooth  #for kalmanSmooth
+    }
+    else {
+      kal <- KalmanRun(data, mod, nit )
+      erg <- kal$states #for kalmanrun
+    }
+    
+    #Check if everything is right with the model
+    if(dim(erg)[2]!= length(mod$Z)){
+      stop("Error with number of components $Z")
+    }
+    
+    #Out of all components in $states or$smooth only the ones
+    #which have 1 or -1 in $Z are in the model
+    #Therefore matrix multiplication is done
+    for ( i in 1:length(mod$Z)) {
+      erg[,i] = erg[,i] * mod$Z[i]
+    }
+    #Add remaining values in the rows
+    karima <-rowSums(erg)
+    
+    #Add imputations to the initial dataset
+    for (i in 1:length(data)) {
+      if (is.na(data[i])) {
+        data[i] <- karima[i]
+      }
+    }
+    return(data)
+  }
+}

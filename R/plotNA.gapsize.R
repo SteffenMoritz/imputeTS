@@ -1,13 +1,13 @@
-#' @title Visualize Distribution of NA gapsizes
+#' @title Visualize Distribution of NA gap sizes
 #' 
-#' @description Visualize Distribution of NA gapsizes(NAs in a row) in a time series
+#' @description Visualize Distribution of NA gap sizes (NAs in a row) in a time series
 #' 
 #' @param x Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs
 #' 
-#' @param limit Specifies how many of the top gapsizes are shown in the plot.
+#' @param limit Specifies how many of the top gap sizes are shown in the plot.
 #' 
-#' @param byTotalNA For byTotalNA = TRUE the top gapsizes according to their overall weight are shown. (occurence * gapsize)
-#' For byTotalNA = FALSE the top gapsizes are shown by their number of occurence. (occurence)
+#' @param byTotalNA For byTotalNA = TRUE the top gap sizes according to their overall weight are shown. (occurrence * gap size)
+#' For byTotalNA = FALSE the top gap sizes are shown by their number of occurrence. (occurrence)
 #' 
 #' @param legend If TRUE a legend is shown at the bottom of the plot. A custom legend can be obtained by
 #'  setting this parameter to FALSE and using  \code{\link[graphics]{legend}} function
@@ -31,30 +31,42 @@
 #' 
 #' @author Steffen Moritz
 #' 
-#' @details This plotting function can be used to visualize the length of the NA gaps(NAs in a row)
-#'  in a time series. It shows a ranking of which gapsizes occur most often. This ranking can be ordered by total NAs for this gapsize (occurence * gap length) or by occurence of the gapsize.
-#'  The outcome will be somethink like in the time series 2NAs in a row occured 27times, 4NAs in a row occured 11 times, 
-#'  7NAs in a row occured 5 times, 1NA in a row occured 3 times,... .
+#' @details This plotting function can be used to visualize the length of the NA gaps (NAs in a row)
+#'  in a time series. It shows a ranking of which gap sizes occur most often. This ranking can be ordered by total NAs for this gap size (occurrence * gap length) or by occurrence of the gap size.
+#'  The outcome will be somethink like in the time series 2NAs in a row occurred  27times, 4NAs in a row occurred  11 times, 
+#'  7NAs in a row occurred 5 times, 1NA in a row occurred 3 times, ... .
 #' 
 #' @seealso \code{\link[imputeTS]{plotNA.distribution}},\code{\link[imputeTS]{plotNA.distributionBar}},
 #'   \code{\link[imputeTS]{plotNA.imputations}}
 #' 
 #' @examples
-#' #Prerequisite: Load a time series with missing values
-#' x <-tsNH4
+#' #Example 1: Visualize the top gap sizes in tsNH4
+#' plotNA.gapsize(tsNH4)
 #' 
-#' #Example 1: Visualize the top gapsizes
-#' plotNA.gapsize(x)
+#' #Example 2: Visualize the top gap sizes in tsAirgap
+#' plotNA.gapsize(tsAirgap)
 #' 
 #' @importFrom graphics lines par plot points barplot
 #' @export plotNA.gapsize
 
-plotNA.gapsize <- function(x, limit = 10, byTotalNA = F , legend = T, col = c('indianred','steelblue'), xlab="Ranking of the different gapsizes", ylab="Number",main ="Occurance of  gapsizes (NAs in a row)",cex.names = 0.7, horiz = F ,  axes =T,beside = T,las = 1, ... ) {
+plotNA.gapsize <- function(x, limit = 10, byTotalNA = FALSE , legend = TRUE, col = c('indianred','steelblue'), xlab="Ranking of the different gap sizes", ylab="Number",main ="Occurance of gap sizes (NAs in a row)",cex.names = 0.7, horiz = FALSE ,  axes =TRUE,beside = TRUE,las = 1, ... ) {
   
   data <- x
   
-  #Check for wrong input 
-  data <- precheck(data)
+  ##
+  ## Input check
+  ## 
+  
+  if(!is.null(dim(data)))
+  {stop("Input x is not univariate")}
+  
+  if(!is.numeric(data))
+  {stop("Input x is not numeric")}
+  
+  
+  ##
+  ## Plotting Code
+  ## 
   
   id.na <- which(is.na(data))
   
@@ -88,7 +100,7 @@ plotNA.gapsize <- function(x, limit = 10, byTotalNA = F , legend = T, col = c('i
   }
   
   ## Sort either by NA 
-  if ( byTotalNA == T) {
+  if ( byTotalNA == TRUE) {
     #sort accoding to overall NAs
     fooind <- order(bars1)  
     bars1 <- bars1[fooind]
@@ -115,15 +127,15 @@ plotNA.gapsize <- function(x, limit = 10, byTotalNA = F , legend = T, col = c('i
   inp <- matrix(c(bars1,bars2),byrow=TRUE,ncol=length(bars1))
   labels <-  as.vector(rbind(labels1,labels2)) 
   
-  if (legend == T) { par(oma =c(0.5,0,0,0)) }
+  if (legend == TRUE) { par(oma =c(0.5,0,0,0)) }
   
   ##here comes the plot itself
   barplot(inp, names.arg = labels,main = main, las = las, horiz = horiz , axes = axes  ,beside = beside, col =col ,cex.names= cex.names,xlab =xlab,ylab=ylab, ...)
   
-  if (legend == T) {
+  if (legend == TRUE) {
      par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
      plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-     legend("bottom",  bty ='n',xjust =0.5, horiz = T , cex=1, legend = c(  "Num occurence gapsize", "Total NAs for gapsize"), col = c("indianred", "steelblue"), pch = c(20))
+     legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c(  "Num occurence gapsize", "Total NAs for gapsize"), col = c("indianred", "steelblue"), pch = c(20))
   }
  
 }

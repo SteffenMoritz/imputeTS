@@ -6,7 +6,7 @@
 \title{Time series of monthly airline passengers (with NAs)}
 \format{Time Series (\code{\link{ts}}) with 144 rows including 13 NAs.}
 \source{
-\cite{Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) Time Series Analysis, Forecasting and Control. Third Edition. Holden-Day. Series G.}
+\cite{Box, G. E. P., Jenkins, G. M., Reinsel, G. C. and Ljung, G. M. (2015). Time series analysis: forecasting and control. Fifth Edition. John Wiley \& Sons.}
 }
 \usage{
 tsAirgap
@@ -17,7 +17,7 @@ This time series contains missing values. In the package included is also the \c
 missing values.
 }
 \details{
-The dataset originates from Box & Jenkins(see citation) and is a commonly used example in
+The dataset originates from Box & Jenkins (see citation) and is a commonly used example in
 time series analysis literature.
 
 It characteristics (strong trend, strong seasonal behavior) make it also a great 

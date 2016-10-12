@@ -4,12 +4,12 @@
 #'  
 #' @param x Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object in which missing values shall be replaced
 #' 
-#' @return Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object (dependent on given input at parameter x)
+#' @return Vector (\code{\link{vector}})
 #' 
-#' @details Removes all missing values from a time series. This shortens the time series by
+#' @details Removes all missing values from a input time series. This shortens the time series by
 #' the number of missing values in the series. Should be handled with care, because this can affect
-#' the seasonality of the time series. Seasonal patterns might be destroyed and/or frequency parameter of the 
-#' ts object might be no more correct.
+#' the seasonality of the time series. Seasonal patterns might be destroyed. Independent from the input, this 
+#' function only returns a vector. (the time information of a resulting time series object wouldn't be correct any more).
 #' 
 #' @author Steffen Moritz
 #' @seealso  \code{\link[imputeTS]{na.interpolation}},
@@ -22,6 +22,7 @@
 #' #Example 1: Remove all NAs
 #' #Create Time series with missing values
 #' x <- ts(c(2,3,NA,5,6,NA,7,8))
+#' 
 #' #Remove all NAs
 #' na.remove(x)
 #' 
@@ -32,29 +33,38 @@
 #' @import stats
 #' @export
 
-
 na.remove <- function(x) {
   
+  
   data <- x
+    
+    ##
+    ## Input check
+    ## 
   
-  #Check for wrong input 
-  data <- precheck(data)
+  if(!is.null(dim(data)))
+  {stop("Input x is not univariate")}
   
-  #if no missing data, do nothing
   if(!anyNA(data)) {
     return(data)
   }
+
+  if(!is.numeric(data))
+  {stop("Input x is not numeric")}
   
-  ##
-  ## Imputation Code
-  ##
-  temp <- numeric()
-  for (i in 1:length(data)) {
-    if ( ! is.na(data[i])) {      
-      temp <- c(temp, data[i])
+ 
+  
+    ##
+    ## Imputation Code
+    ##
+    temp <- numeric()
+    for (i in 1:length(data)) {
+      if ( ! is.na(data[i])) {      
+        temp <- c(temp, data[i])
+      }
     }
-  }
-  data <- ts(temp,frequency = frequency(data))
+    #Since all time information of a ts object would be incorrect after removing values
+    # only a vector is returned by the function
   
-  return(data)
+    return(temp)
 }

@@ -25,7 +25,7 @@
 #' @param cex A numerical value giving the amount by which plotting text and symbols should be magnified relative to the default.
 #' @param ... Additional graphical parameters that can be passed through to plot 
 #' 
-#' @details This plot can be used, to visualize the imputed values for a time series. Therefore
+#' @details This plot can be used, to visualize the imputed values for a time series. Therefore, 
 #' the imputed values (filled NA gaps) are shown in a different color than the other values.
 #' If the real values (truth) behind the NA gaps are known these are also added in a different color.
 #' 
@@ -36,48 +36,61 @@
 #'  \code{\link[imputeTS]{plotNA.gapsize}}
 #' 
 #' @examples
-#' #Prerequisite: Load a time series with missing values and perform an imputation
-#' x <- tsAirgap
-#' 
-#' #Perform imputation for x using na.mean
-#' x.imp <- na.mean(x)
+#' #Example 1: Visualize the values that were imputed by na.mean in the time series
+#' impMean.Airgap <- na.mean(tsAirgap)
+#' plotNA.imputations(tsAirgap, impMean.Airgap)
 #' 
 #' 
-#' #Example 1: Visualize the imputed values in the time series
-#' plotNA.imputations(x, x.imp)
-#' 
-#' 
-#' #Example 2: Visualize the imputed values and the true values in the time series
-#' plotNA.imputations(x, x.imp, tsAirgapComplete)
+#' #Example 2: Visualize the values that were imputed by na.locf and the true values in the time series
+#' impLOCF.Airgap <- na.locf(tsAirgap)
+#' plotNA.imputations(tsAirgap, impLOCF.Airgap, tsAirgapComplete)
 #' 
 #' @importFrom graphics legend lines plot points par
 #' @export plotNA.imputations
 
 plotNA.imputations <- function(x.withNA, x.withImputations, x.withTruth = NULL,
-                                legend = T, main ="Visualization Imputed Values", 
+                                legend = TRUE, main ="Visualization Imputed Values", 
                                 xlab="Time",ylab="Value",
                                 colWithTruth ="green3", colLines ="black",
                                 colWithImputations = "indianred2",
                                 colWithNA ="steelblue2",
-                                ylim = c(min(c(x.withImputations,x.withTruth),na.rm = T),
-                                         max(c(x.withImputations,x.withTruth),na.rm = T)),
+                                ylim = c(min(c(x.withImputations,x.withTruth),na.rm = TRUE),
+                                         max(c(x.withImputations,x.withTruth),na.rm = TRUE)),
                                 pch = 20, cex=0.8, ...) {
   
   data.withNA <- x.withNA
   data.withImputations <-  x.withImputations
   data.withTruth <- x.withTruth
   
-  #Check for wrong input and change identifier to NA
-  precheck(data.withNA)
-  precheck(data.withImputations)
-
+  
+  ##
+  ## Input check
+  ## 
+  
+  if(!is.null(dim(data.withNA)))
+  {stop("Input x.withNA is not univariate")}
+  
+  if(!is.numeric(data.withNA))
+  {stop("Input x.withNA is not numeric")}
+  
+  if(!is.null(dim(x.withImputations)))
+  {stop("Input x.withImputations is not univariate")}
+  
+  if(!is.numeric(x.withImputations))
+  {stop("Input x.withImputations is not numeric")}
+  
+  
+  ##
+  ## Plotting Code
+  ## 
+  
   id.na <- which(is.na(data.withNA))
   
   #save par settings and reset after function
   par.default <- par(no.readonly=TRUE) 
   on.exit(par(par.default))
   
-  if (legend == T) { par(oma =c(0.5,0,0,0)) }
+  if (legend == TRUE) { par(oma =c(0.5,0,0,0)) }
   
   
   #real time series (data.withTruth) not available
@@ -87,14 +100,19 @@ plotNA.imputations <- function(x.withNA, x.withImputations, x.withTruth = NULL,
     lines(data.withNA, col =colLines)
     points(data.withNA, col =colWithNA , pch = pch, cex=cex)
     
-    if (legend == T) {
+    if (legend == TRUE) {
       par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
       plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-      legend("bottom",  bty ='n',xjust =0.5, horiz = T , cex=1,legend = c("imputed values", "known values"), col = c("indianred2","steelblue"), pch = c(20))
+      legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1,legend = c("imputed values", "known values"), col = c("indianred2","steelblue"), pch = c(20))
     }
   }
   else {
-    precheck(data.withTruth)
+    #check also if data.withTruth has right format
+    if(!is.null(dim(data.withTruth)))
+    {stop("Input x.withTruth is not univariate")}
+    
+    if(!is.numeric(data.withTruth))
+    {stop("Input x.withTruth is not numeric")}
     
     plot(data.withTruth, type = "l", ylim=ylim, col = colWithTruth, ylab=ylab,xlab=xlab,main=main, ...)
     points(data.withTruth, col = colWithTruth,pch = pch, cex=cex )
@@ -102,10 +120,10 @@ plotNA.imputations <- function(x.withNA, x.withImputations, x.withTruth = NULL,
     points( data.withImputations, col = colWithImputations, pch = pch, cex=cex)
     points(data.withNA, col =colWithNA , pch = pch, cex=cex)
     
-    if (legend == T) {
+    if (legend == TRUE) {
       par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
       plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-      legend("bottom",  bty ='n',xjust =0.5, horiz = T , cex=1, legend = c("imputed values", "real values", "known values"), col = c("indianred2","green","steelblue"), pch = c(20))
+      legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c("imputed values", "real values", "known values"), col = c("indianred2","green","steelblue"), pch = c(20))
     }
   }
 }

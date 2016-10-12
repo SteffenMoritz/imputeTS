@@ -1,10 +1,36 @@
-Changes in Version 1.6
+Changes in Version 1.7
+  
+  o Enabled usage of multivariate input (data.frame, mts, matrix,...) for all imputation 
+    functions except na.remove. This means users do not have to loop through all columns 
+    by themselfes anymore if they want to use the package with multivariate data. The
+    imputation itself is still performend in univariate manner (column after column). 
+  
+  o Improved compatibility with different advanced time series objects like zoo and xts.
+    Using the imputation functions with these time series objects should be possible now. 
+    These series will not be explicitly named as possible input in the user documentation.
+    Absence of errors can not be guaranteed. However, there are no known issues yet.
   
   o Added several things for unit tests with pkg 'testthat'
   
   o Added unit tests for every function
   
-  o Internal preCheck function checks now that input length > 1
+  o Adjusted error messages
+  
+  o Internal Coding style improvement: replaced all T with TRUE and all F with FALSE
+  
+  o Adjustment tsHeating / tsHeatingComplete datasets (set 1440 as frequency parameter)
+  
+  o Adjustment tsNH4 / tsNH4Complete datasets (set 144 as frequency parameter)
+  
+  o Fixes for grammar, spelling and citations in the whole documentation
+  
+  o Revised examples in the documentation for all functions
+ 
+  o Restricted output of na.remove to vector only (issue with incorrect time information otherwise)
+  
+  o Added better x-axes labels for plotNA.distribution
+  
+  
   
 
 Changes in Version 1.6
@@ -24,6 +50,7 @@ Changes in Version 1.6
   o Added references to used packages in na.kalman and na.interpolation documentation
 
 
+
 Changes in Version 1.5
 
   o Allows now also numeric vectors as input
@@ -37,7 +64,7 @@ Changes in Version 1.5
 
   o Replaced "data" in all function parameters with the more common "x"
 
-  o Improvent of all code examples
+  o Improvement of all code examples
 
   o Renamed heating/heatingComplete dataset to tsHeating/tsHeatingComplete
 
@@ -61,7 +88,7 @@ Changes in Version 1.5
 
   o Renamed vis.missing to plotNA.distribution
   
-  o Fixed issues with parameter pass trough and legend for
+  o Fixed issues with parameter pass through and legend for
     all plotting functions
     
   o Improved dataset documentation 
@@ -74,10 +101,11 @@ Changes in Version 0.4
   
   o Added vis.missing to visualize the distribution of missing data in a time series
   
-  o Added vis.barMissing, which is especially suited to visualize missing data in very huge ts
+  o Added vis.barMissing, which is especially suited to visualize missing data in very huge time series
   
   o Update na.interpolate (added Stineman interpolation and enabled ... parameter 
-    for all interpolation algortihms to pass through parameters to the underlying functions)
+    for all interpolation algorithms to pass through parameters to the underlying functions)
+
 
 
 Changes in Version 0.3
@@ -90,7 +118,7 @@ Changes in Version 0.3
 
 Changes in Version 0.2
 
-  o Removed internal functions from visable package documentation
+  o Removed internal functions from visible package documentation
 
   o Added additional algorithms: na.seasplit and na.seadec
   

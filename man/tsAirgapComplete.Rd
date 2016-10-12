@@ -6,7 +6,7 @@
 \title{Time series of monthly airline passengers (complete)}
 \format{Time Series (\code{\link{ts}}) with 144 rows.}
 \source{
-\cite{Box, G. E. P., Jenkins, G. M. and Reinsel, G. C. (1976) Time Series Analysis, Forecasting and Control. Third Edition. Holden-Day. Series G.}
+\cite{Box, G. E. P., Jenkins, G. M., Reinsel, G. C. and Ljung, G. M. (2015). Time series analysis: forecasting and control. Fifth Edition. John Wiley \& Sons.}
 }
 \usage{
 tsAirgapComplete

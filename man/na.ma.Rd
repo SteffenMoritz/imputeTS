@@ -28,18 +28,18 @@ Missing value replacement by weighted moving average. Uses semi-adaptive window 
 }
 \details{
 In this function missing values get replaced by moving average values. Moving Averages are also sometimes 
-refered to as "moving mean", "rolling mean", "rolling average" or "running average".
+referred to as "moving mean", "rolling mean", "rolling average" or "running average".
 
 The mean in this implementation taken from an equal number of observations on either side of a central value. 
-This means for an NA value at position \code{i} of a time series, the obervations i-1,i+1 and i+1, i+2 (assuming a window size of k=2)
+This means for an NA value at position \code{i} of a time series, the observations i-1,i+1 and i+1, i+2 (assuming a window size of k=2)
 are used to calculate the mean.
 
 Since it can in case of long NA gaps also occur, that all values next to the central value are also NA, the algorithm has 
 a semi-adaptive window size. Whenever there are less than 2 non-NA values in the complete window available, the window size
-is incrementally increased, till at least 2 non-NA values are there. In all other cases the algortihm sticks preset window
+is incrementally increased, till at least 2 non-NA values are there. In all other cases the algorithm sticks preset window
 size.
 
-Ther are options for using Simple Moving Average (SMA), Linear Weighted Moving Average (LWMA) and 
+There are options for using Simple Moving Average (SMA), Linear Weighted Moving Average (LWMA) and 
 Exponential Weighted Moving Average (EWMA).
 
 SMA: all observations in the window are equally weighted for calculating the mean.
@@ -51,17 +51,14 @@ EWMA: uses weighting factors which decrease exponentially. The observations dire
 the observations one further away (i-2,i+2) have weight 1/2^2, the next (i-3,i+3) have weight 1/2^3, ...
 }
 \examples{
-#Prerequisite: Load Time series with missing values
-x <- tsAirgap
-
 #Example 1: Perform imputation with simple moving average
-na.ma(x, weighting = "simple")
+na.ma(tsAirgap, weighting = "simple")
 
 #Example 2: Perform imputation with exponential weighted moving average
-na.ma(x)
+na.ma(tsAirgap)
 
 #Example 3: Perform imputation with exponential weighted moving average, window size 6
-na.ma(x, k=6)
+na.ma(tsAirgap, k=6)
 
 }
 \author{

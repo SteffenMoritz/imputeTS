@@ -16,7 +16,7 @@
 #' @param legend If TRUE a legend is shown at the bottom of the plot. A custom legend can be obtained by
 #'  setting this parameter to FALSE and using  \code{\link[graphics]{legend}} function
 #' 
-#' @param axis If TRUE a axis with labels is added. A custom axis can be obtained by
+#' @param axis If TRUE a x-axis with labels is added. A custom axis can be obtained by
 #'  setting this parameter to FALSE and using  \code{\link[graphics]{axis}} function
 #' @param space The amount of space (as a fraction of the average bar width) left before each bar.
 #' @param col A vector of colors for the bars or bar components.
@@ -27,7 +27,7 @@
 #' 
 #' @details This function visualizes the distribution of missing values within a time series.
 #' In comparison to the \code{\link[imputeTS]{plotNA.distribution}} function this is not done by plotting
-#' each observation of the time series seperately. Instead observations for time intervals are represented as bars.
+#' each observation of the time series separately Instead observations for time intervals are represented as bars.
 #' For these intervals information about the amount of missing values are shown. This has the advantage, that also
 #' for large time series a plot which is easy to overview can be created.
 #'
@@ -37,25 +37,35 @@
 #'  \code{\link[imputeTS]{plotNA.gapsize}}, \code{\link[imputeTS]{plotNA.imputations}}
 #' 
 #' @examples
-#' #Prerequisite: Load a time series with missing values
-#' x <- tsHeating
+#' #Example 1: Visualize the missing values in tsNH4 time series
+#' plotNA.distributionBar(tsNH4)
 #' 
-#' #Example 1: Visualize the missing values in this time series
-#' plotNA.distributionBar(x, breaks = 20)
+#' #Example 2: Visualize the missing values in tsHeating time series
+#' plotNA.distributionBar(tsHeating, breaks = 20)
 #' 
 #' @importFrom graphics legend barplot axis par plot
 #' @export plotNA.distributionBar
 
 plotNA.distributionBar <- function(x, 
-                                    breaks = 10, breaksize = NULL, percentage = T, legend = T,
-                                    axis =T, space =0, col=c('indianred2','green2'), main = "Distribution of NAs", xlab ="Time", ylab=NULL ,  ... ) {
+                                    breaks = 10, breaksize = NULL, percentage = TRUE, legend = TRUE,
+                                    axis =TRUE, space =0, col=c('indianred2','green2'), main = "Distribution of NAs", xlab ="Time Lapse", ylab=NULL ,  ... ) {
   
   data <- x
   
-  #Check for wrong input 
-  data <- precheck(data)
+  ##
+  ## Input check
+  ## 
   
-  inputTS <- data
+  if(!is.null(dim(data)))
+  {stop("Input x is not univariate")}
+  
+  if(!is.numeric(data))
+  {stop("Input x is not numeric")}
+  
+  
+  ##
+  ## Plotting Code
+  ## 
   
   #save par settings and reset after function
   par.default <- par(no.readonly=TRUE) 
@@ -65,16 +75,16 @@ plotNA.distributionBar <- function(x,
   
   #Calculate the breakssize from the demanded breaks
   if (is.null(breaksize)) {
-    breaksize <- ceiling(length(inputTS) / breaks)
+    breaksize <- ceiling(length(data) / breaks)
   }
   
   breakpoints <- c(1)
   bp <- 1
-  while ( bp < length(inputTS))
+  while ( bp < length(data))
   {
     bp <- bp+ breaksize
-    if (bp >= length(inputTS))
-    { bp <- length(inputTS) }
+    if (bp >= length(data))
+    { bp <- length(data) }
     breakpoints <- c(breakpoints,bp)  
   }
   
@@ -86,7 +96,7 @@ plotNA.distributionBar <- function(x,
   okAmount <- numeric(0)
   for (i in 1:(length(breakpoints)-1)) {
     
-    cut <- inputTS[(breakpoints[i]+1):(breakpoints[i+1])]
+    cut <- data[(breakpoints[i]+1):(breakpoints[i+1])]
     
     nas <- length(which(is.na(cut)))
     naAmount <- c(naAmount,nas )
@@ -97,7 +107,7 @@ plotNA.distributionBar <- function(x,
   }
   
   #calculate percentages if wanted 
-  if (percentage == T) {
+  if (percentage == TRUE) {
     
     temp1 <- naAmount/(okAmount+naAmount)
     temp2 <- okAmount/(okAmount+naAmount)
@@ -107,7 +117,7 @@ plotNA.distributionBar <- function(x,
     okAmount <- temp2
     ylab1 <- "Percentage"
     
-  } else if(percentage == F) {
+  } else if(percentage == FALSE) {
     ylab1 <- "Number"
   }
   
@@ -117,23 +127,24 @@ plotNA.distributionBar <- function(x,
   }
   
   #create data to be plotted
-  data <- matrix(c(naAmount,okAmount),byrow=TRUE,ncol=length(naAmount))
+  plotData <- matrix(c(naAmount,okAmount),byrow=TRUE,ncol=length(naAmount))
   
-  if (legend == T) { par(oma =c(0.5,0,0,0)) }
+  if (legend == TRUE) { par(oma =c(0.5,0,0,0)) }
   
   #create the barplot
-  barplot(data,width =c(rep(1,length(naAmount)-1),widthLast) , main =main, space =space,col=col,xlab =xlab,ylab=ylab, ...)
+  barplot(plotData,width =c(rep(1,length(naAmount)-1),widthLast) , main =main, space =space,col=col,xlab =xlab,ylab=ylab, ...)
   
+  breakpoints = paste0(  (round(   (breakpoints / length(data)*100   ) , digits = 0)  ), "%")
   #add axis
-  if(axis ==T) {
-    axis(1, at=c(seq(0,length(naAmount))), labels = breakpoints, line = 0.5, tick = T)
+  if(axis ==TRUE) {
+    axis(1, at=c(seq(0,length(naAmount))), labels = breakpoints, line = 0.5, tick = TRUE)
   }
   #add legend if wanted
  
-  if (legend == T) {
+  if (legend == TRUE) {
     par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
     plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-    legend("bottom",  bty ='n',xjust =0.5, horiz = T , cex=1, legend = c("NAs","non-NAs"), col = c("indianred2","green2"), pch = c(15))
+    legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c("NAs","non-NAs"), col = c("indianred2","green2"), pch = c(15))
   }
   
   

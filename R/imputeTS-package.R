@@ -18,7 +18,7 @@
 #' - To print missing data statistics for a time series \code{x}, run:\cr
 #' > \code{statsNA(x)}\cr
 #' 
-#' Every other imputation function (starting with na.'algorith name') and plotting
+#' Every other imputation function (starting with na.'algorithm name') and plotting
 #' function (starting with plotNA.'plot name') work the same way as in this example.
 #'   
 #' @name imputeTS-package

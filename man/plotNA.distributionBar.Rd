@@ -4,9 +4,10 @@
 \alias{plotNA.distributionBar}
 \title{Visualize Distribution of Missing Values (Barplot)}
 \usage{
-plotNA.distributionBar(x, breaks = 10, breaksize = NULL, percentage = T,
-  legend = T, axis = T, space = 0, col = c("indianred2", "green2"),
-  main = "Distribution of NAs", xlab = "Time", ylab = NULL, ...)
+plotNA.distributionBar(x, breaks = 10, breaksize = NULL,
+  percentage = TRUE, legend = TRUE, axis = TRUE, space = 0,
+  col = c("indianred2", "green2"), main = "Distribution of NAs",
+  xlab = "Time Lapse", ylab = NULL, ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs}
@@ -22,7 +23,7 @@ overall bins is afterwards calculated automatically.}
 \item{legend}{If TRUE a legend is shown at the bottom of the plot. A custom legend can be obtained by
 setting this parameter to FALSE and using  \code{\link[graphics]{legend}} function}
 
-\item{axis}{If TRUE a axis with labels is added. A custom axis can be obtained by
+\item{axis}{If TRUE a x-axis with labels is added. A custom axis can be obtained by
 setting this parameter to FALSE and using  \code{\link[graphics]{axis}} function}
 
 \item{space}{The amount of space (as a fraction of the average bar width) left before each bar.}
@@ -44,16 +45,16 @@ time series with a lot of observations.
 \details{
 This function visualizes the distribution of missing values within a time series.
 In comparison to the \code{\link[imputeTS]{plotNA.distribution}} function this is not done by plotting
-each observation of the time series seperately. Instead observations for time intervals are represented as bars.
+each observation of the time series separately Instead observations for time intervals are represented as bars.
 For these intervals information about the amount of missing values are shown. This has the advantage, that also
 for large time series a plot which is easy to overview can be created.
 }
 \examples{
-#Prerequisite: Load a time series with missing values
-x <- tsHeating
+#Example 1: Visualize the missing values in tsNH4 time series
+plotNA.distributionBar(tsNH4)
 
-#Example 1: Visualize the missing values in this time series
-plotNA.distributionBar(x, breaks = 20)
+#Example 2: Visualize the missing values in tsHeating time series
+plotNA.distributionBar(tsHeating, breaks = 20)
 
 }
 \author{

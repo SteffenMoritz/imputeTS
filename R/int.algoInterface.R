@@ -5,7 +5,7 @@
 # @param x  Supposed to be a univariate time series 
 # @param na.identifier Supposed to be a character string or numeric value. 
 # If another value than NA indicates missing values this is specified with this parameter. 
-# @details Checks, if data is really a univariate time series and checks that na.identifier is no list or vector.
+# @details Checks, if x is really a univariate time series and checks that na.identifier is no list or vector.
 # @return Time Series (\code{\link{ts}}) object that fulfills the requirements
 # @author Steffen Moritz
 #' @import stats
@@ -14,6 +14,7 @@
 apply.base.algorithm <- function(x, algorithm, ...) { 
   
   data <- x
+  
   #checking for false input
   if(algorithm == "locf")
   { data <- na.locf(data, ...) }

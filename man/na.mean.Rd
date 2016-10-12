@@ -25,7 +25,7 @@ Missing value replacement by mean values. Different means like median, mean, mod
 \details{
 Missing values get replaced by overall mean values. The function calculates the mean, median or mode
 over all the non-NA values and replaces all NAs with this value. Option 'mode' replaces NAs with the 
-most frequent value in the time series. If two or more values occur equally frequent, the funtion imputes
+most frequent value in the time series. If two or more values occur equally frequent, the function imputes
 with the lower value. That's why 'mode' is not the best option for decimal values.
 }
 \examples{
@@ -37,7 +37,6 @@ na.mean(x)
 
 #Example 2: Perform imputation with overall median
 na.mean(x, option ="median")
-
 }
 \author{
 Steffen Moritz

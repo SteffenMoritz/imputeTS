@@ -25,11 +25,11 @@
 #'    \item{"Percentage of Missing Values" - Percentage of missing values in the time series}
 #'    \item{"Stats for Bins" - Number/percentage of missing values for the split into bins }
 #'    \item{"Longest NA gap" - Longest series of consecutive missing values (NAs in a row) in the time series }
-#'    \item{"Most frequent gap size" - Most frequent occuring series of missing values in the time series}
+#'    \item{"Most frequent gap size" - Most frequent occurring series of missing values in the time series}
 #'    \item{"Gap size accounting for most NAs" - The series of consecutive missing values that accounts for most missing values overall in the time series}
-#'    \item{"Overview NA series" - Overview about how often each series of consecutive missing values occurs. Series occuring 0 times are skipped}
+#'    \item{"Overview NA series" - Overview about how often each series of consecutive missing values occurs. Series occurring 0 times are skipped}
 #'    }
-#'    It is furthermore, important to note, that you are able to choose wheather the function returns a list
+#'    It is furthermore, important to note, that you are able to choose whether the function returns a list
 #'    or prints the information only. (see description of parameter "printOnly")
 #'    
 #' @author Steffen Moritz
@@ -37,22 +37,33 @@
 #'  \code{\link[imputeTS]{plotNA.gapsize}}
 #' 
 #' @examples
-#' #Prerequisite: Load a time series with missing values
-#' x <- tsNH4
+#' #Example 1: Print stats about the missing data in tsNH4
+#' statsNA(tsNH4)
 #' 
-#' #Example 1: Print stats about the missing data
-#' statsNA(x)
+#' #Example 2: Return list with stats about the missing data in tsAirgap
+#' statsNA(tsAirgap, printOnly= FALSE)
 #' 
 #' @export
 
 
-statsNA <- function(x, bins = 4, printOnly = T) {
+statsNA <- function(x, bins = 4, printOnly = TRUE) {
   
   data <- x
   
-  #Check for wrong input 
-  data <- precheck(data)
+  ##
+  ## Input check
+  ## 
   
+  if(!is.null(dim(data)))
+  {stop("Input x is not univariate")}
+  
+  if(!is.numeric(data))
+  {stop("Input x is not numeric")}
+  
+  
+  ##
+  ## Analysis Code
+  ## 
   
   missindx <- is.na(data)  
   
@@ -145,7 +156,7 @@ statsNA <- function(x, bins = 4, printOnly = T) {
     
   
   ####Print everything
-  if (printOnly == T) {
+  if (printOnly == TRUE) {
       ## Print Number NA and Pct NA
       print("Length of time series:")
       print(length(data))
@@ -191,7 +202,7 @@ statsNA <- function(x, bins = 4, printOnly = T) {
       }
   }
   
-  if (printOnly == F) {
+  if (printOnly == FALSE) {
       output <- list(
              lengthTimeSeries = length(data),
              numberNAs = numberNAs,

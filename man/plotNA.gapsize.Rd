@@ -2,21 +2,21 @@
 % Please edit documentation in R/plotNA.gapsize.R
 \name{plotNA.gapsize}
 \alias{plotNA.gapsize}
-\title{Visualize Distribution of NA gapsizes}
+\title{Visualize Distribution of NA gap sizes}
 \usage{
-plotNA.gapsize(x, limit = 10, byTotalNA = F, legend = T,
+plotNA.gapsize(x, limit = 10, byTotalNA = FALSE, legend = TRUE,
   col = c("indianred", "steelblue"),
-  xlab = "Ranking of the different gapsizes", ylab = "Number",
-  main = "Occurance of  gapsizes (NAs in a row)", cex.names = 0.7,
-  horiz = F, axes = T, beside = T, las = 1, ...)
+  xlab = "Ranking of the different gap sizes", ylab = "Number",
+  main = "Occurance of gap sizes (NAs in a row)", cex.names = 0.7,
+  horiz = FALSE, axes = TRUE, beside = TRUE, las = 1, ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs}
 
-\item{limit}{Specifies how many of the top gapsizes are shown in the plot.}
+\item{limit}{Specifies how many of the top gap sizes are shown in the plot.}
 
-\item{byTotalNA}{For byTotalNA = TRUE the top gapsizes according to their overall weight are shown. (occurence * gapsize)
-For byTotalNA = FALSE the top gapsizes are shown by their number of occurence. (occurence)}
+\item{byTotalNA}{For byTotalNA = TRUE the top gap sizes according to their overall weight are shown. (occurrence * gap size)
+For byTotalNA = FALSE the top gap sizes are shown by their number of occurrence. (occurrence)}
 
 \item{legend}{If TRUE a legend is shown at the bottom of the plot. A custom legend can be obtained by
 setting this parameter to FALSE and using  \code{\link[graphics]{legend}} function}
@@ -42,20 +42,20 @@ setting this parameter to FALSE and using  \code{\link[graphics]{legend}} functi
 \item{...}{Additional graphical parameters that can be passed through to barplot}
 }
 \description{
-Visualize Distribution of NA gapsizes(NAs in a row) in a time series
+Visualize Distribution of NA gap sizes (NAs in a row) in a time series
 }
 \details{
-This plotting function can be used to visualize the length of the NA gaps(NAs in a row)
- in a time series. It shows a ranking of which gapsizes occur most often. This ranking can be ordered by total NAs for this gapsize (occurence * gap length) or by occurence of the gapsize.
- The outcome will be somethink like in the time series 2NAs in a row occured 27times, 4NAs in a row occured 11 times, 
- 7NAs in a row occured 5 times, 1NA in a row occured 3 times,... .
+This plotting function can be used to visualize the length of the NA gaps (NAs in a row)
+ in a time series. It shows a ranking of which gap sizes occur most often. This ranking can be ordered by total NAs for this gap size (occurrence * gap length) or by occurrence of the gap size.
+ The outcome will be somethink like in the time series 2NAs in a row occurred  27times, 4NAs in a row occurred  11 times, 
+ 7NAs in a row occurred 5 times, 1NA in a row occurred 3 times, ... .
 }
 \examples{
-#Prerequisite: Load a time series with missing values
-x <-tsNH4
+#Example 1: Visualize the top gap sizes in tsNH4
+plotNA.gapsize(tsNH4)
 
-#Example 1: Visualize the top gapsizes
-plotNA.gapsize(x)
+#Example 2: Visualize the top gap sizes in tsAirgap
+plotNA.gapsize(tsAirgap)
 
 }
 \author{

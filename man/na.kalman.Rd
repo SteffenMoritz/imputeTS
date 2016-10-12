@@ -4,12 +4,12 @@
 \alias{na.kalman}
 \title{Missing Value Imputation by Kalman Smoothing and State Space Models}
 \usage{
-na.kalman(x, model = "StructTS", smooth = T, nit = -1, ...)
+na.kalman(x, model = "StructTS", smooth = TRUE, nit = -1, ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object in which missing values shall be replaced}
 
-\item{model}{Model to be used. With this parameter the State Space Model (on which KalmanSmooth is performed) can be choosen. Accepts the following input:
+\item{model}{Model to be used. With this parameter the State Space Model (on which KalmanSmooth is performed) can be chosen. Accepts the following input:
 \itemize{
    \item{"auto.arima" - For using the state space representation of arima model (using \link[forecast]{auto.arima})}
    \item{"StructTS" - For using a structural model fitted by maximum likelihood (using \link[stats]{StructTS}) }
@@ -18,7 +18,7 @@ na.kalman(x, model = "StructTS", smooth = T, nit = -1, ...)
  For both auto.arima and StructTS additional parameters for model building can be given with the \dots parameter  
    
  Additionally it is also possible to use a user created state space model (See code Example 5). This state space model could for example be obtained from another
- R package for structral time series modeling. Furthermore providing the state space representation of a arima model from \link[stats]{arima}
+ R package for structural time series modeling. Furthermore providing the state space representation of a arima model from \link[stats]{arima}
  is also possible. But it is important to note, that user created state space models must meet the requirements specified under \link[stats]{KalmanLike}. This means the user supplied state space model has to be in form of a list with at least components T, Z, h , V, a, P, Pn. 
  (more details under \link[stats]{KalmanLike})}
 
@@ -47,24 +47,21 @@ For an detailed explanation of Kalman Filtering and Space Space Models the follo
    }
 }
 \examples{
-#Prerequisite: Load a time series with missing values
-x <- tsAirgap
-
 #Example 1: Perform imputation with KalmanSmoother and state space representation of arima model
-na.kalman(x)
+na.kalman(tsAirgap)
 
 #Example 2: Perform imputation with KalmanRun and state space representation of arima model
-na.kalman(x, smooth = FALSE)
+na.kalman(tsAirgap, smooth = FALSE)
 
 #Example 3: Perform imputation with KalmanSmooth and StructTS model
-na.kalman(x, model ="StructTS", smooth = TRUE) 
+na.kalman(tsAirgap, model ="StructTS", smooth = TRUE) 
 
 #Example 4: Perform imputation with KalmanSmooth and StructTS model with additional parameters 
-na.kalman(x, model ="StructTS", smooth = TRUE, type ="trend") 
+na.kalman(tsAirgap, model ="StructTS", smooth = TRUE, type ="trend") 
 
 #Example 5:  Perform imputation with KalmanSmooth and user created model
-usermodel <- arima(x,order = c(1,0,1))$model
-na.kalman(x,model = usermodel)
+usermodel <- arima(tsAirgap,order = c(1,0,1))$model
+na.kalman(tsAirgap,model = usermodel)
 
 }
 \author{

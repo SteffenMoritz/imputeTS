@@ -34,16 +34,17 @@ plotNA.distribution(x, colPoints = "steelblue",
 Visualize the distribution of missing values within a time series.
 }
 \details{
-This function visualizes the distribution of missing values within a time series. Therefore
+This function visualizes the distribution of missing values within a time series. Therefore, 
 the time series is plotted and whenever a value is NA the background is colored differently.
 This gives a nice overview, where in the time series most of the missing values occur.
 }
 \examples{
-#Prerequisite: Load a time series with missing values
-x <- tsAirgap
-
-#Example 1: Visualize the missing values in this time series
+#Example 1: Visualize the missing values in x
+x <- ts(c(1:11, 4:9,NA,NA,NA,11:15,7:15,15:6,NA,NA,2:5,3:7))
 plotNA.distribution(x)
+
+#Example 2: Visualize the missing values in tsAirgap time series
+plotNA.distribution(tsAirgap)
 
 }
 \author{

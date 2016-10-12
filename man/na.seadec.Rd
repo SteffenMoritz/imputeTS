@@ -15,7 +15,7 @@ na.seadec(x, algorithm = "interpolation", ...)
    \item{"locf" - Imputation by Last Observation Carried Forward}
    \item{"mean" - Imputation by Mean Value}
    \item{"random" - Imputation by Random Sample}
-   \item{"kalman" - Imputation by Kalman Smooting and State Space Models}
+   \item{"kalman" - Imputation by Kalman Smoothing and State Space Models}
    \item{"ma" - Imputation by Weighted Moving Average}
    }}
 
@@ -29,14 +29,11 @@ Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object (dependen
 Removes the seasonal component from the time series, performs imputation on the deseasonalized series and afterwards adds the seasonal component again.
 }
 \examples{
-#Prerequisite: Load a time series with missing values
-x <- tsAirgap
+#Example 1: Perform seasonal imputation using algorithm = "interpolation"
+na.seadec(tsAirgap, algorithm = "interpolation")
 
-#Example 1: Perform seasonal imputation using algortihm = "interpolation"
-na.seadec(x, algorithm = "interpolation")
-
-#Example 2: Perform seasonal imputation using algortihm = "mean"
-na.seadec(x, algorithm = "mean")
+#Example 2: Perform seasonal imputation using algorithm = "mean"
+na.seadec(tsAirgap, algorithm = "mean")
 
 }
 \author{
