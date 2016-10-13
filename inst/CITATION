@@ -8,5 +8,4 @@ bibentry(bibtype = "Manual",
   author = as.person("Steffen Moritz"),
   year = year,
   note = vers,
-  url = "http://CRAN.R-project.org/package=imputeTS")
-
+  url = "https://CRAN.R-project.org/package=imputeTS")
