@@ -33,7 +33,7 @@ The imputeTS package can be found on [CRAN]. For installation execute in R:
 
   > This is just one example for an imputation algorithm. 
   > In this case interpolation was the algorithm of choice for 
-  > calculating the NA replacements. There are several  other 
+  > calculating the NA replacements. There are several other 
   > algorithms (see also under caption "Imputation Algorithms"). All 
   > imputation functions   are named alike starting with
   > na. followed by a algorithm label  e.g. na.mean, na.kalman, ...
