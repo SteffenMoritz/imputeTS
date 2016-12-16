@@ -163,11 +163,8 @@ na.kalman <- function(x, model = "StructTS" , smooth =TRUE,nit=-1, ...) {
     karima <-rowSums(erg)
     
     #Add imputations to the initial dataset
-    for (i in 1:length(data)) {
-      if (is.na(data[i])) {
-        data[i] <- karima[i]
-      }
-    }
+    data[missindx] <- karima[missindx]
+
     return(data)
   }
 }

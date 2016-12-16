@@ -85,15 +85,17 @@ na.interpolation <- function(x, option = "linear", ...) {
     
     allindx <- 1:n
     indx <- allindx[!missindx]
+
+    data.vec <- as.vector(data)
     
     if(option =="linear") {
-      interp <- as.ts(approx(indx,data[indx],1:n, rule=2, ...)$y)
+      interp <- approx(indx,data.vec[indx],1:n, rule=2, ...)$y
     }
     else if(option == "spline") {
-      interp <- as.ts(spline(indx,data[indx],n = n, ... )$y)
+      interp <- spline(indx,data.vec[indx],n = n, ... )$y
     }
     else if(option == "stine") {
-      interp <- as.ts(stinterp(indx,data[indx],1:n, ...)$y)
+      interp <- stinterp(indx,data.vec[indx],1:n, ...)$y
       #avoid NAs at the beginning and end of series // same behavior like for approx with rule = 2.
       if(any(is.na(interp))) {interp <- na.locf(interp, na.remaining= "rev")}
     }
@@ -101,12 +103,9 @@ na.interpolation <- function(x, option = "linear", ...) {
       stop("Wrong parameter 'option' given. Value must be either 'linear' or 'spline'.")
     }
     
-    for (i in 1:length(data)) {
-      if (is.na(data[i])) {
-        data[i] <- interp[i]
-      }
-    }
-    
+    #Merge interpolated values back into original time series
+    data[missindx] <- interp[missindx]
+
     return(data)
   }
 }

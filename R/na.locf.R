@@ -90,32 +90,48 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
     ## Imputation Code
     ##
     
-    ## option - what kind of imputation to perform
-    #Last observation carried forward
+    missindx <- is.na(data)  
+
+    #Input as vector
+    data.vec <- as.vector(data)
+    
+    #Get needed variables
+    n <- length(data.vec)
+    allindx <- 1:n
+    indx <- allindx[!missindx]
+    
+    ifelse(na.remaining == "rev", z <- 2, z <- 1) 
+    
+    ## locf and nocb is realized via approx (over 10 times faster than a loop)
+    #Last observation carried forward // f = 0
     if (option == "locf") {
-      for (i in 2:length(data)) {
-        if (is.na(data[i])) {
-          data[i] <- data[i-1]
-        }
-      }
+      interp <- approx(indx,data.vec[indx],1:n, rule=z:2,method = "constant", f = 0)$y
     }
-    #Next observation carried backward
+    #Next observation carried backward // f = 1
     else if (option == "nocb") {
-      for (i in (length(data)-1):1) {
-        if (is.na(data[i])) {
-          data[i] <- data[i+1]
-        }
-      }
+      interp <- approx(indx,data.vec[indx],1:n, rule=2:z,method = "constant", f = 1)$y
     }
     #Wrong input
     else {
       stop("Wrong parameter 'option' given. Value must be either 'locf' or 'nocb'.")
     }
     
-    ##na.remaining - what to do with remaining NAs after imputation
+    data[missindx] <- interp[missindx]
+    
+
+    ## na.remaining - what to do with remaining NAs after imputation
+    
+    # Return if no remaining NAs 
+    if(!anyNA(data)) {
+      return(data)
+    }
     
     #keep NAs untouched
     if (na.remaining == "keep") {
+      return(data)
+    }
+    #rev is already checked in the beginning through variable z
+    if (na.remaining == "rev") {
       return(data)
     }
     #Remove all NAs
@@ -126,15 +142,6 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
     else if(na.remaining == "mean") {
       return(na.mean(data))
     }
-    #Perform locf/nocb from opposite direction
-    else if(na.remaining == "rev") {
-      if(option =="locf") {
-        return(na.locf(data, option ="nocb"))
-      }
-      else{
-        return(na.locf(data))
-      }
-    }  
     #Wrong Input
     else {
       stop("Wrong parameter 'na.remaining' given. Value must be either 'keep', 'rm', 'mean' or 'rev'.") 
