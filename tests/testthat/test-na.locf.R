@@ -7,7 +7,9 @@ test_that("Error for wrong input for option parameter",
 
 test_that("Error for wrong input for na.remaining parameter",
           {
-            expect_that( na.locf(tsAirgap, na.remaining ="Wrong"), throws_error())
+            x <- tsAirgap
+            x[1:2] <- NA
+            expect_that( na.locf(x, na.remaining ="Wrong"), throws_error())
           })
 
 

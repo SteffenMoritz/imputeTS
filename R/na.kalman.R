@@ -114,11 +114,11 @@ na.kalman <- function(x, model = "StructTS" , smooth =TRUE,nit=-1, ...) {
     ##Selection of state space model
     
     #State space representation of a arima model 
-    if (model =="auto.arima") {
+    if (model[1] =="auto.arima") {
       mod <- auto.arima(data,...)$model
     }
     #State space model, default is BSM - basic structural model
-    else if(model == "StructTS") {
+    else if(model[1] == "StructTS") {
       #Fallback, because for StructTS first value is not allowed to be NA
       if(is.na(data[1])) {data[1] <- na.locf(data,option = "nocb",na.remaining = "rev")[1]}
       mod <- StructTS(data,...)$model0
