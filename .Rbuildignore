@@ -4,3 +4,4 @@
 ^.*\.ini$
 ^.*\.txt$
 ^appveyor\.yml$
+Icon
