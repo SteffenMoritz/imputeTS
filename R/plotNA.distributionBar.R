@@ -5,11 +5,12 @@
 #' 
 #' @param x Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs
 #' 
-#' @param breaks Defines the number of bins to be created. If breaksize isn't NULL it is overpowered
-#' by this parameter
+#' @param breaks Defines the number of bins to be created. Default number of breaks is calculated by \code{\link[grDevices]{nclass.Sturges}}
+#' using Sturges' formula. If the breaksize parameter is set to a value different to NULL
+#' this parameter is ignored.
 #' 
 #' @param breaksize Defines how many observations should be in one bin. The required number of 
-#' overall bins is afterwards calculated automatically.
+#' overall bins is afterwards calculated automatically. This parameter if used overwrites the breaks parameter.
 #'  
 #' @param percentage Whether the NA / non-NA ration should be given as percent or absolute numbers
 #' 
@@ -44,10 +45,11 @@
 #' plotNA.distributionBar(tsHeating, breaks = 20)
 #' 
 #' @importFrom graphics legend barplot axis par plot
+#' @import grDevices
 #' @export plotNA.distributionBar
 
 plotNA.distributionBar <- function(x, 
-                                    breaks = 10, breaksize = NULL, percentage = TRUE, legend = TRUE,
+                                    breaks = nclass.Sturges(x), breaksize = NULL, percentage = TRUE, legend = TRUE,
                                     axis =TRUE, space =0, col=c('indianred2','green2'), main = "Distribution of NAs", xlab ="Time Lapse", ylab=NULL ,  ... ) {
   
   data <- x
