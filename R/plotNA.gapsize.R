@@ -49,7 +49,7 @@
 #' @importFrom graphics lines par plot points barplot
 #' @export plotNA.gapsize
 
-plotNA.gapsize <- function(x, limit = 10, byTotalNA = FALSE , legend = TRUE, col = c('indianred','steelblue'), xlab="Ranking of the different gap sizes", ylab="Number",main ="Occurance of gap sizes (NAs in a row)",cex.names = 0.7, horiz = FALSE ,  axes =TRUE,beside = TRUE,las = 1, ... ) {
+plotNA.gapsize <- function(x, limit = 10, byTotalNA = FALSE , legend = TRUE, col = c('indianred','steelblue'), xlab="Ranking of the different gap sizes", ylab="Number",main ="Occurrence of gap sizes (NAs in a row)",cex.names = 0.7, horiz = FALSE ,  axes =TRUE,beside = TRUE,las = 1, ... ) {
   
   data <- x
   
@@ -135,7 +135,7 @@ plotNA.gapsize <- function(x, limit = 10, byTotalNA = FALSE , legend = TRUE, col
   if (legend == TRUE) {
      par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
      plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-     legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c(  "Num occurence gapsize", "Total NAs for gapsize"), col = c("indianred", "steelblue"), pch = c(20))
+     legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c(  "Num occurrence gapsize", "Total NAs for gapsize"), col = c("indianred", "steelblue"), pch = c(20))
   }
  
 }

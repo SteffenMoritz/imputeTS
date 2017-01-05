@@ -7,7 +7,7 @@
 plotNA.gapsize(x, limit = 10, byTotalNA = FALSE, legend = TRUE,
   col = c("indianred", "steelblue"),
   xlab = "Ranking of the different gap sizes", ylab = "Number",
-  main = "Occurance of gap sizes (NAs in a row)", cex.names = 0.7,
+  main = "Occurrence of gap sizes (NAs in a row)", cex.names = 0.7,
   horiz = FALSE, axes = TRUE, beside = TRUE, las = 1, ...)
 }
 \arguments{
