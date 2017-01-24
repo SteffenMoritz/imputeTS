@@ -18,6 +18,7 @@ Imports:
     stats,
     stinepack,
     graphics,
+    grDevices,
     forecast
 Suggests:
     testthat

@@ -57,7 +57,7 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
   
   # Multivariate Input Handling (loop through all columns)
   # No imputation code in this part. 
-  if (!is.null( dim(data)[2]) && dim(data)[2] != 1  ) {
+  if (!is.null( dim(data)[2])  ) {
     for (i in 1:dim(data)[2]) {
       #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
       tryCatch(data[,i] <- na.locf(data[ ,i], option, na.remaining), error=function(cond) {

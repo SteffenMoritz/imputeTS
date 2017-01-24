@@ -42,7 +42,7 @@ na.random <- function(x, lowerBound = min(data, na.rm = TRUE) , upperBound = max
   
   # Multivariate Input Handling (loop through all columns)
   # No imputation code in this part. 
-  if (!is.null( dim(data)[2]) && dim(data)[2] != 1  ) {
+  if (!is.null( dim(data)[2])  ) {
     
     #Precheck
     if(!is.numeric(data))

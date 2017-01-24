@@ -72,7 +72,7 @@ na.kalman <- function(x, model = "StructTS" , smooth =TRUE,nit=-1, ...) {
   
   # Multivariate Input Handling (loop through all columns)
   # No imputation code in this part. 
-  if (!is.null( dim(data)[2]) && dim(data)[2] != 1  ) {
+  if (!is.null( dim(data)[2]) ) {
     for (i in 1:dim(data)[2]) {
       #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
       tryCatch(data[,i] <- na.kalman(data[ ,i], model, smooth, nit, ...), error=function(cond) {

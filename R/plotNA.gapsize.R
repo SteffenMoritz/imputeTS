@@ -57,7 +57,7 @@ plotNA.gapsize <- function(x, limit = 10, byTotalNA = FALSE , legend = TRUE, col
   ## Input check
   ## 
   
-  if(!is.null(dim(data)))
+  if(!is.null(dim(data)) && dim(data)[2] != 1)
   {stop("Input x is not univariate")}
   
   if(!is.numeric(data))

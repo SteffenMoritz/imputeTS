@@ -44,7 +44,7 @@ plotNA.distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "i
   ## Input check
   ## 
   
-  if(!is.null(dim(data)))
+  if(!is.null(dim(data)) && dim(data)[2] != 1)
   {stop("Input x is not univariate")}
   
   if(!is.numeric(data))
