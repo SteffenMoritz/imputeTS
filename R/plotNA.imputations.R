@@ -68,16 +68,16 @@ plotNA.imputations <- function(x.withNA, x.withImputations, x.withTruth = NULL,
   ## 
   
   if(!is.null(dim(data.withNA)) && dim(data.withNA)[2] != 1)
-  {stop("Input x.withNA is not univariate")}
+  {stop("Input data.withNA is not univariate")}
   
   if(!is.numeric(data.withNA))
-  {stop("Input x.withNA is not numeric")}
+  {stop("Input data.withNA is not numeric")}
   
   if(!is.null(dim(data.withImputations)) && dim(data.withImputations)[2] != 1)
-  {stop("Input x.withImputations is not univariate")}
+  {stop("Input data.withImputations is not univariate")}
   
-  if(!is.numeric(x.withImputations))
-  {stop("Input x.withImputations is not numeric")}
+  if(!is.numeric(data.withImputations))
+  {stop("Input data.withImputations is not numeric")}
   
   
   ##
