@@ -1,3 +1,8 @@
+Changes in Version 1.9
+
+  o 
+
+
 Changes in Version 1.8
 
   o Computation time improvments for na.locf (up to 10000 times faster)
