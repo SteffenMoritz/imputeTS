@@ -38,9 +38,6 @@ na.seasplit(tsAirgap, algorithm = "interpolation")
 na.seasplit(tsAirgap, algorithm = "mean")
 
 }
-\author{
-Steffen Moritz
-}
 \seealso{
 \code{\link[imputeTS]{na.interpolation}},
 \code{\link[imputeTS]{na.kalman}}, \code{\link[imputeTS]{na.locf}},
@@ -48,4 +45,6 @@ Steffen Moritz
  \code{\link[imputeTS]{na.random}}, \code{\link[imputeTS]{na.replace}},
  \code{\link[imputeTS]{na.seadec}}
 }
-
+\author{
+Steffen Moritz
+}

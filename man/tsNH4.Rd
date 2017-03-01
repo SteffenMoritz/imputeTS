@@ -36,4 +36,3 @@ There are the two time series:
 \code{\link[imputeTS]{tsAirgap}},\code{\link[imputeTS]{tsHeating}}
 }
 \keyword{datasets}
-

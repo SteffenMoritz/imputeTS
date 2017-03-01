@@ -58,11 +58,10 @@ plotNA.distributionBar(tsNH4)
 plotNA.distributionBar(tsHeating, breaks = 20)
 
 }
-\author{
-Steffen Moritz
-}
 \seealso{
 \code{\link[imputeTS]{plotNA.distribution}},
  \code{\link[imputeTS]{plotNA.gapsize}}, \code{\link[imputeTS]{plotNA.imputations}}
 }
-
+\author{
+Steffen Moritz
+}

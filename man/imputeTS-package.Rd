@@ -29,4 +29,3 @@ function (starting with plotNA.'plot name') work the same way as in this example
 \references{
 Moritz, Steffen, et al. "Comparison of different Methods for Univariate Time Series Imputation in R." arXiv preprint arXiv:1510.03924 (2015).
 }
-

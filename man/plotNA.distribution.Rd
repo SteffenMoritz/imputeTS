@@ -47,11 +47,10 @@ plotNA.distribution(x)
 plotNA.distribution(tsAirgap)
 
 }
-\author{
-Steffen Moritz
-}
 \seealso{
 \code{\link[imputeTS]{plotNA.distributionBar}},
  \code{\link[imputeTS]{plotNA.gapsize}}, \code{\link[imputeTS]{plotNA.imputations}}
 }
-
+\author{
+Steffen Moritz
+}

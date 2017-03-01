@@ -64,9 +64,6 @@ usermodel <- arima(tsAirgap,order = c(1,0,1))$model
 na.kalman(tsAirgap,model = usermodel)
 
 }
-\author{
-Steffen Moritz
-}
 \references{
 Hyndman RJ and Khandakar Y (2008). "Automatic time series forecasting: the forecast package for R". Journal of Statistical Software, 26(3).
 }
@@ -77,4 +74,6 @@ Hyndman RJ and Khandakar Y (2008). "Automatic time series forecasting: the forec
  \code{\link[imputeTS]{na.random}}, \code{\link[imputeTS]{na.replace}},
  \code{\link[imputeTS]{na.seadec}}, \code{\link[imputeTS]{na.seasplit}}
 }
-
+\author{
+Steffen Moritz
+}

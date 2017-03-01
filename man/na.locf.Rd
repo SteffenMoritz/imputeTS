@@ -54,9 +54,6 @@ na.locf(x, option = "nocb")
 na.locf(x, na.remaining = "rm")
 
 }
-\author{
-Steffen Moritz
-}
 \seealso{
 \code{\link[imputeTS]{na.interpolation}},
 \code{\link[imputeTS]{na.kalman}},
@@ -64,4 +61,6 @@ Steffen Moritz
  \code{\link[imputeTS]{na.random}}, \code{\link[imputeTS]{na.replace}},
  \code{\link[imputeTS]{na.seadec}}, \code{\link[imputeTS]{na.seasplit}}
 }
-
+\author{
+Steffen Moritz
+}

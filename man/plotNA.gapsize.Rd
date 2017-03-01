@@ -58,11 +58,10 @@ plotNA.gapsize(tsNH4)
 plotNA.gapsize(tsAirgap)
 
 }
-\author{
-Steffen Moritz
-}
 \seealso{
 \code{\link[imputeTS]{plotNA.distribution}},\code{\link[imputeTS]{plotNA.distributionBar}},
   \code{\link[imputeTS]{plotNA.imputations}}
 }
-
+\author{
+Steffen Moritz
+}

@@ -40,4 +40,3 @@ There are the two time series:
 \code{\link[imputeTS]{tsHeating}}, \code{\link[imputeTS]{tsNH4}}
 }
 \keyword{datasets}
-

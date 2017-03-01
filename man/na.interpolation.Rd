@@ -41,9 +41,6 @@ na.interpolation(x, option ="spline")
 na.interpolation(x, option ="stine")
 
 }
-\author{
-Steffen Moritz
-}
 \references{
 Johannesson, Tomas, et al. (2015). "Package stinepack".
 }
@@ -53,4 +50,6 @@ Johannesson, Tomas, et al. (2015). "Package stinepack".
  \code{\link[imputeTS]{na.random}}, \code{\link[imputeTS]{na.replace}},
  \code{\link[imputeTS]{na.seadec}}, \code{\link[imputeTS]{na.seasplit}}
 }
-
+\author{
+Steffen Moritz
+}

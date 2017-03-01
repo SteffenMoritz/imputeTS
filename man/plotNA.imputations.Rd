@@ -63,11 +63,10 @@ impLOCF.Airgap <- na.locf(tsAirgap)
 plotNA.imputations(tsAirgap, impLOCF.Airgap, tsAirgapComplete)
 
 }
-\author{
-Steffen Moritz
-}
 \seealso{
 \code{\link[imputeTS]{plotNA.distribution}},\code{\link[imputeTS]{plotNA.distributionBar}},
  \code{\link[imputeTS]{plotNA.gapsize}}
 }
-
+\author{
+Steffen Moritz
+}
