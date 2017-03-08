@@ -1,6 +1,7 @@
 \documentclass[a4paper]{report}
 %\VignetteIndexEntry{Introduction to imputeTS}
 %\VignetteEngine{utils::Sweave} 
+\usepackage{etex}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{RJournal}
