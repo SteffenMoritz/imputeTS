@@ -1,7 +1,6 @@
-%\VignetteEngine{Sweave} 
-%\VignetteIndexEntry{Introduction to imputeTS}
-
 \documentclass[a4paper]{report}
+%\VignetteIndexEntry{Introduction to imputeTS}
+%\VignetteEngine{utils::Sweave} 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{RJournal}
@@ -12,7 +11,6 @@
 
 \usepackage{Sweave}
 \begin{document}
-\input{Introduction-concordance}
 
 %% do not edit, for illustration only
 \sectionhead{Contributed research article}

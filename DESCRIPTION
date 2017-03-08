@@ -21,6 +21,7 @@ Imports:
     grDevices,
     forecast
 Suggests:
-    testthat
+    testthat, utils
 License: GPL-3
+VignetteBuilder: utils
 RoxygenNote: 6.0.1
