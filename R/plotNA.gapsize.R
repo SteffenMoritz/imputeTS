@@ -63,6 +63,8 @@ plotNA.gapsize <- function(x, limit = 10, byTotalNA = FALSE , legend = TRUE, col
   if(!is.numeric(data))
   {stop("Input x is not numeric")}
   
+  if(!any(is.na(data)))
+  {stop("No missing values in the input - nothing to plot")}
   
   ##
   ## Plotting Code

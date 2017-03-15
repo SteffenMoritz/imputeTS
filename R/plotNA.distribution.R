@@ -56,17 +56,21 @@ plotNA.distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "i
   ## 
 
   id.na <- which(is.na(data))
-  barplotData <- rep(NA,length(data))
   
-  
-  #make sure the end of the bar can not be seen
-  barplotData[id.na] <- max(data, na.rm =TRUE )*100
-  
-  ##Plot the red in background for unknown values
-  barplot(barplotData, col = colBackgroundMV,xaxt = "n", yaxt = "n",   xlab = "", ylab = "", border = colBackgroundMV)
-  
+  #Red Bars only if missing data in time series
+  if (length(id.na > 0)) 
+  {
+    barplotData <- rep(NA,length(data))
+    
+    #make sure the end of the bar can not be seen
+    barplotData[id.na] <- max(data, na.rm =TRUE )*100
+    
+    ##Plot the red in background for unknown values
+    barplot(barplotData, col = colBackgroundMV,xaxt = "n", yaxt = "n",   xlab = "", ylab = "", border = colBackgroundMV)
+    par(new=TRUE)
+  }
   ## Plot the line diagram of known values
-  par(new=TRUE)
+  
   plot(data, main =main, type = "l", xlab = xlab, ylab = ylab, col = col,... )
   points(data, pch= pch , cex = cexPoints, col = colPoints)
   
