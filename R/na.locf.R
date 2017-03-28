@@ -100,38 +100,42 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
     allindx <- 1:n
     indx <- allindx[!missindx]
     
-    ifelse(na.remaining == "rev", z <- 2, z <- 1) 
-    
+
     ## locf and nocb is realized via approx (over 10 times faster than a loop)
     #Last observation carried forward // f = 0
     if (option == "locf") {
-      interp <- approx(indx,data.vec[indx],1:n, rule=z:2,method = "constant", f = 0)$y
+      imputed <- locf(data.vec,FALSE)
     }
     #Next observation carried backward // f = 1
     else if (option == "nocb") {
-      interp <- approx(indx,data.vec[indx],1:n, rule=2:z,method = "constant", f = 1)$y
+      imputed <- locf(data.vec, TRUE)
     }
     #Wrong input
     else {
       stop("Wrong parameter 'option' given. Value must be either 'locf' or 'nocb'.")
     }
-    
-    data[missindx] <- interp[missindx]
-    
 
-    ## na.remaining - what to do with remaining NAs after imputation
+    data[missindx] <- imputed[missindx]
     
     # Return if no remaining NAs 
     if(!anyNA(data)) {
       return(data)
     }
+
+    ## na.remaining - what to do with remaining NAs after imputation
     
     #keep NAs untouched
     if (na.remaining == "keep") {
       return(data)
     }
-    #rev is already checked in the beginning through variable z
-    if (na.remaining == "rev") {
+    #Replace NAs through locf/nocb from the other direction
+    else if (na.remaining == "rev") {
+      if (option == "locf") {
+        data <- na.locf(data, option = "nocb")
+      }
+      else if (option == "nocb") {
+        data <- na.locf(data, option = "locf")
+      }
       return(data)
     }
     #Remove all NAs

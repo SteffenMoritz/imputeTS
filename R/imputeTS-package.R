@@ -26,3 +26,7 @@
 #' @docType package
 #' @import stats
 NULL
+
+#' @useDynLib imputeTS
+#' @importFrom Rcpp sourceCpp
+NULL

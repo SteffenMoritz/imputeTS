@@ -1,5 +1,5 @@
 Package: imputeTS
-Version: 1.9
+Version: 2.0
 Date: 2017-03-08
 Title: Time Series Missing Value Imputation
 Description: Imputation (replacement) of missing values in univariate time
@@ -19,9 +19,11 @@ Imports:
     stinepack,
     graphics,
     grDevices,
-    forecast
+    forecast,
+    Rcpp
 Suggests:
     testthat, utils
 License: GPL-3
 VignetteBuilder: utils
 RoxygenNote: 6.0.1
+LinkingTo: Rcpp

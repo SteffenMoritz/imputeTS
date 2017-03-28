@@ -1,3 +1,10 @@
+Changes in Version 2.0
+
+  o Bugfix for plots without missing data
+  
+  o Increased performance for na.locf
+
+
 Changes in Version 1.9
 
   o Added Vignette
