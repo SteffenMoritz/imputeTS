@@ -30,3 +30,7 @@ NULL
 #' @useDynLib imputeTS
 #' @importFrom Rcpp sourceCpp
 NULL
+
+.onUnload <- function (libpath) {
+  library.dynam.unload("imputeTS", libpath)
+}

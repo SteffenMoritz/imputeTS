@@ -3,6 +3,14 @@ Changes in Version 2.0
   o Bugfix for plots without missing data
   
   o Increased performance for na.locf
+  
+  o Minor bugfixes for specific data.frame inputs
+  
+  o Minor bugfixes for specific xts object inputs
+
+  o Improved Code Documentation
+  
+  o Added new software tests
 
 
 Changes in Version 1.9

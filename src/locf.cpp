@@ -10,6 +10,9 @@ NumericVector locf(NumericVector x, bool reverse)
   if (!reverse) {
     for(long i = 0; i < n; i++ ) {
       
+      if (i % 1024 == 0) {Rcpp::checkUserInterrupt();}
+      
+      
       if(i > 0 && !R_finite(x[i]) && R_finite(x[i-1])) 
       {
         x[i] = x[i-1];
@@ -19,6 +22,9 @@ NumericVector locf(NumericVector x, bool reverse)
   else {
     for(long i = n-1; i >= 0; i-- ) {
       
+      if (i % 1024 == 0) {Rcpp::checkUserInterrupt();}
+        
+        
       if(i < n-1 && !R_finite(x[i]) && R_finite(x[i+1])) 
       {
         x[i] = x[i+1];
