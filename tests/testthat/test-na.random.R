@@ -1,6 +1,14 @@
 context("na.random")
 
 
+test_that("Imputation works for data.frame",
+          {
+            #Checking if NAs remain in data.frame
+            x <- data.frame(tsAirgap, tsAirgap, tsAirgapComplete)
+            expect_that(anyNA(na.random(x)), is_false())
+          })
+
+
 test_that("Error for lowerBound > UpperBound",
           {
             expect_that( na.random(tsAirgap, lowerBound = 300, upperBound = 100 ), throws_error())
