@@ -57,7 +57,7 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
   
   # Multivariate Input Handling (loop through all columns)
   # No imputation code in this part. 
-  if (!is.null( dim(data)[2])  ) {
+  if (!is.null( dim(data)[2]) && dim(data)[2] > 1 ) {
     for (i in 1:dim(data)[2]) {
       #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
       tryCatch(data[,i] <- na.locf(data[ ,i], option, na.remaining), error=function(cond) {
@@ -79,11 +79,18 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
       return(data)
     }
     
+    if(!is.null(dim(data)[2])&&!dim(data)[2]==1)
+    {stop("Wrong input type for parameter x")}
+    
+    # Altering multivariate objects with 1 column (which are essentially univariate) to be dim = NULL
+    if (!is.null(dim(data)[2])) {
+      data <- data[,1]
+    }
+    
     if(!is.numeric(data))
     {stop("Input x is not numeric")}
     
-    if(!is.null(dim(data)))
-    {stop("Wrong input type for parameter x")}
+    ## End Input Check
     
     
     ##
@@ -117,16 +124,12 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
 
     data[missindx] <- imputed[missindx]
     
-    # Return if no remaining NAs 
-    if(!anyNA(data)) {
-      return(data)
-    }
-
+    ##
     ## na.remaining - what to do with remaining NAs after imputation
-    
-    #keep NAs untouched
-    if (na.remaining == "keep") {
-      return(data)
+
+    #no NAs or keep NAs -> do nothing keep NAs untouched
+    if (!anyNA(data)||na.remaining == "keep") {
+        data <- data 
     }
     #Replace NAs through locf/nocb from the other direction
     else if (na.remaining == "rev") {
@@ -136,19 +139,34 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
       else if (option == "nocb") {
         data <- na.locf(data, option = "locf")
       }
-      return(data)
     }
     #Remove all NAs
     else if(na.remaining == "rm"){
-      return(na.remove(data))
+      data <- na.remove(data)
     }
     #Replace NAs with overall mean
     else if(na.remaining == "mean") {
-      return(na.mean(data))
+      data <- na.mean(data)
     }
     #Wrong Input
     else {
       stop("Wrong parameter 'na.remaining' given. Value must be either 'keep', 'rm', 'mean' or 'rev'.") 
     }
+    
+    ## End Imputation Code
+    
+    
+    ##
+    ## Ouput Formatting
+    ##
+    
+    
+    # Give back the object originally supplied to the function (necessary for multivariate input with only 1 column)
+    if (!is.null(dim(x)[2])) {
+      x[,1] <- data
+      return(x)
+    }
+    
+    return(data)
   }
 }

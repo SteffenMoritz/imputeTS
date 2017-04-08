@@ -47,7 +47,7 @@ na.interpolation <- function(x, option = "linear", ...) {
   
   # Multivariate Input Handling (loop through all columns)
   # No imputation code in this part. 
-  if (!is.null( dim(data)[2]) ) {
+  if (!is.null( dim(data)[2]) && dim(data)[2] > 1 ) {
     for (i in 1:dim(data)[2]) {
       #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
       tryCatch(data[,i] <- na.interpolation(data[ ,i], option), error=function(cond) {
@@ -69,16 +69,25 @@ na.interpolation <- function(x, option = "linear", ...) {
     if(!anyNA(data)) {
       return(data)
     }
+
+    if(!is.null(dim(data)[2])&&!dim(data)[2]==1)
+    {stop("Wrong input type for parameter x")}
+    
+    # Altering multivariate objects with 1 column (which are essentially univariate) to be dim = NULL
+    if (!is.null(dim(data)[2])) {
+      data <- data[,1]
+    }
     
     if(!is.numeric(data))
     {stop("Input x is not numeric")}
     
-    if(!is.null(dim(data)))
-    {stop("Wrong input type for parameter x")}
+    ## End Input Check
+    
   
     ##
     ## Imputation Code
     ##
+    
     missindx <- is.na(data)  
     
     n <- length(data)
@@ -105,7 +114,21 @@ na.interpolation <- function(x, option = "linear", ...) {
     
     #Merge interpolated values back into original time series
     data[missindx] <- interp[missindx]
-
+    
+    ## End Imputation Code
+    
+    
+    ##
+    ## Ouput Formatting
+    ##
+    
+    
+    # Give back the object originally supplied to the function (necessary for multivariate input with only 1 column)
+    if (!is.null(dim(x)[2])) {
+      x[,1] <- data
+      return(x)
+    }
+    
     return(data)
   }
 }

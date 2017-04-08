@@ -42,12 +42,7 @@ na.random <- function(x, lowerBound = min(data, na.rm = TRUE) , upperBound = max
   
   # Multivariate Input Handling (loop through all columns)
   # No imputation code in this part. 
-  if (!is.null( dim(data)[2])  ) {
-    
-    #Precheck
-    if(!is.numeric(data))
-    {stop("All columns of input x have to be completely numeric for applying the na.random function")}
-    
+  if (!is.null( dim(data)[2]) && dim(data)[2] > 1 ) {
     for (i in 1:dim(data)[2]) {
       #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
       tryCatch(data[,i] <- na.random(data[ ,i], lowerBound, upperBound), error=function(cond) {
@@ -68,12 +63,19 @@ na.random <- function(x, lowerBound = min(data, na.rm = TRUE) , upperBound = max
     if(!anyNA(data)) {
       return(data)
     }
+ 
+    if(!is.null(dim(data)[2])&&!dim(data)[2]==1)
+    {stop("Wrong input type for parameter x")}
+    
+    # Altering multivariate objects with 1 column (which are essentially univariate) to be dim = NULL
+    if (!is.null(dim(data)[2])) {
+      data <- data[,1]
+    }
     
     if(!is.numeric(data))
     {stop("Input x is not numeric")}
     
-    if(!is.null(dim(data)))
-    {stop("Wrong input type for parameter x")}
+    # End Input Check
     
     
     ##
@@ -87,7 +89,20 @@ na.random <- function(x, lowerBound = min(data, na.rm = TRUE) , upperBound = max
       {stop("Error for parameter lowerBound: Lower Bound must be smaller than Upper Bound ")}
     
     data[missindx] <- runif(1,min=lowerBound,max=upperBound)
-  
+    
+    ## End Imputation Code
+    
+    
+    ##
+    ## Ouput Formatting
+    ##
+    
+    
+    # Give back the object originally supplied to the function (necessary for multivariate input with only 1 column)
+    if (!is.null(dim(x)[2])) {
+      x[,1] <- data
+      return(x)
+    }
     
     return(data)
   }

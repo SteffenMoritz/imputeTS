@@ -42,16 +42,22 @@ na.remove <- function(x) {
     ## Input check
     ## 
   
-  if(!is.null(dim(data)))
-  {stop("Input x is not univariate")}
-  
-  if(!anyNA(data)) {
-    return(data)
-  }
-
-  if(!is.numeric(data))
-  {stop("Input x is not numeric")}
-  
+    if(!anyNA(data)) {
+      return(data)
+    }
+    
+    if(!is.null(dim(data)[2])&&!dim(data)[2]==1)
+    {stop("Input x is not univariate")}
+    
+    # Altering multivariate objects with 1 column (which are essentially univariate) to be dim = NULL
+    if (!is.null(dim(data)[2])) {
+      data <- data[,1]
+    }
+    
+    if(!is.numeric(data))
+    {stop("Input x is not numeric")}
+    
+    ## End Input Check
  
   
     ##
@@ -63,8 +69,15 @@ na.remove <- function(x) {
         temp <- c(temp, data[i])
       }
     }
+    
+    ## End Imputation Code
+    
+    ##
+    ## Ouput Formatting
+    ##
+    
     #Since all time information of a ts object would be incorrect after removing values
-    # only a vector is returned by the function
+    # only the vector is returned by the function
   
     return(temp)
 }

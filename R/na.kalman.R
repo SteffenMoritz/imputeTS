@@ -72,7 +72,7 @@ na.kalman <- function(x, model = "StructTS" , smooth =TRUE,nit=-1, ...) {
   
   # Multivariate Input Handling (loop through all columns)
   # No imputation code in this part. 
-  if (!is.null( dim(data)[2]) ) {
+  if (!is.null( dim(data)[2]) && dim(data)[2] > 1 ) {
     for (i in 1:dim(data)[2]) {
       #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
       tryCatch(data[,i] <- na.kalman(data[ ,i], model, smooth, nit, ...), error=function(cond) {
@@ -94,17 +94,24 @@ na.kalman <- function(x, model = "StructTS" , smooth =TRUE,nit=-1, ...) {
       return(data)
     }
     
-    if(!is.numeric(data))
-    {stop("Input x is not numeric")}
-    
-    if(!is.null(dim(data)))
-    {stop("Wrong input type for parameter x")}
-    
     if(!is.logical(smooth)) {
       stop("Parameter smooth must be of type logical ( TRUE / FALSE)")
     }
+    
+    if(!is.null(dim(data)[2])&&!dim(data)[2]==1)
+    {stop("Wrong input type for parameter x")}
+    
+    # Altering multivariate objects with 1 column (which are essentially univariate) to be dim = NULL
+    if (!is.null(dim(data)[2])) {
+      data <- data[,1]
+    }
+    
+    if(!is.numeric(data))
+    {stop("Input x is not numeric")}
+    
+    ## End Input Check
   
-  
+    
     ##
     ## Imputation Code
     ##
@@ -165,6 +172,19 @@ na.kalman <- function(x, model = "StructTS" , smooth =TRUE,nit=-1, ...) {
     #Add imputations to the initial dataset
     data[missindx] <- karima[missindx]
 
+    ## End Imputation Code
+    
+    
+    ##
+    ## Ouput Formatting
+    ##
+    
+    # Give back the object originally supplied to the function (necessary for multivariate input with only 1 column)
+    if (!is.null(dim(x)[2])) {
+      x[,1] <- data
+      return(x)
+    }
+    
     return(data)
   }
 }
