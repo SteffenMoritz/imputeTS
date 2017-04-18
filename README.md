@@ -131,7 +131,7 @@ If you found a bug or have suggestions, feel free to get in contact via steffen.
 > All feedback is welcome
 
 ### Version
-**2.0**
+**2.1**
 
 ### License
 GPL-3

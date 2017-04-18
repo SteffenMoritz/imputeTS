@@ -1,3 +1,10 @@
+Changes in Version 2.1
+
+  o Fixed for problems with Solaris/Sparc
+  
+  o Fixes for problems with vignette on osx
+
+
 Changes in Version 2.0
 
   o Bugfix for plots without missing data

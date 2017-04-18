@@ -7,11 +7,11 @@
 \usepackage{RJournal}
 \usepackage{amsmath,amssymb,array}
 \usepackage{booktabs}
-\RequirePackage[2014/12/31]{latexrelease}
 
 
 \usepackage{Sweave}
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 %% do not edit, for illustration only
 \sectionhead{Contributed research article}
@@ -166,14 +166,14 @@ na.remove         &                 & Remove Missing Values                     
 \caption{Overview Imputation Algorithms}
 \label{tab:overviewimputation}
 \end{table}
-
+\FloatBarrier
 \noindent
 For convenience similar algorithms are available under one function name as parameter option.  For example linear, spline and stineman interpolation are all included in the 
 \code{na.interpolation} function. The \code{na.mean}, \code{na.locf}, \code{na.replace}, \code{na.random} functions are all simple and fast. In comparison, \code{na.interpolation},
 \code{na.kalman}, \code{na.ma}, \code{na.seasplit}, \code{na.seadec} are more advanced algorithms that need more computation time. The \code{na.remove} function is a special case, since it only deletes all missing values.
 Thus, it is not really an imputation function. It should be handled with care since removing observations may corrupt the time information of the series. The \code{na.seasplit} and \code{na.seadec} functions are as well exceptions. These perform seasonal split / decomposition operations as a preprocessing step. For the imputation itself, one out of the other imputation algorithms 
 can be used (which one can be set as option). Looking at all available imputation methods, no single overall best method can be pointed out. Imputation performance is always very dependent on the characteristics of the input time series. Even imputation with mean values can sometimes be an appropriate method. For time series with a strong seasonality usually \code{na.kalman} and \code{na.seadec} / \code{na.seasplit} perform best. In general, for most time series one algorithm out of \code{na.kalman}, \code{na.interpolation} and \code{na.seadec} will yield the best results. Meanwhile, \code{na.random}, \code{na.mean}, \code{na.locf} will be at the lower end accuracy wise for the majority of input time series.
-\noindent\\
+\noindent
 
 \subsection{Datasets}
 \label{subsec:Datasets}
@@ -252,7 +252,7 @@ For this we first need to create an example input series with missing data.
  x <- ts(c(1, 2, 3, 4, 5, 6, 7, 8, NA, NA, 11, 12))
 \end{example}
 
-\noindent\\
+\noindent
 On this time series we can apply different imputation algorithms. We start with using \code{na.mean}, which substitutes the NAs with mean values.
 
 \begin{example}
@@ -300,19 +300,17 @@ plotNA.imputations(tsAirgap, x.imp, tsAirgapComplete)
 \end{example}
 
 
-\begin{figure} [hfbt]
+\begin{figure} [h]
 \centering
 \includegraphics[width=5.7in]{Figures.d/imputations2.pdf}
 \caption{Results of imputation with na.kalman compared to real values}
 \label{fig:imputations2}
 \end{figure}
 \noindent
-
+\FloatBarrier
 \subsection{plotNA.distribution}
 
 This function visualizes the distribution of missing values within a time series. Therefore, the time series is plotted and whenever a value is NA the background is colored differently. This gives a nice overview, where in the time series most of the missing values occur. An example usage of the function can be seen below (for the plot see Figure~\ref{fig:distribution}).
-
-
 \begin{example}
 # Example Code 'plotNA.distribution'
 # (tsAirgap is an example time series provided by the imputeTS package)
@@ -320,15 +318,16 @@ This function visualizes the distribution of missing values within a time series
 # Visualize the missing values in this time series
 plotNA.distribution(tsAirgap)
 \end{example}
-
-\begin{figure} [hfbt]
+\begin{figure} [h]
 \centering
 \includegraphics[width=5.7in]{Figures.d/distribution.pdf}
 \caption{Example for plotNA.distribution}
 \label{fig:distribution}
 \end{figure}
+\FloatBarrier
 \noindent
 As can be seen in Figure~\ref{fig:distribution}, in areas with missing data the background is colored red. The whole plot is pretty much self-explanatory. The plotting function itself needs no further configuration parameters, nevertheless it allows passing through of plot parameters (via ...).
+\FloatBarrier
 \noindent\\
 
 \subsection{plotNA.distributionBar}
@@ -343,12 +342,13 @@ plotNA.distributionBar(tsHeating, breaks = 20)
 
 \end{example}
 
-\begin{figure} [hfbt]
+\begin{figure} [h]
 \centering
 \includegraphics[width=5.7in]{Figures.d/distributionbar.pdf}
 \caption{Example for plotNA.distributionBar}
 \label{fig:distributionBar}
 \end{figure}
+\FloatBarrier
 \noindent\\
 As can be seen in the x-axis of Figure~\ref{fig:distributionBar}, the \code{tsHeating} series is with over 600.000 observations a very large time series. While the missing values in the \code{tsAirgap} series (144 observations) can be visualized with \code{plotNA.distribution} like in Figure~\ref{fig:distribution}, this would for sure not work out for \code{tsHeating}. There just isn't enough space for 600.000 single consecutive observations/points in the plotting area. The \code{plotNA.distributionBar} function solves this problem. Multiple observations are grouped together in intervals. The 'breaks' parameter in the example defines that there should be 20 intervals used. This means every interval in Figure~\ref{fig:distributionBar} represents approximately 30.000 observations. The first five intervals are completely green, which means there are no missing values present. This means from observation 1 up to observation 150.000 there are no missing values in the data. In the middle and at the end of the series there are several intervals each having around 40\% of missing data. This means in these intervals 12.000 out of 30.000 observation are NA. All in all, the plot is able to give a nice  but rough overview about the NA distribution in very large time series. 
 \noindent\\
@@ -367,13 +367,13 @@ plotNA.gapsize(tsNH4)
 
 \end{example}
 
-\begin{figure} [hfbt]
+\begin{figure} [h]
 \centering
 \includegraphics[width=5.7in]{Figures.d/gapsize.pdf}
 \caption{Example for printNA.gapsize}
 \label{fig:gapsize}
 \end{figure}
- 
+ \FloatBarrier
  \noindent
 The example plot (Figure~\ref{fig:gapsize}) reads the following: In the time series \code{tsNH4} gap size 157 occurs just 1 time, but makes up for most NAs of all gap sizes (157 NAs). A gap size of 91 (91 NAs in a row) also occurs just once, but makes up for 2nd most NAs (91 NAs). A gap size of 42 occurs two times in the time series, which leads to 3rd most overall (84 NAs). A gap size of one (no other NAs before or behind the NA) occurs 68 times, which makes this 4th in overall NAs (68 NAs). 
 \noindent\\
@@ -397,14 +397,14 @@ plotNA.imputations(tsAirgap, tsAirgap.imp)
 
 \noindent
 The visual inspection of Figure~\ref{fig:imputations} indicates, that the imputed values (red) do not fit very well in the \code{tsAirgap} series. This is caused by \code{na.mean} being used for imputation of a series with a strong trend. The plotting function enables users to quickly detect such problems in the imputation results. If the ground truth is known for the imputed values, this information can also be added to the plot. The plotting function itself needs no further configuration parameters. Nevertheless, it allows passing through of plot parameters (via ...).
-\noindent\\
-\begin{figure} [hfbt]
+\noindent
+\begin{figure} [h]
 \centering
 \includegraphics[width=5.7in]{Figures.d/imputations.pdf}
 \caption{Example for printNA.imputations}
 \label{fig:imputations}
 \end{figure}
-
+\FloatBarrier
 \subsection{statsNA}
 The \code{statsNA} function prints summary stats about the distribution of missing values in univariate time series. Here is a short explanation about the information it gives:
 
@@ -442,13 +442,13 @@ The function is used as below and Figure~\ref{fig:statsNA} shows the output.
 statsNA(tsNH4)
 \end{example}
 
-\begin{figure} [hfbt]
+\begin{figure} [h]
 \centering
 \includegraphics[width=5in]{Figures.d/statsna.png}
 \caption{Excerpt of statsNA output}
 \label{fig:statsNA}
 \end{figure}
-
+\FloatBarrier
 \subsection{Datasets}
 Using the datasets is self-explanatory, after the package is loaded they are directly available and usable under their name. No call of data() is needed. For every dataset there is always a complete version (without NAs) and an incomplete version (containing NAs) available.
 
@@ -458,13 +458,13 @@ library("imputeTS")
 tsAirgap
 \end{example}
 
-\begin{figure} [hfbt]
+\begin{figure} [h]
 \centering
 \includegraphics[width=4in]{Figures.d/tsairgap.png}
 \caption{Example tsAirgap time series}
 \label{fig:tsAirgap}
 \end{figure}
-
+\FloatBarrier
 %================================================================================
 \section{Conclusions}
 \label{sec:Conclusions}
@@ -482,12 +482,12 @@ Future research and development plans for forthcoming versions of the package in
 \label{sec:Acknowlegment}
 Parts of this work have been developed in the project '\textit{IMProvT: Intelligente Messverfahren zur Prozessoptimierung von Trinkwasserbereitstellung und -verteilung}' (reference number: 03ET1387A). Kindly supported by the Federal Ministry of Economic Affairs and Energy of the Federal Republic of Germany.
 
-\begin{figure} [hfbt]
+\begin{figure} [h]
 \centering
 \includegraphics[width=2.5in]{Figures.d/sponsorlogo.jpg}
 \label{fig:sponsor}
 \end{figure}
-
+\FloatBarrier
 
 %================================================================================
 

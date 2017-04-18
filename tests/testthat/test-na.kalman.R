@@ -11,9 +11,7 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             x[135:144] <- NA
             expect_that( round(mean(na.kalman( x, model="auto.arima", smooth = T )), digits = 4),  is_identical_to(279.8698) )
             expect_that( round(mean(na.kalman( x, model="auto.arima", smooth = F )), digits = 4),  is_identical_to(278.7505) )
-            expect_that( round(mean(na.kalman( x, model="StructTS", smooth = T )), digits = 4),  is_identical_to(276.1923) )
-            expect_that( round(mean(na.kalman( x, model="StructTS", smooth = F )), digits = 4),  is_identical_to(275.3221) )
-            
+           
              })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at start)",
@@ -25,9 +23,7 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             x[1:5] <- NA
             expect_that( round(mean(na.kalman( x, model="auto.arima", smooth = T )), digits = 4),  is_identical_to(285.0746) )
             expect_that( round(mean(na.kalman( x, model="auto.arima", smooth = F )), digits = 4),  is_identical_to(291.2712) )
-            expect_that( round(mean(na.kalman( x, model="StructTS", smooth = T )), digits = 4),  is_identical_to(280.3522) )
-            expect_that( round(mean(na.kalman( x, model="StructTS", smooth = F )), digits = 4),  is_identical_to(280.4274) )
-          })
+             })
 
 
 test_that("Correct results for all options with the tsAirgap dataset",
@@ -38,9 +34,7 @@ test_that("Correct results for all options with the tsAirgap dataset",
             x <- tsAirgap
             expect_that( round(mean(na.kalman( x, model="auto.arima", smooth = T )), digits = 4),  is_identical_to(280.0875) )
             expect_that( round(mean(na.kalman( x, model="auto.arima", smooth = F )), digits = 4),  is_identical_to(279.3725) )
-            expect_that( round(mean(na.kalman( x, model="StructTS", smooth = T )), digits = 4),  is_identical_to(280.1105) )
-            expect_that( round(mean(na.kalman( x, model="StructTS", smooth = F )), digits = 4),  is_identical_to(279.7873) )
-          })
+           })
 
 test_that("Imputation works for data.frame",
           {
@@ -48,9 +42,7 @@ test_that("Imputation works for data.frame",
             x <- data.frame(tsAirgap, tsAirgap, tsAirgapComplete)
             expect_that(anyNA(na.kalman(x, model="auto.arima", smooth = T )), is_false())
             expect_that(anyNA(na.kalman(x, model="auto.arima", smooth = F)), is_false())
-            expect_that(anyNA(na.kalman(x, model="StructTS", smooth = T )), is_false())
-            expect_that(anyNA(na.kalman(x, model="StructTS", smooth = F)), is_false())
-          })
+           })
 
 test_that("Error for wrong input for model parameter",
           {
