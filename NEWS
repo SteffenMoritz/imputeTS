@@ -1,3 +1,8 @@
+Changes in Version 2.2
+
+  o Bugfix for na.locf (also concerned na.kalman) 
+  
+
 Changes in Version 2.1
 
   o Fixed for problems with Solaris/Sparc
