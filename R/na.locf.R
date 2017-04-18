@@ -102,13 +102,12 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
     #Input as vector
     data.vec <- as.vector(data)
     
+    
     #Get needed variables
     n <- length(data.vec)
     allindx <- 1:n
     indx <- allindx[!missindx]
     
-
-    ## locf and nocb is realized via approx (over 10 times faster than a loop)
     #Last observation carried forward // f = 0
     if (option == "locf") {
       imputed <- locf(data.vec,FALSE)
@@ -129,7 +128,7 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
 
     #no NAs or keep NAs -> do nothing keep NAs untouched
     if (!anyNA(data)||na.remaining == "keep") {
-        data <- data 
+        #do nothing
     }
     #Replace NAs through locf/nocb from the other direction
     else if (na.remaining == "rev") {

@@ -5,7 +5,10 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 NumericVector locf(NumericVector x, bool reverse) 
 {
-  long n = x.size();
+  
+  NumericVector z = clone(x);
+  
+  long n = z.size();
   
   if (!reverse) {
     for(long i = 0; i < n; i++ ) {
@@ -13,9 +16,9 @@ NumericVector locf(NumericVector x, bool reverse)
       if (i % 1024 == 0) {Rcpp::checkUserInterrupt();}
       
       
-      if(i > 0 && !R_finite(x[i]) && R_finite(x[i-1])) 
+      if(i > 0 && !R_finite(z[i]) && R_finite(z[i-1])) 
       {
-        x[i] = x[i-1];
+        z[i] = z[i-1];
       }
     }
   }
@@ -25,15 +28,15 @@ NumericVector locf(NumericVector x, bool reverse)
       if (i % 1024 == 0) {Rcpp::checkUserInterrupt();}
         
         
-      if(i < n-1 && !R_finite(x[i]) && R_finite(x[i+1])) 
+      if(i < n-1 && !R_finite(z[i]) && R_finite(z[i+1])) 
       {
-        x[i] = x[i+1];
+        z[i] = z[i+1];
       }
     }
     
   }
  
-  return x;
+  return z;
 }
 
 
