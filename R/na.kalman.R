@@ -109,6 +109,8 @@ na.kalman <- function(x, model = "StructTS" , smooth =TRUE,nit=-1, ...) {
     if(!is.numeric(data))
     {stop("Input x is not numeric")}
     
+    # Special check - because no element being of type int can be given to funtion KalmanRun/KalmanSmooth
+    data[1:length(data)] <- as.numeric(data)
     ## End Input Check
   
     

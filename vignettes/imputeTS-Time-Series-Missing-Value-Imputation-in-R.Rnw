@@ -1,5 +1,5 @@
 \documentclass[a4paper]{report}
-%\VignetteIndexEntry{Introduction to imputeTS}
+%\VignetteIndexEntry{imputeTS: Time Series Missing Value Imputation in R}
 %\VignetteEngine{utils::Sweave} 
 \usepackage{etex}
 \usepackage[utf8]{inputenc}

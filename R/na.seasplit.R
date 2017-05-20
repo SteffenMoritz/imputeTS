@@ -85,6 +85,12 @@ na.seasplit <- function(x, algorithm="interpolation" , ...) {
       return(data)
     }
     
+    if(length(data) < frequency(data)*2 ) {
+      warning("There should be at least 2 complete periods available to use saisonal decomposition. Algorithm will go on without decomposition")
+      data <- apply.base.algorithm(data, algorithm = algorithm,...)
+      return(data)
+    }
+    
     ##End Input Check
     
     
@@ -99,6 +105,9 @@ na.seasplit <- function(x, algorithm="interpolation" , ...) {
       
       #Create time series just with one season
       ts.temp <- ts(data[indices])
+      
+      if (sum(is.na(ts.temp))==length(ts.temp))
+      {stop("A complete period of data is missing when performig seasonal splitting. Thus the algorithm is not applicable and another algorithm needs to be choosen")}
       
       #Apply algorithm on this season
       ts.temp <- apply.base.algorithm(ts.temp, algorithm = algorithm,...)

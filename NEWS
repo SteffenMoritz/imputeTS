@@ -1,3 +1,9 @@
+Changes in Version 2.3
+
+  o Bugfix for na.kalman with integer input 
+  
+
+
 Changes in Version 2.2
 
   o Bugfix for na.locf (also concerned na.kalman) 
