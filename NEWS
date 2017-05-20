@@ -1,7 +1,12 @@
 Changes in Version 2.3
 
-  o Bugfix for na.kalman with integer input 
+  o Bugfix for na.kalman with integer input
   
+  o Readme Update
+
+  o Improved error messages for na.seasplit and na.seadec
+
+  o Minor vignette changes
 
 
 Changes in Version 2.2

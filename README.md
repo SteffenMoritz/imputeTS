@@ -21,6 +21,13 @@ The imputeTS package can be found on [CRAN]. For installation execute in R:
  install.packages("imputeTS")
 ```
 
+If you want to install the latest version from GitHub (can be unstable) run:
+
+```
+library(devtools)
+install_github("SteffenMoritz/imputeTS")
+```
+
 ### Usage
 - ###### Imputation
 
