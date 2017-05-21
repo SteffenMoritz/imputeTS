@@ -106,9 +106,6 @@ na.seasplit <- function(x, algorithm="interpolation" , ...) {
       #Create time series just with one season
       ts.temp <- ts(data[indices])
       
-      if (sum(is.na(ts.temp))==length(ts.temp))
-      {stop("A complete period of data is missing when performig seasonal splitting. Thus the algorithm is not applicable and another algorithm needs to be choosen")}
-      
       #Apply algorithm on this season
       ts.temp <- apply.base.algorithm(ts.temp, algorithm = algorithm,...)
       

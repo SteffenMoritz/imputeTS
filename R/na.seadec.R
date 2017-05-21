@@ -82,8 +82,8 @@ na.seadec <- function(x, algorithm = "interpolation" , ...) {
       return(data)
     }
     
-    if(length(data) < frequency(data)*2 ) {
-      warning("There should be at least 2 complete periods available to use saisonal decomposition. Algorithm will go on without decomposition")
+    if(length(data)+1 < frequency(data)*2 ) {
+      warning("There should more than 2 complete periods available to use saisonal decomposition. Algorithm will go on without decomposition")
       data <- apply.base.algorithm(data, algorithm = algorithm,...)
       return(data)
     }
