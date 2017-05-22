@@ -11,7 +11,7 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             expect_that( round(mean(na.seadec( x, algorithm = "interpolation" )), digits = 4),  is_identical_to(276.6858) )
             expect_that( round(mean(na.seadec( x, algorithm = "locf" )), digits = 4),  is_identical_to(275.9714) )
             expect_that( round(mean(na.seadec( x, algorithm = "mean" )), digits = 4),  is_identical_to(264.3163) )
-            expect_that( round(mean(na.seadec( x, algorithm = "kalman" )), digits = 4),  is_identical_to(278.3177) )
+            expect_that( round(mean(na.seadec( x, algorithm = "kalman", model = "auto.arima"  )), digits = 4),  is_identical_to(279.7742) )
             expect_that( round(mean(na.seadec( x, algorithm = "ma" )), digits = 4),  is_identical_to(277.0747) )
           })
 
@@ -25,7 +25,7 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             expect_that( round(mean(na.seadec( x, algorithm = "interpolation" )), digits = 4),  is_identical_to(279.9277) )
             expect_that( round(mean(na.seadec( x, algorithm = "locf" )), digits = 4),  is_identical_to(279.1958) )
             expect_that( round(mean(na.seadec( x, algorithm = "mean" )), digits = 4),  is_identical_to(284.1453) )
-            expect_that( round(mean(na.seadec( x, algorithm = "kalman" )), digits = 4),  is_identical_to(279.9879) )
+            expect_that( round(mean(na.seadec( x, algorithm = "kalman", model = "auto.arima" )), digits = 4),  is_identical_to(285.5756) )
             expect_that( round(mean(na.seadec( x, algorithm = "ma" )), digits = 4),  is_identical_to(279.9752) )
           })
 
@@ -39,7 +39,7 @@ test_that("Correct results for all options with the tsAirgap dataset",
             expect_that( round(mean(na.seadec( x, algorithm = "interpolation" )), digits = 4),  is_identical_to(280.4278) )
             expect_that( round(mean(na.seadec( x, algorithm = "locf" )), digits = 4),  is_identical_to(279.7245) )
             expect_that( round(mean(na.seadec( x, algorithm = "mean" )), digits = 4),  is_identical_to(279.4758) )
-            expect_that( round(mean(na.seadec( x, algorithm = "kalman" )), digits = 4),  is_identical_to(280.2776) )
+            expect_that( round(mean(na.seadec( x, algorithm = "kalman", model = "auto.arima"  )), digits = 4),  is_identical_to(279.9981) )
             expect_that( round(mean(na.seadec( x, algorithm = "ma" )), digits = 4),  is_identical_to(280.567) )
           })
 
