@@ -31,7 +31,7 @@ test_that("multivariate zoo objects",
             else {
               require("zoo")
               x <- data.frame(tsAirgap, tsAirgap, tsAirgapComplete)
-              x <- as.zoo(x)
+              x <- as.zoo(x, calendar = getOption("zoo.calendar", FALSE))
               expect_that(anyNA(na.mean(x)), is_false())
               expect_that(anyNA(na.kalman(x)), is_false())
               expect_that(anyNA(na.interpolation(x)), is_false())
