@@ -9,14 +9,14 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[135:144] <- NA
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "mean")), digits = 4),  is_identical_to(271.9375) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "mean")), digits = 4),  is_identical_to(266.709) )
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rev")), digits = 4),  is_identical_to(271.9375) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rev")), digits = 4),  is_identical_to(275.3403) )
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rm")), digits = 4),  is_identical_to(271.9375) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rm")), digits = 4),  is_identical_to(266.709) )
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "keep"), na.rm=T), digits = 4),  is_identical_to(271.9375) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "keep"), na.rm=T), digits = 4),  is_identical_to(266.709) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "mean")), digits = 1),  is_identical_to(271.9) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "mean")), digits = 1),  is_identical_to(266.7) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rev")), digits = 1),  is_identical_to(271.9) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rev")), digits = 1),  is_identical_to(275.3) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rm")), digits = 1),  is_identical_to(271.9) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rm")), digits = 1),  is_identical_to(266.7) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "keep"), na.rm=T), digits = 1),  is_identical_to(271.9) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "keep"), na.rm=T), digits = 1),  is_identical_to(266.7) )
             
                })
 
@@ -27,14 +27,14 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[1:5] <- NA
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "mean")), digits = 4),  is_identical_to(284.3453) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "mean")), digits = 4),  is_identical_to(283.0347) )
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rev")), digits = 4),  is_identical_to(279.1597) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rev")), digits = 4),  is_identical_to(283.0347) )
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rm")), digits = 4),  is_identical_to(284.3453) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rm")), digits = 4),  is_identical_to(283.0347) )
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "keep"), na.rm=T), digits = 4),  is_identical_to(284.3453) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "keep"), na.rm=T), digits = 4),  is_identical_to(283.0347) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "mean")), digits = 1),  is_identical_to(284.3) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "mean")), digits = 1),  is_identical_to(283.0) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rev")), digits = 1),  is_identical_to(279.2) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rev")), digits = 1),  is_identical_to(283.0) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rm")), digits = 1),  is_identical_to(284.3) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rm")), digits = 1),  is_identical_to(283.0) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "keep"), na.rm=T), digits = 1),  is_identical_to(284.3) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "keep"), na.rm=T), digits = 1),  is_identical_to(283.0) )
           })
 
 
@@ -44,14 +44,14 @@ test_that("Correct results for all options with the tsAirgap dataset",
             #In order to avoid writing down the complete resulting vector
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "mean")), digits = 4),  is_identical_to(278.7778) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "mean")), digits = 4),  is_identical_to(282.6944) )
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rev")), digits = 4),  is_identical_to(278.7778) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rev")), digits = 4),  is_identical_to(282.6944) )
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rm")), digits = 4),  is_identical_to(278.7778) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rm")), digits = 4),  is_identical_to(282.6944) )
-            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "keep"), na.rm=T), digits = 4),  is_identical_to(278.7778) )
-            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "keep"), na.rm=T), digits = 4),  is_identical_to(282.6944) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "mean")), digits = 1),  is_identical_to(278.8) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "mean")), digits = 1),  is_identical_to(282.7) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rev")), digits = 1),  is_identical_to(278.8) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rev")), digits = 1),  is_identical_to(282.7) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "rm")), digits = 1),  is_identical_to(278.8) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "rm")), digits = 1),  is_identical_to(282.7) )
+            expect_that( round(mean(na.locf(x, option="locf", na.remaining = "keep"), na.rm=T), digits = 1),  is_identical_to(278.8) )
+            expect_that( round(mean(na.locf(x, option="nocb", na.remaining = "keep"), na.rm=T), digits = 1),  is_identical_to(282.7) )
           })
 
 test_that("Imputation works for data.frame",

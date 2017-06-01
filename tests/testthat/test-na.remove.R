@@ -8,7 +8,7 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[135:144] <- NA
-            expect_that( round(mean(na.remove( x)), digits = 4),  is_identical_to(264.1148) )
+            expect_that( round(mean(na.remove( x)), digits = 1),  is_identical_to(264.1) )
             })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at start)",
@@ -18,7 +18,7 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[1:5] <- NA
-            expect_that( round(mean(na.remove( x)), digits = 4),  is_identical_to(284.7638) )
+            expect_that( round(mean(na.remove( x)), digits = 1),  is_identical_to(284.8) )
               })
 
 
@@ -28,7 +28,7 @@ test_that("Correct results for all options with the tsAirgap dataset",
             #In order to avoid writing down the complete resulting vector
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
-            expect_that( round(mean(na.remove(x)), digits = 4),  is_identical_to(279.8168) )
+            expect_that( round(mean(na.remove(x)), digits = 1),  is_identical_to(279.8) )
             })
 
 test_that("Test NA at beginning",

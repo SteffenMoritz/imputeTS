@@ -8,8 +8,8 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[135:144] <- NA
-            expect_that( round(mean(na.replace( x, fill = -1)), digits = 4),  is_identical_to(223.6111) )
-            expect_that( round(mean(na.replace( x, fill = 200 )), digits = 4),  is_identical_to(254.3194) )
+            expect_that( round(mean(na.replace( x, fill = -1)), digits = 1),  is_identical_to(223.6) )
+            expect_that( round(mean(na.replace( x, fill = 200 )), digits = 1),  is_identical_to(254.3) )
             })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at start)",
@@ -19,8 +19,8 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[1:5] <- NA
-            expect_that( round(mean(na.replace( x, fill = -1)), digits = 4),  is_identical_to(251.0278) )
-            expect_that( round(mean(na.replace( x, fill = 200)), digits = 4),  is_identical_to(274.7569) )
+            expect_that( round(mean(na.replace( x, fill = -1)), digits = 1),  is_identical_to(251.0) )
+            expect_that( round(mean(na.replace( x, fill = 200)), digits = 1),  is_identical_to(274.8) )
             })
 
 
@@ -30,8 +30,8 @@ test_that("Correct results for all options with the tsAirgap dataset",
             #In order to avoid writing down the complete resulting vector
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
-            expect_that( round(mean(na.replace( x, fill = -1)), digits = 4),  is_identical_to(254.4653) )
-            expect_that( round(mean(na.replace( x, fill = 200 )), digits = 4),  is_identical_to(272.6111) )
+            expect_that( round(mean(na.replace( x, fill = -1)), digits = 1),  is_identical_to(254.5) )
+            expect_that( round(mean(na.replace( x, fill = 200 )), digits = 1),  is_identical_to(272.6) )
             })
 
 test_that("Imputation works for data.frame",

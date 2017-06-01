@@ -9,9 +9,9 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[135:144] <- NA
-            expect_that( round(mean(na.interpolation( x, option="linear" )), digits = 4),  is_identical_to(273.6389) )
-            expect_that( round(mean(na.interpolation( x, option="spline" )), digits = 4),  is_identical_to(276.1791) )
-            expect_that( round(mean(na.interpolation( x, option="stine" )), digits = 4),  is_identical_to(273.3682) )
+            expect_that( round(mean(na.interpolation( x, option="linear" )), digits = 1),  is_identical_to(273.6) )
+            expect_that( round(mean(na.interpolation( x, option="spline" )), digits = 1),  is_identical_to(276.2) )
+            expect_that( round(mean(na.interpolation( x, option="stine" )), digits = 1),  is_identical_to(273.4) )
           })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at start)",
@@ -21,9 +21,9 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[1:5] <- NA
-            expect_that( round(mean(na.interpolation( x, option="linear" )), digits = 4),  is_identical_to(281.0972) )
-            expect_that( round(mean(na.interpolation( x, option="spline" )), digits = 4),  is_identical_to(282.9646) )
-            expect_that( round(mean(na.interpolation( x, option="stine" )), digits = 4),  is_identical_to(280.8348) )
+            expect_that( round(mean(na.interpolation( x, option="linear" )), digits = 1),  is_identical_to(281.1) )
+            expect_that( round(mean(na.interpolation( x, option="spline" )), digits = 1),  is_identical_to(283.0) )
+            expect_that( round(mean(na.interpolation( x, option="stine" )), digits = 1),  is_identical_to(280.8) )
           })
 
 
@@ -33,9 +33,9 @@ test_that("Correct results for all options with the tsAirgap dataset",
             #In order to avoid writing down the complete resulting vector
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
-            expect_that( round(mean(na.interpolation( x, option="linear" )), digits = 4),  is_identical_to(280.7361) )
-            expect_that( round(mean(na.interpolation( x, option="spline" )), digits = 4),  is_identical_to(280.0778) )
-            expect_that( round(mean(na.interpolation( x, option="stine" )), digits = 4),  is_identical_to(280.4648) )
+            expect_that( round(mean(na.interpolation( x, option="linear" )), digits = 1),  is_identical_to(280.7) )
+            expect_that( round(mean(na.interpolation( x, option="spline" )), digits = 1),  is_identical_to(280.1) )
+            expect_that( round(mean(na.interpolation( x, option="stine" )), digits = 1),  is_identical_to(280.5) )
           })
 
 test_that("Imputation works for data.frame",

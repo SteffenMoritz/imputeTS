@@ -9,11 +9,11 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[135:144] <- NA
-            expect_that( round(mean(na.seasplit( x, algorithm = "interpolation" )), digits = 4),  is_identical_to(276.6285) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "locf" )), digits = 4),  is_identical_to(274.8333) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "mean" )), digits = 4),  is_identical_to(263.9913) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "kalman",model = "auto.arima" )), digits = 4),  is_identical_to(275.6724) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "ma" )), digits = 4),  is_identical_to(274.9965) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "interpolation" )), digits = 1),  is_identical_to(276.6) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "locf" )), digits = 1),  is_identical_to(274.8) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "mean" )), digits = 1),  is_identical_to(264.0) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "kalman",model = "auto.arima" )), digits = 1),  is_identical_to(275.7) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "ma" )), digits = 1),  is_identical_to(275.0) )
           })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at start)",
@@ -23,11 +23,11 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[1:5] <- NA
-            expect_that( round(mean(na.seasplit( x, algorithm = "interpolation" )), digits = 4),  is_identical_to(280.5) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "locf" )), digits = 4),  is_identical_to(278.375) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "mean" )), digits = 4),  is_identical_to(283.4194) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "kalman", model = "auto.arima"  )), digits = 4),  is_identical_to(278.5223) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "ma" )), digits = 4),  is_identical_to(281.0672) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "interpolation" )), digits = 1),  is_identical_to(280.5) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "locf" )), digits = 1),  is_identical_to(278.4) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "mean" )), digits = 1),  is_identical_to(283.4) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "kalman", model = "auto.arima"  )), digits = 1),  is_identical_to(278.5) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "ma" )), digits = 1),  is_identical_to(281.1) )
           })
 
 
@@ -37,11 +37,11 @@ test_that("Correct results for all options with the tsAirgap dataset",
             #In order to avoid writing down the complete resulting vector
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
-            expect_that( round(mean(na.seasplit( x, algorithm = "interpolation" )), digits = 4),  is_identical_to(280.3194) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "locf" )), digits = 4),  is_identical_to(278.1944) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "mean" )), digits = 4),  is_identical_to(279.2833) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "kalman", model = "auto.arima"  )), digits = 4),  is_identical_to(279.1549) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "ma" )), digits = 4),  is_identical_to(280.3135) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "interpolation" )), digits = 1),  is_identical_to(280.3) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "locf" )), digits = 1),  is_identical_to(278.2) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "mean" )), digits = 1),  is_identical_to(279.3) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "kalman", model = "auto.arima"  )), digits = 1),  is_identical_to(279.2) )
+            expect_that( round(mean(na.seasplit( x, algorithm = "ma" )), digits = 1),  is_identical_to(280.3) )
           })
 
 test_that("Imputation works for data.frame",

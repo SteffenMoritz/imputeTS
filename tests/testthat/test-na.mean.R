@@ -7,9 +7,9 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[135:144] <- NA
-            expect_that( round(mean(na.mean( x, option="median" )), digits = 4),  is_identical_to(259.9722) )
-            expect_that( round(mean(na.mean( x, option="mean" )), digits = 4),  is_identical_to(264.1148) )
-            expect_that( round(mean(na.mean( x, option="mode" )), digits = 4),  is_identical_to(258.75) )
+            expect_that( round(mean(na.mean( x, option="median" )), digits = 1),  is_identical_to(260.0) )
+            expect_that( round(mean(na.mean( x, option="mean" )), digits = 1),  is_identical_to(264.1) )
+            expect_that( round(mean(na.mean( x, option="mode" )), digits = 1),  is_identical_to(258.8) )
           })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at start)",
@@ -19,9 +19,9 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
             x[1:5] <- NA
-            expect_that( round(mean(na.mean( x, option="median" )), digits = 4),  is_identical_to(282.6667) )
-            expect_that( round(mean(na.mean( x, option="mean" )), digits = 4),  is_identical_to(284.7638) )
-            expect_that( round(mean(na.mean( x, option="mode" )), digits = 4),  is_identical_to(278.1806) )
+            expect_that( round(mean(na.mean( x, option="median" )), digits = 1),  is_identical_to(282.7) )
+            expect_that( round(mean(na.mean( x, option="mean" )), digits = 1),  is_identical_to(284.8) )
+            expect_that( round(mean(na.mean( x, option="mode" )), digits = 1),  is_identical_to(278.2) )
           })
 
 
@@ -31,9 +31,9 @@ test_that("Correct results for all options with the tsAirgap dataset",
             #In order to avoid writing down the complete resulting vector
             #Using rounded version in order to avoid writing down all decimals
             x <- tsAirgap
-            expect_that( round(mean(na.mean( x, option="median" )), digits = 4),  is_identical_to(277.9375) )
-            expect_that( round(mean(na.mean( x, option="mean" )), digits = 4),  is_identical_to(279.8168) )
-            expect_that( round(mean(na.mean( x, option="mode" )), digits = 4),  is_identical_to(275.2292) )
+            expect_that( round(mean(na.mean( x, option="median" )), digits = 1),  is_identical_to(277.9) )
+            expect_that( round(mean(na.mean( x, option="mean" )), digits = 1),  is_identical_to(279.8) )
+            expect_that( round(mean(na.mean( x, option="mode" )), digits = 1),  is_identical_to(275.2) )
           })
 
 test_that("Imputation works for data.frame",
