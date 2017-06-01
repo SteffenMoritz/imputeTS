@@ -30,8 +30,12 @@ test_that("multivariate zoo objects",
             }
             else {
               require("zoo")
-              x <- data.frame(tsAirgap, tsAirgap, tsAirgapComplete)
-              x <- as.zoo(x, calendar = getOption("zoo.calendar", FALSE))
+              time <- seq(from = as.Date(as.yearmon(start(tsAirgap)))[1],  by = "month" , 
+                          length.out = length(tsAirgap))
+              x <- data.frame(time, coredata(tsAirgap), coredata(tsAirgap), coredata(tsAirgapComplete))
+              
+              z <- read.zoo(x, format = "%Y-%m-%d")
+              
               expect_that(anyNA(na.mean(x)), is_false())
               expect_that(anyNA(na.kalman(x)), is_false())
               expect_that(anyNA(na.interpolation(x)), is_false())
