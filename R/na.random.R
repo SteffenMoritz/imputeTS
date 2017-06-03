@@ -35,15 +35,25 @@
 #' @import stats
 #' @export
 
-na.random <- function(x, lowerBound = min(data, na.rm = TRUE) , upperBound = max(data, na.rm = TRUE)) {
-  
+na.random <- function(x, lowerBound = min(x, na.rm = TRUE) , upperBound = max(x, na.rm = TRUE)) {
   data <- x
   
-  
+  # Indicator if default parameter is used. If default min(x, na.rm = TRUE), missL will be TRUE.
+  # This default parameter has to be set individually in multivariate case, hence the marker.
+  missU <- missing(upperBound)
+  missL <- missing(lowerBound)
+
   # Multivariate Input Handling (loop through all columns)
   # No imputation code in this part. 
   if (!is.null( dim(data)[2]) && dim(data)[2] > 1 ) {
     for (i in 1:dim(data)[2]) {
+      
+      if (!anyNA(data[,i])) {next}
+      
+      #In case auf default parameters, set these for each column seperately
+      if(missU == TRUE) {upperBound = max(data[ ,i], na.rm = TRUE)}
+      if(missL == TRUE) {lowerBound = min(data[ ,i], na.rm = TRUE)}
+      
       #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
       tryCatch(data[,i] <- na.random(data[ ,i], lowerBound, upperBound), error=function(cond) {
         warning(paste("imputeTS: No imputation performed for column",i,"because of this",cond), call. = FALSE)
@@ -51,6 +61,7 @@ na.random <- function(x, lowerBound = min(data, na.rm = TRUE) , upperBound = max
     }
     return(data)
   }
+  
   
   # Univariate Input
   # All imputation code is within this part
@@ -74,6 +85,9 @@ na.random <- function(x, lowerBound = min(data, na.rm = TRUE) , upperBound = max
     
     if(!is.numeric(data))
     {stop("Input x is not numeric")}
+    
+    # Special check - because no element being of type int can be given to funtion KalmanRun/KalmanSmooth
+    data[1:length(data)] <- as.numeric(data)
     
     # End Input Check
     
