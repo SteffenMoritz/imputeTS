@@ -45,6 +45,9 @@ na.seadec <- function(x, algorithm = "interpolation" , ...) {
   # No imputation code in this part. 
   if (!is.null( dim(data)[2]) && dim(data)[2] > 1 ) {
     for (i in 1:dim(data)[2]) {
+      
+      if (!anyNA(data[,i])) {next}
+      
       #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
       tryCatch(data[,i] <- na.seadec(data[ ,i], algorithm, ...), error=function(cond) {
         warning(paste("imputeTS: No imputation performed for column",i,"because of this",cond), call. = FALSE)

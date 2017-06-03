@@ -74,6 +74,9 @@ na.kalman <- function(x, model = "StructTS" , smooth =TRUE,nit=-1, ...) {
   # No imputation code in this part. 
   if (!is.null( dim(data)[2]) && dim(data)[2] > 1 ) {
     for (i in 1:dim(data)[2]) {
+      
+      if (!anyNA(data[,i])) {next}
+      
       #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
       tryCatch(data[,i] <- na.kalman(data[ ,i], model, smooth, nit, ...), error=function(cond) {
         warning(paste("imputeTS: No imputation performed for column",i,"because of this",cond), call. = FALSE)

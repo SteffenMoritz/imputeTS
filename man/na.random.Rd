@@ -4,8 +4,8 @@
 \alias{na.random}
 \title{Missing Value Imputation by Random Sample}
 \usage{
-na.random(x, lowerBound = min(data, na.rm = TRUE), upperBound = max(data,
-  na.rm = TRUE))
+na.random(x, lowerBound = min(x, na.rm = TRUE), upperBound = max(x, na.rm =
+  TRUE))
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object in which missing values shall be replaced}
