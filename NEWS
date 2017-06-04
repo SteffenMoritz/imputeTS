@@ -1,3 +1,14 @@
+Changes in Version 2.4
+
+  o Small speed improvments for na.kalman
+  
+  o Improved input check for all functions
+
+  o Bugfix for unit tests 
+
+  o Changes to unit test (because of zoo update)
+  
+
 Changes in Version 2.3
 
   o Bugfix for na.kalman with integer input
