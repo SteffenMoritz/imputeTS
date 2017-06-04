@@ -71,8 +71,16 @@ na.random <- function(x, lowerBound = min(x, na.rm = TRUE) , upperBound = max(x,
     ## Input check
     ## 
     
+    missindx <- is.na(data)
+    
+    #Nothing to impute in the data
     if(!anyNA(data)) {
       return(data)
+    }
+    
+    #Input completly NA
+    if (all(missindx)) {
+      stop("Input data has only NAs")
     }
  
     if(!is.null(dim(data)[2])&&!dim(data)[2]==1)
@@ -96,7 +104,6 @@ na.random <- function(x, lowerBound = min(x, na.rm = TRUE) , upperBound = max(x,
     ## Imputation Code
     ##
     
-    missindx <- is.na(data)  
     
     #Check that lower bound is not higher than upper boun
     if (lowerBound >= upperBound)

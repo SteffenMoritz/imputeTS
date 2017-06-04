@@ -57,6 +57,10 @@ na.replace <- function(x, fill = 0) {
     ## Input check
     ## 
     
+    
+    missindx <- is.na(data)
+    
+    #Nothing to impute in the data
     if(!anyNA(data)) {
       return(data)
     }
@@ -79,7 +83,6 @@ na.replace <- function(x, fill = 0) {
     ## Imputation Code
     ##
     
-    missindx <- is.na(data)   
     data[missindx] <- fill
     
     ## End Imputation Code

@@ -42,9 +42,17 @@ na.remove <- function(x) {
     ## Input check
     ## 
   
-    if(!anyNA(data)) {
-      return(data)
-    }
+  missindx <- is.na(data)
+  
+  #Nothing to impute in the data
+  if(!anyNA(data)) {
+    return(data)
+  }
+  
+  #Input completly NA
+  if (all(missindx)) {
+    stop("Input data has only NAs")
+  }
     
     if(!is.null(dim(data)[2])&&!dim(data)[2]==1)
     {stop("Input x is not univariate")}

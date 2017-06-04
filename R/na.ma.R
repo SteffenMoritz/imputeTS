@@ -88,8 +88,16 @@ na.ma <- function(x, k =4, weighting = "exponential") {
     ## Input check
     ## 
     
+    missindx <- is.na(data)
+    
+    #Nothing to impute in the data
     if(!anyNA(data)) {
       return(data)
+    }
+    
+    #Minimum amount of non-NA values
+    if (sum(!missindx) < 2) {
+      stop("Input data needs at least 2 non-NA data point for applying na.ma")
     }
     
     #Stop for wrong k values

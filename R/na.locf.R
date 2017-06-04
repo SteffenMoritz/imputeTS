@@ -78,8 +78,16 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
     ## Input check
     ## 
     
+    missindx <- is.na(data)
+    
+    #Nothing to impute in the data
     if(!anyNA(data)) {
       return(data)
+    }
+    
+    #Input completly NA
+    if (all(missindx)) {
+      stop("Input data has only NAs. Input data needs at least 1 non-NA data point for applying na.locf")
     }
     
     if(!is.null(dim(data)[2])&&!dim(data)[2]==1)
@@ -100,8 +108,6 @@ na.locf <- function(x, option ="locf",  na.remaining = "rev" ) {
     ## Imputation Code
     ##
     
-    missindx <- is.na(data)  
-
     #Input as vector
     data.vec <- as.vector(data)
     

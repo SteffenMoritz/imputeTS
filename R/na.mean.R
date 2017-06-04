@@ -63,8 +63,17 @@ na.mean <- function(x, option ="mean") {
     ## Input check
     ## 
     
+    
+    missindx <- is.na(data)
+    
+    #Nothing to impute in the data
     if(!anyNA(data)) {
       return(data)
+    }
+    
+    #Input completly NA
+    if (all(missindx)) {
+      stop("Input data has only NAs. Input data needs at least 1 non-NA data point for applying na.mean")
     }
 
     #Input dimension must be univariate
@@ -86,7 +95,6 @@ na.mean <- function(x, option ="mean") {
     ## Imputation Code
     ##
     
-    missindx <- is.na(data)  
     
     if(option == "median") {
       #Use Median

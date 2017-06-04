@@ -66,8 +66,17 @@ na.seasplit <- function(x, algorithm="interpolation" , ...) {
     ## Input check
     ## 
     
+    
+    missindx <- is.na(data)
+    
+    #Nothing to impute in the data
     if(!anyNA(data)) {
       return(data)
+    }
+    
+    #Input completly NA
+    if (all(missindx)) {
+      stop("Input data has only NAs")
     }
     
     if(!is.null(dim(data)[2])&&!dim(data)[2]==1)

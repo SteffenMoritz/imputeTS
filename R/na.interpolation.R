@@ -68,9 +68,16 @@ na.interpolation <- function(x, option = "linear", ...) {
     ## Input check
     ## 
     
-    #if no missing data, do nothing
+    missindx <- is.na(data)
+    
+    #Nothing to impute in the data
     if(!anyNA(data)) {
       return(data)
+    }
+    
+    #Minimum amount of non-NA values
+    if (sum(!missindx) < 2) {
+      stop("Input data needs at least 2 non-NA data point for applying na.interpolation")
     }
 
     if(!is.null(dim(data)[2])&&!dim(data)[2]==1)
@@ -90,8 +97,6 @@ na.interpolation <- function(x, option = "linear", ...) {
     ##
     ## Imputation Code
     ##
-    
-    missindx <- is.na(data)  
     
     n <- length(data)
     
