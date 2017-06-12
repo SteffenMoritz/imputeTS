@@ -2,6 +2,7 @@ context("Advanced Time Series Objects Input")
 
 test_that("zoo objects",
           {
+            skip_on_cran()
             if (!requireNamespace("zoo", quietly = TRUE)) {
               warning("Pkg zoo needed for this test.",
                    call. = FALSE)
@@ -24,6 +25,7 @@ test_that("zoo objects",
 
 test_that("multivariate zoo objects",
           {
+          skip_on_cran()
             if (!requireNamespace("zoo", quietly = TRUE)) {
               warning("Pkg zoo needed for this test.",
                    call. = FALSE)
@@ -51,6 +53,7 @@ test_that("multivariate zoo objects",
 
 test_that("xts objects",
           {
+            skip_on_cran()
             if (!requireNamespace("xts", quietly = TRUE)) {
               warning("Pkg xts needed for this test.",
                    call. = FALSE)
@@ -73,6 +76,8 @@ test_that("xts objects",
 
 test_that("timeSeries objects",
           {
+            skip_on_cran()
+            
             if (!requireNamespace("timeSeries", quietly = TRUE)) {
               warning("Pkg timeSeries needed for this test.",
                    call. = FALSE)
@@ -96,6 +101,8 @@ test_that("timeSeries objects",
 
 test_that("tis objects",
           {
+            skip_on_cran()
+            
             if (!requireNamespace("tis", quietly = TRUE)) {
               warning("Pkg timeSeries needed for this test.",
                       call. = FALSE)
@@ -118,6 +125,8 @@ test_that("tis objects",
 
 test_that("Imputation works for data.frame",
           {
+            skip_on_cran()
+            
             #Checking if NAs remain in data.frame
             x <- data.frame(tsAirgap, tsAirgap, tsAirgapComplete)
             expect_that(anyNA(na.mean(x)), is_false())
@@ -133,6 +142,8 @@ test_that("Imputation works for data.frame",
 
 test_that("Imputation works for data.frame univariate",
           {
+            skip_on_cran()
+            
             #Checking if NAs remain in data.frame
             x <- data.frame(tsAirgap)
             expect_that(anyNA(na.mean(x)), is_false())
@@ -149,6 +160,8 @@ test_that("Imputation works for data.frame univariate",
 
 test_that("Imputation works for matrix",
           {
+            skip_on_cran()
+            
             #Checking if NAs remain in data.frame
             x <- data.frame(tsAirgap, tsAirgap, tsAirgapComplete)
             x <- as.matrix(x)
@@ -165,6 +178,8 @@ test_that("Imputation works for matrix",
 
 test_that("Imputation works for matrix univariate",
           {
+            skip_on_cran()
+            
             #Checking if NAs remain in data.frame
             x <- data.frame(tsAirgap)
             x <- as.matrix(x)

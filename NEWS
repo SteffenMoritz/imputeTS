@@ -1,5 +1,11 @@
 Changes in Version 2.4
 
+  o Adjusted unit test to a update of forecast package
+  
+
+
+Changes in Version 2.4
+
   o Small speed improvments for na.kalman
   
   o Improved input check for all functions
