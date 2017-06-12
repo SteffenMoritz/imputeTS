@@ -1,6 +1,6 @@
 Package: imputeTS
 Version: 2.5
-Date: 2017-06-11
+Date: 2017-06-12
 Title: Time Series Missing Value Imputation
 Description: Imputation (replacement) of missing values 
              in univariate time series. 
@@ -17,7 +17,7 @@ LazyData: yes
 Type: Package
 ByteCompile: TRUE
 BugReports: https://github.com/SteffenMoritz/imputeTS/issues
-URL: http://github.com/SteffenMoritz/imputeTS
+URL: https://github.com/SteffenMoritz/imputeTS
 Repository: CRAN
 Depends:
     R (>= 3.0.1)
