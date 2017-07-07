@@ -5,7 +5,6 @@ context("na.seasplit")
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)",
           {
             skip_on_cran()
-            
             #Using mean over resulting vector to check correctness
             #In order to avoid writing down the complete resulting vector
             #Using rounded version in order to avoid writing down all decimals
@@ -21,7 +20,6 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at start)",
           {
             skip_on_cran()
-            
             #Using mean over resulting vector to check correctness
             #In order to avoid writing down the complete resulting vector
             #Using rounded version in order to avoid writing down all decimals
@@ -38,7 +36,6 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
 test_that("Correct results for all options with the tsAirgap dataset",
           {
             skip_on_cran()
-            
             #Using mean over resulting vector to check correctness
             #In order to avoid writing down the complete resulting vector
             #Using rounded version in order to avoid writing down all decimals
