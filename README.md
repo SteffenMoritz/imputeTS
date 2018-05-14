@@ -95,7 +95,7 @@ Here is a table with available algorithms to choose from:
   > than just one algorithm. For example na.interpolation can be set to linear
   > or spline interpolation.
 
-More detailed information about the algortihms and their options can be found in the [imputeTS reference manual].
+More detailed information about the algorithms and their options can be found in the [imputeTS reference manual].
 
 ### Missing Data Plots
 
@@ -131,7 +131,10 @@ There are two datasets (each in two versions) available:
   > conducting experiments of imputation functions.
  
   More detailed information about the datasets can be found in the [imputeTS reference manual].
-  
+
+### Reference
+Here you can find information on how to cite imputeTS: [Citation]
+
 ### Support
 If you found a bug or have suggestions, feel free to get in contact via steffen.moritz10 at gmail.com
 
@@ -146,4 +149,6 @@ GPL-3
 
    [CRAN]: <https://cran.r-project.org/package=imputeTS>  
    [imputeTS reference manual]: <https://cran.r-project.org/package=imputeTS>
+   [Citation]: <https://cran.r-project.org/web/packages/imputeTS/citation.html>
+
  
