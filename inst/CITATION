@@ -3,13 +3,6 @@ vers <- paste("R package version", meta$Version)
 
 citHeader("To cite the imputeTS package, use:")
 
-bibentry(bibtype = "Manual",
-  title = "{imputeTS: Time Series Missing Value Imputation}",
-  author = as.person("Steffen Moritz"),
-  year = year,
-  note = vers,
-  url = "https://CRAN.R-project.org/package=imputeTS")
-
 bibentry(bibtype = "Article",
   title     = "{imputeTS: Time Series Missing Value Imputation in R}",
   author    = personList(as.person("Steffen Moritz"),as.person("Thomas Bartz-Beielstein")),

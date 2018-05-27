@@ -5,10 +5,10 @@
 
 
 /* .Call calls */
-extern SEXP imputeTS_locf(SEXP, SEXP);
+extern SEXP _imputeTS_locf(SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-    {"imputeTS_locf", (DL_FUNC) &imputeTS_locf, 2},
+    {"_imputeTS_locf", (DL_FUNC) &_imputeTS_locf, 2},
     {NULL, NULL, 0}
 };
 

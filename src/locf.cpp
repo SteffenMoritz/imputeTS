@@ -3,10 +3,10 @@ using namespace Rcpp;
 
 
 // [[Rcpp::export]]
-NumericVector locf(NumericVector x, bool reverse) 
+Rcpp::NumericVector locf(NumericVector x, bool reverse) 
 {
   
-  NumericVector z = clone(x);
+  Rcpp::NumericVector z = clone(x);
   
   long n = z.size();
   

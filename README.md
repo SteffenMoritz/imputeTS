@@ -1,11 +1,11 @@
-[![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Active The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/SteffenMoritz/imputeTS.svg?branch=master)](https://travis-ci.org/SteffenMoritz/imputeTS)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/steffenmoritz/imputeTS?branch=master&svg=true)](https://ci.appveyor.com/project/steffenmoritz/imputeTS)
 [![codecov](https://codecov.io/gh/SteffenMoritz/imputeTS/branch/master/graph/badge.svg)](https://codecov.io/gh/SteffenMoritz/imputeTS)
-[![CRAN Version](http://www.r-pkg.org/badges/version/imputeTS)](https://cran.r-project.org/package=imputeTS)
-[![CRAN Release](http://www.r-pkg.org/badges/last-release/imputeTS
+[![CRAN Version](https://www.r-pkg.org/badges/version/imputeTS)](https://cran.r-project.org/package=imputeTS)
+[![CRAN Release](https://www.r-pkg.org/badges/last-release/imputeTS
 )](https://cran.r-project.org/package=imputeTS)
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/imputeTS)](https://cran.r-project.org/package=imputeTS)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/imputeTS)](https://cran.r-project.org/package=imputeTS)
 
 
 # imputeTS: Time Series Missing Value Imputation
@@ -141,7 +141,7 @@ If you found a bug or have suggestions, feel free to get in contact via steffen.
 > All feedback is welcome
 
 ### Version
-**2.6**
+**2.7**
 
 ### License
 GPL-3

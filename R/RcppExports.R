@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 locf <- function(x, reverse) {
-    .Call('imputeTS_locf', PACKAGE = 'imputeTS', x, reverse)
+    .Call('_imputeTS_locf', PACKAGE = 'imputeTS', x, reverse)
 }
 

@@ -1,6 +1,6 @@
 Package: imputeTS
-Version: 2.6
-Date: 2018-03-20
+Version: 2.7
+Date: 2018-05-21
 Title: Time Series Missing Value Imputation
 Description: Imputation (replacement) of missing values 
              in univariate time series. 
@@ -11,7 +11,11 @@ Description: Imputation (replacement) of missing values
             'Moving Average', 'Seasonal Decomposition', 
             'Kalman Smoothing on Structural Time Series models',
             'Kalman Smoothing on ARIMA models'.
-Author: Steffen Moritz
+Author: Steffen Moritz [aut, cre, cph] (<https://orcid.org/0000-0002-0085-1804>)
+Authors@R: 
+  c(
+  person("Steffen", "Moritz", email="steffen.moritz10@gmail.com", role=c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-0085-1804"))
+  )
 Maintainer: Steffen Moritz <steffen.moritz10@gmail.com>
 LazyData: yes
 Type: Package
@@ -29,7 +33,7 @@ Imports:
     forecast,
     Rcpp
 Suggests:
-    testthat, utils
+    testthat, utils, zoo, timeSeries, tis, xts
 License: GPL-3
 VignetteBuilder: utils
 RoxygenNote: 6.0.1

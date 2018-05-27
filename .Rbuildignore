@@ -1,8 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^.*\.yml$
+^.*\.yaml$
 ^.*\.ini$
 ^.*\.txt$
 ^appveyor\.yml$
 Icon
 Icon?
+Docs

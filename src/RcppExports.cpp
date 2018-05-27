@@ -6,8 +6,8 @@
 using namespace Rcpp;
 
 // locf
-NumericVector locf(NumericVector x, bool reverse);
-RcppExport SEXP imputeTS_locf(SEXP xSEXP, SEXP reverseSEXP) {
+Rcpp::NumericVector locf(NumericVector x, bool reverse);
+RcppExport SEXP _imputeTS_locf(SEXP xSEXP, SEXP reverseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
