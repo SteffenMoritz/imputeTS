@@ -35,10 +35,16 @@ x <- ts(c(2,3,4,5,6,NA,7,8))
 na.interpolation(x)
 
 #Example 2: Perform spline interpolation
-na.interpolation(x, option ="spline")
+na.interpolation(x, option = "spline")
 
 #Example 3: Perform stine interpolation
-na.interpolation(x, option ="stine")
+na.interpolation(x, option = "stine")
+
+#Example 4: Same as example 1, just written with pipe operator
+x \%>\% na.interpolation
+
+#Example 5: Same as example 2, just written with pipe operator
+x \%>\% na.interpolation(option = "spline")
 
 }
 \references{

@@ -37,13 +37,14 @@
 #' #Example 4: Same as example 1, just written with pipe operator
 #' x %>% na.interpolation
 #' 
-#' Example 5: Same as example 2, just written with pipe operator
+#' #Example 5: Same as example 2, just written with pipe operator
 #' x %>% na.interpolation(option = "spline")
 #' 
 #' @references Johannesson, Tomas, et al. (2015). "Package stinepack". 
 #' 
 #' @import stats
 #' @import stinepack
+#' @importFrom magrittr %>%
 #' @export
 
 na.interpolation <- function(x, option = "linear", ...) { 

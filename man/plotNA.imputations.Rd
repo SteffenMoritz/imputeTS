@@ -62,6 +62,9 @@ plotNA.imputations(tsAirgap, impMean.Airgap)
 impLOCF.Airgap <- na.locf(tsAirgap)
 plotNA.imputations(tsAirgap, impLOCF.Airgap, tsAirgapComplete)
 
+#Example 3: Same as example 1, just written with pipe operator
+tsAirgap \%>\% na.mean \%>\% plotNA.imputations(x.withNA = tsAirgap)
+
 }
 \seealso{
 \code{\link[imputeTS]{plotNA.distribution}},\code{\link[imputeTS]{plotNA.distributionBar}},

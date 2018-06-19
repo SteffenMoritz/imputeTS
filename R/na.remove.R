@@ -26,13 +26,13 @@
 #' #Example 1: Remove all NAs
 #' na.remove(x)
 #' 
-#' 
 #' #Example 2: Remove all NAs in tsAirgap
 #' na.remove(tsAirgap)
 #' 
 #' #Example 3: Same as example 1, just written with pipe operator
 #' x %>% na.remove
 #' 
+#' @importFrom magrittr %>%
 #' @import stats
 #' @export
 

@@ -61,6 +61,7 @@
 #' tsAirgap %>% na.ma(weighting = "simple")
 #' 
 #' @import stats
+#' @importFrom magrittr %>%
 #' @export
 
 na.ma <- function(x, k =4, weighting = "exponential") {

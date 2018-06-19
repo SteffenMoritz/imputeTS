@@ -27,5 +27,5 @@ Every other imputation function (starting with na.'algorithm name') and plotting
 function (starting with plotNA.'plot name') work the same way as in this example.
 }
 \references{
-Moritz, Steffen, et al. "Comparison of different Methods for Univariate Time Series Imputation in R." arXiv preprint arXiv:1510.03924 (2015).
+Moritz, Steffen, and Thomas Bartz-Beielstein. "imputeTS: Time Series Missing Value Imputation in R." R Journal 9.1 (2017).
 }

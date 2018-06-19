@@ -36,6 +36,7 @@
 #' #Example 3: Same as example 1, just written with pipe operator
 #' tsAirgap %>% na.seadec(algorithm = "interpolation")
 #' 
+#' @importFrom magrittr %>%
 #' @import stats
 #' @export
 

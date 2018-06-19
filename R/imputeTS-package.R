@@ -22,15 +22,21 @@
 #' function (starting with plotNA.'plot name') work the same way as in this example.
 #'   
 #' @name imputeTS-package
-#' @references Moritz, Steffen, et al. "Comparison of different Methods for Univariate Time Series Imputation in R." arXiv preprint arXiv:1510.03924 (2015).
+#' 
+#' @references Moritz, Steffen, and Thomas Bartz-Beielstein. "imputeTS: Time Series Missing Value Imputation in R." R Journal 9.1 (2017).
+#' 
 #' @docType package
 #' @import stats
-NULL
-
-#' @useDynLib imputeTS
+#' @importFrom magrittr %>%
 #' @importFrom Rcpp sourceCpp
+#' @useDynLib imputeTS
 NULL
 
 .onUnload <- function (libpath) {
   library.dynam.unload("imputeTS", libpath)
 }
+
+#' @export 
+magrittr::`%>%`
+
+

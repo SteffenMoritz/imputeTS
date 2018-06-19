@@ -35,6 +35,9 @@ na.random(x)
 #Example 2: Replace all NAs by random values between 1 and 10
 na.random(x, lowerBound = 1, upperBound = 10)
 
+#Example 3: Same as example 1, just written with pipe operator
+x \%>\% na.random
+
 }
 \seealso{
 \code{\link[imputeTS]{na.interpolation}},

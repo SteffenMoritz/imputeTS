@@ -46,6 +46,10 @@
 #' #Example 2: Visualize the top gap sizes in tsAirgap
 #' plotNA.gapsize(tsAirgap)
 #' 
+#' #Example 3: Same as example 1, just written with pipe operator
+#' tsNH4 %>% plotNA.gapsize
+#' 
+#' @importFrom magrittr %>%
 #' @importFrom graphics lines par plot points barplot
 #' @export plotNA.gapsize
 

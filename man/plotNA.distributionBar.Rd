@@ -57,6 +57,9 @@ plotNA.distributionBar(tsNH4)
 #Example 2: Visualize the missing values in tsHeating time series
 plotNA.distributionBar(tsHeating, breaks = 20)
 
+#Example 3: Same as example 1, just written with pipe operator
+tsNH4 \%>\% plotNA.distributionBar
+
 }
 \seealso{
 \code{\link[imputeTS]{plotNA.distribution}},

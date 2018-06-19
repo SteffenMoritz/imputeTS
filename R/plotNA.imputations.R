@@ -45,6 +45,10 @@
 #' impLOCF.Airgap <- na.locf(tsAirgap)
 #' plotNA.imputations(tsAirgap, impLOCF.Airgap, tsAirgapComplete)
 #' 
+#' #Example 3: Same as example 1, just written with pipe operator
+#' tsAirgap %>% na.mean %>% plotNA.imputations(x.withNA = tsAirgap)
+#' 
+#' @importFrom magrittr %>%
 #' @importFrom graphics legend lines plot points par
 #' @export plotNA.imputations
 

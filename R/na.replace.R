@@ -29,6 +29,7 @@
 #' #Example 3: Same as example 1, just written with pipe operator
 #' x %>% na.replace(fill = 3.5 )
 #' 
+#' @importFrom magrittr %>%
 #' @import stats
 #' @export
 

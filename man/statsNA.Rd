@@ -48,6 +48,9 @@ statsNA(tsNH4)
 #Example 2: Return list with stats about the missing data in tsAirgap
 statsNA(tsAirgap, printOnly= FALSE)
 
+#Example 3: Same as example 1, just written with pipe operator
+tsNH4 \%>\% statsNA
+
 }
 \seealso{
 \code{\link[imputeTS]{plotNA.distribution}},\code{\link[imputeTS]{plotNA.distributionBar}},

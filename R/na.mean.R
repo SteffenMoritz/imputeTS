@@ -37,6 +37,7 @@
 #' #Example 3: Same as example 1, just written with pipe operator
 #' x %>% na.mean
 #' 
+#' @importFrom magrittr %>%
 #' @import stats
 #' @export na.mean
 #' 

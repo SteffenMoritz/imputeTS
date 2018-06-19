@@ -44,8 +44,12 @@
 #' #Example 2: Visualize the missing values in tsHeating time series
 #' plotNA.distributionBar(tsHeating, breaks = 20)
 #' 
+#' #Example 3: Same as example 1, just written with pipe operator
+#' tsNH4 %>% plotNA.distributionBar
+#' 
 #' @importFrom graphics legend barplot axis par plot
 #' @import grDevices
+#' @importFrom magrittr %>%
 #' @export plotNA.distributionBar
 
 plotNA.distributionBar <- function(x, 
