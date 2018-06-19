@@ -134,6 +134,7 @@ There are two datasets (each in two versions) available:
 
 ### Reference
 Here you can cite imputeTS the following: 
+
 **Moritz, Steffen, and Thomas Bartz-Beielstein. "imputeTS: Time Series Missing Value Imputation in R." R Journal 9.1 (2017).**
 
 
