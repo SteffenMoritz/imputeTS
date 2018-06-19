@@ -33,6 +33,10 @@
 #' 
 #' #Example 2: Perform imputation with overall median
 #' na.mean(x, option ="median")
+#' 
+#' #Example 3: Same as example 1, just written with pipe operator
+#' x %>% na.mean
+#' 
 #' @import stats
 #' @export na.mean
 #' 

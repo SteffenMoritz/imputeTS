@@ -48,6 +48,9 @@
 #' #Example 3: Perform LOCF and remove remaining NAs
 #' na.locf(x, na.remaining = "rm")
 #' 
+#' #Example 4: Same as example 1, just written with pipe operator
+#' x %>% na.locf
+#' 
 #' @import stats
 #' @export
 

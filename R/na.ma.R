@@ -57,6 +57,9 @@
 #' #Example 3: Perform imputation with exponential weighted moving average, window size 6
 #' na.ma(tsAirgap, k=6)
 #' 
+#' #Example 4: Same as example 1, just written with pipe operator
+#' tsAirgap %>% na.ma(weighting = "simple")
+#' 
 #' @import stats
 #' @export
 

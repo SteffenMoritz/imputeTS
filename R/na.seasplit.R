@@ -35,6 +35,9 @@
 #' #Example 2: Perform seasonal splitted imputation using algorithm = "mean"
 #' na.seasplit(tsAirgap, algorithm = "mean")
 #' 
+#' #Example 3: Same as example 1, just written with pipe operator
+#' tsAirgap %>% na.seasplit(algorithm = "interpolation")
+#' 
 #' @import stats 
 #' @export
 
