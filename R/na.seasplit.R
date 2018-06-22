@@ -102,7 +102,7 @@ na.seasplit <- function(x, algorithm="interpolation" , ...) {
     }
     
     if(length(data) < frequency(data)*2 ) {
-      warning("More than 2 complete periods needed to perform a seasonal split The algorithm will go on without seasonal split")
+      warning("More than 2 complete periods needed to perform a seasonal split. The algorithm will go on without seasonal split.")
       data <- apply.base.algorithm(data, algorithm = algorithm,...)
       return(data)
     }
