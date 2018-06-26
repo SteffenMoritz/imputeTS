@@ -9,7 +9,7 @@
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/imputeTS)](https://cran.r-project.org/package=imputeTS)
 
 
-# imputeTS: Time Series Missing Value Imputation <img src="man/figures/naniar-logo.png" align="right" />
+# imputeTS: Time Series Missing Value Imputation <img src="man/figures/imputeTS-logo.png" align="right" />
 
 The imputeTS package specializes on (univariate) time series imputation. 
 It offers several different imputation algorithm implementations. Beyond the imputation algorithms the package also provides plotting and printing functions of time series missing data statistics. Additionally three time series datasets for imputation experiments are included.
