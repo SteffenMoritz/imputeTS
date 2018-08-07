@@ -1,6 +1,10 @@
 ## Changes in Version 2.8
 
+ * Added StackExchange link to Readme
+
  * Moved stinepack from imports to suggested
+ 
+ * Internal reorganization of imports - now always using pkg::function and importFrom pkg x1 x2 x3instead of just import pkg
 
 
 ## Changes in Version 2.7
