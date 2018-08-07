@@ -27,14 +27,13 @@ Depends:
     R (>= 3.0.1)
 Imports:
     stats,
-    stinepack,
     graphics,
     grDevices,
     forecast,
     magrittr,
     Rcpp
 Suggests:
-    testthat, utils, zoo, timeSeries, tis, xts
+    testthat, stinepack,utils, zoo, timeSeries, tis, xts
 License: GPL-3
 VignetteBuilder: utils
 RoxygenNote: 6.0.1

@@ -43,7 +43,6 @@
 #' @references Johannesson, Tomas, et al. (2015). "Package stinepack". 
 #' 
 #' @import stats
-#' @import stinepack
 #' @importFrom magrittr %>%
 #' @export
 
@@ -119,7 +118,11 @@ na.interpolation <- function(x, option = "linear", ...) {
       interp <- spline(indx,data.vec[indx],n = n, ... )$y
     }
     else if(option == "stine") {
-      interp <- stinterp(indx,data.vec[indx],1:n, ...)$y
+      if (!requireNamespace("stinepack", quietly = TRUE)) {
+        stop("Package \"stinepack\" needed for na.interpolation(x, option =\"stine\") to work. Please install it and run again.",
+             call. = FALSE)
+      }
+      interp <- stinepack::stinterp(indx,data.vec[indx],1:n, ...)$y
       #avoid NAs at the beginning and end of series // same behavior like for approx with rule = 2.
       if(any(is.na(interp))) {interp <- na.locf(interp, na.remaining= "rev")}
     }

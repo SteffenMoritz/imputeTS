@@ -139,14 +139,20 @@ You can cite imputeTS the following:
   > Moritz, Steffen, and Thomas Bartz-Beielstein. "imputeTS: Time Series Missing Value Imputation in R." R Journal 9.1 (2017).
  
 
+### Need Help?
+If you have general questions or need help using the package please ask your on [StackOverflow]. By doing so all users can benefit in the future from your question.
+
+> Don't forget to mark your question with the [imputets] tag on StackOverflow to get me notified
 
 ### Support
-If you found a bug or have suggestions, feel free to get in contact via steffen.moritz10 at gmail.com
+If you found a bug or have suggestions, feel free to get in contact via steffen.moritz10 at gmail.com.
 
 > All feedback is welcome
 
+
+
 ### Version
-**2.7**
+**2.8**
 
 ### License
 GPL-3
@@ -155,5 +161,6 @@ GPL-3
    [CRAN]: <https://cran.r-project.org/package=imputeTS>  
    [imputeTS reference manual]: <https://cran.r-project.org/package=imputeTS>
    [Citation]: <https://cran.r-project.org/web/packages/imputeTS/citation.html>
-
+   [StackOverflow]: <https://stackoverflow.com/tags/imputets/info> 
+   [imputets]: <https://stackoverflow.com/questions/tagged/imputets>
  

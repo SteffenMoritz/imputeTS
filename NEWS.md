@@ -1,5 +1,6 @@
 ## Changes in Version 2.8
 
+ * Moved stinepack from imports to suggested
 
 
 ## Changes in Version 2.7
