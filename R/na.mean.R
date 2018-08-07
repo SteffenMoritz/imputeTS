@@ -38,7 +38,7 @@
 #' x %>% na.mean
 #' 
 #' @importFrom magrittr %>%
-#' @import stats
+#' @importFrom stats median ts
 #' @export na.mean
 #' 
 na.mean <- function(x, option ="mean") {
@@ -103,7 +103,7 @@ na.mean <- function(x, option ="mean") {
     
     if(option == "median") {
       #Use Median
-      median <- median(data, na.rm = TRUE)    
+      median <- stats::median(data, na.rm = TRUE)    
       data[missindx] <- median 
     }
     else if(option == "mode") {

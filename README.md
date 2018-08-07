@@ -140,7 +140,7 @@ You can cite imputeTS the following:
  
 
 ### Need Help?
-If you have general questions or need help using the package please ask your on [StackOverflow]. By doing so all users can benefit in the future from your question.
+If you have general programming problems or need help using the package please ask your question on [StackOverflow]. By doing so all users will be able to benefit in the future from your question.
 
 > Don't forget to mark your question with the [imputets] tag on StackOverflow to get me notified
 

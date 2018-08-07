@@ -36,8 +36,9 @@
 #' x <- ts(c(1:11, 4:9,NA,NA,NA,11:15,7:15,15:6,NA,NA,2:5,3:7))
 #' x %>% plotNA.distribution
 #' 
-#' @importFrom magrittr %>%
 #' @importFrom graphics par plot points barplot
+#' @importFrom stats ts
+#' @importFrom magrittr %>%
 #' @export
 
 plotNA.distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "indianred2",
@@ -71,13 +72,13 @@ plotNA.distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "i
     barplotData[id.na] <- max(data, na.rm =TRUE )*100
     
     ##Plot the red in background for unknown values
-    barplot(barplotData, col = colBackgroundMV,xaxt = "n", yaxt = "n",   xlab = "", ylab = "", border = colBackgroundMV)
-    par(new=TRUE)
+    graphics::barplot(barplotData, col = colBackgroundMV,xaxt = "n", yaxt = "n",   xlab = "", ylab = "", border = colBackgroundMV)
+    graphics::par(new=TRUE)
   }
   ## Plot the line diagram of known values
   
-  plot(data, main =main, type = "l", xlab = xlab, ylab = ylab, col = col,... )
-  points(data, pch= pch , cex = cexPoints, col = colPoints)
+  graphics::plot(data, main =main, type = "l", xlab = xlab, ylab = ylab, col = col,... )
+  graphics::points(data, pch= pch , cex = cexPoints, col = colPoints)
   
 }
 

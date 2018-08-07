@@ -77,8 +77,8 @@ plotNA.gapsize <- function(x, limit = 10, byTotalNA = FALSE , legend = TRUE, col
   id.na <- which(is.na(data))
   
   #save par settings and reset after function
-  par.default <- par(no.readonly=TRUE) 
-  on.exit(par(par.default))
+  par.default <- graphics::par(no.readonly=TRUE) 
+  on.exit(graphics::par(par.default))
   
 
   ## Calculation consecutive NA information (results is stored in vec)
@@ -133,15 +133,15 @@ plotNA.gapsize <- function(x, limit = 10, byTotalNA = FALSE , legend = TRUE, col
   inp <- matrix(c(bars1,bars2),byrow=TRUE,ncol=length(bars1))
   labels <-  as.vector(rbind(labels1,labels2)) 
   
-  if (legend == TRUE) { par(oma =c(0.5,0,0,0)) }
+  if (legend == TRUE) { graphics::par(oma =c(0.5,0,0,0)) }
   
   ##here comes the plot itself
-  barplot(inp, names.arg = labels,main = main, las = las, horiz = horiz , axes = axes  ,beside = beside, col =col ,cex.names= cex.names,xlab =xlab,ylab=ylab, ...)
+  graphics::barplot(inp, names.arg = labels,main = main, las = las, horiz = horiz , axes = axes  ,beside = beside, col =col ,cex.names= cex.names,xlab =xlab,ylab=ylab, ...)
   
   if (legend == TRUE) {
-     par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
-     plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-     legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c(  "Num occurrence gapsize", "Total NAs for gapsize"), col = c("indianred", "steelblue"), pch = c(20))
+    graphics::par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
+    graphics::plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
+    graphics::legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c(  "Num occurrence gapsize", "Total NAs for gapsize"), col = c("indianred", "steelblue"), pch = c(20))
   }
  
 }

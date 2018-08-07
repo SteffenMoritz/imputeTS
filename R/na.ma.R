@@ -60,7 +60,6 @@
 #' #Example 4: Same as example 1, just written with pipe operator
 #' tsAirgap %>% na.ma(weighting = "simple")
 #' 
-#' @import stats
 #' @importFrom magrittr %>%
 #' @export
 

@@ -36,8 +36,8 @@
 #' #Example 3: Same as example 1, just written with pipe operator
 #' tsAirgap %>% na.seadec(algorithm = "interpolation")
 #' 
+#' @importFrom stats frequency stl
 #' @importFrom magrittr %>%
-#' @import stats
 #' @export
 
 na.seadec <- function(x, algorithm = "interpolation" , ...) { 
@@ -91,13 +91,13 @@ na.seadec <- function(x, algorithm = "interpolation" , ...) {
     if(!is.numeric(data))
     {stop("Input x is not numeric")}
     
-    if(frequency(data)==1) {
+    if(stats::frequency(data)==1) {
       warning("No seasonality information for dataset found, going on without decomposition")
       data <- apply.base.algorithm(data, algorithm = algorithm,...)
       return(data)
     }
     
-    if(length(data)+1 < frequency(data)*2 ) {
+    if(length(data)+1 < stats::frequency(data)*2 ) {
       warning("More than 2 complete periods needed to perform seasonal decomposition. The algorithm will go on without decomposition.")
       data <- apply.base.algorithm(data, algorithm = algorithm,...)
       return(data)
@@ -114,7 +114,7 @@ na.seadec <- function(x, algorithm = "interpolation" , ...) {
     #approx NAs, to get complete series, because stl does not work with NAs
     temp <- na.interpolation(data)
     
-    stl <- stl(temp,robust=TRUE, s.window = 11)
+    stl <- stats::stl(temp,robust=TRUE, s.window = 11)
     # just take trend component + irregular  (remove seasonality)
     ts.noSeasonality <- stl$time.series[,2]+stl$time.series[,3]
     

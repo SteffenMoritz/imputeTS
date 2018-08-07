@@ -42,7 +42,8 @@
 #' 
 #' @references Johannesson, Tomas, et al. (2015). "Package stinepack". 
 #' 
-#' @import stats
+#' @importFrom stinepack stinterp
+#' @importFrom stats ts approx spline
 #' @importFrom magrittr %>%
 #' @export
 
@@ -112,10 +113,10 @@ na.interpolation <- function(x, option = "linear", ...) {
     data.vec <- as.vector(data)
     
     if(option =="linear") {
-      interp <- approx(indx,data.vec[indx],1:n, rule=2, ...)$y
+      interp <- stats::approx(indx,data.vec[indx],1:n, rule=2, ...)$y
     }
     else if(option == "spline") {
-      interp <- spline(indx,data.vec[indx],n = n, ... )$y
+      interp <- stats::spline(indx,data.vec[indx],n = n, ... )$y
     }
     else if(option == "stine") {
       if (!requireNamespace("stinepack", quietly = TRUE)) {

@@ -64,8 +64,8 @@
 #' tsAirgap %>% na.kalman
 #' 
 #' @references Hyndman RJ and Khandakar Y (2008). "Automatic time series forecasting: the forecast package for R". Journal of Statistical Software, 26(3).
-#' @import stats 
-#' @import forecast
+#' @importFrom stats StructTS KalmanSmooth KalmanRun arima
+#' @importFrom forecast auto.arima
 #' @importFrom magrittr %>%
 #' @export
 
@@ -138,13 +138,13 @@ na.kalman <- function(x, model = "StructTS" , smooth =TRUE,nit=-1, ...) {
     
     #State space representation of a arima model 
     if (model[1] =="auto.arima") {
-      mod <- auto.arima(data,...)$model
+      mod <- forecast::auto.arima(data,...)$model
     }
     #State space model, default is BSM - basic structural model
     else if(model[1] == "StructTS") {
       #Fallback, because for StructTS first value is not allowed to be NA
       if(is.na(data[1])) {data[1] <- na.locf(data,option = "nocb",na.remaining = "rev")[1]}
-      mod <- StructTS(data,...)$model0
+      mod <- stats::StructTS(data,...)$model0
     }
     #User supplied model e.g. created with arima() or other state space models from other packages
     else {
@@ -163,11 +163,11 @@ na.kalman <- function(x, model = "StructTS" , smooth =TRUE,nit=-1, ...) {
     
     #Selection if KalmanSmooth or KalmanRun
     if (smooth ==TRUE) {
-      kal <- KalmanSmooth(data, mod, nit )
+      kal <- stats::KalmanSmooth(data, mod, nit )
       erg <- kal$smooth  #for kalmanSmooth
     }
     else {
-      kal <- KalmanRun(data, mod, nit )
+      kal <- stats::KalmanRun(data, mod, nit )
       erg <- kal$states #for kalmanrun
     }
     

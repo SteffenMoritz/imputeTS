@@ -38,8 +38,8 @@
 #' #Example 3: Same as example 1, just written with pipe operator
 #' tsAirgap %>% na.seasplit(algorithm = "interpolation")
 #' 
+#' @importFrom stats frequency ts
 #' @importFrom magrittr %>%
-#' @import stats 
 #' @export
 
 na.seasplit <- function(x, algorithm="interpolation" , ...) { 
@@ -95,13 +95,13 @@ na.seasplit <- function(x, algorithm="interpolation" , ...) {
     {stop("Input x is not numeric")}
     
     
-    if(frequency(data)==1) {
+    if(stats::frequency(data)==1) {
       warning("No seasonality information for dataset found, going on without decomposition")
       data <- apply.base.algorithm(data, algorithm = algorithm,...)
       return(data)
     }
     
-    if(length(data) < frequency(data)*2 ) {
+    if(length(data) < stats::frequency(data)*2 ) {
       warning("More than 2 complete periods needed to perform a seasonal split. The algorithm will go on without seasonal split.")
       data <- apply.base.algorithm(data, algorithm = algorithm,...)
       return(data)
@@ -114,13 +114,13 @@ na.seasplit <- function(x, algorithm="interpolation" , ...) {
     ## Imputation Code
     ##
     
-    for(i in 1:frequency(data)) {
+    for(i in 1:stats::frequency(data)) {
       
       #get indices for one season
-      indices <- seq(from = i, to = length(data), by = frequency(data))
+      indices <- seq(from = i, to = length(data), by = stats::frequency(data))
       
       #Create time series just with one season
-      ts.temp <- ts(data[indices])
+      ts.temp <- stats::ts(data[indices])
       
       #Apply algorithm on this season
       ts.temp <- apply.base.algorithm(ts.temp, algorithm = algorithm,...)

@@ -35,8 +35,8 @@
 #' #Example 3: Same as example 1, just written with pipe operator
 #' x %>% na.random
 #' 
+#' @importFrom stats runif ts
 #' @importFrom magrittr %>%
-#' @import stats
 #' @export
 
 na.random <- function(x, lowerBound = min(x, na.rm = TRUE) , upperBound = max(x, na.rm = TRUE)) {
@@ -113,7 +113,7 @@ na.random <- function(x, lowerBound = min(x, na.rm = TRUE) , upperBound = max(x,
     if (lowerBound >= upperBound)
       {stop("Error for parameter lowerBound: Lower Bound must be smaller than Upper Bound ")}
     
-    data[missindx] <- runif(1,min=lowerBound,max=upperBound)
+    data[missindx] <- stats::runif(1,min=lowerBound,max=upperBound)
     
     ## End Imputation Code
     

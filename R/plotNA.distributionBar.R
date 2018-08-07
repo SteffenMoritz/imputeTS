@@ -47,13 +47,13 @@
 #' #Example 3: Same as example 1, just written with pipe operator
 #' tsNH4 %>% plotNA.distributionBar
 #' 
+#' @importFrom  grDevices nclass.Sturges
 #' @importFrom graphics legend barplot axis par plot
-#' @import grDevices
 #' @importFrom magrittr %>%
 #' @export plotNA.distributionBar
 
 plotNA.distributionBar <- function(x, 
-                                    breaks = nclass.Sturges(x), breaksize = NULL, percentage = TRUE, legend = TRUE,
+                                    breaks = grDevices::nclass.Sturges(x), breaksize = NULL, percentage = TRUE, legend = TRUE,
                                     axis =TRUE, space =0, col=c('indianred2','green2'), main = "Distribution of NAs", xlab ="Time Lapse", ylab=NULL ,  ... ) {
   
   data <- x
@@ -73,8 +73,8 @@ plotNA.distributionBar <- function(x,
   ## 
   
   #save par settings and reset after function
-  par.default <- par(no.readonly=TRUE) 
-  on.exit(par(par.default))
+  par.default <- graphics::par(no.readonly=TRUE) 
+  on.exit(graphics::par(par.default))
   
   
   
@@ -134,22 +134,22 @@ plotNA.distributionBar <- function(x,
   #create data to be plotted
   plotData <- matrix(c(naAmount,okAmount),byrow=TRUE,ncol=length(naAmount))
   
-  if (legend == TRUE) { par(oma =c(0.5,0,0,0)) }
+  if (legend == TRUE) { graphics::par(oma =c(0.5,0,0,0)) }
   
   #create the barplot
-  barplot(plotData,width =c(rep(1,length(naAmount)-1),widthLast) , main =main, space =space,col=col,xlab =xlab,ylab=ylab, ...)
+  graphics::barplot(plotData,width =c(rep(1,length(naAmount)-1),widthLast) , main =main, space =space,col=col,xlab =xlab,ylab=ylab, ...)
   
   breakpoints = paste0(  (round(   (breakpoints / length(data)*100   ) , digits = 0)  ), "%")
   #add axis
   if(axis ==TRUE) {
-    axis(1, at=c(seq(0,length(naAmount))), labels = breakpoints, line = 0.5, tick = TRUE)
+    graphics::axis(1, at=c(seq(0,length(naAmount))), labels = breakpoints, line = 0.5, tick = TRUE)
   }
   #add legend if wanted
  
   if (legend == TRUE) {
-    par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
-    plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-    legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c("NAs","non-NAs"), col = c("indianred2","green2"), pch = c(15))
+    graphics::par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
+    graphics::plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
+    graphics::legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c("NAs","non-NAs"), col = c("indianred2","green2"), pch = c(15))
   }
   
   

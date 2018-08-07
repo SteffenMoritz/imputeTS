@@ -91,23 +91,23 @@ plotNA.imputations <- function(x.withNA, x.withImputations, x.withTruth = NULL,
   id.na <- which(is.na(data.withNA))
   
   #save par settings and reset after function
-  par.default <- par(no.readonly=TRUE) 
-  on.exit(par(par.default))
+  par.default <- graphics::par(no.readonly=TRUE) 
+  on.exit(graphics::par(par.default))
   
-  if (legend == TRUE) { par(oma =c(0.5,0,0,0)) }
+  if (legend == TRUE) { graphics::par(oma =c(0.5,0,0,0)) }
   
   
   #real time series (data.withTruth) not available
   if (is.null(data.withTruth)) {
-    plot(data.withImputations,type = "l", ylim=ylim, col = colWithImputations, ylab = ylab, xlab = xlab,main =main,  ...)
-    points(data.withImputations,col = colWithImputations,pch = pch, cex=cex )
-    lines(data.withNA, col =colLines)
-    points(data.withNA, col =colWithNA , pch = pch, cex=cex)
+    graphics::plot(data.withImputations,type = "l", ylim=ylim, col = colWithImputations, ylab = ylab, xlab = xlab,main =main,  ...)
+    graphics::points(data.withImputations,col = colWithImputations,pch = pch, cex=cex )
+    graphics::lines(data.withNA, col =colLines)
+    graphics::points(data.withNA, col =colWithNA , pch = pch, cex=cex)
     
     if (legend == TRUE) {
-      par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
-      plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-      legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1,legend = c("imputed values", "known values"), col = c("indianred2","steelblue"), pch = c(20))
+      graphics::par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
+      graphics::plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
+      graphics::legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1,legend = c("imputed values", "known values"), col = c("indianred2","steelblue"), pch = c(20))
     }
   }
   else {
@@ -118,16 +118,16 @@ plotNA.imputations <- function(x.withNA, x.withImputations, x.withTruth = NULL,
     if(!is.numeric(data.withTruth))
     {stop("Input x.withTruth is not numeric")}
     
-    plot(data.withTruth, type = "l", ylim=ylim, col = colWithTruth, ylab=ylab,xlab=xlab,main=main, ...)
-    points(data.withTruth, col = colWithTruth,pch = pch, cex=cex )
-    lines(data.withNA, col =colLines)
-    points( data.withImputations, col = colWithImputations, pch = pch, cex=cex)
-    points(data.withNA, col =colWithNA , pch = pch, cex=cex)
+    graphics::plot(data.withTruth, type = "l", ylim=ylim, col = colWithTruth, ylab=ylab,xlab=xlab,main=main, ...)
+    graphics::points(data.withTruth, col = colWithTruth,pch = pch, cex=cex )
+    graphics::lines(data.withNA, col =colLines)
+    graphics::points( data.withImputations, col = colWithImputations, pch = pch, cex=cex)
+    graphics::points(data.withNA, col =colWithNA , pch = pch, cex=cex)
     
     if (legend == TRUE) {
-      par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
-      plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-      legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c("imputed values", "real values", "known values"), col = c("indianred2","green","steelblue"), pch = c(20))
+      graphics::par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
+      graphics::plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
+      graphics::legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c("imputed values", "real values", "known values"), col = c("indianred2","green","steelblue"), pch = c(20))
     }
   }
 }

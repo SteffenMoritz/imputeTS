@@ -32,8 +32,8 @@
 #' #Example 3: Same as example 1, just written with pipe operator
 #' x %>% na.remove
 #' 
+#' @importFrom stats ts
 #' @importFrom magrittr %>%
-#' @import stats
 #' @export
 
 na.remove <- function(x) {
