@@ -42,7 +42,6 @@
 #' 
 #' @references Johannesson, Tomas, et al. (2015). "Package stinepack". 
 #' 
-#' @importFrom stinepack stinterp
 #' @importFrom stats ts approx spline
 #' @importFrom magrittr %>%
 #' @export

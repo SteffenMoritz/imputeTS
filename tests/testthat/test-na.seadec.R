@@ -13,7 +13,7 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             expect_that( round(mean(na.seadec( x, algorithm = "interpolation" )), digits = 1),  is_identical_to(276.7) )
             expect_that( round(mean(na.seadec( x, algorithm = "locf" )), digits = 1),  is_identical_to(276.0) )
             expect_that( round(mean(na.seadec( x, algorithm = "mean" )), digits = 1),  is_identical_to(264.3) )
-            expect_that( round(mean(na.seadec( x, algorithm = "kalman", model = "auto.arima"  )), digits = 1),  is_identical_to(279.9) )
+            expect_that( round(mean(na.seadec( x, algorithm = "kalman", model = "auto.arima"  )+ 0.5), digits = 0),  is_identical_to(280) )
             expect_that( round(mean(na.seadec( x, algorithm = "ma" )), digits = 1),  is_identical_to(277.1) )
           })
 
