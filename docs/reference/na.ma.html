@@ -142,7 +142,7 @@ the window size is automatically increased until there are at least 2 non-NA val
     <p>In this function missing values get replaced by moving average values. Moving Averages are also sometimes 
 referred to as "moving mean", "rolling mean", "rolling average" or "running average".</p>
 <p>The mean in this implementation taken from an equal number of observations on either side of a central value. 
-This means for an NA value at position <code>i</code> of a time series, the observations i-1,i+1 and i+1, i+2 (assuming a window size of k=2)
+This means for an NA value at position <code>i</code> of a time series, the observations i-1,i+1 and i-2, i+2 (assuming a window size of k=2)
 are used to calculate the mean.</p>
 <p>Since it can in case of long NA gaps also occur, that all values next to the central value are also NA, the algorithm has 
 a semi-adaptive window size. Whenever there are less than 2 non-NA values in the complete window available, the window size
