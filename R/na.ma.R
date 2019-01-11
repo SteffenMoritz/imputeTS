@@ -126,7 +126,7 @@ na.ma <- function(x, k =4, weighting = "exponential") {
     ## Imputation Code
     ##
     
-    tempdata <- data
+    tempdata <- as.vector(data)
     
     for(i in 1:length(tempdata)) {
       

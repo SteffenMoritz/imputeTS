@@ -21,7 +21,7 @@ LazyData: yes
 Type: Package
 ByteCompile: TRUE
 BugReports: https://github.com/SteffenMoritz/imputeTS/issues
-URL: https://github.com/SteffenMoritz/imputeTS
+URL: https://github.com/SteffenMoritz/imputeTS, https://steffenmoritz.github.io/imputeTS/
 Repository: CRAN
 Depends:
     R (>= 3.0.1)

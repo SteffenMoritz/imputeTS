@@ -5,7 +5,7 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 Rcpp::NumericVector locf(NumericVector x, bool reverse) 
 {
-  
+
   Rcpp::NumericVector z = clone(x);
   
   long n = z.size();
@@ -35,8 +35,8 @@ Rcpp::NumericVector locf(NumericVector x, bool reverse)
     }
     
   }
+return z;
  
-  return z;
 }
 
 

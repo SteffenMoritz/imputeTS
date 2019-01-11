@@ -5,6 +5,16 @@
  * Moved stinepack from imports to suggested
  
  * Internal reorganization of imports - now always using pkg::function and importFrom pkg x1 x2 x3instead of just import pkg
+ 
+ * Improved error message in na.interpolation if wrong parameter is given       
+   stop("Wrong parameter 'option' given. Value must be either 'linear', 'spline' or 'stine'.")
+   
+* Fixed bug in na.ma when using xts time series with NA at the end
+
+* Added maxgap option
+
+* Added findFrequency option to na.seadec and na.seasplit
+
 
 
 ## Changes in Version 2.7

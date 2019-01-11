@@ -100,7 +100,6 @@ na.mean <- function(x, option ="mean") {
     ## Imputation Code
     ##
     
-    
     if(option == "median") {
       #Use Median
       median <- stats::median(data, na.rm = TRUE)    
