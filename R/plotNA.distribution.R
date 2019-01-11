@@ -61,6 +61,10 @@ plotNA.distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "i
   ## Plotting Code
   ## 
 
+  # Change zoo, xts, timeSeries objects to vector to avoid errors
+  if (!is.ts(data)) 
+  {data <- as.vector(data)}
+  
   id.na <- which(is.na(data))
   
   #Red Bars only if missing data in time series

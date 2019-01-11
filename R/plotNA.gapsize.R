@@ -74,6 +74,10 @@ plotNA.gapsize <- function(x, limit = 10, byTotalNA = FALSE , legend = TRUE, col
   ## Plotting Code
   ## 
   
+  # Change zoo, xts, timeSeries objects to vector to avoid errors
+  if (!is.ts(data)) 
+  {data <- as.vector(data)}
+  
   id.na <- which(is.na(data))
   
   #save par settings and reset after function

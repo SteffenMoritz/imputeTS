@@ -88,6 +88,16 @@ plotNA.imputations <- function(x.withNA, x.withImputations, x.withTruth = NULL,
   ## Plotting Code
   ## 
   
+  # Change zoo, xts, timeSeries objects to vector to avoid errors
+  if (!is.ts(data.withNA)) 
+  {data.withNA <- as.vector(data.withNA)}
+  
+  if (!is.ts(data.withImputations)) 
+  {data.withImputations <- as.vector(data.withImputations)}
+  
+  if (!is.ts(data.withTruth)) 
+  {data.withTruth <- as.vector(data.withTruth)}
+  
   id.na <- which(is.na(data.withNA))
   
   #save par settings and reset after function

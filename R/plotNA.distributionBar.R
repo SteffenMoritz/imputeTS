@@ -72,6 +72,10 @@ plotNA.distributionBar <- function(x,
   ## Plotting Code
   ## 
   
+  # Change zoo, xts, timeSeries objects to vector to avoid errors
+  if (!is.ts(data)) 
+  {data <- as.vector(data)}
+  
   #save par settings and reset after function
   par.default <- graphics::par(no.readonly=TRUE) 
   on.exit(graphics::par(par.default))
