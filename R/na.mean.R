@@ -68,6 +68,11 @@ na.mean <- function(x, option ="mean") {
     ## Input check
     ## 
     
+    #special handling data types
+    if (any(class(data) =="tbl"))
+    {data <- as.vector(as.data.frame(data)[,1])}
+    
+    
     
     missindx <- is.na(data)
     

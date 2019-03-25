@@ -4,7 +4,7 @@
 \alias{na.interpolation}
 \title{Missing Value Imputation by Interpolation}
 \usage{
-na.interpolation(x, option = "linear", ...)
+na.interpolation(x, option = "linear", maxgap = Inf, ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object in which missing values shall be replaced}

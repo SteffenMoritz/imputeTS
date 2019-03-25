@@ -1,20 +1,36 @@
 ## Changes in Version 2.8
+Thanks to Jim Maas, shreydesai, Breza for Bug reporting
+
+WORKING: 
+ * Added maxgap option
+
+ * Added findFrequency option to na.seadec and na.seasplit
+ 
+ * tibble and tstibble compatibility
+ 
+ * tidy aliases for funtions na_mean usw.
+ 
+ * ggplot2
+ 
+DONE:
+
+ * Added doi: 10.32614/RJ-2017-009 to describtion, references, readme and citation file
 
  * Added StackExchange link to Readme
 
  * Moved stinepack from imports to suggested
  
  * Internal reorganization of imports - now always using pkg::function and importFrom pkg x1 x2 x3instead of just import pkg
- 
- * Improved error message in na.interpolation if wrong parameter is given       
-   stop("Wrong parameter 'option' given. Value must be either 'linear', 'spline' or 'stine'.")
-   
+
 * Fixed bug in na.ma when using xts time series with NA at the end
 
-* Added maxgap option
+* Fixed error message in na.interpolation if wrong parameter is given       
+   stop("Wrong parameter 'option' given. Value must be either 'linear', 'spline' or 'stine'.")
+   (reported by Breza)
 
-* Added findFrequency option to na.seadec and na.seasplit
+* Fixed spelling mistakes in na.seadec and na.seasplit (reported by shreydesai)
 
+* Fixed bug with na.random() output (reported by Jim Maas)
 
 
 ## Changes in Version 2.7

@@ -12,7 +12,8 @@
 #'    \item{"kalman" - Imputation by Kalman Smoothing and State Space Models}
 #'    \item{"ma" - Imputation by Weighted Moving Average}
 #'    }
-#'
+#' @param findFrequency If no frequency is given for the ts object, shall the frequency be estimated.
+#' 
 #' @param ... Additional parameters for these algorithms that can be passed through. Look at \code{\link[imputeTS]{na.interpolation}}, \code{\link[imputeTS]{na.locf}},
 #'  \code{\link[imputeTS]{na.random}}, \code{\link[imputeTS]{na.mean}} for parameter options.
 #'  
@@ -37,10 +38,11 @@
 #' tsAirgap %>% na.seadec(algorithm = "interpolation")
 #' 
 #' @importFrom stats frequency stl
+#' @importFrom forecast findfrequency
 #' @importFrom magrittr %>%
 #' @export
 
-na.seadec <- function(x, algorithm = "interpolation" , ...) { 
+na.seadec <- function(x, algorithm = "interpolation" , findFrequency = FALSE,  ...) { 
   
   
   data <- x
@@ -91,29 +93,48 @@ na.seadec <- function(x, algorithm = "interpolation" , ...) {
     if(!is.numeric(data))
     {stop("Input x is not numeric")}
     
-    if(stats::frequency(data)==1) {
-      warning("No seasonality information for dataset found, going on without decomposition")
+    ## End Input Check
+    
+    ##
+    ## Preprocessing and Advanced Input Check Find (Frequency)
+    ## 
+    
+    #Interpolate NAs, to get complete series, because findFRequency and later on stl does not work with NAs
+    temp <- na.interpolation(data)
+    
+    # Try to findFrequency if not given and findFrequency == TRUE
+    if(findFrequency == TRUE && stats::frequency(data)==1) {
+      freq <- forecast::findfrequency(temp)
+      print(paste0("Automatically detected saisonality via findFrequency is :",freq))
+      if (freq > 1 ) {
+        temp <- ts(temp, frequency = freq)
+      }
+    }
+    
+    # If there is no seasonality given, give some hints/warning how to possibly get it
+    if(stats::frequency(data)==1 && findFrequency == FALSE) {
+      warning("No seasonality information for the dataset given. The algorithm will go on without decomposition. You might want to consider setting the parameter: 'findFrequency == TRUE' to automatically try to find the seasonality. If you already know the saisonality you can add it to 'ts' and 'zoo' objects via the frequency argument.")
       data <- apply.base.algorithm(data, algorithm = algorithm,...)
       return(data)
     }
     
-    if(length(data)+1 < stats::frequency(data)*2 ) {
+    #if(stats::frequency(data)==1
+   # -> go on without
+    
+    # Check if at least two complete periods are available otherwise seasonal decomposition makes no sense.
+    if(length(temp)+1 < stats::frequency(temp)*2 ) {
       warning("More than 2 complete periods needed to perform seasonal decomposition. The algorithm will go on without decomposition.")
       data <- apply.base.algorithm(data, algorithm = algorithm,...)
       return(data)
     }
-    
-    ## End Input Check
+    ## reprocessing and Advanced Input Check (Frequency)
     
     
     ##
     ## Imputation Code
     ##
-  
-    
-    #approx NAs, to get complete series, because stl does not work with NAs
-    temp <- na.interpolation(data)
-    
+
+    # temp (see above) is a interpolated version of data since stl does not work with NAs
     stl <- stats::stl(temp,robust=TRUE, s.window = 11)
     # just take trend component + irregular  (remove seasonality)
     ts.noSeasonality <- stl$time.series[,2]+stl$time.series[,3]

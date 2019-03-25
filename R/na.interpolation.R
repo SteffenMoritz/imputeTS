@@ -46,7 +46,7 @@
 #' @importFrom magrittr %>%
 #' @export
 
-na.interpolation <- function(x, option = "linear", ...) { 
+na.interpolation <- function(x, option = "linear", maxgap = Inf,...) { 
   
   
   data <- x
@@ -86,7 +86,7 @@ na.interpolation <- function(x, option = "linear", ...) {
       stop("Input data needs at least 2 non-NA data point for applying na.interpolation")
     }
 
-    if(!is.null(dim(data)[2])&&!dim(data)[2]==1)
+    if(!is.null(dim(data)[2]) && !dim(data)[2] == 1)
     {stop("Wrong input type for parameter x")}
     
     # Altering multivariate objects with 1 column (which are essentially univariate) to be dim = NULL
@@ -119,7 +119,7 @@ na.interpolation <- function(x, option = "linear", ...) {
     }
     else if(option == "stine") {
       if (!requireNamespace("stinepack", quietly = TRUE)) {
-        stop("Package \"stinepack\" needed for na.interpolation(x, option =\"stine\") to work. Please install it and run again.",
+        stop("Package \"stinepack\" needed for function na.interpolation(x, option =\"stine\") to work. Please install the package and then run the function again. You can install the package by executing: install.packages(\"stinepack\")",
              call. = FALSE)
       }
       interp <- stinepack::stinterp(indx,data.vec[indx],1:n, ...)$y
@@ -127,7 +127,7 @@ na.interpolation <- function(x, option = "linear", ...) {
       if(any(is.na(interp))) {interp <- na.locf(interp, na.remaining= "rev")}
     }
     else {
-      stop("Wrong parameter 'option' given. Value must be either 'linear' or 'spline'.")
+      stop("Wrong parameter 'option' given. Value must be either 'linear', 'spline' or 'stine'.")
     }
     
     #Merge interpolated values back into original time series
@@ -135,6 +135,30 @@ na.interpolation <- function(x, option = "linear", ...) {
     
     ## End Imputation Code
     
+    
+    ##
+    ## Post Processing
+    ##
+    
+    # Check for Maxgap option
+    
+    # If maxgap = Inf then do nothing and when maxgap is lower than 0
+    if (is.finite(maxgap) && maxgap >= 0) {
+      
+      # Get logical vector of the time series via is.na() and then get the run-length encoding of it. The run-length encoding describes how long the runs of FALSE and TRUE are
+      rlencoding <- rle( is.na(x) )
+      
+      # Runs smaller then maxgap (which shall still be imputed) are set to FALSE 
+      rlencoding$values[rlencoding$lengths <= maxgap] <- FALSE
+      
+      # The original vector is being reconstructed by reverse.rls, only now the longer runs are replaced
+      # now in the logical vector derived from is.na() in the beginning all former NAs that are > maxgap are also FALSE
+       en <- inverse.rle(rlencoding)
+      
+      # Set all positions in the imputed series with gaps > maxgap to NA  (info from en vector)
+      data[en == TRUE] <- NA
+      
+    }
     
     ##
     ## Ouput Formatting

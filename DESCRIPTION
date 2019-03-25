@@ -1,6 +1,6 @@
 Package: imputeTS
 Version: 2.8
-Date: 2018-07-26
+Date: 2019-03-24
 Title: Time Series Missing Value Imputation
 Description: Imputation (replacement) of missing values 
              in univariate time series. 
@@ -10,7 +10,8 @@ Description: Imputation (replacement) of missing values
             'Mean', 'LOCF', 'Interpolation', 
             'Moving Average', 'Seasonal Decomposition', 
             'Kalman Smoothing on Structural Time Series models',
-            'Kalman Smoothing on ARIMA models'.
+            'Kalman Smoothing on ARIMA models'. Published in Moritz and Bartz-Beielstein (2017) 
+            <doi: 10.32614/RJ-2017-009>.
 Author: Steffen Moritz [aut, cre, cph] (<https://orcid.org/0000-0002-0085-1804>)
 Authors@R: 
   c(

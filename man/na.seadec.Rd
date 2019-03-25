@@ -4,7 +4,7 @@
 \alias{na.seadec}
 \title{Seasonally Decomposed Missing Value Imputation}
 \usage{
-na.seadec(x, algorithm = "interpolation", ...)
+na.seadec(x, algorithm = "interpolation", findFrequency = FALSE, ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object in which missing values shall be replaced}
@@ -18,6 +18,8 @@ na.seadec(x, algorithm = "interpolation", ...)
    \item{"kalman" - Imputation by Kalman Smoothing and State Space Models}
    \item{"ma" - Imputation by Weighted Moving Average}
    }}
+
+\item{findFrequency}{If no frequency is given for the ts object, shall the frequency be estimated.}
 
 \item{...}{Additional parameters for these algorithms that can be passed through. Look at \code{\link[imputeTS]{na.interpolation}}, \code{\link[imputeTS]{na.locf}},
 \code{\link[imputeTS]{na.random}}, \code{\link[imputeTS]{na.mean}} for parameter options.}

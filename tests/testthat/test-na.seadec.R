@@ -142,3 +142,17 @@ test_that("Handling for no NAs",
             expect_that(anyNA(na.seadec(x)), is_false())
             
           })
+
+# Test that findFrequency works
+
+test_that("Given frequency is not overwritten if findFrequency==T",
+          {
+         
+          })
+
+test_that("Given frequency is not overwritten if findFrequency==T",
+          {
+            
+          })
+
+

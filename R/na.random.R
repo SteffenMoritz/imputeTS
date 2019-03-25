@@ -113,7 +113,7 @@ na.random <- function(x, lowerBound = min(x, na.rm = TRUE) , upperBound = max(x,
     if (lowerBound >= upperBound)
       {stop("Error for parameter lowerBound: Lower Bound must be smaller than Upper Bound ")}
     
-    data[missindx] <- stats::runif(1,min=lowerBound,max=upperBound)
+    data[missindx] <- stats::runif(length(data[missindx]),min=lowerBound,max=upperBound)
     
     ## End Imputation Code
     
