@@ -3,7 +3,6 @@ context("na.seadec")
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)", {
   skip_on_cran()
-  skip_on_travis()
   # Using mean over resulting vector to check correctness
   # In order to avoid writing down the complete resulting vector
   # Using rounded version in order to avoid writing down all decimals
@@ -18,7 +17,7 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
 })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at start)", {
-  skip_on_travis()
+  skip_on_cran()
   # Using mean over resulting vector to check correctness
   # In order to avoid writing down the complete resulting vector
   # Using rounded version in order to avoid writing down all decimals
@@ -27,15 +26,14 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
   expect_that(round(mean(na.seadec(x, algorithm = "interpolation")), digits = 1), is_identical_to(279.9))
   expect_that(round(mean(na.seadec(x, algorithm = "locf")), digits = 1), is_identical_to(279.2))
   expect_that(round(mean(na.seadec(x, algorithm = "mean")), digits = 1), is_identical_to(284.1))
-  expect_that(round(mean(na.seadec(x, algorithm = "kalman", model = "auto.arima")), digits = 1) > 277 &
-    round(mean(na.seadec(x, algorithm = "kalman", model = "auto.arima")), digits = 1) < 283, is_true())
+  expect_that(round(mean(na.seadec(x, algorithm = "kalman", model = "auto.arima")), digits = 1) > 282 &
+    round(mean(na.seadec(x, algorithm = "kalman", model = "auto.arima")), digits = 1) < 288, is_true())
   expect_that(round(mean(na.seadec(x, algorithm = "ma")), digits = 1), is_identical_to(280.0))
 })
 
 
 test_that("Correct results for all options with the tsAirgap dataset", {
   skip_on_cran()
-  skip_on_travis()
   # Using mean over resulting vector to check correctness
   # In order to avoid writing down the complete resulting vector
   # Using rounded version in order to avoid writing down all decimals
