@@ -13,7 +13,8 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             expect_that( round(mean(na.seasplit( x, algorithm = "interpolation" )), digits = 1),  is_identical_to(276.6) )
             expect_that( round(mean(na.seasplit( x, algorithm = "locf" )), digits = 1),  is_identical_to(274.8) )
             expect_that( round(mean(na.seasplit( x, algorithm = "mean" )), digits = 1),  is_identical_to(264.0) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "kalman",model = "auto.arima" )), digits = 1),  is_identical_to(275.7) )
+            expect_that(round(mean(na.seasplit(x, algorithm = "kalman", model = "auto.arima")), digits = 1) > 273 &
+                          round(mean(na.seasplit(x, algorithm = "kalman", model = "auto.arima")), digits = 1) < 277, is_true())
             expect_that( round(mean(na.seasplit( x, algorithm = "ma" )), digits = 1),  is_identical_to(275.0) )
           })
 
@@ -28,7 +29,8 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
             expect_that( round(mean(na.seasplit( x, algorithm = "interpolation" )), digits = 1),  is_identical_to(280.5) )
             expect_that( round(mean(na.seasplit( x, algorithm = "locf" )), digits = 1),  is_identical_to(278.4) )
             expect_that( round(mean(na.seasplit( x, algorithm = "mean" )), digits = 1),  is_identical_to(283.4) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "kalman", model = "auto.arima"  )), digits = 1),  is_identical_to(278.5) )
+            expect_that(round(mean(na.seasplit(x, algorithm = "kalman", model = "auto.arima")), digits = 1) > 276 &
+                          round(mean(na.seasplit(x, algorithm = "kalman", model = "auto.arima")), digits = 1) < 280, is_true())
             expect_that( round(mean(na.seasplit( x, algorithm = "ma" )), digits = 1),  is_identical_to(281.1) )
           })
 
@@ -43,7 +45,8 @@ test_that("Correct results for all options with the tsAirgap dataset",
             expect_that( round(mean(na.seasplit( x, algorithm = "interpolation" )), digits = 1),  is_identical_to(280.3) )
             expect_that( round(mean(na.seasplit( x, algorithm = "locf" )), digits = 1),  is_identical_to(278.2) )
             expect_that( round(mean(na.seasplit( x, algorithm = "mean" )), digits = 1),  is_identical_to(279.3) )
-            expect_that( round(mean(na.seasplit( x, algorithm = "kalman", model = "auto.arima"  )), digits = 1),  is_identical_to(279.2) )
+            expect_that(round(mean(na.seasplit(x, algorithm = "kalman", model = "auto.arima")), digits = 1) > 277 &
+                          round(mean(na.seasplit(x, algorithm = "kalman", model = "auto.arima")), digits = 1) < 281, is_true())
             expect_that( round(mean(na.seasplit( x, algorithm = "ma" )), digits = 1),  is_identical_to(280.3) )
           })
 
