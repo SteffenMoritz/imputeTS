@@ -99,8 +99,6 @@ na.seadec <- function(x, algorithm = "interpolation" , findFrequency = FALSE,  .
     ## Preprocessing and Advanced Input Check Find (Frequency)
     ## 
     
-    #Interpolate NAs, to get complete series, because findFRequency and later on stl does not work with NAs
-    temp <- na.interpolation(data)
     
     # Try to findFrequency if not given and findFrequency == TRUE
     if(findFrequency == TRUE && stats::frequency(data)==1) {
@@ -133,6 +131,10 @@ na.seadec <- function(x, algorithm = "interpolation" , findFrequency = FALSE,  .
     ##
     ## Imputation Code
     ##
+    
+    
+    #Interpolate NAs, to get complete series, because findFRequency and later on stl does not work with NAs
+    temp <- na.interpolation(data)
 
     # temp (see above) is a interpolated version of data since stl does not work with NAs
     stl <- stats::stl(temp,robust=TRUE, s.window = 11)
