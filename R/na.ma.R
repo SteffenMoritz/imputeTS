@@ -140,6 +140,32 @@ na.ma <- function(x, k =4, weighting = "exponential") {
         
         #If only NAs in selected indices increase window size
         while(length(t[!is.na(t)])<2) {
+          if (all(is.na(tempdata[i:length(tempdata)]))) {
+            usedIndices <- 1:i
+            usedIndices <- subset(usedIndices, usedIndices >= 1)
+            if(weighting =="simple") {
+              data[i:length(data)] <- mean(tempdata[usedIndices], na.rm = TRUE)
+              return(data)
+            } else if(weighting =="linear") {
+              weightsData <- 1/(abs(usedIndices - i) + 1)
+              naCheck <- ifelse(is.na(tempdata[usedIndices]), 0, 1)
+              weightsData <- weightsData *naCheck
+              sumWeights <- sum(weightsData)
+              weightedData <- (tempdata[usedIndices] * weightsData)/ sumWeights
+              data[i:length(data)] <- sum(weightedData, na.rm = TRUE)
+              return(data)
+            } else if(weighting =="exponential"){
+              weightsData <- 1 / (2 ^ abs(usedIndices - i))
+              naCheck <- ifelse(is.na(tempdata[usedIndices]), 0, 1)
+              weightsData <- weightsData * naCheck
+              weightedData <- (tempdata[usedIndices] * weightsData) / sum(weightsData)
+              data[i:length(data)] <- sum(weightedData, na.rm = TRUE)
+              return(data)
+            } else {
+                stop("Wrong input for parameter weighting. Has to be \"simple\",\"linear\" or \"exponential\"." )
+            }
+          }
+          
           ktemp <- ktemp+1
           usedIndices <- (i-ktemp):(i+ktemp)
           usedIndices <- subset(usedIndices,usedIndices >= 1)
