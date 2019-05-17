@@ -1,5 +1,5 @@
 ## Changes in Version 2.8
-Thanks to Jim Maas, shreydesai, Breza for Bug reporting
+Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs
 
 WORKING: 
  * Added maxgap option
@@ -12,7 +12,16 @@ WORKING:
  
  * ggplot2
  
+ * Used R package styler package to optimize source code readability
+ 
+ * Made some changes to follow R style guide from tidyverse
+ 
+ * Reworked internal code comment structure
+ 
 DONE:
+
+ * Fixed bug for na.seadec - also imputed known values in some special cases
+   (reported by CameronNemo)
 
  * Added doi: 10.32614/RJ-2017-009 to describtion, references, readme and citation file
 

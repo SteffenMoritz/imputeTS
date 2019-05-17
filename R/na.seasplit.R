@@ -41,6 +41,7 @@
 #' @importFrom stats frequency ts
 #' @importFrom magrittr %>%
 #' @export
+#' @name na_seasplit
 
 na.seasplit <- function(x, algorithm="interpolation" , ...) { 
   

@@ -24,23 +24,22 @@ Missing value replacement by mean values. Different means like median, mean, mod
 }
 \details{
 Missing values get replaced by overall mean values. The function calculates the mean, median or mode
-over all the non-NA values and replaces all NAs with this value. Option 'mode' replaces NAs with the 
+over all the non-NA values and replaces all NAs with this value. Option 'mode' replaces NAs with the
 most frequent value in the time series. If two or more values occur equally frequent, the function imputes
 with the lower value. That's why 'mode' is not the best option for decimal values.
 }
 \examples{
-#Prerequisite: Create Time series with missing values
-x <- ts(c(2,3,4,5,6,NA,7,8))
+# Prerequisite: Create Time series with missing values
+x <- ts(c(2, 3, 4, 5, 6, NA, 7, 8))
 
-#Example 1: Perform imputation with the overall mean
+# Example 1: Perform imputation with the overall mean
 na.mean(x)
 
-#Example 2: Perform imputation with overall median
-na.mean(x, option ="median")
+# Example 2: Perform imputation with overall median
+na.mean(x, option = "median")
 
-#Example 3: Same as example 1, just written with pipe operator
-x \%>\% na.mean
-
+# Example 3: Same as example 1, just written with pipe operator
+x \%>\% na.mean()
 }
 \seealso{
 \code{\link[imputeTS]{na.interpolation}},

@@ -48,16 +48,18 @@
 
 na.interpolation <- function(x, option = "linear", maxgap = Inf,...) { 
   
-  
   data <- x
   
-  # Multivariate Input Handling (loop through all columns)
-  # No imputation code in this part. 
+  #----------------------------------------------------------
+  # Mulivariate Input 
+  # The next 20 lines are just for checking and handling multivariate input. 
+  #----------------------------------------------------------
+  
+  # Check if the input is multivariate
   if (!is.null( dim(data)[2]) && dim(data)[2] > 1 ) {
+    # Go through columns and impute them by calling this function with univariate input
     for (i in 1:dim(data)[2]) {
-      
       if (!anyNA(data[,i])) {next}
-      
       #if imputing a column does not work (mostly because it is not numeric) the column is left unchanged
       tryCatch(data[,i] <- na.interpolation(data[ ,i], option), error=function(cond) {
         warning(paste("imputeTS: No imputation performed for column",i,"because of this",cond), call. = FALSE)
@@ -66,8 +68,11 @@ na.interpolation <- function(x, option = "linear", maxgap = Inf,...) {
     return(data)
   }
   
-  # Univariate Input
-  # All imputation code is within this part
+  #----------------------------------------------------------
+  # Univariate Input 
+  # All relveant imputation / pre- postprocessing  code is within this part
+  #----------------------------------------------------------
+  
   else {
     
     ##
@@ -97,9 +102,11 @@ na.interpolation <- function(x, option = "linear", maxgap = Inf,...) {
     if(!is.numeric(data))
     {stop("Input x is not numeric")}
     
+    ##
     ## End Input Check
+    ##
     
-  
+    
     ##
     ## Imputation Code
     ##
@@ -133,7 +140,9 @@ na.interpolation <- function(x, option = "linear", maxgap = Inf,...) {
     #Merge interpolated values back into original time series
     data[missindx] <- interp[missindx]
     
+    ##
     ## End Imputation Code
+    ##
     
     
     ##
@@ -161,15 +170,23 @@ na.interpolation <- function(x, option = "linear", maxgap = Inf,...) {
     }
     
     ##
-    ## Ouput Formatting
+    ## End Post Processing
     ##
     
+    
+    ##
+    ## Final Output Formatting
+    ##
     
     # Give back the object originally supplied to the function (necessary for multivariate input with only 1 column)
     if (!is.null(dim(x)[2])) {
       x[,1] <- data
       return(x)
     }
+    
+    ##
+    ## End Final Output Formatting
+    ##
     
     return(data)
   }

@@ -93,45 +93,50 @@ na.seadec <- function(x, algorithm = "interpolation" , findFrequency = FALSE,  .
     if(!is.numeric(data))
     {stop("Input x is not numeric")}
     
+    ##
     ## End Input Check
+    ##
+    
     
     ##
     ## Preprocessing and Advanced Input Check Find (Frequency)
     ## 
     
-    
     # Try to findFrequency if not given and findFrequency == TRUE
-    if(findFrequency == TRUE && stats::frequency(data)==1) {
-      freq <- forecast::findfrequency(temp)
-      print(paste0("Automatically detected saisonality via findFrequency is :",freq))
-      if (freq > 1 ) {
-        temp <- ts(temp, frequency = freq)
-      }
-    }
+    # if(findFrequency == TRUE && stats::frequency(data)==1) {
+    #   freq <- forecast::findfrequency(temp)
+    #   print(paste0("Automatically detected saisonality via findFrequency is :",freq))
+    #   if (freq > 1 ) {
+    #     temp <- ts(temp, frequency = freq)
+    #   }
+    # }
     
     # If there is no seasonality given, give some hints/warning how to possibly get it
-    if(stats::frequency(data)==1 && findFrequency == FALSE) {
-      warning("No seasonality information for the dataset given. The algorithm will go on without decomposition. You might want to consider setting the parameter: 'findFrequency == TRUE' to automatically try to find the seasonality. If you already know the saisonality you can add it to 'ts' and 'zoo' objects via the frequency argument.")
-      data <- apply.base.algorithm(data, algorithm = algorithm,...)
-      return(data)
-    }
+    # if(stats::frequency(data)==1 && findFrequency == FALSE) {
+    #   warning("No seasonality information for the dataset given. The algorithm will go on without decomposition. You might want to consider setting the parameter: 'findFrequency == TRUE' to automatically try to find the seasonality. If you already know the saisonality you can add it to 'ts' and 'zoo' objects via the frequency argument.")
+    #   data <- apply.base.algorithm(data, algorithm = algorithm,...)
+    #   return(data)
+    # }
     
     #if(stats::frequency(data)==1
    # -> go on without
     
     # Check if at least two complete periods are available otherwise seasonal decomposition makes no sense.
-    if(length(temp)+1 < stats::frequency(temp)*2 ) {
-      warning("More than 2 complete periods needed to perform seasonal decomposition. The algorithm will go on without decomposition.")
-      data <- apply.base.algorithm(data, algorithm = algorithm,...)
-      return(data)
-    }
+    # if(length(temp)+1 < stats::frequency(temp)*2 ) {
+    #   warning("More than 2 complete periods needed to perform seasonal decomposition. The algorithm will go on without decomposition.")
+    #   data <- apply.base.algorithm(data, algorithm = algorithm,...)
+    #   return(data)
+    # }
     ## reprocessing and Advanced Input Check (Frequency)
+    
+    ##
+    ## End Preprocessing and Advanced Input Check Find (Frequency)
+    ## 
     
     
     ##
     ## Imputation Code
     ##
-    
     
     #Interpolate NAs, to get complete series, because findFRequency and later on stl does not work with NAs
     temp <- na.interpolation(data)
@@ -144,17 +149,22 @@ na.seadec <- function(x, algorithm = "interpolation" , findFrequency = FALSE,  .
     #Fill in NAs again
     ts.noSeasonality[missindx] <- NA
     
-    #Perform imputation
-    ts.imputed <- apply.base.algorithm(ts.noSeasonality, algorithm = algorithm,...)
+    #Perform imputation on data without seasonality
+    ts.noSeasonalityimputed <- apply.base.algorithm(ts.noSeasonality, algorithm = algorithm,...)
     
     # add seasonality 
-    data <- ts.imputed + stl$time.series[,1]
-    
+    ts.imputed <- ts.noSeasonalityimputed + stl$time.series[,1]
+
+    #Merge interpolated values back into original time series
+    data[missindx] <- ts.imputed[missindx]
+
+    ##
     ## End Imputation Code
+    ##
     
     
     ##
-    ## Ouput Formatting
+    ## Final Output Formatting
     ##
     
     # Give back the object originally supplied to the function (necessary for multivariate input with only 1 column)
@@ -162,6 +172,10 @@ na.seadec <- function(x, algorithm = "interpolation" , findFrequency = FALSE,  .
       x[,1] <- data
       return(x)
     }
+    
+    ##
+    ## End Final Output Formatting
+    ##
     
     return(data)
   }
