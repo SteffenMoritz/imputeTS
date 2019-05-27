@@ -2,11 +2,19 @@
 using namespace Rcpp;
 
 
+struct pow_wrapper {
+  public: double operator()(double a, double b) {
+    return ::pow(a, b);
+  }
+};
+
 NumericVector vecpow(const IntegerVector base, const NumericVector exp) {
   NumericVector out(base.size());
-  std::transform(base.begin(), base.end(), exp.begin(), out.begin(), ::pow);
+  std::transform(base.cbegin(), base.cend(), exp.cbegin(), out.begin(), pow_wrapper());
   return out;
 }
+
+
 
 // [[Rcpp::export]]
 Rcpp::NumericVector na_ma(NumericVector x, int k, String weighting) {

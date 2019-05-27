@@ -36,7 +36,7 @@ are used to calculate the mean.
 
 Since it can in case of long NA gaps also occur, that all values next to the central value are also NA, the algorithm has 
 a semi-adaptive window size. Whenever there are less than 2 non-NA values in the complete window available, the window size
-is incrementally increased, till at least 2 non-NA values are there. In all other cases the algorithm sticks preset window
+is incrementally increased, till at least 2 non-NA values are there. In all other cases the algorithm sticks to the pre-set window
 size.
 
 There are options for using Simple Moving Average (SMA), Linear Weighted Moving Average (LWMA) and 

@@ -12,10 +12,11 @@ Description: Imputation (replacement) of missing values
             'Kalman Smoothing on Structural Time Series models',
             'Kalman Smoothing on ARIMA models'. Published in Moritz and Bartz-Beielstein (2017) 
             <doi: 10.32614/RJ-2017-009>.
-Author: Steffen Moritz [aut, cre, cph] (<https://orcid.org/0000-0002-0085-1804>)
+Author: Steffen Moritz [aut, cre, cph] (<https://orcid.org/0000-0002-0085-1804>), Sebastian Gatscha [ctb]
 Authors@R: 
   c(
-  person("Steffen", "Moritz", email="steffen.moritz10@gmail.com", role=c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-0085-1804"))
+  person("Steffen", "Moritz", email="steffen.moritz10@gmail.com", role=c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-0085-1804")),
+  person("Sebastian", "Gatscha", email="sebastian_gatscha@gmx.at", role="ctb")
   )
 Maintainer: Steffen Moritz <steffen.moritz10@gmail.com>
 LazyData: yes

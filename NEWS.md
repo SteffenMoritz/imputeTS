@@ -18,6 +18,8 @@ WORKING:
  
  * Reworked internal code comment structure
  
+ * na.ma speed up via C++
+ 
 DONE:
 
  * Fixed bug for na.seadec - also imputed known values in some special cases
