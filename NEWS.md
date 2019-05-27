@@ -18,7 +18,7 @@ WORKING:
  
  * Reworked internal code comment structure
  
- * na.ma speed up via C++
+ * na.ma speed up via C++ (still need to check if everything works alright)
  
 DONE:
 
