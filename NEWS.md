@@ -2,21 +2,23 @@
 Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs
 
 WORKING: 
- * Added maxgap option
+ * Added maxgap option  (in the middle of doing this)
 
- * Added findFrequency option to na.seadec and na.seasplit
+ * Added findFrequency option to na.seadec and na.seasplit  (in the middle of doing this)
  
- * tibble and tstibble compatibility
+ * tibble and tstibble compatibility  (in the middle of doing this)
  
- * tidy aliases for funtions na_mean usw.
+ * tidy aliases for funtions na_mean usw. ( have to see how to do this)
  
- * ggplot2
+ * ggplot2 ( long term project=?)
  
- * Used R package styler package to optimize source code readability
+ * better and updated unit tests ( long term project=?)
  
- * Made some changes to follow R style guide from tidyverse
+ * Used R package styler package to optimize source code readability  (in the middle of doing this)
  
- * Reworked internal code comment structure
+ * Made some changes to follow R style guide from tidyverse  (in the middle of doing this)
+ 
+ * Reworked internal code comment structure (in the middle of doing this)
  
  * na.ma speed up via C++ (still need to check if everything works alright)
  
