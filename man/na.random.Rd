@@ -4,11 +4,17 @@
 \alias{na.random}
 \title{Deprecated use \code{\link[imputeTS]{na_random}} instead.}
 \usage{
-na.random(x, lowerBound = NULL, upperBound = NULL, maxgap = Inf)
+na.random(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
 object in which missing values shall be replaced}
+
+\item{lower_bound}{Lower bound for the random samples. 
+If nothing or NULL is set min(x) will be used.}
+
+\item{upper_bound}{Upper bound for the random samples. 
+If nothing or NULL is set man(x) will be used.}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.
 Default setting is to replace all NAs without restrictions. With this

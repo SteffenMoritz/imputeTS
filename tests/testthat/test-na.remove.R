@@ -1,6 +1,12 @@
 context("na.remove")
 
 
+test_that("Wrong input",
+          {
+              x <- data.frame(tsAirgap,tsAirgap)
+              expect_that(na.remove(x), throws_error())
+          })
+
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)",
           {
             #Using mean over resulting vector to check correctness

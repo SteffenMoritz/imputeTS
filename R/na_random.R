@@ -217,7 +217,7 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
 #' @inheritParams na_random
 #' @keywords internal
 #' @export
-na.random <- function(x, lowerBound = NULL, upperBound = NULL, maxgap = Inf) {
+na.random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
   .Deprecated(
     new = "na_random",
     msg = "na.random will replaced by na_random.
@@ -225,5 +225,5 @@ na.random <- function(x, lowerBound = NULL, upperBound = NULL, maxgap = Inf) {
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."
   )
-  na_random(x, lowerBound, upperBound, maxgap)
+  na_random(x, lower_bound, upper_bound, maxgap)
 }
