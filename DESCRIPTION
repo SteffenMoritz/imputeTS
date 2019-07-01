@@ -35,8 +35,8 @@ Imports:
     magrittr,
     Rcpp
 Suggests:
-    testthat, stinepack,utils, zoo, timeSeries, tis, xts, tibble
+    testthat, stinepack, zoo, timeSeries, tis, xts, tibble, R.rsp
 License: GPL-3
-VignetteBuilder: utils
+VignetteBuilder: R.rsp
 RoxygenNote: 6.0.1
 LinkingTo: Rcpp

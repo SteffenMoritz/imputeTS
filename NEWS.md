@@ -9,6 +9,8 @@ Thanks to for Sebastian Gatscha providing the (way faster) C++ na.ma() implement
 
  * na.ma speed up via C++ 
 
+ * Changed vignette builder to R.rsp
+
  * Used R package styler package to optimize source code readability
  
  * Made some changes to better follow tidyverse style guide
