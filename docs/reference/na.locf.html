@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Missing Value Imputation by Last Observation Carried Forward — na.locf • imputeTS</title>
+<title>Deprecated use <code><a href='na_locf.html'>na_locf</a></code> instead. — na.locf • imputeTS</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -21,19 +21,22 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
-<meta property="og:title" content="Missing Value Imputation by Last Observation Carried Forward — na.locf" />
+<meta property="og:title" content="Deprecated use <code><a href='na_locf.html'>na_locf</a></code> instead. — na.locf" />
 
-<meta property="og:description" content="Replaces each missing value with the most recent present value prior to it
- (Last Observation Carried Forward- LOCF). Optionally this can also be done starting from the back of the series
- (Next Observation Carried Backward - NOCB)." />
+<meta property="og:description" content="na.locf is replaced by na_locf.
+The functionality stays the same. The new name better fits modern R code
+style guidelines (which prefer _ over . in function names)." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -60,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">imputeTS</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.7</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.0</span>
       </span>
     </div>
 
@@ -99,27 +102,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Missing Value Imputation by Last Observation Carried Forward</h1>
-    <small class="dont-index">Source: <a href='https://github.com/SteffenMoritz/imputeTS/blob/master/R/na.locf.R'><code>R/na.locf.R</code></a></small>
+    <h1>Deprecated use <code><a href='na_locf.html'>na_locf</a></code> instead.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/SteffenMoritz/imputeTS/blob/master/R/na_locf.R'><code>R/na_locf.R</code></a></small>
     <div class="hidden name"><code>na.locf.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Replaces each missing value with the most recent present value prior to it
- (Last Observation Carried Forward- LOCF). Optionally this can also be done starting from the back of the series
- (Next Observation Carried Backward - NOCB).</p>
+    <p>na.locf is replaced by <code><a href='na_locf.html'>na_locf</a></code>.
+The functionality stays the same. The new name better fits modern R code
+style guidelines (which prefer _ over . in function names).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>na.locf</span>(<span class='no'>x</span>, <span class='kw'>option</span> <span class='kw'>=</span> <span class='st'>"locf"</span>, <span class='kw'>na.remaining</span> <span class='kw'>=</span> <span class='st'>"rev"</span>)</pre>
+    <pre class="usage"><span class='fu'>na.locf</span>(<span class='no'>x</span>, <span class='kw'>option</span> <span class='kw'>=</span> <span class='st'>"locf"</span>, <span class='kw'>na.remaining</span> <span class='kw'>=</span> <span class='st'>"rev"</span>, <span class='kw'>maxgap</span> <span class='kw'>=</span> <span class='fl'>Inf</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>Numeric Vector (<code>vector</code>) or Time Series (<code>ts</code>) object in which missing values shall be replaced</p></td>
+      <td><p>Numeric Vector (<code>vector</code>) or Time Series (<code>ts</code>)
+object in which missing values shall be replaced</p></td>
     </tr>
     <tr>
       <th>option</th>
@@ -129,76 +133,22 @@
 </ul></td>
     </tr>
     <tr>
-      <th>na.remaining</th>
-      <td><p>Method to be used for remaining NAs.</p><ul>
-<li><p>"keep" - to return the series with NAs</p></li>
-<li><p>"rm" - to remove remaining NAs</p></li>
-<li><p>"mean" - to replace remaining NAs by overall mean</p></li>
-<li><p>"rev" - to perform nocb / locf from the reverse direction</p></li>
-</ul></td>
+      <th>maxgap</th>
+      <td><p>Maximum number of successive NAs to still perform imputation on.
+Default setting is to replace all NAs without restrictions. With this
+option set, consecutive NAs runs, that are longer than 'maxgap' will
+be left NA. This option mostly makes sense if you want to
+treat long runs of NA afterwards separately.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Vector (<code>vector</code>) or Time Series (<code>ts</code>) object (dependent on given input at parameter x)</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Replaces each missing value with the most recent present value prior to it
- (Last Observation Carried Forward- LOCF). This can also be done from the reverse direction -starting from the back
- (Next Observation Carried Backward - NOCB). Both options have the issue, that NAs at the beginning 
- (or for nocb at the end) of the time series cannot be imputed (since there is no last value to 
- be carried forward present yet). In this case there are remaining NAs in the imputed time series.
- Since this only concerns very few values at the beginning of the series,
-  na.remaining offers some quick solutions to get a series without NAs back.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='na.interpolation.html'>na.interpolation</a></code>,
-<code><a href='na.kalman.html'>na.kalman</a></code>,
- <code><a href='na.ma.html'>na.ma</a></code>, <code><a href='na.mean.html'>na.mean</a></code>,
- <code><a href='na.random.html'>na.random</a></code>, <code><a href='na.replace.html'>na.replace</a></code>,
- <code><a href='na.seadec.html'>na.seadec</a></code>, <code><a href='na.seasplit.html'>na.seasplit</a></code></p></div>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>#Prerequisite: Create Time series with missing values</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>ts</span>(<span class='fu'>c</span>(<span class='fl'>NA</span>,<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>5</span>,<span class='fl'>6</span>,<span class='fl'>NA</span>,<span class='fl'>7</span>,<span class='fl'>8</span>))
-
-<span class='co'>#Example 1: Perform LOCF</span>
-<span class='fu'>na.locf</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Time Series:
-#&gt; Start = 1 
-#&gt; End = 8 
-#&gt; Frequency = 1 
-#&gt; [1] 3 3 4 5 6 6 7 8</div><div class='input'>
-<span class='co'>#Example 2: Perform NOCF</span>
-<span class='fu'>na.locf</span>(<span class='no'>x</span>, <span class='kw'>option</span> <span class='kw'>=</span> <span class='st'>"nocb"</span>)</div><div class='output co'>#&gt; Time Series:
-#&gt; Start = 1 
-#&gt; End = 8 
-#&gt; Frequency = 1 
-#&gt; [1] 3 3 4 5 6 7 7 8</div><div class='input'>
-<span class='co'>#Example 3: Perform LOCF and remove remaining NAs</span>
-<span class='fu'>na.locf</span>(<span class='no'>x</span>, <span class='kw'>na.remaining</span> <span class='kw'>=</span> <span class='st'>"rm"</span>)</div><div class='output co'>#&gt; [1] 3 4 5 6 6 7 8</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    
-Steffen Moritz
+                </ul>
 
   </div>
 </div>

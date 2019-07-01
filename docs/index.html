@@ -18,7 +18,8 @@
             'Mean', 'LOCF', 'Interpolation', 
             'Moving Average', 'Seasonal Decomposition', 
             'Kalman Smoothing on Structural Time Series models',
-            'Kalman Smoothing on ARIMA models'.">
+            'Kalman Smoothing on ARIMA models'. Published in Moritz and Bartz-Beielstein (2017) 
+            &lt;doi: 10.32614/RJ-2017-009&gt;.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -37,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">imputeTS</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.8</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.0</span>
       </span>
     </div>
 
@@ -94,30 +95,38 @@ install_github("SteffenMoritz/imputeTS")</code></pre>
 <h3 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h3>
 <ul>
-<li><h6 id="imputation">Imputation</h6></li>
-</ul>
-<p>To impute (fill all missing values) in a time series <strong><em>x</em></strong>, run the following command: <code><a href="reference/na.interpolation.html">na.interpolation(x)</a></code> Output is the time series <strong><em>x</em></strong> with all NA’s replaced by reasonable values.</p>
+<li>
+<h6 id="imputation">Imputation</h6>
+<p>To impute (fill all missing values) in a time series <strong><em>x</em></strong>, run the following command:</p>
+<pre><code><a href="reference/na_interpolation.html"> na_interpolation(x)</a></code></pre>
+<p>Output is the time series <strong><em>x</em></strong> with all NA’s replaced by reasonable values.</p>
 <blockquote>
-<p>This is just one example for an imputation algorithm. In this case interpolation was the algorithm of choice for calculating the NA replacements. There are several other algorithms (see also under caption “Imputation Algorithms”). All imputation functions are named alike starting with na. followed by a algorithm label e.g. na.mean, na.kalman, …</p>
+<p>This is just one example for an imputation algorithm. In this case interpolation was the algorithm of choice for calculating the NA replacements. There are several other algorithms (see also under caption “Imputation Algorithms”). All imputation functions are named alike starting with na_ followed by a algorithm label e.g. na_mean, na_kalman, …</p>
 </blockquote>
-<ul>
-<li><h6 id="plotting">Plotting</h6></li>
-</ul>
-<p>To plot missing data statistics for a time series <strong><em>x</em></strong>, run the following command: <code><a href="reference/plotNA.distribution.html">plotNA.distribution(x)</a></code></p>
+</li>
+<li>
+<h6 id="plotting">Plotting</h6>
+<p>To plot missing data statistics for a time series <strong><em>x</em></strong>, run the following command:</p>
+<pre><code><a href="reference/plotNA.distribution.html"> plotNA.distribution(x)</a></code></pre>
 <blockquote>
 <p>This is also just one example for a plot. Overall there are four different types of missing data plots. (see also under caption “Missing Data Plots”).</p>
 </blockquote>
-<ul>
-<li><h6 id="printing">Printing</h6></li>
-</ul>
-<p>To print statistics about the missing data in a time series <strong><em>x</em></strong>, run the following command: <code><a href="reference/statsNA.html">statsNA(x)</a></code></p>
-<ul>
-<li><h6 id="datasets">Datasets</h6></li>
-</ul>
-<p>To load the <em>‘heating’</em> time series (with missing values) into a variable <strong><em>y</em></strong> and the <em>‘heating’</em> time series (without missing values) into a variable <strong><em>z</em></strong>, run: <code>y &lt;- tsHeating    z &lt;- tsHeatingComplete</code></p>
+</li>
+<li>
+<h6 id="printing">Printing</h6>
+<p>To print statistics about the missing data in a time series <strong><em>x</em></strong>, run the following command:</p>
+<pre><code><a href="reference/statsNA.html"> statsNA(x)</a></code></pre>
+</li>
+<li>
+<h6 id="datasets">Datasets</h6>
+<p>To load the <em>‘heating’</em> time series (with missing values) into a variable <strong><em>y</em></strong> and the <em>‘heating’</em> time series (without missing values) into a variable <strong><em>z</em></strong>, run:</p>
+<pre><code> y &lt;- tsHeating
+ z &lt;- tsHeatingComplete</code></pre>
 <blockquote>
 <p>There are three datasets provided with the package, the <em>‘tsHeating’</em>, the <em>‘tsAirgap’</em> and the <em>‘tsNH4’</em> time series. (see also under caption “Datasets”).</p>
 </blockquote>
+</li>
+</ul>
 </div>
 <div id="imputation-algorithms" class="section level3">
 <h3 class="hasAnchor">
@@ -130,49 +139,49 @@ install_github("SteffenMoritz/imputeTS")</code></pre>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">na.interpolation</td>
+<td align="left">na_interpolation</td>
 <td align="left">Missing Value Imputation by Interpolation</td>
 </tr>
 <tr class="even">
-<td align="left">na.kalman</td>
+<td align="left">na_kalman</td>
 <td align="left">Missing Value Imputation by Kalman Smoothing</td>
 </tr>
 <tr class="odd">
-<td align="left">na.locf</td>
+<td align="left">na_locf</td>
 <td align="left">Missing Value Imputation by Last Observation Carried Forward</td>
 </tr>
 <tr class="even">
-<td align="left">na.ma</td>
+<td align="left">na_ma</td>
 <td align="left">Missing Value Imputation by Weighted Moving Average</td>
 </tr>
 <tr class="odd">
-<td align="left">na.mean</td>
+<td align="left">na_mean</td>
 <td align="left">Missing Value Imputation by Mean Value</td>
 </tr>
 <tr class="even">
-<td align="left">na.random</td>
+<td align="left">na_random</td>
 <td align="left">Missing Value Imputation by Random Sample</td>
 </tr>
 <tr class="odd">
-<td align="left">na.remove</td>
+<td align="left">na_remove</td>
 <td align="left">Remove Missing Values</td>
 </tr>
 <tr class="even">
-<td align="left">na.replace</td>
+<td align="left">na_replace</td>
 <td align="left">Replace Missing Values by a Defined Value</td>
 </tr>
 <tr class="odd">
-<td align="left">na.seadec</td>
+<td align="left">na_seadec</td>
 <td align="left">Seasonally Decomposed Missing Value Imputation</td>
 </tr>
 <tr class="even">
-<td align="left">na.seasplit</td>
+<td align="left">na_seasplit</td>
 <td align="left">Seasonally Splitted Missing Value Imputation</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>This is a rather broad overview. The functions itself mostly offer more than just one algorithm. For example na.interpolation can be set to linear or spline interpolation.</p>
+<p>This is a rather broad overview. The functions itself mostly offer more than just one algorithm. For example na_interpolation can be set to linear or spline interpolation.</p>
 </blockquote>
 <p>More detailed information about the algorithms and their options can be found in the <a href="https://cran.r-project.org/package=imputeTS">imputeTS reference manual</a>.</p>
 </div>
@@ -212,8 +221,8 @@ install_github("SteffenMoritz/imputeTS")</code></pre>
 <p>There are two datasets (each in two versions) available:</p>
 <table class="table">
 <colgroup>
-<col width="21%">
-<col width="78%">
+<col width="20%">
+<col width="79%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">Dataset</th>
@@ -256,13 +265,21 @@ install_github("SteffenMoritz/imputeTS")</code></pre>
 <a href="#reference" class="anchor"></a>Reference</h3>
 <p>You can cite imputeTS the following:</p>
 <blockquote>
-<p>Moritz, Steffen, and Thomas Bartz-Beielstein. “imputeTS: Time Series Missing Value Imputation in R.” R Journal 9.1 (2017).</p>
+<p>Moritz, Steffen, and Thomas Bartz-Beielstein. “imputeTS: Time Series Missing Value Imputation in R.” R Journal 9.1 (2017). doi: 10.32614/RJ-2017-009.</p>
+</blockquote>
+</div>
+<div id="need-help" class="section level3">
+<h3 class="hasAnchor">
+<a href="#need-help" class="anchor"></a>Need Help?</h3>
+<p>If you have general programming problems or need help using the package please ask your question on <a href="https://stackoverflow.com/tags/imputets/info">StackOverflow</a>. By doing so all users will be able to benefit in the future from your question.</p>
+<blockquote>
+<p>Don’t forget to mark your question with the <a href="https://stackoverflow.com/questions/tagged/imputets">imputets</a> tag on StackOverflow to get me notified</p>
 </blockquote>
 </div>
 <div id="support" class="section level3">
 <h3 class="hasAnchor">
 <a href="#support" class="anchor"></a>Support</h3>
-<p>If you found a bug or have suggestions, feel free to get in contact via steffen.moritz10 at gmail.com</p>
+<p>If you found a bug or have suggestions, feel free to get in contact via steffen.moritz10 at gmail.com.</p>
 <blockquote>
 <p>All feedback is welcome</p>
 </blockquote>
@@ -270,7 +287,7 @@ install_github("SteffenMoritz/imputeTS")</code></pre>
 <div id="version" class="section level3">
 <h3 class="hasAnchor">
 <a href="#version" class="anchor"></a>Version</h3>
-<p><strong>2.8</strong></p>
+<p><strong>3.0</strong></p>
 </div>
 <div id="license" class="section level3">
 <h3 class="hasAnchor">
@@ -309,6 +326,7 @@ install_github("SteffenMoritz/imputeTS")</code></pre>
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Steffen Moritz <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-0085-1804" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" height="16"></a> </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 

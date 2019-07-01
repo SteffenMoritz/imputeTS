@@ -136,7 +136,6 @@ na_seasplit <- function(x, algorithm = "interpolation", find_frequency = FALSE, 
     if (find_frequency == TRUE) {
       t <- as.vector(data)
       freq <- forecast::findfrequency(na_interpolation(t))
-      print(paste0("Automatically detected saisonality via find_frequency is :", freq))
       if (freq > 1) {
         data <- ts(t, frequency = freq)
       }
