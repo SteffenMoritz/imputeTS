@@ -173,7 +173,7 @@ na_seasplit <- function(x, algorithm = "interpolation", find_frequency = FALSE, 
       ts_temp <- stats::ts(data[indices])
 
       # Apply algorithm on this season
-      ts_temp <- apply.base.algorithm(ts_temp, algorithm = algorithm, ...)
+      ts_temp <- apply_base_algorithm(ts_temp, algorithm = algorithm, ...)
 
       # Write result back into original time series
       data[indices] <- as.vector(ts_temp)
