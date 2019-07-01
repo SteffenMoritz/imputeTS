@@ -1,5 +1,5 @@
 Package: imputeTS
-Version: 2.8
+Version: 3.0
 Date: 2019-04-22
 Title: Time Series Missing Value Imputation
 Description: Imputation (replacement) of missing values 
@@ -35,7 +35,7 @@ Imports:
     magrittr,
     Rcpp
 Suggests:
-    testthat, stinepack,utils, zoo, timeSeries, tis, xts
+    testthat, stinepack,utils, zoo, timeSeries, tis, xts, tibble
 License: GPL-3
 VignetteBuilder: utils
 RoxygenNote: 6.0.1

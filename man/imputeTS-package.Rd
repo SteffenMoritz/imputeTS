@@ -15,7 +15,7 @@ the package also provides plotting and printing functions of missing data statis
 The package is easy to use:
 
 - To impute (fill all missing values) in a time series \code{x}, run:\cr
-> \code{na.interpolation(x)} \cr
+> \code{na_interpolation(x)} \cr
          
 - To plot missing data statistics for a time series \code{x}, run:\cr
 > \code{plotNA.distribution(x)}\cr
@@ -23,7 +23,7 @@ The package is easy to use:
 - To print missing data statistics for a time series \code{x}, run:\cr
 > \code{statsNA(x)}\cr
 
-Every other imputation function (starting with na.'algorithm name') and plotting
+Every other imputation function (starting with na_'algorithm name') and plotting
 function (starting with plotNA.'plot name') work the same way as in this example.
 }
 \references{

@@ -1,29 +1,26 @@
-## Changes in Version 2.8
+## Changes in Version 3.0
+
 Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs
+Thanks to for Sebastian Gatscha providing the (way faster) C++ na.ma() implementation
 
-WORKING: 
- * Added maxgap option  (in the middle of doing this)
+ * tibble and tstibble compatibility
+ 
+ * Reworked internal code documentation
 
- * Added findFrequency option to na.seadec and na.seasplit  (in the middle of doing this)
- 
- * tibble and tstibble compatibility  (in the middle of doing this)
- 
- * tidy aliases for funtions na_mean usw. ( have to see how to do this)
- 
- * ggplot2 ( long term project=?)
- 
- * better and updated unit tests ( long term project=?)
- 
- * Used R package styler package to optimize source code readability  (in the middle of doing this)
- 
- * Made some changes to follow R style guide from tidyverse  (in the middle of doing this)
- 
- * Reworked internal code comment structure (in the middle of doing this)
- 
- * na.ma speed up via C++ (still need to check if everything works alright)
- 
-DONE:
+ * na.ma speed up via C++ 
 
+ * Used R package styler package to optimize source code readability
+ 
+ * Made some changes to better follow tidyverse style guide
+ 
+ * Replaced na. with na_ e.g na.mean with na_mean usw.This fits better to modern code
+   style guidelines. The old function names will still work for a while,
+   but give a warning.
+
+ * Added findFrequency option to na.seadec and na.seasplit
+
+ * Added maxgap option
+ 
  * Fixed bug for na.seadec - also imputed known values in some special cases
    (reported by CameronNemo)
 
@@ -44,6 +41,16 @@ DONE:
 * Fixed spelling mistakes in na.seadec and na.seasplit (reported by shreydesai)
 
 * Fixed bug with na.random() output (reported by Jim Maas)
+
+## Outlook - Planned for Version 3.1
+
+ * Better plots using ggplot2
+ 
+ * Better and more unit tests 
+ 
+ * Additional vignettes
+ 
+ * Adding harmonic and geometric mean as option for na_mean
 
 
 ## Changes in Version 2.7

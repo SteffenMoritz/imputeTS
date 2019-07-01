@@ -17,7 +17,7 @@ NumericVector vecpow(const IntegerVector base, const NumericVector exp) {
 
 
 // [[Rcpp::export]]
-Rcpp::NumericVector na_ma(NumericVector x, int k, String weighting) {
+Rcpp::NumericVector ma(NumericVector x, int k, String weighting) {
   Rcpp::NumericVector tempdata = clone(x);
   Rcpp::NumericVector out = clone(x);
   

@@ -17,23 +17,23 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// na_ma
-Rcpp::NumericVector na_ma(NumericVector x, int k, String weighting);
-RcppExport SEXP _imputeTS_na_ma(SEXP xSEXP, SEXP kSEXP, SEXP weightingSEXP) {
+// ma
+Rcpp::NumericVector ma(NumericVector x, int k, String weighting);
+RcppExport SEXP _imputeTS_ma(SEXP xSEXP, SEXP kSEXP, SEXP weightingSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< String >::type weighting(weightingSEXP);
-    rcpp_result_gen = Rcpp::wrap(na_ma(x, k, weighting));
+    rcpp_result_gen = Rcpp::wrap(ma(x, k, weighting));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_imputeTS_locf", (DL_FUNC) &_imputeTS_locf, 2},
-    {"_imputeTS_na_ma", (DL_FUNC) &_imputeTS_na_ma, 3},
+    {"_imputeTS_ma", (DL_FUNC) &_imputeTS_ma, 3},
     {NULL, NULL, 0}
 };
 

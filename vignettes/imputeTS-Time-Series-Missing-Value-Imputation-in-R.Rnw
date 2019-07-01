@@ -91,11 +91,11 @@ As can be seen in Table~\ref{tab:generaloverview}, beyond several imputation alg
 \begin{tabular}{@{}llll@{}}
 \toprule
 \textbf{Simple Imputation} & \textbf{Imputation} & \textbf{Plots \& Statistics} & \textbf{Datasets} \\ \midrule
-na.locf                    & na.interpolation    & plotNA.distribution          & tsAirgap          \\
-na.mean                    & na.kalman           & plotNA.distributionBar       & tsAirgapComplete  \\
-na.random                  & na.ma               & plotNA.gapsize               & tsHeating             \\
-na.replace                 & na.seadec           & plotNA.imputations           & tsHeatingComplete     \\
-na.remove                  & na.seasplit         & statsNA                      & tsNH4         \\
+na_locf                    & na_interpolation    & plotNA.distribution          & tsAirgap          \\
+na_mean                    & na_kalman           & plotNA.distributionBar       & tsAirgapComplete  \\
+na_random                  & na_ma               & plotNA.gapsize               & tsHeating             \\
+na_replace                 & na_seadec           & plotNA.imputations           & tsHeatingComplete     \\
+na_remove                  & na_seasplit         & statsNA                      & tsNH4         \\
                            &                     &                              & tsNH4Complete \\ \bottomrule
 \end{tabular}
 \caption{General Overview imputeTS package}
@@ -139,29 +139,29 @@ More detailed information about the theoretical background of the algorithms can
 \begin{tabular}{@{}lll@{}}
 \toprule
 \textbf{Function} & \textbf{Option} & \textbf{Description}                                            \\ \midrule
-na.interpolation  &                 &                                                                 \\
+na_interpolation  &                 &                                                                 \\
                   & linear          & Imputation by Linear Interpolation                              \\
                   & spline          & Imputation by Spline Interpolation                              \\
                   & stine           & Imputation by Stineman Interpolation                            \\
-na.kalman         &                 &                                                                 \\
+na_kalman         &                 &                                                                 \\
                   & StructTS        & Imputation by Structural Model \& Kalman Smoothing              \\
                   & auto.arima      & Imputation by ARIMA State Space Representation \& Kalman Sm.    \\
-na.locf           &                 &                                                                 \\
+na_locf           &                 &                                                                 \\
                   & locf            & Imputation by Last Observation Carried Forward                  \\
                   & nocb            & Imputation by Next Observation Carried Backward                 \\
-na.ma             &                 &                                                                 \\
+na_ma             &                 &                                                                 \\
                   & simple          & Missing Value Imputation by Simple Moving Average               \\
                   & linear          & Missing Value Imputation by Linear Weighted Moving Average      \\
                   & exponential     & Missing Value Imputation by Exponential Weighted Moving Average \\
-na.mean           &                 &                                                                 \\
+na_mean           &                 &                                                                 \\
                   & mean            & MissingValue Imputation by Mean Value                           \\
                   & median          & Missing Value Imputation by Median Value                        \\
                   & mode            & Missing Value Imputation by Mode Value                          \\
-na.random         &                 & Missing Value Imputation by Random Sample                       \\
-na.replace        &                 & Replace Missing Values by a Defined Value                       \\ \midrule
-na.seadec         &                 & Seasonally Decomposed Missing Value Imputation                  \\
-na.seasplit       &                 & Seasonally Splitted Missing Value Imputation                    \\ \midrule
-na.remove         &                 & Remove Missing Values                                           \\ \bottomrule
+na_random         &                 & Missing Value Imputation by Random Sample                       \\
+na_replace        &                 & Replace Missing Values by a Defined Value                       \\ \midrule
+na_seadec         &                 & Seasonally Decomposed Missing Value Imputation                  \\
+na_seasplit       &                 & Seasonally Splitted Missing Value Imputation                    \\ \midrule
+na_remove         &                 & Remove Missing Values                                           \\ \bottomrule
 \end{tabular}
 \caption{Overview Imputation Algorithms}
 \label{tab:overviewimputation}
@@ -169,10 +169,10 @@ na.remove         &                 & Remove Missing Values                     
 \FloatBarrier
 \noindent
 For convenience similar algorithms are available under one function name as parameter option.  For example linear, spline and stineman interpolation are all included in the 
-\code{na.interpolation} function. The \code{na.mean}, \code{na.locf}, \code{na.replace}, \code{na.random} functions are all simple and fast. In comparison, \code{na.interpolation},
-\code{na.kalman}, \code{na.ma}, \code{na.seasplit}, \code{na.seadec} are more advanced algorithms that need more computation time. The \code{na.remove} function is a special case, since it only deletes all missing values.
-Thus, it is not really an imputation function. It should be handled with care since removing observations may corrupt the time information of the series. The \code{na.seasplit} and \code{na.seadec} functions are as well exceptions. These perform seasonal split / decomposition operations as a preprocessing step. For the imputation itself, one out of the other imputation algorithms 
-can be used (which one can be set as option). Looking at all available imputation methods, no single overall best method can be pointed out. Imputation performance is always very dependent on the characteristics of the input time series. Even imputation with mean values can sometimes be an appropriate method. For time series with a strong seasonality usually \code{na.kalman} and \code{na.seadec} / \code{na.seasplit} perform best. In general, for most time series one algorithm out of \code{na.kalman}, \code{na.interpolation} and \code{na.seadec} will yield the best results. Meanwhile, \code{na.random}, \code{na.mean}, \code{na.locf} will be at the lower end accuracy wise for the majority of input time series.
+\code{na_interpolation} function. The \code{na_mean}, \code{na_locf}, \code{na_replace}, \code{na_random} functions are all simple and fast. In comparison, \code{na_interpolation},
+\code{na_kalman}, \code{na_ma}, \code{na_seasplit}, \code{na_seadec} are more advanced algorithms that need more computation time. The \code{na_remove} function is a special case, since it only deletes all missing values.
+Thus, it is not really an imputation function. It should be handled with care since removing observations may corrupt the time information of the series. The \code{na_seasplit} and \code{na_seadec} functions are as well exceptions. These perform seasonal split / decomposition operations as a preprocessing step. For the imputation itself, one out of the other imputation algorithms 
+can be used (which one can be set as option). Looking at all available imputation methods, no single overall best method can be pointed out. Imputation performance is always very dependent on the characteristics of the input time series. Even imputation with mean values can sometimes be an appropriate method. For time series with a strong seasonality usually \code{na_kalman} and \code{na_seadec} / \code{na_seasplit} perform best. In general, for most time series one algorithm out of \code{na_kalman}, \code{na_interpolation} and \code{na_seadec} will yield the best results. Meanwhile, \code{na_random}, \code{na_mean}, \code{na_locf} will be at the lower end accuracy wise for the majority of input time series.
 \noindent
 
 \subsection{Datasets}
@@ -220,7 +220,7 @@ The \code{tsNH4} time series has 4552 rows and the incomplete version includes 8
 The time series is derived from the dataset of the Genetic and Evolutionary Computation Conference (GECCO) Industrial Challenge 2014~\footnote{\url{http://www.spotseven.de/gecco-challenge/gecco-challenge-2014/}}.
 
 \noindent
-As already mentioned in order to use this series for comparing imputation algorithm results, there are two time series provided. One series without missing values (\code{tsNH4Complete}), which can be used as ground truth. Another series with NAs (\code{tsNH4}), on which the imputation algorithms can be applied. The pattern for the NA occurrence was derived from the same series / sensors, but from an earlier time interval. Thus, it is a very realistic missing data pattern. Beware, since the time series has a lot of observations, some of the more complex algorithms like \code{na.kalman} will need some time till they are finished.
+As already mentioned in order to use this series for comparing imputation algorithm results, there are two time series provided. One series without missing values (\code{tsNH4Complete}), which can be used as ground truth. Another series with NAs (\code{tsNH4}), on which the imputation algorithms can be applied. The pattern for the NA occurrence was derived from the same series / sensors, but from an earlier time interval. Thus, it is a very realistic missing data pattern. Beware, since the time series has a lot of observations, some of the more complex algorithms like \code{na_kalman} will need some time till they are finished.
 
 
 
@@ -231,7 +231,7 @@ The \code{tsHeating} time series has 606837 rows and the incomplete version incl
 The time series originates from the GECCO Industrial Challenge 2015~\footnote{\url{http://www.spotseven.de/gecco-challenge/gecco-challenge-2015/}}. This was a challenge about 'Recovering missing information in heating system operating data'. Goal was to impute missing values in heating system sensor data as accurate as possible.
 
 \noindent
-As already mentioned in order to use this series for comparing imputation algorithm results, there are two time series provided. One series without missing values (\code{tsHeatingComplete}), which can be used as ground truth. Another series with NAs (\code{tsHeating}), on which the imputation algorithms can be applied. The NAs thereby were inserted according to patterns found in similar time series. According to patterns found / occurring in other heating systems. Beware, since it is a very large time series, some of the more complex algorithms like \code{na.kalman} may need up to several days to complete on standard hardware.
+As already mentioned in order to use this series for comparing imputation algorithm results, there are two time series provided. One series without missing values (\code{tsHeatingComplete}), which can be used as ground truth. Another series with NAs (\code{tsHeating}), on which the imputation algorithms can be applied. The NAs thereby were inserted according to patterns found in similar time series. According to patterns found / occurring in other heating systems. Beware, since it is a very large time series, some of the more complex algorithms like \code{na_kalman} may need up to several days to complete on standard hardware.
 
 
 %================================================================================
@@ -243,7 +243,7 @@ To start working with the \pkg{imputeTS} package, install either the stable vers
 \subsection{Imputation algorithms}
 All imputation algorithms are used the same way. Input has to be either a numeric time series or a numeric vector. As output, a version of the input data with all missing values replaced by imputed values is returned.
 Here is a small example, to show how to use the imputation algorithms.
-(all imputation functions start with na.'algorithm name')\\\\
+(all imputation functions start with na_'algorithm name')\\\\
 \noindent
 For this we first need to create an example input series with missing data.
 
@@ -253,47 +253,47 @@ For this we first need to create an example input series with missing data.
 \end{example}
 
 \noindent
-On this time series we can apply different imputation algorithms. We start with using \code{na.mean}, which substitutes the NAs with mean values.
+On this time series we can apply different imputation algorithms. We start with using \code{na_mean}, which substitutes the NAs with mean values.
 
 \begin{example}
-# Impute the missing values with na.mean
- na.mean(x)
+# Impute the missing values with na_mean
+ na_mean(x)
 \end{example}
 [1]~~~~1.0~~~~2.0~~~~3.0~~~~4.0~~~~5.0~~~~6.0~~~~7.0~~~~8.0
 \textbf{~~~~5.9~~~~5.9}~~~~11.0~~~~12.0
 
 
 \noindent\\
-Most of the functions also have additional options that provide further algorithms (of the same algorithm category). In the example below it can be seen that \code{na.mean} can also be called with \code{option="median"}, which substitutes the NAs with median values.
+Most of the functions also have additional options that provide further algorithms (of the same algorithm category). In the example below it can be seen that \code{na_mean} can also be called with \code{option="median"}, which substitutes the NAs with median values.
 
 \begin{example}
-# Impute the missing values with na.mean using option median
- na.mean(x, option="median")
+# Impute the missing values with na_mean using option median
+ na_mean(x, option="median")
 \end{example}
  [1]~~~~1.0~~~~2.0~~~~3.0~~~~4.0~~~~5.0~~~~6.0~~~~7.0
  ~~~~8.0~~~~\textbf{5.5~~~~5.5}~~~~11.0~~~~12.0
  
 \noindent\\
-While \code{na.interpolation} and all other imputation functions are used the same way, the results produced may be different. As can be seen below, for this series linear interpolation gives more reasonable results.
+While \code{na_interpolation} and all other imputation functions are used the same way, the results produced may be different. As can be seen below, for this series linear interpolation gives more reasonable results.
  
  
 \begin{example}
-# Impute the missing values with na.interpolation
-na.interpolation(x)
+# Impute the missing values with na_interpolation
+na_interpolation(x)
 \end{example}
 [1]~~~~1~~~~2~~~~3~~~~4~~~~5~~~~6~~~~7
  ~~~~8~~~~\textbf{9~~~~10}~~~~11~~~~12
  
  \noindent\\
-For longer and more complex time series (with trend and seasonality) than in this example it is always a good idea to try \code{na.kalman} and \code{na.seadec}, since these functions very often produce the best results. These functions are called the same easy way as all other imputation functions. 
+For longer and more complex time series (with trend and seasonality) than in this example it is always a good idea to try \code{na_kalman} and \code{na_seadec}, since these functions very often produce the best results. These functions are called the same easy way as all other imputation functions. 
 
  \noindent
-Here is a usage example for the \code{na.kalman} function applied on the \code{tsAirgap} (described in ~\ref{subsec:Datasets}) time series. As can be seen in Figure~\ref{fig:imputations2}, \code{na.kalman} provides really good results for this series, which contains a strong seasonality and a strong trend. 
+Here is a usage example for the \code{na_kalman} function applied on the \code{tsAirgap} (described in ~\ref{subsec:Datasets}) time series. As can be seen in Figure~\ref{fig:imputations2}, \code{na_kalman} provides really good results for this series, which contains a strong seasonality and a strong trend. 
 
 \begin{example}
-# Impute the missing values with na.kalman
+# Impute the missing values with na_kalman
 # (tsAirgap is an example time series provided by the imputeTS package)
-imp <- na.kalman(tsAirgap)
+imp <- na_kalman(tsAirgap)
 
 #Code for visualization
 plotNA.imputations(tsAirgap, x.imp, tsAirgapComplete)
@@ -303,7 +303,7 @@ plotNA.imputations(tsAirgap, x.imp, tsAirgapComplete)
 \begin{figure} [h]
 \centering
 \includegraphics[width=5.7in]{Figures.d/imputations2.pdf}
-\caption{Results of imputation with na.kalman compared to real values}
+\caption{Results of imputation with na_kalman compared to real values}
 \label{fig:imputations2}
 \end{figure}
 \noindent
@@ -386,8 +386,8 @@ This plot can be used, to visualize the imputed values for a time series. Theref
 # Example Code 'plotNA.imputations'
 # (tsAirgap is an example time series provided by the imputeTS package)
 
-# Step 1: Perform imputation for x using na.mean
-tsAirgap.imp <- na.mean(tsAirgap)
+# Step 1: Perform imputation for x using na_mean
+tsAirgap.imp <- na_mean(tsAirgap)
 
 # Step 2: Visualize the imputed values in the time series
 plotNA.imputations(tsAirgap, tsAirgap.imp)
@@ -396,7 +396,7 @@ plotNA.imputations(tsAirgap, tsAirgap.imp)
 \end{example}
 
 \noindent
-The visual inspection of Figure~\ref{fig:imputations} indicates, that the imputed values (red) do not fit very well in the \code{tsAirgap} series. This is caused by \code{na.mean} being used for imputation of a series with a strong trend. The plotting function enables users to quickly detect such problems in the imputation results. If the ground truth is known for the imputed values, this information can also be added to the plot. The plotting function itself needs no further configuration parameters. Nevertheless, it allows passing through of plot parameters (via ...).
+The visual inspection of Figure~\ref{fig:imputations} indicates, that the imputed values (red) do not fit very well in the \code{tsAirgap} series. This is caused by \code{na_mean} being used for imputation of a series with a strong trend. The plotting function enables users to quickly detect such problems in the imputation results. If the ground truth is known for the imputed values, this information can also be added to the plot. The plotting function itself needs no further configuration parameters. Nevertheless, it allows passing through of plot parameters (via ...).
 \noindent
 \begin{figure} [h]
 \centering
@@ -652,7 +652,7 @@ A.~Zeileis and G.~Grothendieck.
 \address{Thomas Bartz-Beielstein\\
   Cologne University of Applied Sciences\\
   Cologne, Germany\\}
-\email{bartz.beielstein@fh-koeln.de}
+\email{bartz.beielstein@th-koeln.de}
 
 
 \end{article}
