@@ -172,7 +172,10 @@ na_mean <- function(x, option = "mean", maxgap = Inf, meanmethod = "a") {
         mean <- 1 / mean(1 / data, na.rm = TRUE)
       } else if (meanmethod == "g") {
         # geometric Mean
-        mean <- prod(data, na.rm = TRUE)^(1 / length(data))
+        # mean <- prod(data, na.rm = TRUE)^(1 / length(data[!is.na(data)]))
+        maxval <- max(data, na.rm=T)
+        mean <- (prod(data/maxval, na.rm = TRUE)^(1 / length(data[!is.na(data)]))) * maxval
+        # mean <- (prod(data/maxval, na.rm = TRUE)^(1 / length(data))) * maxval
       } else {
         stop("Wrong 'meanmethod' parameter given, must be either 'a', 'h' or 'g':",
              "\n'a' for arithmetic mean",
