@@ -250,7 +250,7 @@ na_mean <- function(x, option = "mean", maxgap = Inf, meanmethod = "a") {
 #' @inheritParams na_mean
 #' @keywords internal
 #' @export
-na.mean <- function(x, option = "mean", maxgap = Inf) {
+na.mean <- function(x, option = "mean", maxgap = Inf, meanmethod = "a") {
   .Deprecated(
     new = "na_mean",
     msg = "na.mean will be replaced by na_mean.
@@ -258,5 +258,5 @@ na.mean <- function(x, option = "mean", maxgap = Inf) {
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."
   )
-  na_mean(x, option, maxgap)
+  na_mean(x, option, maxgap, meanmethod)
 }

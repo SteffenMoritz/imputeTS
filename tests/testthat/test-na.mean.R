@@ -99,3 +99,21 @@ test_that("Over 90% NAs",
             expect_that(anyNA(na.mean(x)), is_false())
             
           })
+
+test_that("Correct results for different mean methods",
+          {
+            x <- tsAirgap
+            x[10:140] <- NA
+            expect_false(anyNA(na_mean(x, option ="mean", meanmethod = "a")))
+            expect_false(anyNA(na_mean(x, option ="mean", meanmethod = "h")))
+            expect_false(anyNA(na_mean(x, option ="mean", meanmethod = "g")))
+
+            x <- tsAirgap            
+            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "a")), 1), is_identical_to(279.8))
+            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "h")), 1), is_identical_to(275.5))
+            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "g")), 1), is_identical_to(Inf))
+            
+            x <- tsAirgap[1:100]
+            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "g")), 1), is_identical_to(211.8))
+            
+          })
