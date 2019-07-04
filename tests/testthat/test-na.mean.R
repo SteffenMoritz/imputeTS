@@ -108,12 +108,12 @@ test_that("Correct results for different mean methods",
             expect_false(anyNA(na_mean(x, option ="mean", meanmethod = "h")))
             expect_false(anyNA(na_mean(x, option ="mean", meanmethod = "g")))
 
-            x <- tsAirgap            
+            x <- tsAirgap
             expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "a")), 1), is_identical_to(279.8))
             expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "h")), 1), is_identical_to(275.5))
-            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "g")), 1), is_identical_to(Inf))
+            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "g")), 1), is_identical_to(277.6))
             
             x <- tsAirgap[1:100]
-            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "g")), 1), is_identical_to(211.8))
+            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "g")), 1), is_identical_to(217.5))
             
           })
