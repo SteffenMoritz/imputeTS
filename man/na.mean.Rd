@@ -12,9 +12,11 @@ object in which missing values shall be replaced}
 
 \item{option}{Algorithm to be used. Accepts the following input:
 \itemize{
-   \item{"mean" - take the mean for imputation}
+   \item{"mean" - take the mean for imputation (default)}
    \item{"median" - take the median for imputation}
    \item{"mode" - take the mode for imputation}
+   \item{"harmonic" - take the harmonic mean}
+   \item{"geometric" - take the geometric mean}
    }}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.

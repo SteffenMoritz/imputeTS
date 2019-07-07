@@ -4,7 +4,7 @@
 \alias{na_mean}
 \title{Missing Value Imputation by Mean Value}
 \usage{
-na_mean(x, option = "mean", maxgap = Inf, meanmethod = "a")
+na_mean(x, option = "mean", maxgap = Inf)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
@@ -15,6 +15,8 @@ object in which missing values shall be replaced}
    \item{"mean" - take the mean for imputation (default)}
    \item{"median" - take the median for imputation}
    \item{"mode" - take the mode for imputation}
+   \item{"harmonic" - take the harmonic mean}
+   \item{"geometric" - take the geometric mean}
    }}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.
@@ -22,14 +24,6 @@ Default setting is to replace all NAs without restrictions. With this
 option set, consecutive NAs runs, that are longer than 'maxgap' will
 be left NA. This option mostly makes sense if you want to
 treat long runs of NA afterwards separately.}
-
-\item{meanmethod}{If \code{option} is `mean`, 3 different methods
-are available:
-\itemize{
-   \item{"a" - arithmetic mean (default)}
-   \item{"h" - harmonic mean}
-   \item{"g" - geometric mean}
-   }}
 }
 \value{
 Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
@@ -59,11 +53,6 @@ na_mean(x, option = "median")
 
 # Example 3: Same as example 1, just written with pipe operator
 x \%>\% na_mean()
-
-# Example 4: Demonstrate different mean methods
-na_mean(x, meanmethod = "a")  # arithmetic mean
-na_mean(x, meanmethod = "h")  # harmonic mean
-na_mean(x, meanmethod = "g")  # geometric mean
 
 
 }

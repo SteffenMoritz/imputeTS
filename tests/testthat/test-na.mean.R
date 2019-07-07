@@ -104,16 +104,16 @@ test_that("Correct results for different mean methods",
           {
             x <- tsAirgap
             x[10:140] <- NA
-            expect_false(anyNA(na_mean(x, option ="mean", meanmethod = "a")))
-            expect_false(anyNA(na_mean(x, option ="mean", meanmethod = "h")))
-            expect_false(anyNA(na_mean(x, option ="mean", meanmethod = "g")))
+            expect_false(anyNA(na_mean(x, option ="mean")))
+            expect_false(anyNA(na_mean(x, option ="geometric")))
+            expect_false(anyNA(na_mean(x, option ="harmonic")))
 
             x <- tsAirgap
-            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "a")), 1), is_identical_to(279.8))
-            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "h")), 1), is_identical_to(275.5))
-            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "g")), 1), is_identical_to(277.6))
+            expect_that(round(mean(na_mean(x, option ="mean")), 1), is_identical_to(279.8))
+            expect_that(round(mean(na_mean(x, option ="harmonic")), 1), is_identical_to(275.5))
+            expect_that(round(mean(na_mean(x, option ="geometric")), 1), is_identical_to(277.6))
             
             x <- tsAirgap[1:100]
-            expect_that(round(mean(na_mean(x, option ="mean", meanmethod = "g")), 1), is_identical_to(217.5))
+            expect_that(round(mean(na_mean(x, option ="geometric")), 1), is_identical_to(217.5))
             
           })

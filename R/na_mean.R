@@ -11,6 +11,8 @@
 #'    \item{"mean" - take the mean for imputation (default)}
 #'    \item{"median" - take the median for imputation}
 #'    \item{"mode" - take the mode for imputation}
+#'    \item{"harmonic" - take the harmonic mean}
+#'    \item{"geometric" - take the geometric mean}
 #'    }
 #'
 #' @param maxgap Maximum number of successive NAs to still perform imputation on.
@@ -19,14 +21,6 @@
 #'  be left NA. This option mostly makes sense if you want to
 #'  treat long runs of NA afterwards separately.
 #'  
-#' @param meanmethod If \code{option} is `mean`, 3 different methods
-#' are available:
-#' \itemize{
-#'    \item{"a" - arithmetic mean (default)}
-#'    \item{"h" - harmonic mean}
-#'    \item{"g" - geometric mean}
-#'    }
-#'
 #' @return Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
 #' object (dependent on given input at parameter x)
 #'
@@ -58,17 +52,12 @@
 #' # Example 3: Same as example 1, just written with pipe operator
 #' x %>% na_mean()
 #' 
-#' # Example 4: Demonstrate different mean methods
-#' na_mean(x, meanmethod = "a")  # arithmetic mean
-#' na_mean(x, meanmethod = "h")  # harmonic mean
-#' na_mean(x, meanmethod = "g")  # geometric mean
-#' 
 #' 
 #' @importFrom magrittr %>%
 #' @importFrom stats median ts
 #' @export
 #'
-na_mean <- function(x, option = "mean", maxgap = Inf, meanmethod = "a") {
+na_mean <- function(x, option = "mean", maxgap = Inf) {
   data <- x
 
 
@@ -163,30 +152,22 @@ na_mean <- function(x, option = "mean", maxgap = Inf, meanmethod = "a") {
       data[missindx] <- mode
     }
     else if (option == "mean") {
-      # Use Mean
-      if (meanmethod == "a") {
-        # arithmetic Mean
-        mean <- mean(data, na.rm = TRUE)
-      } else if (meanmethod == "h") {
-        # harmonic Mean
-        mean <- 1 / mean(1 / data, na.rm = TRUE)
-      } else if (meanmethod == "g") {
-        # geometric Mean
-        # mean <- prod(data, na.rm = TRUE)^(1 / length(data[!is.na(data)]))
-        maxval <- max(data, na.rm=T)
-        mean <- (prod(data/maxval, na.rm = TRUE)^(1 / length(data[!is.na(data)]))) * maxval
-        # mean <- (prod(data/maxval, na.rm = TRUE)^(1 / length(data))) * maxval
-      } else {
-        stop("Wrong 'meanmethod' parameter given, must be either 'a', 'h' or 'g':",
-             "\n'a' for arithmetic mean",
-             "\n'h' for harmonic mean",
-             "\n'g' for geometric mean")
-      }
-    
+      # Use arithmeic Mean
+      mean <- mean(data, na.rm = TRUE)
+      data[missindx] <- mean
+    }
+    else if (option == "geometric") {
+      # Use geometric Mean
+      mean <- exp(mean(log(data), na.rm = TRUE))
+      data[missindx] <- mean
+    }
+    else if (option == "harmonic") {
+      # Use harmonic Mean
+      mean <- 1 / mean(1 / data, na.rm = TRUE)
       data[missindx] <- mean
     }
     else {
-      stop("Wrong 'option' parameter given, must be either 'mean', 'mode' or 'median'")
+      stop("Wrong 'option' parameter given, must be either: \n'mean', 'mode', 'median', 'harmonic' or 'geometric'")
     }
 
     ##
@@ -253,7 +234,7 @@ na_mean <- function(x, option = "mean", maxgap = Inf, meanmethod = "a") {
 #' @inheritParams na_mean
 #' @keywords internal
 #' @export
-na.mean <- function(x, option = "mean", maxgap = Inf, meanmethod = "a") {
+na.mean <- function(x, option = "mean", maxgap = Inf) {
   .Deprecated(
     new = "na_mean",
     msg = "na.mean will be replaced by na_mean.
@@ -261,5 +242,5 @@ na.mean <- function(x, option = "mean", maxgap = Inf, meanmethod = "a") {
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."
   )
-  na_mean(x, option, maxgap, meanmethod)
+  na_mean(x, option, maxgap)
 }
