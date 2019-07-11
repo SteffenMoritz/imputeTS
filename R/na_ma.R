@@ -238,7 +238,7 @@ na_ma <- function(x, k = 4, weighting = "exponential", maxgap = Inf) {
 na.ma <- function(x, k = 4, weighting = "exponential", maxgap = Inf) {
   .Deprecated(
     new = "na_ma",
-    msg = "na.ma will replaced by na_ma.
+    msg = "na.ma will be replaced by na_ma.
     Functionality stays the same.
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."

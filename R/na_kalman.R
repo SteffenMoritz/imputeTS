@@ -307,7 +307,7 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
 na.kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = Inf, ...) {
   .Deprecated(
     new = "na_kalman",
-    msg = "na.kalman will replaced by na_kalman.
+    msg = "na.kalman will be replaced by na_kalman.
     Functionality stays the same.
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."

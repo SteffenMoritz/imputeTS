@@ -265,7 +265,7 @@ na_locf <- function(x, option = "locf", na_remaining = "rev", maxgap = Inf) {
 na.locf <- function(x, option = "locf", na.remaining = "rev", maxgap = Inf) {
   .Deprecated(
     new = "na_locf",
-    msg = "na.locf will replaced by na_locf.
+    msg = "na.locf will be replaced by na_locf.
     Functionality stays the same.
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."

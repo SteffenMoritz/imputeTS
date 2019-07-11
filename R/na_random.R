@@ -220,7 +220,7 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
 na.random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
   .Deprecated(
     new = "na_random",
-    msg = "na.random will replaced by na_random.
+    msg = "na.random will be replaced by na_random.
     Functionality stays the same.
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."

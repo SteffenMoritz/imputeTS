@@ -233,7 +233,7 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
 na.interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
   .Deprecated(
     new = "na_interpolation",
-    msg = "na.interpolation will replaced by na_interpolation.
+    msg = "na.interpolation will be replaced by na_interpolation.
            Functionality stays the same.
            The new function name better fits modern R code style guidelines.
            Please adjust your code accordingly."

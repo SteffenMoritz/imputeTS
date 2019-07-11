@@ -245,7 +245,7 @@ na_seasplit <- function(x, algorithm = "interpolation", find_frequency = FALSE, 
 na.seasplit <- function(x, algorithm = "interpolation", find_frequency = FALSE, maxgap = Inf, ...) {
   .Deprecated(
     new = "na_seasplit",
-    msg = "na.seasplit will replaced by na_seasplit.
+    msg = "na.seasplit will be replaced by na_seasplit.
     Functionality stays the same.
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."

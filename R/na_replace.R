@@ -190,7 +190,7 @@ na_replace <- function(x, fill = 0, maxgap = Inf) {
 na.replace <- function(x, fill = 0, maxgap = Inf) {
   .Deprecated(
     new = "na_replace",
-    msg = "na.replace will replaced by na_replace.
+    msg = "na.replace will be replaced by na_replace.
     Functionality stays the same.
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."

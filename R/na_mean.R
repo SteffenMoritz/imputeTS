@@ -20,7 +20,7 @@
 #'  option set, consecutive NAs runs, that are longer than 'maxgap' will
 #'  be left NA. This option mostly makes sense if you want to
 #'  treat long runs of NA afterwards separately.
-#'  
+#'
 #' @return Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
 #' object (dependent on given input at parameter x)
 #'
@@ -42,17 +42,15 @@
 #' @examples
 #' # Prerequisite: Create Time series with missing values
 #' x <- ts(c(2, 3, 4, 5, 6, NA, 7, 8))
-#' 
+#'
 #' # Example 1: Perform imputation with the overall mean
 #' na_mean(x)
-#' 
+#'
 #' # Example 2: Perform imputation with overall median
 #' na_mean(x, option = "median")
-#' 
+#'
 #' # Example 3: Same as example 1, just written with pipe operator
 #' x %>% na_mean()
-#' 
-#' 
 #' @importFrom magrittr %>%
 #' @importFrom stats median ts
 #' @export
@@ -158,20 +156,24 @@ na_mean <- function(x, option = "mean", maxgap = Inf) {
     else if (option == "geometric") {
       # Use geometric Mean
       if (any(data == 0 | data < 0, na.rm = T)) {
-        stop("The data contains 0 and/or negative values.\n",
-             "The geometric and harmonic mean can not be calculated correctly.\n",
-             "Please use 'option' = 'mean' in this case.")
-      } 
+        stop(
+          "The input data contains 0 and/or negative values.\n",
+          "The geometric and harmonic mean are not well defined for these cases.\n",
+          "Please another option like e.g. option = 'mean' in this case."
+        )
+      }
       mean <- exp(mean(log(data), na.rm = TRUE))
       data[missindx] <- mean
     }
     else if (option == "harmonic") {
       # Use harmonic Mean
       if (any(data == 0 | data < 0, na.rm = T)) {
-        stop("The data contains 0 and/or negative values.\n",
-             "The geometric and harmonic mean can not be calculated correctly.\n",
-             "Please use 'option' = 'mean' in this case.")
-      } 
+        stop(
+          "The input data contains 0 and/or negative values.\n",
+          "The geometric and harmonic mean are not well defined for these cases.\n",
+          "Please another option like e.g. option = 'mean' in this case."
+        )
+      }
       mean <- 1 / mean(1 / data, na.rm = TRUE)
       data[missindx] <- mean
     }

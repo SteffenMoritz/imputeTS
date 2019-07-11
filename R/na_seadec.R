@@ -250,7 +250,7 @@ na_seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, ma
 na.seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, maxgap = Inf, ...) {
   .Deprecated(
     new = "na_seadec",
-    msg = "na.seadec will replaced by na_seadec.
+    msg = "na.seadec will be replaced by na_seadec.
     Functionality stays the same.
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."

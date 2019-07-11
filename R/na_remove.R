@@ -160,7 +160,7 @@ na_remove <- function(x) {
 na.remove <- function(x) {
   .Deprecated(
     new = "na_remove",
-    msg = "na.remove will replaced by na_remove.
+    msg = "na.remove will be replaced by na_remove.
     Functionality stays the same.
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."
