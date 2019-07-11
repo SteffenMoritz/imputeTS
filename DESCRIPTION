@@ -41,3 +41,4 @@ License: GPL-3
 VignetteBuilder: R.rsp
 RoxygenNote: 6.1.1
 LinkingTo: Rcpp
+Encoding: UTF-8

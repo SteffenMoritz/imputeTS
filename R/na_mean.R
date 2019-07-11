@@ -8,9 +8,11 @@
 #'
 #' @param option Algorithm to be used. Accepts the following input:
 #' \itemize{
-#'    \item{"mean" - take the mean for imputation}
+#'    \item{"mean" - take the mean for imputation (default)}
 #'    \item{"median" - take the median for imputation}
 #'    \item{"mode" - take the mode for imputation}
+#'    \item{"harmonic" - take the harmonic mean}
+#'    \item{"geometric" - take the geometric mean}
 #'    }
 #'
 #' @param maxgap Maximum number of successive NAs to still perform imputation on.
@@ -18,7 +20,7 @@
 #'  option set, consecutive NAs runs, that are longer than 'maxgap' will
 #'  be left NA. This option mostly makes sense if you want to
 #'  treat long runs of NA afterwards separately.
-#'
+#'  
 #' @return Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
 #' object (dependent on given input at parameter x)
 #'
@@ -49,6 +51,7 @@
 #' 
 #' # Example 3: Same as example 1, just written with pipe operator
 #' x %>% na_mean()
+#' 
 #' 
 #' @importFrom magrittr %>%
 #' @importFrom stats median ts
@@ -145,16 +148,35 @@ na_mean <- function(x, option = "mean", maxgap = Inf) {
       temp <- table(as.vector(data))
       mode <- names(temp)[temp == max(temp)]
       mode <- (as.numeric(mode))[1]
-
       data[missindx] <- mode
     }
     else if (option == "mean") {
-      # Use Mean
+      # Use arithmeic Mean
       mean <- mean(data, na.rm = TRUE)
       data[missindx] <- mean
     }
+    else if (option == "geometric") {
+      # Use geometric Mean
+      if (any(data == 0 | data < 0, na.rm = T)) {
+        stop("The data contains 0 and/or negative values.\n",
+             "The geometric and harmonic mean can not be calculated correctly.\n",
+             "Please use 'option' = 'mean' in this case.")
+      } 
+      mean <- exp(mean(log(data), na.rm = TRUE))
+      data[missindx] <- mean
+    }
+    else if (option == "harmonic") {
+      # Use harmonic Mean
+      if (any(data == 0 | data < 0, na.rm = T)) {
+        stop("The data contains 0 and/or negative values.\n",
+             "The geometric and harmonic mean can not be calculated correctly.\n",
+             "Please use 'option' = 'mean' in this case.")
+      } 
+      mean <- 1 / mean(1 / data, na.rm = TRUE)
+      data[missindx] <- mean
+    }
     else {
-      stop("Wrong option parameter given, must be 'mean', 'mode' or 'median'")
+      stop("Wrong 'option' parameter given, must be either: \n'mean', 'mode', 'median', 'harmonic' or 'geometric'")
     }
 
     ##
@@ -224,7 +246,7 @@ na_mean <- function(x, option = "mean", maxgap = Inf) {
 na.mean <- function(x, option = "mean", maxgap = Inf) {
   .Deprecated(
     new = "na_mean",
-    msg = "na.mean will replaced by na_mean.
+    msg = "na.mean will be replaced by na_mean.
     Functionality stays the same.
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly."
