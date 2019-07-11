@@ -117,3 +117,24 @@ test_that("Correct results for different mean methods",
             expect_that(round(mean(na_mean(x, option ="geometric")), 1), is_identical_to(217.5))
             
           })
+
+test_that("Error for harmonic and geometric mean",
+          {
+            x <- runif(100, -100, 100)
+            x[sample(1:100, 10)] <- NA
+            expect_error(anyNA(na_mean(x, option ="geometric")))
+            expect_error(anyNA(na_mean(x, option ="harmonic")))
+          })
+
+test_that("Other erros",
+          {
+            x <- c("a","b","c", NA)
+            expect_error(anyNA(na_mean(x, option ="mean")))
+            
+            x <- rep(NA, 10)
+            expect_error(anyNA(na_mean(x, option ="mean")))
+            
+            x <- data.frame(x=c("a","b","c", NA),
+                            y=rep(NA, 4))
+            expect_warning(anyNA(na_mean(x, option ="mean")))
+          })
