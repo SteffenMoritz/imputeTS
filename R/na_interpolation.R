@@ -55,6 +55,7 @@
 #' x %>% na_interpolation(option = "spline")
 #' @references Johannesson, Tomas, et al. (2015). "Package stinepack".
 #' @importFrom stats ts approx spline
+#' @importFrom stinepack stinterp
 #' @importFrom magrittr %>%
 #' @export
 
@@ -151,13 +152,6 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
       interp <- stats::spline(indx, data_vec[indx], n = n, ...)$y
     }
     else if (option == "stine") {
-      if (!requireNamespace("stinepack", quietly = TRUE)) {
-        stop("Package \"stinepack\" needed for function na_interpolation(x, option =\"stine\") to work.
-             Please install the package and then run the function again.
-             You can install the package by executing: install.packages(\"stinepack\")",
-          call. = FALSE
-        )
-      }
       interp <- stinepack::stinterp(indx, data_vec[indx], 1:n, ...)$y
       # avoid NAs at the beginning and end of series // same behavior like 
       # for approx with rule = 2.

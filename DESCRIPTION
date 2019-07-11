@@ -31,11 +31,12 @@ Imports:
     stats,
     graphics,
     grDevices,
+    stinepack,
     forecast,
     magrittr,
     Rcpp
 Suggests:
-    testthat,  R.rsp, stinepack, zoo, timeSeries, tis, xts, tibble, tsibble
+    testthat,  R.rsp, zoo, timeSeries, tis, xts, tibble, tsibble
 License: GPL-3
 VignetteBuilder: R.rsp
 RoxygenNote: 6.0.1
