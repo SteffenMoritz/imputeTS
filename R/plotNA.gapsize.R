@@ -78,7 +78,8 @@ plotNA.gapsize <- function(x, limit = 10, byTotalNA = FALSE , legend = TRUE, col
   if (!is.ts(data)) 
   {data <- as.vector(data)}
   
-  id.na <- which(is.na(data))
+  na_data <- is.na(data)
+  id.na <- which(na_data)
   
   #save par settings and reset after function
   par.default <- graphics::par(no.readonly=TRUE) 
@@ -86,28 +87,13 @@ plotNA.gapsize <- function(x, limit = 10, byTotalNA = FALSE , legend = TRUE, col
   
 
   ## Calculation consecutive NA information (results is stored in vec)
-  vec <- rep(0, length(data))
-  run <- 0
-  for (i in 0:(length(data)-1)) {
-    if(is.na(data[i+1])) {
-      run <- run + 1
-      if(i == (length(data)-1)) {
-        vec[run] <- vec[run] + 1}
-       }
-    else {
-      vec[run] <- vec[run] + 1
-      run <- 0
-    }
-  }
-  bars1 <- bars2 <- labels1 <- labels2 <- NULL
-  for (i in 1:length(vec)) {
-    if(vec[i] > 0) {
-      bars1 <-c(bars1, vec[i])
-      bars2 <- c(bars2, vec[i]*i )
-      labels1 <- c(labels1,paste0(i," NAs"))
-      labels2 <- c(labels2,paste(""))
-      }
-  }
+  rle_na <- rle(na_data)
+  vec <- rle_na$lengths[rle_na$values]
+  bars1 <- table(vec)
+  gaps_vec <- as.integer(names(bars1))
+  bars2 <- bars1 * gaps_vec
+  labels1 <- paste0(gaps_vec, " NAs")
+  labels2 <- character(length = length(bars1))
   
   ## Sort either by NA 
   if ( byTotalNA == TRUE) {
