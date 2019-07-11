@@ -4,8 +4,8 @@
 \alias{na.kalman}
 \title{Deprecated use \code{\link[imputeTS]{na_kalman}} instead.}
 \usage{
-na.kalman(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = Inf,
-  ...)
+na.kalman(x, model = "StructTS", smooth = TRUE, nit = -1,
+  maxgap = Inf, ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})

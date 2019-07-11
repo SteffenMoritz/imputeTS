@@ -5,4 +5,6 @@
 /.RData
 Icon?
 Icon
-
+/.o
+/.dll
+/.so

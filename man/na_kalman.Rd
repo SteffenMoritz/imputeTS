@@ -4,8 +4,8 @@
 \alias{na_kalman}
 \title{Missing Value Imputation by Kalman Smoothing and State Space Models}
 \usage{
-na_kalman(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = Inf,
-  ...)
+na_kalman(x, model = "StructTS", smooth = TRUE, nit = -1,
+  maxgap = Inf, ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})

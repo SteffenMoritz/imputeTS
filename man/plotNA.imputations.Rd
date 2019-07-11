@@ -5,12 +5,12 @@
 \title{Visualize Imputed Values}
 \usage{
 plotNA.imputations(x.withNA, x.withImputations, x.withTruth = NULL,
-  legend = TRUE, main = "Visualization Imputed Values", xlab = "Time",
-  ylab = "Value", colWithTruth = "green3", colLines = "black",
-  colWithImputations = "indianred2", colWithNA = "steelblue2",
-  ylim = c(min(c(x.withImputations, x.withTruth), na.rm = TRUE),
-  max(c(x.withImputations, x.withTruth), na.rm = TRUE)), pch = 20,
-  cex = 0.8, ...)
+  legend = TRUE, main = "Visualization Imputed Values",
+  xlab = "Time", ylab = "Value", colWithTruth = "green3",
+  colLines = "black", colWithImputations = "indianred2",
+  colWithNA = "steelblue2", ylim = c(min(c(x.withImputations,
+  x.withTruth), na.rm = TRUE), max(c(x.withImputations, x.withTruth), na.rm
+  = TRUE)), pch = 20, cex = 0.8, ...)
 }
 \arguments{
 \item{x.withNA}{Numeric Vector or Time Series (\code{\link{ts}}) object with NAs before imputation}
