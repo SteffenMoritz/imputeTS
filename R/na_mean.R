@@ -148,7 +148,6 @@ na_mean <- function(x, option = "mean", maxgap = Inf) {
       temp <- table(as.vector(data))
       mode <- names(temp)[temp == max(temp)]
       mode <- (as.numeric(mode))[1]
-
       data[missindx] <- mode
     }
     else if (option == "mean") {
@@ -158,11 +157,21 @@ na_mean <- function(x, option = "mean", maxgap = Inf) {
     }
     else if (option == "geometric") {
       # Use geometric Mean
+      if (any(data == 0 | data < 0, na.rm = T)) {
+        stop("The data contains 0 and/or negative values.\n",
+             "The geometric and harmonic mean can not be calculated correctly.\n",
+             "Please use 'option' = 'mean' in this case.")
+      } 
       mean <- exp(mean(log(data), na.rm = TRUE))
       data[missindx] <- mean
     }
     else if (option == "harmonic") {
       # Use harmonic Mean
+      if (any(data == 0 | data < 0, na.rm = T)) {
+        stop("The data contains 0 and/or negative values.\n",
+             "The geometric and harmonic mean can not be calculated correctly.\n",
+             "Please use 'option' = 'mean' in this case.")
+      } 
       mean <- 1 / mean(1 / data, na.rm = TRUE)
       data[missindx] <- mean
     }
