@@ -81,6 +81,7 @@ plotNA_gapsize <- function(x, limit = 10, byTotalNA = FALSE ,
   gaps_vec <- as.integer(names(bars1))
   bars2 <- bars1 * gaps_vec
   labels1 <- paste0(gaps_vec, " NAs")
+
   
   ## Sorting #################
   if (byTotalNA) {

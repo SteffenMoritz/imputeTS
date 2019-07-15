@@ -5,3 +5,7 @@ locf <- function(x, reverse) {
     .Call('_imputeTS_locf', PACKAGE = 'imputeTS', x, reverse)
 }
 
+ma <- function(x, k, weighting) {
+    .Call('_imputeTS_ma', PACKAGE = 'imputeTS', x, k, weighting)
+}
+

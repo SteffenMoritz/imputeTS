@@ -35,7 +35,7 @@ install_github("SteffenMoritz/imputeTS")
   To impute (fill all missing values) in a time series ***x***, run the following
   command:
   ```
-   na.interpolation(x)
+   na_interpolation(x)
   ```
   Output is the time series ***x*** with all NA's replaced by reasonable values.
 
@@ -44,7 +44,7 @@ install_github("SteffenMoritz/imputeTS")
   > calculating the NA replacements. There are several other 
   > algorithms (see also under caption "Imputation Algorithms"). All 
   > imputation functions   are named alike starting with
-  > na. followed by a algorithm label  e.g. na.mean, na.kalman, ...
+  > na_ followed by a algorithm label  e.g. na_mean, na_kalman, ...
 
 
 - ###### Plotting
@@ -81,19 +81,19 @@ Here is a table with available algorithms to choose from:
 
 |      Function        |           Description                                      | 
 | :--------------------|:-----------------------------------------------------------|
-| na.interpolation     |Missing Value Imputation by Interpolation                   |
-| na.kalman            |Missing Value Imputation by Kalman Smoothing                |
-| na.locf              |Missing Value Imputation by Last Observation Carried Forward|
-| na.ma                |Missing Value Imputation by Weighted Moving Average         |
-| na.mean              |Missing Value Imputation by Mean Value                      | 
-| na.random            |Missing Value Imputation by Random Sample                   | 
-| na.remove            |Remove Missing Values                                       | 
-| na.replace           |Replace Missing Values by a Defined Value                   | 
-| na.seadec            |Seasonally Decomposed Missing Value Imputation              | 
-| na.seasplit          |Seasonally Splitted Missing Value Imputation                | 
+| na_interpolation     |Missing Value Imputation by Interpolation                   |
+| na_kalman            |Missing Value Imputation by Kalman Smoothing                |
+| na_locf              |Missing Value Imputation by Last Observation Carried Forward|
+| na_ma                |Missing Value Imputation by Weighted Moving Average         |
+| na_mean              |Missing Value Imputation by Mean Value                      | 
+| na_random            |Missing Value Imputation by Random Sample                   | 
+| na_remove            |Remove Missing Values                                       | 
+| na_replace           |Replace Missing Values by a Defined Value                   | 
+| na_seadec            |Seasonally Decomposed Missing Value Imputation              | 
+| na_seasplit          |Seasonally Splitted Missing Value Imputation                | 
 
   > This is a rather broad overview. The functions itself mostly offer more
-  > than just one algorithm. For example na.interpolation can be set to linear
+  > than just one algorithm. For example na_interpolation can be set to linear
   > or spline interpolation.
 
 More detailed information about the algorithms and their options can be found in the [imputeTS reference manual].
@@ -152,7 +152,7 @@ If you found a bug or have suggestions, feel free to get in contact via steffen.
 
 
 ### Version
-**2.8**
+**3.0**
 
 ### License
 GPL-3

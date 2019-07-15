@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -32,6 +34,7 @@
 
 <meta property="og:description" content="Print summary stats about the distribution of missing values in a univariate time series." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -58,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">imputeTS</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">2.7</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.0</span>
       </span>
     </div>
 
@@ -227,6 +230,55 @@ if printOnly = FALSE.</p>
 #&gt; $naGapMostOverallNAs
 #&gt; [1] 1
 #&gt; </div><div class='input'>
+<span class='co'>#Example 3: Same as example 1, just written with pipe operator</span>
+<span class='no'>tsNH4</span> <span class='kw'>%&gt;%</span> <span class='no'>statsNA</span></div><div class='output co'>#&gt; [1] "Length of time series:"
+#&gt; [1] 4552
+#&gt; [1] "-------------------------"
+#&gt; [1] "Number of Missing Values:"
+#&gt; [1] 883
+#&gt; [1] "-------------------------"
+#&gt; [1] "Percentage of Missing Values:"
+#&gt; [1] "19.4%"
+#&gt; [1] "-------------------------"
+#&gt; [1] "Stats for Bins"
+#&gt; [1] "  Bin 1 (1138 values from 1 to 1138) :      233 NAs (20.5%)"
+#&gt; [1] "  Bin 2 (1138 values from 1139 to 2276) :      433 NAs (38%)"
+#&gt; [1] "  Bin 3 (1138 values from 2277 to 3414) :      135 NAs (11.9%)"
+#&gt; [1] "  Bin 4 (1138 values from 3415 to 4552) :      82 NAs (7.21%)"
+#&gt; [1] "-------------------------"
+#&gt; [1] "Longest NA gap (series of consecutive NAs)"
+#&gt; [1] "157 in a row"
+#&gt; [1] "-------------------------"
+#&gt; [1] "Most frequent gap size (series of consecutive NA series)"
+#&gt; [1] "1 NA in a row (occuring 68 times)"
+#&gt; [1] "-------------------------"
+#&gt; [1] "Gap size accounting for most NAs"
+#&gt; [1] "157 NA in a row (occuring 1 times, making up for overall 157 NAs)"
+#&gt; [1] "-------------------------"
+#&gt; [1] "Overview NA series"
+#&gt; [1] "  1 NA in a row: 68 times"
+#&gt; [1] "  2 NA in a row: 26 times"
+#&gt; [1] "  3 NA in a row: 16 times"
+#&gt; [1] "  4 NA in a row: 10 times"
+#&gt; [1] "  5 NA in a row: 8 times"
+#&gt; [1] "  6 NA in a row: 4 times"
+#&gt; [1] "  7 NA in a row: 2 times"
+#&gt; [1] "  8 NA in a row: 3 times"
+#&gt; [1] "  9 NA in a row: 2 times"
+#&gt; [1] "  10 NA in a row: 1 times"
+#&gt; [1] "  11 NA in a row: 1 times"
+#&gt; [1] "  12 NA in a row: 2 times"
+#&gt; [1] "  14 NA in a row: 1 times"
+#&gt; [1] "  16 NA in a row: 1 times"
+#&gt; [1] "  17 NA in a row: 1 times"
+#&gt; [1] "  21 NA in a row: 1 times"
+#&gt; [1] "  25 NA in a row: 1 times"
+#&gt; [1] "  26 NA in a row: 1 times"
+#&gt; [1] "  27 NA in a row: 1 times"
+#&gt; [1] "  32 NA in a row: 1 times"
+#&gt; [1] "  42 NA in a row: 2 times"
+#&gt; [1] "  91 NA in a row: 1 times"
+#&gt; [1] "  157 NA in a row: 1 times"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -129,3 +129,35 @@ test_that("Handling for no NAs", {
   x <- tsAirgapComplete
   expect_that(anyNA(na.seasplit(x)), is_false())
 })
+
+
+test_that("Correct results for all options with the tsAirgap dataset for find_frequency", {
+  skip_on_cran()
+  # Using mean over resulting vector to check correctness
+  # In order to avoid writing down the complete resulting vector
+  # Using rounded version in order to avoid writing down all decimals
+  x <- as.vector(tsAirgap)
+  
+  expect_that(round(mean(na.seasplit(x, algorithm = "interpolation", find_frequency = TRUE)), digits = 1), is_identical_to(280.3))
+  expect_that(round(mean(na.seasplit(x, algorithm = "interpolation", find_frequency = FALSE)), digits = 1), is_identical_to(280.7))
+  
+  # Check that other frequencys lead to different result if find_frequency is FALSE
+  expect_that(round(mean(na.seasplit(ts(x, frequency = 2), algorithm = "interpolation", find_frequency = FALSE)), digits = 1), is_identical_to(281.7))
+  
+  # Check that find_frequency overrides frequency for find_frequency = T
+  expect_that(round(mean(na.seasplit(ts(x, frequency = 2), algorithm = "interpolation", find_frequency = TRUE)), digits = 1), is_identical_to(280.3))
+  
+  expect_that(round(mean(na.seasplit(x, algorithm = "locf", find_frequency = TRUE)), digits = 1), is_identical_to(278.2))
+  expect_that(round(mean(na.seasplit(x, algorithm = "locf", find_frequency = FALSE)), digits = 1), is_identical_to(278.8))
+  
+  expect_that(round(mean(na.seasplit(x, algorithm = "mean", find_frequency = TRUE)), digits = 1), is_identical_to(279.3))
+  expect_that(round(mean(na.seasplit(x, algorithm = "mean", find_frequency = FALSE)), digits = 1), is_identical_to(279.8))
+  
+  
+  expect_that(round(mean(na.seasplit(x, algorithm = "kalman", model = "auto.arima", find_frequency = TRUE)), digits = 1) > 277 &
+                round(mean(na.seasplit(x, algorithm = "kalman", model = "auto.arima", find_frequency = TRUE)), digits = 1) < 281, is_true())
+  
+  expect_that(round(mean(na.seasplit(x, algorithm = "ma", find_frequency = TRUE)), digits = 1), is_identical_to(280.3))
+  expect_that(round(mean(na.seasplit(x, algorithm = "ma", find_frequency = FALSE)), digits = 1), is_identical_to(281.2))
+  
+})

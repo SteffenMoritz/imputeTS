@@ -136,3 +136,35 @@ test_that("Given frequency is not overwritten if findFrequency==T", {
 test_that("Given frequency is not overwritten if findFrequency==T", {
 
 })
+
+
+
+test_that("Correct results for all options with the tsAirgap dataset with find frequency", {
+  skip_on_cran()
+  # Using mean over resulting vector to check correctness
+  # In order to avoid writing down the complete resulting vector
+  # Using rounded version in order to avoid writing down all decimals
+  x <- as.vector(tsAirgap)
+  expect_that(round(mean(na.seadec(x, algorithm = "interpolation", find_frequency = TRUE)), digits = 1), is_identical_to(280.4))
+  expect_that(round(mean(na.seadec(x, algorithm = "interpolation", find_frequency = FALSE)), digits = 1), is_identical_to(280.7))
+  
+  #Test if set frequencys are accepted as expected for find_frequency= F
+  expect_that(round(mean(na.seadec(ts(x,frequency = 2), algorithm = "interpolation", find_frequency = FALSE)), digits = 1), is_identical_to(280.8))
+  
+  #Test if find_frequency works
+  expect_that(round(mean(na.seadec(ts(x,frequency = 2), algorithm = "interpolation", find_frequency = TRUE)), digits = 1), is_identical_to(280.4))
+  
+  
+  expect_that(round(mean(na.seadec(x, algorithm = "locf", find_frequency = TRUE)), digits = 1), is_identical_to(279.7))
+  expect_that(round(mean(na.seadec(x, algorithm = "locf", find_frequency = FALSE)), digits = 1), is_identical_to(278.8))
+  
+  expect_that(round(mean(na.seadec(x, algorithm = "mean", find_frequency = TRUE)), digits = 1), is_identical_to(279.5))
+  expect_that(round(mean(na.seadec(x, algorithm = "mean", find_frequency = FALSE)), digits = 1), is_identical_to(279.8))
+  
+  expect_that(round(mean(na.seadec(x, algorithm = "kalman", model = "auto.arima", find_frequency = TRUE)), digits = 1) > 277 &
+                round(mean(na.seadec(x, algorithm = "kalman", model = "auto.arima", find_frequency = TRUE)), digits = 1) < 283, is_true())
+  
+  expect_that(round(mean(na.seadec(x, algorithm = "ma", find_frequency = TRUE)), digits = 1), is_identical_to(280.6))
+  expect_that(round(mean(na.seadec(x, algorithm = "ma", find_frequency = FALSE)), digits = 1), is_identical_to(281.2))
+  
+})
