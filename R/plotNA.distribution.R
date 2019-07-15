@@ -95,6 +95,7 @@ plotNA_distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "i
   }
   
   suppressWarnings(print(gg))
+  return(0)
 }
 
 
