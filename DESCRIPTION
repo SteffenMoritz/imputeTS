@@ -30,6 +30,7 @@ Imports:
     stats,
     graphics,
     grDevices,
+    ggplot2,
     forecast,
     magrittr,
     Rcpp
@@ -37,5 +38,5 @@ Suggests:
     testthat, stinepack,utils, zoo, timeSeries, tis, xts
 License: GPL-3
 VignetteBuilder: utils
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 LinkingTo: Rcpp

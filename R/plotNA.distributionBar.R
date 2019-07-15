@@ -14,152 +14,188 @@
 #'  
 #' @param percentage Whether the NA / non-NA ration should be given as percent or absolute numbers
 #' 
-#' @param legend If TRUE a legend is shown at the bottom of the plot. A custom legend can be obtained by
-#'  setting this parameter to FALSE and using  \code{\link[graphics]{legend}} function
+#' @param legend If TRUE a legend is added at the bottom
 #' 
-#' @param axis If TRUE a x-axis with labels is added. A custom axis can be obtained by
-#'  setting this parameter to FALSE and using  \code{\link[graphics]{axis}} function
+#' @param axes If FALSE the axes are hidden
 #' @param space The amount of space (as a fraction of the average bar width) left before each bar.
 #' @param col A vector of colors for the bars or bar components.
-#' @param main Main title for the plot
-#' @param xlab Label for x axis of the plot
-#' @param ylab Label for y axis of plot
-#' @param ... Additional graphical parameters that can be passed through to barplot 
+#' @param main Main title
+#' @param xlab Label for x axis
+#' @param ylab Label for y axis
+#' @param colborder Color for the bar chart borders. Default is 'black'.
+#' @param xangle Angle of x-axis labels. Default is '0'.
+#' @param theme Theme for ggplot2. Default is \code{\link[ggplot2]{theme_minimal}}
+#' @param ... These parameters are passed to \code{\link[ggplot2]{geom_bar}} 
 #' 
 #' @details This function visualizes the distribution of missing values within a time series.
-#' In comparison to the \code{\link[imputeTS]{plotNA.distribution}} function this is not done by plotting
+#' In comparison to the \code{\link[imputeTS]{plotNA_distribution}} function this is not done by plotting
 #' each observation of the time series separately Instead observations for time intervals are represented as bars.
 #' For these intervals information about the amount of missing values are shown. This has the advantage, that also
 #' for large time series a plot which is easy to overview can be created.
 #'
 #' @author Steffen Moritz
 #' 
-#' @seealso \code{\link[imputeTS]{plotNA.distribution}},
-#'  \code{\link[imputeTS]{plotNA.gapsize}}, \code{\link[imputeTS]{plotNA.imputations}}
+#' @seealso \code{\link[imputeTS]{plotNA_distribution}},
+#'  \code{\link[imputeTS]{plotNA_gapsize}}, \code{\link[imputeTS]{plotNA_imputations}}
 #' 
 #' @examples
 #' #Example 1: Visualize the missing values in tsNH4 time series
-#' plotNA.distributionBar(tsNH4)
+#' plotNA_distributionBar(tsNH4)
 #' 
 #' #Example 2: Visualize the missing values in tsHeating time series
-#' plotNA.distributionBar(tsHeating, breaks = 20)
+#' plotNA_distributionBar(tsHeating, breaks = 20)
 #' 
 #' #Example 3: Same as example 1, just written with pipe operator
-#' tsNH4 %>% plotNA.distributionBar
+#' tsNH4 %>% plotNA_distributionBar
 #' 
-#' @importFrom  grDevices nclass.Sturges
-#' @importFrom graphics legend barplot axis par plot
+#' @importFrom grDevices nclass.Sturges
+#' @importFrom ggplot2 ggplot geom_bar aes position_fill 
+#' scale_fill_manual scale_x_discrete scale_y_continuous
+#' theme element_text element_blank xlab ylab ggtitle theme_minimal
 #' @importFrom magrittr %>%
-#' @export plotNA.distributionBar
-
-plotNA.distributionBar <- function(x, 
-                                    breaks = grDevices::nclass.Sturges(x), breaksize = NULL, percentage = TRUE, legend = TRUE,
-                                    axis =TRUE, space =0, col=c('indianred2','green2'), main = "Distribution of NAs", xlab ="Time Lapse", ylab=NULL ,  ... ) {
+#' @export
+plotNA_distributionBar <- function(x, breaks = grDevices::nclass.Sturges(x), 
+                                   breaksize = NULL, percentage = TRUE, legend = TRUE,
+                                   axes =TRUE, space =0, 
+                                   col=c('indianred2','green2'), 
+                                   main = "Distribution of NAs", 
+                                   xlab ="Time Lapse", ylab=NULL,
+                                   colborder = "black", xangle = 0,
+                                   theme = theme_minimal(), ... ) {
   
   data <- x
   
   ##
   ## Input check
   ## 
-  if(!is.null(dim(data)) && dim(data)[2] != 1)
-  {stop("Input x is not univariate")}
+  if (!is.null(dim(data)) && dim(data)[2] != 1) {stop("Input x is not univariate")}
+  if (!is.numeric(data)) {stop("Input x is not numeric")}
   
-  if(!is.numeric(data))
-  {stop("Input x is not numeric")}
+  # Change zoo, xts, timeSeries objects to vector to avoid errors
+  if (is.ts(data)) {data <- as.vector(data)}
   
   
   ##
   ## Plotting Code
   ## 
   
-  # Change zoo, xts, timeSeries objects to vector to avoid errors
-  if (!is.ts(data)) 
-  {data <- as.vector(data)}
+  len_data <- length(data)
   
-  #save par settings and reset after function
-  par.default <- graphics::par(no.readonly=TRUE) 
-  on.exit(graphics::par(par.default))
-  
-  
-  
-  #Calculate the breakssize from the demanded breaks
-  if (is.null(breaksize)) {
-    breaksize <- ceiling(length(data) / breaks)
-  }
-  
-  breakpoints <- c(1)
-  bp <- 1
-  while ( bp < length(data))
-  {
-    bp <- bp+ breaksize
-    if (bp >= length(data))
-    { bp <- length(data) }
-    breakpoints <- c(breakpoints,bp)  
-  }
+  #Calculate the breaksize from the demanded breaks
+  if (is.null(breaksize)) breaksize <- ceiling(len_data / breaks)
+  breakpoints <- unique(c(seq(1, len_data, breaksize), len_data))
   
   #Define the width of the last bin in order to make it smaller if it contains less values
-  widthLast <- (breakpoints[length(breakpoints)] - breakpoints[length(breakpoints)-1]) / (breakpoints[2] - breakpoints[1])
+  widthLast <- (breakpoints[length(breakpoints)] - breakpoints[length(breakpoints) - 1]) / 
+    (breakpoints[2] - breakpoints[1])
   
   #calculate NA/non-NA ratio inside of every bin
-  naAmount <- numeric(0)
-  okAmount <- numeric(0)
-  for (i in 1:(length(breakpoints)-1)) {
-    
+  naAmount <- okAmount <- numeric(0)
+  for (i in 1:(length(breakpoints) - 1)) {
     cut <- data[(breakpoints[i]+1):(breakpoints[i+1])]
     
     nas <- length(which(is.na(cut)))
-    naAmount <- c(naAmount,nas )
+    naAmount <- c(naAmount, nas)
     
     oks <- length(cut) - nas
-    okAmount <- c(okAmount, oks )
-    
+    okAmount <- c(okAmount, oks)
   }
   
   #calculate percentages if wanted 
-  if (percentage == TRUE) {
-    
-    temp1 <- naAmount/(okAmount+naAmount)
-    temp2 <- okAmount/(okAmount+naAmount)
-    naAmount[is.infinite(naAmount)] <- 1 
-    okAmount[is.infinite(okAmount)] <- 1 
-    naAmount <- temp1
-    okAmount <- temp2
+  if (percentage) {
+    sums = okAmount + naAmount
+    naAmount <- naAmount / sums
+    okAmount <- okAmount / sums
     ylab1 <- "Percentage"
-    
-  } else if(percentage == FALSE) {
+  } else {
     ylab1 <- "Number"
   }
   
   #check if ylab is pre set
-  if (is.null(ylab)) {
-    ylab <- ylab1
-  }
+  if (is.null(ylab)) ylab <- ylab1
   
   #create data to be plotted
-  plotData <- matrix(c(naAmount,okAmount),byrow=TRUE,ncol=length(naAmount))
+  len_amo <- length(naAmount) 
+  df <- data.frame(
+    "bin" = 1:len_amo,
+    "naAmount" = c(naAmount, okAmount),
+    "value" = c(rep("NA", len_amo), 
+                rep("Not_NA", len_amo))
+  )
   
-  if (legend == TRUE) { graphics::par(oma =c(0.5,0,0,0)) }
+
+  #make plot
+  # breakpoints = paste0(round((breakpoints[-1] / len_data) * 100,
+  breakpoints = paste0(round((breakpoints / len_data) * 100,
+                             digits = 0), "%")
   
-  #create the barplot
-  graphics::barplot(plotData,width =c(rep(1,length(naAmount)-1),widthLast) , main =main, space =space,col=col,xlab =xlab,ylab=ylab, ...)
   
-  breakpoints = paste0(  (round(   (breakpoints / length(data)*100   ) , digits = 0)  ), "%")
-  #add axis
-  if(axis ==TRUE) {
-    graphics::axis(1, at=c(seq(0,length(naAmount))), labels = breakpoints, line = 0.5, tick = TRUE)
+  gg <- ggplot(df) +
+    geom_bar(aes(fill = value, y = naAmount, x = bin),
+             position = position_stack(reverse = TRUE),
+             stat = "identity", color = colborder,
+             width = c(rep(1,len_amo - 1), widthLast) / (space + 1)
+             , ...
+             ) +
+    scale_fill_manual(values = col, labels = c("NAs", "non-NAs")) +
+    scale_y_continuous(expand = c(0, 0)) +
+    scale_x_discrete(breaks = seq(0, len_amo),
+                     labels = breakpoints,
+                     limits = as.character(seq(0, len_amo))) + 
+    theme +
+    theme(legend.position = "none",
+          axis.text.x = element_text(angle = xangle, hjust = 1.5),
+          plot.title = element_text(hjust = 0.5)) +
+    xlab(xlab) + ylab(ylab) +
+    ggtitle(main);
+  
+  #hide axis
+  if (!axes) {
+    gg <- gg + 
+      theme(axis.title.x = element_blank(),
+            axis.text.x = element_blank(),
+            axis.ticks.x = element_blank(),
+            axis.title.y = element_blank(),
+            axis.text.y = element_blank(),
+            axis.ticks.y = element_blank()
+      )
   }
-  #add legend if wanted
- 
-  if (legend == TRUE) {
-    graphics::par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
-    graphics::plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-    graphics::legend("bottom",  bty ='n',xjust =0.5, horiz = TRUE , cex=1, legend = c("NAs","non-NAs"), col = c("indianred2","green2"), pch = c(15))
+  
+  #add legend
+  if (legend) {
+    gg <- gg +
+      theme(legend.title = element_blank(), 
+            legend.position = "bottom")
   }
   
-  
-  
+  suppressWarnings(print(gg))
 }
 
 
-
+#' Deprecated use \code{\link[imputeTS]{plotNA_distributionBar}} instead.
+#' @description plotNA.distributionBar is replaced by \code{\link[imputeTS]{plotNA_distributionBar}}.
+#' The functionality stays the same. The new name better fits modern R code
+#' style guidelines (which prefer _ over . in function names).
+#' @inheritParams plotNA_distributionBar
+#' @keywords internal
+#' @export
+plotNA.distributionBar <- function(x, breaks = grDevices::nclass.Sturges(x), 
+                                breaksize = NULL, percentage = TRUE, legend = TRUE,
+                                axes =TRUE, space =0, 
+                                col=c('indianred2','green2'), 
+                                main = "Distribution of NAs", 
+                                xlab ="Time Lapse", ylab=NULL,
+                                colborder = "black", xangle = 0,
+                                theme = theme_minimal(), ... ) {
+  .Deprecated(
+    new = "plotNA_distributionBar",
+    msg = "plotNA.distributionBar will be replaced by plotNA_distributionBar
+    Functionality stays the same.
+    The new function name better fits modern R code style guidelines.
+    Please adjust your code accordingly."
+  )
+  plotNA_distributionBar(x, breaks, breaksize, percentage, legend,
+                         axes, space, col, main, xlab, ylab, colborder, xangle,
+                         theme, ...)
+}
 
