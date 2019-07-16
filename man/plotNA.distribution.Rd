@@ -7,7 +7,7 @@
 plotNA.distribution(x, colPoints = "steelblue",
   colBackgroundMV = "indianred2", main = "Distribution of NAs",
   xlab = "Time", ylab = "Value", pch = 20, cexPoints = 2.5,
-  col = "black", theme = theme_minimal(), ...)
+  col = "black", theme = ggplot2::theme_minimal(), ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs}

@@ -8,7 +8,8 @@ plotNA.distributionBar(x, breaks = grDevices::nclass.Sturges(x),
   breaksize = NULL, percentage = TRUE, legend = TRUE, axes = TRUE,
   space = 0, col = c("indianred2", "green2"),
   main = "Distribution of NAs", xlab = "Time Lapse", ylab = NULL,
-  colborder = "black", xangle = 0, theme = theme_minimal(), ...)
+  colborder = "black", xangle = 0, theme = ggplot2::theme_minimal(),
+  ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs}
@@ -17,7 +18,7 @@ plotNA.distributionBar(x, breaks = grDevices::nclass.Sturges(x),
 using Sturges' formula. If the breaksize parameter is set to a value different to NULL
 this parameter is ignored.}
 
-\item{breaksize}{Defines how many observations should be in one bin. The required number of 
+\item{breaksize}{Defines how many observations should be in one bin. The required number of
 overall bins is afterwards calculated automatically. This parameter if used overwrites the breaks parameter.}
 
 \item{percentage}{Whether the NA / non-NA ration should be given as percent or absolute numbers}

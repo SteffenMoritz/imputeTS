@@ -152,7 +152,7 @@ If you found a bug or have suggestions, feel free to get in contact via steffen.
 
 
 ### Version
-**3.0**
+**3.1**
 
 ### License
 GPL-3

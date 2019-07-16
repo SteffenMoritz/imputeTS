@@ -9,7 +9,7 @@ plotNA.imputations(x.withNA, x.withImputations, x.withTruth = NULL,
   xlab = "Time", ylab = "Value", colWithTruth = "green3",
   colLines = "black", colWithImputations = "indianred2",
   colWithNA = "steelblue2", pch = 20, cex = 2,
-  theme = theme_minimal(), ...)
+  theme = ggplot2::theme_minimal(), ...)
 }
 \arguments{
 \item{x.withNA}{Numeric Vector or Time Series (\code{\link{ts}}) object with NAs before imputation}

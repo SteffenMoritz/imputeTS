@@ -1,3 +1,13 @@
+## Changes in Version 3.1
+
+* Plotting functions in ggplot
+
+* Renamed plotting functions to plotNA_distribution, plotNA_distributionBar, 
+  plotNA_imputations, plotNA_gapsize
+  
+* Added harmonic and geometric mean as option for na_mean
+
+
 ## Changes in Version 3.0
 
 Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs

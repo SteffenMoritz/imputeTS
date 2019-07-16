@@ -7,7 +7,7 @@
 plotNA_distribution(x, colPoints = "steelblue",
   colBackgroundMV = "indianred2", main = "Distribution of NAs",
   xlab = "Time", ylab = "Value", pch = 20, cexPoints = 2.5,
-  col = "black", theme = theme_minimal(), ...)
+  col = "black", theme = ggplot2::theme_minimal(), ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs}
@@ -37,19 +37,20 @@ Visualize the distribution of missing values within a time series.
 }
 \details{
 This function visualizes the distribution of missing values within a time series.
-If a value is NA, the background is colored differently. This gives a good overview 
+If a value is NA, the background is colored differently. This gives a good overview
 of where most missing values occur.
 }
 \examples{
-#Example 1: Visualize the missing values in x
+# Example 1: Visualize the missing values in x
+# x <- ts(c(1:11, 4:9,NA,NA,NA,11:15,7:15,15:6,NA,NA,2:5,3:7))
+# plotNA_distribution(x)
 
-#Example 2: Visualize the missing values in tsAirgap time series
+# Example 2: Visualize the missing values in tsAirgap time series
 plotNA_distribution(tsAirgap)
 
-#Example 3: Same as example 1, just written with pipe operator
-x <- ts(c(1:11, 4:9,NA,NA,NA,11:15,7:15,15:6,NA,NA,2:5,3:7))
-x \%>\% plotNA_distribution
-
+# Example 3: Same as example 1, just written with pipe operator
+x <- ts(c(1:11, 4:9, NA, NA, NA, 11:15, 7:15, 15:6, NA, NA, 2:5, 3:7))
+x \%>\% plotNA_distribution()
 }
 \seealso{
 \code{\link[imputeTS]{plotNA_distributionBar}},

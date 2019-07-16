@@ -8,7 +8,8 @@ plotNA_distributionBar(x, breaks = grDevices::nclass.Sturges(x),
   breaksize = NULL, percentage = TRUE, legend = TRUE, axes = TRUE,
   space = 0, col = c("indianred2", "green2"),
   main = "Distribution of NAs", xlab = "Time Lapse", ylab = NULL,
-  colborder = "black", xangle = 0, theme = theme_minimal(), ...)
+  colborder = "black", xangle = 0, theme = ggplot2::theme_minimal(),
+  ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs}
@@ -17,7 +18,7 @@ plotNA_distributionBar(x, breaks = grDevices::nclass.Sturges(x),
 using Sturges' formula. If the breaksize parameter is set to a value different to NULL
 this parameter is ignored.}
 
-\item{breaksize}{Defines how many observations should be in one bin. The required number of 
+\item{breaksize}{Defines how many observations should be in one bin. The required number of
 overall bins is afterwards calculated automatically. This parameter if used overwrites the breaks parameter.}
 
 \item{percentage}{Whether the NA / non-NA ration should be given as percent or absolute numbers}
@@ -56,15 +57,14 @@ For these intervals information about the amount of missing values are shown. Th
 for large time series a plot which is easy to overview can be created.
 }
 \examples{
-#Example 1: Visualize the missing values in tsNH4 time series
+# Example 1: Visualize the missing values in tsNH4 time series
 plotNA_distributionBar(tsNH4)
 
-#Example 2: Visualize the missing values in tsHeating time series
+# Example 2: Visualize the missing values in tsHeating time series
 plotNA_distributionBar(tsHeating, breaks = 20)
 
-#Example 3: Same as example 1, just written with pipe operator
-tsNH4 \%>\% plotNA_distributionBar
-
+# Example 3: Same as example 1, just written with pipe operator
+tsNH4 \%>\% plotNA_distributionBar()
 }
 \seealso{
 \code{\link[imputeTS]{plotNA_distribution}},
