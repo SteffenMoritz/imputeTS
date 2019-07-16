@@ -4,88 +4,121 @@
 #' 
 #' @param x Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs
 #' 
-#' @param colPoints Color of the points for each observation
-#' @param colBackgroundMV Color for the background for the NA sequences
-#' @param main Main label for the plot
-#' @param xlab Label for x axis of the plot
-#' @param ylab Label for y axis of plot
-#' @param pch Plotting 'character', i.e., symbol to use.
-#' @param cexPoints character (or symbol) expansion: a numerical vector.
-#' @param col Color for the lines.
-#' @param ... Additional graphical parameters that can be passed through to plot 
+#' @param colPoints Point color for observations
+#' @param colBackgroundMV Background color for NA sequences
+#' @param col Line color
+#' @param main Main title
+#' @param xlab Label for x axis
+#' @param ylab Label for y axis
+#' @param pch Plotting 'character', i.e., symbol to use
+#' @param cexPoints Character (or symbol) expansion: a numerical vector
+#' @param theme Set a theme for ggplot2. Default is \code{\link[ggplot2]{theme_minimal}}
+#' @param ... These parameters are passed to \code{\link[ggplot2]{geom_line}} 
 #' 
-#' @details This function visualizes the distribution of missing values within a time series. Therefore, 
-#' the time series is plotted and whenever a value is NA the background is colored differently.
-#' This gives a nice overview, where in the time series most of the missing values occur.
+#' @details This function visualizes the distribution of missing values within a time series.
+#' If a value is NA, the background is colored differently. This gives a good overview 
+#' of where most missing values occur.
 #' 
 #' 
 #' @author Steffen Moritz
 #' 
-#' @seealso \code{\link[imputeTS]{plotNA.distributionBar}},
-#'  \code{\link[imputeTS]{plotNA.gapsize}}, \code{\link[imputeTS]{plotNA.imputations}}
+#' @seealso \code{\link[imputeTS]{plotNA_distributionBar}},
+#'  \code{\link[imputeTS]{plotNA_gapsize}}, \code{\link[imputeTS]{plotNA_imputations}}
 #' 
 #' @examples
 #' #Example 1: Visualize the missing values in x
-#' x <- ts(c(1:11, 4:9,NA,NA,NA,11:15,7:15,15:6,NA,NA,2:5,3:7))
-#' plotNA.distribution(x)
+# x <- ts(c(1:11, 4:9,NA,NA,NA,11:15,7:15,15:6,NA,NA,2:5,3:7))
+# plotNA_distribution(x)
 #' 
 #' #Example 2: Visualize the missing values in tsAirgap time series
-#' plotNA.distribution(tsAirgap)
+#' plotNA_distribution(tsAirgap)
 #' 
 #' #Example 3: Same as example 1, just written with pipe operator
 #' x <- ts(c(1:11, 4:9,NA,NA,NA,11:15,7:15,15:6,NA,NA,2:5,3:7))
-#' x %>% plotNA.distribution
+#' x %>% plotNA_distribution
 #' 
-#' @importFrom graphics par plot points barplot
+#' @importFrom ggplot2 ggplot geom_point aes geom_line geom_bar ggtitle xlab ylab 
+#' theme theme_minimal element_text
 #' @importFrom stats ts
 #' @importFrom magrittr %>%
 #' @export
-
-plotNA.distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "indianred2",
-                                main="Distribution of NAs", xlab = "Time", ylab="Value", pch = 20, cexPoints = 0.8, col ="black", ... ) {
+plotNA_distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "indianred2",
+                                main="Distribution of NAs", xlab = "Time", ylab="Value", 
+                                pch = 20, cexPoints = 2.5, col ="black",
+                                theme = theme_minimal(), ... ) {
+  
   
   data <- x
   
   ##
-  ## Input check
+  ## Input check ##############
   ## 
   
-  if(!is.null(dim(data)) && dim(data)[2] != 1)
-  {stop("Input x is not univariate")}
+  if (!is.null(dim(data)) && dim(data)[2] != 1) {stop("Input x is not univariate")}
+  if (!is.numeric(data)) {stop("Input x is not numeric")}
   
-  if(!is.numeric(data))
-  {stop("Input x is not numeric")}
-  
-  
-  ##
-  ## Plotting Code
-  ## 
-
   # Change zoo, xts, timeSeries objects to vector to avoid errors
-  if (!is.ts(data)) 
-  {data <- as.vector(data)}
+  if (is.ts(data)) {data <- as.vector(data)}
   
   id.na <- which(is.na(data))
   
-  #Red Bars only if missing data in time series
-  if (length(id.na > 0)) 
-  {
-    barplotData <- rep(NA,length(data))
+  ##
+  ## Plotting Code  ##############
+  ## 
+  
+  ## ggplot dataframe
+  df <- data.frame(
+    time = 1:length(data),
+    value = data
+  )
+  
+  ## Plot the line diagram of known values  ##############
+  gg <- ggplot() +
+    geom_point(data = df[!is.na(df$value),], 
+               aes(x = time, y = value), shape = pch, 
+               col = colPoints, size = cexPoints) +
+    geom_line(data = df[!is.na(df$value),], 
+              aes(x = time, y = value), col = col, ...) +
+    ggtitle(label = main) + 
+    xlab(xlab) + ylab(ylab) + 
+    theme +
+    theme(plot.title = element_text(hjust = 0.5))
+  
+  if (length(id.na) > 0) {
+    #Red Bars only if missing data in time series
+    NA_val <- max(df$value, na.rm = T)
+    gg <- gg + 
+      geom_bar(data = df[is.na(df$value),], stat = "identity",
+               aes(x = time, y = NA_val), 
+               col = colBackgroundMV, fill = colBackgroundMV)
     
-    #make sure the end of the bar can not be seen
-    barplotData[id.na] <- max(data, na.rm =TRUE )*100
-    
-    ##Plot the red in background for unknown values
-    graphics::barplot(barplotData, col = colBackgroundMV,xaxt = "n", yaxt = "n",   xlab = "", ylab = "", border = colBackgroundMV)
-    graphics::par(new=TRUE)
   }
-  ## Plot the line diagram of known values
   
-  graphics::plot(data, main =main, type = "l", xlab = xlab, ylab = ylab, col = col,... )
-  graphics::points(data, pch= pch , cex = cexPoints, col = colPoints)
-  
+  suppressWarnings(print(gg))
+  return(0)
 }
 
 
 
+#' Deprecated use \code{\link[imputeTS]{plotNA_distribution}} instead.
+#' @description plotNA.distribution is replaced by \code{\link[imputeTS]{plotNA_distribution}}.
+#' The functionality stays the same. The new name better fits modern R code
+#' style guidelines (which prefer _ over . in function names).
+#' @inheritParams plotNA_distribution
+#' @keywords internal
+#' @export
+plotNA.distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "indianred2",
+                                main="Distribution of NAs", xlab = "Time", ylab="Value", 
+                                pch = 20, cexPoints = 2.5, col ="black",
+                                theme = theme_minimal(), ...) {
+  .Deprecated(
+    new = "plotNA_distribution",
+    msg = "plotNA.distribution will be replaced by plotNA_distribution.
+    Functionality stays the same.
+    The new function name better fits modern R code style guidelines.
+    Please adjust your code accordingly."
+  )
+  plotNA_distribution(x, colPoints, colBackgroundMV,
+          main, xlab, ylab, pch, cexPoints, col, theme, ...)
+}
 

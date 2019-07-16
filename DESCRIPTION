@@ -31,6 +31,7 @@ Imports:
     stats,
     graphics,
     grDevices,
+    ggplot2,
     stinepack,
     forecast,
     magrittr,
