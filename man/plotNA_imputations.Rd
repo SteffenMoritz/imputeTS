@@ -9,7 +9,7 @@ plotNA_imputations(x.withNA, x.withImputations, x.withTruth = NULL,
   xlab = "Time", ylab = "Value", colWithTruth = "green3",
   colLines = "black", colWithImputations = "indianred2",
   colWithNA = "steelblue2", pch = 20, cex = 2,
-  theme = theme_minimal(), ...)
+  theme = ggplot2::theme_minimal(), ...)
 }
 \arguments{
 \item{x.withNA}{Numeric Vector or Time Series (\code{\link{ts}}) object with NAs before imputation}
@@ -46,23 +46,24 @@ plotNA_imputations(x.withNA, x.withImputations, x.withTruth = NULL,
 Visualize the imputed values in a time series.
 }
 \details{
-This plot can be used, to visualize imputed values for a time series. 
+This plot can be used, to visualize imputed values for a time series.
 Imputed values (filled NA gaps) are shown in a different color than the other values.
 If real values (truth) for the NA gaps are known, they are added in a different color.
 }
 \examples{
-#Example 1: Visualize the values that were imputed by na.mean in the time series
+# Example 1: Visualize the values that were imputed by na.mean in the time series
 impMean.Airgap <- na.mean(tsAirgap)
 plotNA_imputations(tsAirgap, impMean.Airgap)
 
 
-#Example 2: Visualize the values that were imputed by na.locf and the true values in the time series
+# Example 2: Visualize the imputed values by na_locf and the true values in the time series
 impLOCF.Airgap <- na.locf(tsAirgap)
 plotNA_imputations(tsAirgap, impLOCF.Airgap, tsAirgapComplete)
 
-#Example 3: Same as example 1, just written with pipe operator
-tsAirgap \%>\% na.mean \%>\% plotNA_imputations(x.withNA = tsAirgap)
-
+# Example 3: Same as example 1, just written with pipe operator
+tsAirgap \%>\%
+  na.mean() \%>\%
+  plotNA_imputations(x.withNA = tsAirgap)
 }
 \seealso{
 \code{\link[imputeTS]{plotNA_distribution}},\code{\link[imputeTS]{plotNA_distributionBar}},

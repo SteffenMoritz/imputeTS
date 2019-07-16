@@ -8,7 +8,7 @@ plotNA_gapsize(x, limit = 10, byTotalNA = FALSE, legend = TRUE,
   col = c("indianred", "steelblue"),
   xlab = "Ranking of the different gap sizes", ylab = "Number",
   main = "Occurrence of gap sizes (NAs in a row)", horiz = FALSE,
-  axes = TRUE, beside = TRUE, theme = theme_minimal(), ...)
+  axes = TRUE, beside = TRUE, theme = ggplot2::theme_minimal(), ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs}
@@ -28,7 +28,7 @@ For byTotalNA = FALSE the top gap sizes are shown by their number of occurrence.
 
 \item{main}{Main title}
 
-\item{horiz}{Logical. If FALSE, the bars are drawn vertically with the first bar to the left. 
+\item{horiz}{Logical. If FALSE, the bars are drawn vertically with the first bar to the left.
 If TRUE, the bars are drawn horizontally with the first at the bottom.}
 
 \item{axes}{Logical. If TRUE, a vertical (or horizontal, if horiz is true) axis is drawn.}
@@ -44,21 +44,20 @@ Visualize Distribution of NA gap sizes (NAs in a row) in a time series
 }
 \details{
 This plotting function can be used to visualize the length of the NA gaps (NAs in a row)
- in a time series. It shows a ranking of which gap sizes occur most often. This ranking can be ordered by 
+ in a time series. It shows a ranking of which gap sizes occur most often. This ranking can be ordered by
  total NAs for this gap size (occurrence * gap length) or by occurrence of the gap size.
- The outcome will be somethink like in the time series 2NAs in a row occurred  27times, 
+ The outcome will be somethink like in the time series 2NAs in a row occurred  27times,
  4NAs in a row occurred  11 times,  7NAs in a row occurred 5 times, 1NA in a row occurred 3 times, ... .
 }
 \examples{
-#Example 1: Visualize the top gap sizes in tsNH4
+# Example 1: Visualize the top gap sizes in tsNH4
 plotNA_gapsize(tsNH4)
 
-#Example 2: Visualize the top gap sizes in tsAirgap
+# Example 2: Visualize the top gap sizes in tsAirgap
 plotNA_gapsize(tsAirgap)
 
-#Example 3: Same as example 1, just written with pipe operator
-tsNH4 \%>\% plotNA_gapsize
-
+# Example 3: Same as example 1, just written with pipe operator
+tsNH4 \%>\% plotNA_gapsize()
 }
 \seealso{
 \code{\link[imputeTS]{plotNA_distribution}},\code{\link[imputeTS]{plotNA_distributionBar}},

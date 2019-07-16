@@ -2,7 +2,9 @@ context("plotNA.distribution")
 
 test_that("Check that plot is running without error",
           {
+
             expect_that( is.atomic(plotNA_distribution(tsAirgap)), is_true())
+            expect_that( is.recursive(plotNA_distribution(tsAirgap)), is_true())
             expect_that( is.atomic(plotNA.distribution(tsAirgap)), is_true())
             expect_warning(plotNA.distribution(tsAirgap))
             
@@ -16,4 +18,6 @@ test_that("Check that plot is running without error",
             ## input not numeric
             x <- c("a", 1, 2, 3)
             expect_error(plotNA_distribution(x))
+            
           })
+

@@ -2,6 +2,7 @@ context("plotNA.gapsize")
 
 test_that("Check that plot is running without error",
           {
+            expect_that( is.recursive(plotNA_gapsize(tsAirgap)), is_true())
             expect_that( is.list(plotNA_gapsize(tsAirgap)), is_true())
             expect_that( is.list(plotNA_gapsize(tsAirgap, byTotalNA = T)), is_true())
             expect_that( is.list(plotNA_gapsize(tsAirgap, limit = 2)), is_true())
@@ -27,3 +28,4 @@ test_that("Check that plot is running without error",
             expect_error(plotNA_gapsize(x))
             
           })
+

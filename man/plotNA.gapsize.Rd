@@ -8,7 +8,7 @@ plotNA.gapsize(x, limit = 10, byTotalNA = FALSE, legend = TRUE,
   col = c("indianred", "steelblue"),
   xlab = "Ranking of the different gap sizes", ylab = "Number",
   main = "Occurrence of gap sizes (NAs in a row)", horiz = FALSE,
-  axes = TRUE, beside = TRUE, theme = theme_minimal(), ...)
+  axes = TRUE, beside = TRUE, theme = ggplot2::theme_minimal(), ...)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs}
@@ -28,7 +28,7 @@ For byTotalNA = FALSE the top gap sizes are shown by their number of occurrence.
 
 \item{main}{Main title}
 
-\item{horiz}{Logical. If FALSE, the bars are drawn vertically with the first bar to the left. 
+\item{horiz}{Logical. If FALSE, the bars are drawn vertically with the first bar to the left.
 If TRUE, the bars are drawn horizontally with the first at the bottom.}
 
 \item{axes}{Logical. If TRUE, a vertical (or horizontal, if horiz is true) axis is drawn.}

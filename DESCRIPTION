@@ -1,5 +1,5 @@
 Package: imputeTS
-Version: 3.0
+Version: 3.1
 Date: 2019-07-01
 Title: Time Series Missing Value Imputation
 Description: Imputation (replacement) of missing values 
@@ -16,7 +16,7 @@ Author: Steffen Moritz [aut, cre, cph] (<https://orcid.org/0000-0002-0085-1804>)
 Authors@R: 
   c(
   person("Steffen", "Moritz", email="steffen.moritz10@gmail.com", role=c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-0085-1804")),
-  person("Sebastian", "Gatscha", email="sebastian_gatscha@gmx.at", role="ctb")
+  person("Sebastian", "Gatscha", email="sebastian_gatscha@gmx.at", role="aut")
   )
 Maintainer: Steffen Moritz <steffen.moritz10@gmail.com>
 LazyData: yes
@@ -29,7 +29,6 @@ Depends:
     R (>= 3.0.1)
 Imports:
     stats,
-    graphics,
     grDevices,
     ggplot2,
     stinepack,
