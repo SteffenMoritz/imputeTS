@@ -1,4 +1,4 @@
-context("plotNA.gapsize")
+context("plotNA_gapsize")
 
 test_that("Check that plot is running without error",
           {

@@ -1,6 +1,9 @@
 context("na.interpolation")
 
-
+test_that("All NA vector throws error",
+          {
+            expect_error(na.interpolation(c(NA,NA,NA,NA,NA)))
+          })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)",
           {

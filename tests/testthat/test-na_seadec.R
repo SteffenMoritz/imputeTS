@@ -1,5 +1,9 @@
 context("na_seadec")
 
+test_that("All NA vector throws error",
+          {
+            expect_error(na_seadec(c(NA,NA,NA,NA,NA)))
+          })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)", {
   skip_on_cran()

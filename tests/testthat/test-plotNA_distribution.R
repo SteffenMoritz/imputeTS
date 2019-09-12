@@ -1,4 +1,4 @@
-context("plotNA.distribution")
+context("plotNA_distribution")
 
 test_that("Check that plot is running without error",
           {

@@ -90,10 +90,9 @@ na_replace <- function(x, fill = 0, maxgap = Inf) {
     }
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
-    if (all(missindx)) {
-      stop("Input data has only NAs. Input data needs at least 1 non-NA data point for applying na_mean")
-    }
+    # Not needed for na_replace, it works with all NA vectors
 
+    
     # 1.4 Checks and corrections for wrong data dimension
 
     # Check if input dimensionality is not as expected
@@ -108,7 +107,9 @@ na_replace <- function(x, fill = 0, maxgap = Inf) {
     }
 
     # 1.5 Check if input is numeric
-    if (!is.numeric(data)) {
+    
+    # Combined with check if all NA present, since an all NA vector returns FALSE for is.numeric
+    if (!is.numeric(data) & !all(is.na(data))) {
       stop("Input x is not numeric")
     }
 

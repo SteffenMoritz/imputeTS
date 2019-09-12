@@ -1,5 +1,10 @@
 context("na.random")
 
+test_that("All NA vector throws error",
+          {
+            expect_error(na.random(c(NA,NA,NA,NA,NA)))
+          })
+
 test_that("Wrong input",
           {
             x <- data.frame(tsAirgap)

@@ -1,5 +1,10 @@
 context("na_mean")
             
+test_that("All NA vector throws error",
+          {
+            expect_error(na_mean(c(NA,NA,NA,NA,NA)))
+          })
+
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)",
           {
             skip_on_cran()

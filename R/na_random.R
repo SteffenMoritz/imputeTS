@@ -101,8 +101,9 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
     }
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
-    if (all(missindx)) {
-      stop("Input data has only NAs")
+    if (sum(!missindx) < 2 && !(!is.null(upper_bound) && !is.null(lower_bound) )) {
+      stop("Input data needs at least 2 non-NA data point for applying na_random 
+           with default lower_bound and upper_bound settings.")
     }
 
     # 1.4 Checks and corrections for wrong data dimension
@@ -119,7 +120,9 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
     }
 
     # 1.5 Check if input is numeric
-    if (!is.numeric(data)) {
+    
+    # Combined with check if all NA present, since an all NA vector returns FALSE for is.numeric
+    if (!is.numeric(data) & !all(is.na(data))) {
       stop("Input x is not numeric")
     }
 
@@ -132,10 +135,24 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
     if (is.null(upper_bound)) {
       upper_bound <- max(data, na.rm = TRUE)
     }
-
+    
+    if (!is.numeric(lower_bound)) {
+      stop("Error for parameter lower_bound: Has to be a numeric value or NULL")
+    }
+    
+    if (!is.numeric(upper_bound)) {
+      stop("Error for parameter upper_bound: Has to be a numeric value or NULL")
+    }
+    
     # For user set upper and lower bounds check if they make sense
     if (lower_bound >= upper_bound) {
-      stop("Error for parameter lower_bound: Lower Bound must be smaller than upper_bound ")
+      stop("Error for parameter lower_bound: lower_bound must be smaller than upper_bound.
+
+           In case you are using the default settings for these two parameters 
+           (which use the min and max of the input series as bounds for the random numbers)
+           appearance of this error message means all values of your time series have the same 
+           unique value. In this case try to set the bounds manually."
+      )
     }
 
 

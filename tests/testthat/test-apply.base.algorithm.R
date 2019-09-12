@@ -1,4 +1,4 @@
-context("int.algoInterface")
+context("apply.base.algorithm")
 
 test_that("Error for wrong algorithm choice",
           {

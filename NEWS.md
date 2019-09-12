@@ -1,17 +1,29 @@
 ## Changes in Version 3.1
+Thanks to Jan (jmablans) for reporting bugs
+Thanks to Sebastian Gatscha for programming all our new plotting functions, new na_mean options, new unit tests
 
-* Plotting functions in ggplot
+* Plotting functions are all in ggplot now (way better looking)
 
 * Renamed plotting functions to plotNA_distribution, plotNA_distributionBar, 
   plotNA_imputations, plotNA_gapsize
   
 * Added harmonic and geometric mean as option for na_mean
 
+* Removed bug in na_replace - it can now be used with all NA vectors since 
+ it requires no minimum of non-NA values (reported by Jan - jmablans)
+ 
+* Improved na.random input check (usable with all NA input now if upper and lower bound
+  paramters are exlicitly set to numeric values)
+
+* Additional unit tests for the plotting functions
+
+* Additional unit tests for the all imputation functions (testing all NA input)
+
 
 ## Changes in Version 3.0
 
 Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs
-Thanks to for Sebastian Gatscha providing the (way faster) C++ na.ma() implementation
+Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementation
 
  * tibble and tstibble compatibility
  

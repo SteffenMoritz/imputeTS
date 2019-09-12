@@ -1,5 +1,9 @@
 context("na.remove")
 
+test_that("All NA vector throws error",
+          {
+            expect_error(na.remove(c(NA,NA,NA,NA,NA)))
+          })
 
 test_that("Wrong input",
           {

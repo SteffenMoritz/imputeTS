@@ -1,4 +1,4 @@
-context("plotNA.imputations")
+context("plotNA_imputations")
 
 test_that("Check that plot is running without error",
           {
