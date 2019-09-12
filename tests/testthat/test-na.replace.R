@@ -2,7 +2,7 @@ context("na.replace")
 
 test_that("All NA vector throws no error",
           {
-            expect_that(sum(na.replace(c(NA,NA,NA,NA,NA)), fill = 2.0), is_identical_to(10.0))
+            expect_that(sum(na.replace(c(NA,NA,NA,NA,NA), fill = 2.0)), is_identical_to(10.0))
           })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)",
