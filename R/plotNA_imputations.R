@@ -36,17 +36,17 @@
 #'
 #' @examples
 #' # Example 1: Visualize the values that were imputed by na.mean in the time series
-#' impMean.Airgap <- na.mean(tsAirgap)
+#' impMean.Airgap <- na_mean(tsAirgap)
 #' plotNA_imputations(tsAirgap, impMean.Airgap)
 #'
 #'
 #' # Example 2: Visualize the imputed values by na_locf and the true values in the time series
-#' impLOCF.Airgap <- na.locf(tsAirgap)
+#' impLOCF.Airgap <- na_locf(tsAirgap)
 #' plotNA_imputations(tsAirgap, impLOCF.Airgap, tsAirgapComplete)
 #'
 #' # Example 3: Same as example 1, just written with pipe operator
 #' tsAirgap %>%
-#'   na.mean() %>%
+#'   na_mean() %>%
 #'   plotNA_imputations(x.withNA = tsAirgap)
 #' @importFrom magrittr %>%
 #' @importFrom ggplot2 ggplot geom_line geom_point aes
