@@ -1,7 +1,6 @@
 ## Changes in Version 3.1
-Thanks to Johannes Menzel for bug reporting
-Thanks to Jan (jmablans) for bug reporting 
-Thanks to Sebastian Gatscha for programming all our new plotting functions, new na_mean options, new unit tests
+Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting, 
+Special Thanks to Sebastian Gatscha for programming our new plotting functions, new na_mean options, new unit tests
 
 * Plotting functions are all in ggplot now (way better looking)
 
