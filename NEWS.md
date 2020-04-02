@@ -1,5 +1,6 @@
 ## Changes in Version 3.1
-Thanks to Jan (jmablans) for reporting bugs
+Thanks to Johannes Menzel for bug reporting
+Thanks to Jan (jmablans) for bug reporting 
 Thanks to Sebastian Gatscha for programming all our new plotting functions, new na_mean options, new unit tests
 
 * Plotting functions are all in ggplot now (way better looking)
@@ -18,6 +19,8 @@ Thanks to Sebastian Gatscha for programming all our new plotting functions, new 
 * Additional unit tests for the plotting functions
 
 * Additional unit tests for the all imputation functions (testing all NA input)
+
+* Fixed a mistake in README.md (reported by Johannes Menzel)
 
 
 ## Changes in Version 3.0

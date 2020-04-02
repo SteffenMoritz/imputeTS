@@ -113,7 +113,7 @@ More detailed information about the plots can be found in the [imputeTS referenc
 
 ### Datasets
 
-There are two datasets (each in two versions) available:
+There are three datasets (each in two versions) available:
 
 |      Dataset     |             Description                                          | 
 | :----------------|:-----------------------------------------------------------------|
