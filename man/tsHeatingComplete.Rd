@@ -4,7 +4,9 @@
 \name{tsHeatingComplete}
 \alias{tsHeatingComplete}
 \title{Time series of a heating systems supply temperature (complete)}
-\format{Time Series (\code{\link{ts}}) with 606837 rows.}
+\format{
+Time Series (\code{\link{ts}}) with 606837 rows.
+}
 \source{
 \url{http://www.spotseven.de/gecco-challenge/gecco-challenge-2015/}
 }

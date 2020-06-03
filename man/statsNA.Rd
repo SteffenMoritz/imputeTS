@@ -4,27 +4,31 @@
 \alias{statsNA}
 \title{Print Statistics about Missing Values}
 \usage{
-statsNA(x, bins = 4, printOnly = TRUE)
+statsNA(x, bins = 4, print_only = TRUE)
 }
 \arguments{
-\item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs}
+\item{x}{Numeric Vector (\code{\link{vector}}) or
+Time Series (\code{\link{ts}}) object containing NAs}
 
-\item{bins}{Split number for bin stats. Number of bins the time series gets divided into. 
-For each bin information about amount/percentage of missing values is printed. 
-Default value is 4 - what means stats about the 1st,2nd,3rd,4th quarter of the time
-series are shown.}
+\item{bins}{Split number for bin stats. Number of bins the time series gets
+divided into. For each bin information about amount/percentage of missing
+values is printed. Default value is 4 - what means stats about the
+1st,2nd,3rd,4th quarter of the time series are shown.}
 
-\item{printOnly}{Choose if the function Prints or Returns. For printOnly = TRUE the function has no return value and just prints out
-missing value stats. If printOnly is changed to FALSE, nothing is printed and the function returns a list.
-Print gives a little bit more information, since the returned list does not include "Stats for Bins" 
+\item{print_only}{Choose if the function Prints or Returns.
+For print_only = TRUE the function has no return value and just prints out
+missing value stats. If print_only is changed to FALSE, nothing is printed
+and the function returns a list.Print gives a little bit more information,
+since the returned list does not include "Stats for Bins"
 and "overview NA series"}
 }
 \value{
-A \code{\link{list}} containing the stats. Beware: Function gives only a return value
-if printOnly = FALSE.
+A \code{\link{list}} containing the stats. Beware: Function gives
+only a return value if print_only = FALSE.
 }
 \description{
-Print summary stats about the distribution of missing values in a univariate time series.
+Print summary stats about the distribution of
+missing values in a univariate time series.
 }
 \details{
 Prints the following information about the missing values in the time series:
@@ -32,29 +36,32 @@ Prints the following information about the missing values in the time series:
    \item{"Length of time series" - Number of observations in the time series (including NAs)}
    \item{"Number of Missing Values" - Number of missing values in the time series}
    \item{"Percentage of Missing Values" - Percentage of missing values in the time series}
+   \item{"Number of Gaps" - Number of NA gaps (consisting of one or more consecutive NAs) in the time series}
+   \item{"Average Gap Size" - Average size of consecutive NAs for the NA gaps in the time series}
    \item{"Stats for Bins" - Number/percentage of missing values for the split into bins }
    \item{"Longest NA gap" - Longest series of consecutive missing values (NAs in a row) in the time series }
    \item{"Most frequent gap size" - Most frequent occurring series of missing values in the time series}
    \item{"Gap size accounting for most NAs" - The series of consecutive missing values that accounts for most missing values overall in the time series}
    \item{"Overview NA series" - Overview about how often each series of consecutive missing values occurs. Series occurring 0 times are skipped}
    }
-   It is furthermore, important to note, that you are able to choose whether the function returns a list
-   or prints the information only. (see description of parameter "printOnly")
+   It is furthermore, important to note, that you are able to choose whether
+   the function returns a list or prints the information only.
+   (see description of parameter "print_only")
 }
 \examples{
-#Example 1: Print stats about the missing data in tsNH4
+# Example 1: Print stats about the missing data in tsNH4
 statsNA(tsNH4)
 
-#Example 2: Return list with stats about the missing data in tsAirgap
-statsNA(tsAirgap, printOnly= FALSE)
+# Example 2: Return list with stats about the missing data in tsAirgap
+statsNA(tsAirgap, print_only = FALSE)
 
-#Example 3: Same as example 1, just written with pipe operator
-tsNH4 \%>\% statsNA
-
+# Example 3: Same as example 1, just written with pipe operator
+tsNH4 \%>\% statsNA()
 }
 \seealso{
-\code{\link[imputeTS]{plotNA.distribution}},\code{\link[imputeTS]{plotNA.distributionBar}},
- \code{\link[imputeTS]{plotNA.gapsize}}
+\code{\link[imputeTS]{plotNA.distribution}},
+\code{\link[imputeTS]{plotNA.distributionBar}}, 
+\code{\link[imputeTS]{plotNA.gapsize}}
 }
 \author{
 Steffen Moritz

@@ -4,7 +4,9 @@
 \name{tsNH4Complete}
 \alias{tsNH4Complete}
 \title{Time series of NH4 concentration in a wastewater system (complete)}
-\format{Time Series (\code{\link{ts}}) with 4552 rows.}
+\format{
+Time Series (\code{\link{ts}}) with 4552 rows.
+}
 \source{
 \url{http://www.spotseven.de/gecco-challenge/gecco-challenge-2014/}
 }

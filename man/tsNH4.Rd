@@ -4,7 +4,9 @@
 \name{tsNH4}
 \alias{tsNH4}
 \title{Time series of NH4 concentration in a wastewater system (with NAs)}
-\format{Time Series (\code{\link{ts}}) with 4552 rows including 883 NAs.}
+\format{
+Time Series (\code{\link{ts}}) with 4552 rows including 883 NAs.
+}
 \source{
 \url{http://www.spotseven.de/gecco-challenge/gecco-challenge-2014/}
 }

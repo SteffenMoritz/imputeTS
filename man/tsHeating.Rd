@@ -4,7 +4,9 @@
 \name{tsHeating}
 \alias{tsHeating}
 \title{Time series of a heating systems supply temperature (with NAs)}
-\format{Time Series (\code{\link{ts}}) with 606837 rows including 57391 NAs.}
+\format{
+Time Series (\code{\link{ts}}) with 606837 rows including 57391 NAs.
+}
 \source{
 \url{http://www.spotseven.de/gecco-challenge/gecco-challenge-2015/}
 }

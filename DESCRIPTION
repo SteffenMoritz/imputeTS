@@ -39,6 +39,6 @@ Suggests:
     testthat,  R.rsp, zoo, timeSeries, tis, xts, tibble, tsibble
 License: GPL-3
 VignetteBuilder: R.rsp
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 LinkingTo: Rcpp
 Encoding: UTF-8
