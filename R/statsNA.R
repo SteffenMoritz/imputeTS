@@ -252,7 +252,8 @@ statsNA <- function(x, bins = 4, print_only = TRUE) {
       percentage_NAs = paste0(format(pct_NAs, digits = 3), "%"),
       longest_na_gap = longest_NA,
       most_frequent_na_gap = common_NA,
-      most_weighty_na_gap = wcommon_NA
+      most_weighty_na_gap = wcommon_NA,
+      df_distribution_na_gaps = vec
     )
 
     return(output)
