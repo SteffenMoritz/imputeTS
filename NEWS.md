@@ -21,6 +21,9 @@ Special Thanks to Sebastian Gatscha for programming our new plotting functions, 
 
 * Fixed a mistake in README.md (reported by Johannes Menzel)
 
+* Added to statsNA: Number of Gaps, Average Gap Size + reformatting of code + 
+  compatibility with other ts objects
+
 
 ## Changes in Version 3.0
 
