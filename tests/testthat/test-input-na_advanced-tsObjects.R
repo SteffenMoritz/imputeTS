@@ -158,6 +158,7 @@ test_that("multivariate zoo objects",
             }
             else {
               require("zoo")
+              require("stats")
               time <- seq(from = as.Date(as.yearmon(start(tsAirgap)))[1],  by = "month" , 
                           length.out = length(tsAirgap))
               x <- data.frame(time, coredata(tsAirgap), coredata(tsAirgap), coredata(tsAirgapComplete))
