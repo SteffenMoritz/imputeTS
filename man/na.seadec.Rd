@@ -4,8 +4,13 @@
 \alias{na.seadec}
 \title{Deprecated use \code{\link[imputeTS]{na_seadec}} instead.}
 \usage{
-na.seadec(x, algorithm = "interpolation", find_frequency = FALSE,
-  maxgap = Inf, ...)
+na.seadec(
+  x,
+  algorithm = "interpolation",
+  find_frequency = FALSE,
+  maxgap = Inf,
+  ...
+)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})

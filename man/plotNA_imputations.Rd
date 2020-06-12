@@ -4,39 +4,56 @@
 \alias{plotNA_imputations}
 \title{Visualize Imputed Values}
 \usage{
-plotNA_imputations(x.withNA, x.withImputations, x.withTruth = NULL,
-  legend = TRUE, main = "Visualization Imputed Values",
-  xlab = "Time", ylab = "Value", colWithTruth = "green3",
-  colLines = "black", colWithImputations = "indianred2",
-  colWithNA = "steelblue2", pch = 20, cex = 2,
-  theme = ggplot2::theme_minimal(), ...)
+plotNA_imputations(
+  x_with_na,
+  x_with_imputations,
+  x_with_truth = NULL,
+  xlab = "Time",
+  ylab = "Value",
+  legend = TRUE,
+  main = "Visualization Imputed Values",
+  color_lines = "black",
+  color_points = "steelblue2",
+  color_imputations = "indianred2",
+  color_truth = "green3",
+  shape_points = 16,
+  size_points = 2,
+  size_lines = 0.5,
+  linetype = "solid",
+  theme = ggplot2::theme_minimal(),
+  ...
+)
 }
 \arguments{
-\item{x.withNA}{Numeric Vector or Time Series (\code{\link{ts}}) object with NAs before imputation}
+\item{x_with_na}{Numeric Vector or Time Series (\code{\link{ts}}) object with NAs before imputation}
 
-\item{x.withImputations}{Numeric Vector or Time Series (\code{\link{ts}}) object with NAs replaced by imputed values}
+\item{x_with_imputations}{Numeric Vector or Time Series (\code{\link{ts}}) object with NAs replaced by imputed values}
 
-\item{x.withTruth}{Numeric Vector or Time Series (\code{\link{ts}}) object with the real values. (can be set to NULL if not known)}
-
-\item{legend}{If TRUE a legend is added at the bottom}
-
-\item{main}{Main title}
+\item{x_with_truth}{Numeric Vector or Time Series (\code{\link{ts}}) object with the real values. (can be set to NULL if not known)}
 
 \item{xlab}{Label for x axis}
 
 \item{ylab}{Label for y axis}
 
-\item{colWithTruth}{Color of real values (truth) for the NA values}
+\item{legend}{If TRUE a legend is added at the bottom}
 
-\item{colLines}{Color of lines connecting non-NA observations}
+\item{main}{Main title}
 
-\item{colWithImputations}{Color of imputed values}
+\item{color_lines}{Color of lines connecting non-NA observations}
 
-\item{colWithNA}{Color of non-NA observations}
+\item{color_points}{Color of normal non-NA observations}
 
-\item{pch}{Either an integer specifying a symbol or a single character to be used as the default in plotting points.}
+\item{color_imputations}{Color of imputed values}
 
-\item{cex}{A numerical value giving the size of points.}
+\item{color_truth}{Color of real values (truth) for the NA values}
+
+\item{shape_points}{Either an integer specifying a symbol or a single character to be used as the default in plotting points.}
+
+\item{size_points}{A numerical value giving the size of points.}
+
+\item{size_lines}{A numerical value giving the size of lines.}
+
+\item{linetype}{Linetype used for connecting the points}
 
 \item{theme}{Set a theme for ggplot2. Default is \code{\link[ggplot2]{theme_minimal}}}
 
@@ -52,18 +69,18 @@ If real values (truth) for the NA gaps are known, they are added in a different 
 }
 \examples{
 # Example 1: Visualize the values that were imputed by na.mean in the time series
-impMean.Airgap <- na.mean(tsAirgap)
+impMean.Airgap <- na_mean(tsAirgap)
 plotNA_imputations(tsAirgap, impMean.Airgap)
 
 
 # Example 2: Visualize the imputed values by na_locf and the true values in the time series
-impLOCF.Airgap <- na.locf(tsAirgap)
+impLOCF.Airgap <- na_locf(tsAirgap)
 plotNA_imputations(tsAirgap, impLOCF.Airgap, tsAirgapComplete)
 
 # Example 3: Same as example 1, just written with pipe operator
 tsAirgap \%>\%
-  na.mean() \%>\%
-  plotNA_imputations(x.withNA = tsAirgap)
+  na_mean() \%>\%
+  plotNA_imputations(x_with_na = tsAirgap)
 }
 \seealso{
 \code{\link[imputeTS]{plotNA_distribution}},\code{\link[imputeTS]{plotNA_distributionBar}},

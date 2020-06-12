@@ -1,8 +1,11 @@
 ## Changes in Version 3.1
 Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting, 
+Thanks to Earo Wang for speedup of plotNA.gapsize,
 Special Thanks to Sebastian Gatscha for programming our new plotting functions, new na_mean options, new unit tests
 
-* Plotting functions are all in ggplot now (way better looking)
+* Plotting functions are all in ggplot now (way better looking): plotNA_distribution, plotNA_distributionBar, plotNA_gapsize, plotNA_imputations. - The classic plotting functions are still usable with plotNA.
+
+* Speedup for plotNA_gapsize calculation (thx to Earo Wang) 
 
 * Renamed plotting functions to plotNA_distribution, plotNA_distributionBar, 
   plotNA_imputations, plotNA_gapsize

@@ -2,9 +2,9 @@
 #'
 #' @description Visualize the imputed values in a time series.
 #'
-#' @param x.withNA Numeric Vector or Time Series (\code{\link{ts}}) object with NAs before imputation
-#' @param x.withImputations Numeric Vector or Time Series (\code{\link{ts}}) object with NAs replaced by imputed values
-#' @param x.withTruth Numeric Vector or Time Series (\code{\link{ts}}) object with the real values. (can be set to NULL if not known)
+#' @param x_with_na Numeric Vector or Time Series (\code{\link{ts}}) object with NAs before imputation
+#' @param x_with_imputations Numeric Vector or Time Series (\code{\link{ts}}) object with NAs replaced by imputed values
+#' @param x_with_truth Numeric Vector or Time Series (\code{\link{ts}}) object with the real values. (can be set to NULL if not known)
 #'
 #' @param legend If TRUE a legend is added at the bottom
 #'
@@ -12,14 +12,17 @@
 #' @param ylab Label for y axis
 #'
 #' @param main Main title
+#' 
+#' @param color_points Color of normal non-NA observations
+#' @param color_lines Color of lines connecting non-NA observations
+#' @param color_imputations Color of imputed values
+#' @param color_truth Color of real values (truth) for the NA values
 #'
-#' @param colWithImputations Color of imputed values
-#' @param colWithTruth Color of real values (truth) for the NA values
-#' @param colWithNA Color of non-NA observations
-#' @param colLines Color of lines connecting non-NA observations
-#'
-#' @param pch Either an integer specifying a symbol or a single character to be used as the default in plotting points.
-#' @param cex A numerical value giving the size of points.
+#' @param shape_points Either an integer specifying a symbol or a single character to be used as the default in plotting points.
+#' @param size_points A numerical value giving the size of points.
+#' @param size_lines A numerical value giving the size of lines.
+#' @param linetype Linetype used for connecting the points
+#' 
 #' @param theme Set a theme for ggplot2. Default is \code{\link[ggplot2]{theme_minimal}}
 #'
 #' @param ... Additional graphical parameters can be passed to \code{\link[ggplot2]{geom_line}}
@@ -47,163 +50,147 @@
 #' # Example 3: Same as example 1, just written with pipe operator
 #' tsAirgap %>%
 #'   na_mean() %>%
-#'   plotNA_imputations(x.withNA = tsAirgap)
+#'   plotNA_imputations(x_with_na = tsAirgap)
 #' @importFrom magrittr %>%
 #' @importFrom ggplot2 ggplot geom_line geom_point aes
 #' theme_minimal theme element_text element_blank xlab ylab ggtitle scale_color_manual
 #' @export
-plotNA_imputations <- function(x.withNA, x.withImputations, x.withTruth = NULL,
-                               legend = TRUE, main = "Visualization Imputed Values",
-                               xlab = "Time", ylab = "Value",
-                               colWithTruth = "green3", colLines = "black",
-                               colWithImputations = "indianred2",
-                               colWithNA = "steelblue2",
-                               pch = 20, cex = 2, theme = ggplot2::theme_minimal(), ...) {
-  data.withNA <- x.withNA
-  data.withImputations <- x.withImputations
-  data.withTruth <- x.withTruth
+plotNA_imputations <- function(x_with_na, x_with_imputations, x_with_truth = NULL,
+                               xlab = "Time", ylab = "Value", legend = TRUE,
+                               main = "Visualization Imputed Values",
+                               color_lines = "black",
+                               color_points = "steelblue2",
+                               color_imputations = "indianred2",
+                               color_truth = "green3",
+                               shape_points = 16,
+                               size_points = 2,
+                               size_lines = 0.5,
+                               linetype = "solid",
+                               theme = ggplot2::theme_minimal() , ...) {
 
-
+  
   ##
-  ## Input check #################
+  ## 1. Input Check and Transformation
   ##
-
-  if (!is.null(dim(data.withNA)) && dim(data.withNA)[2] != 1) {
-    stop("Input data.withNA is not univariate")
+  
+  # 1.1 Check if input is univariate
+    if (!is.null(dim(x_with_na)) && dim(x_with_na)[2] != 1) {
+    stop("Input x_with_na is not univariate")
+  }
+  
+  if (!is.null(dim(x_with_imputations)) && dim(x_with_imputations)[2] != 1) {
+    stop("Input x_with_imputations is not univariate")
+  }
+  
+  if (!is.null(dim(x_with_truth)) && dim(x_with_truth)[2] != 1 && !is.null(x_with_truth)) {
+    stop("Input x_with_truth is not univariate")
+  }
+  
+  
+  # 1.2 Special handling data types
+  if (any(class(x_with_na) == "tbl")) {
+    data <- as.vector(as.data.frame(x_with_na)[, 1])
+  }
+  
+  if (any(class(x_with_imputations) == "tbl")) {
+    data <- as.vector(as.data.frame(x_with_imputations)[, 1])
+  }
+  
+  if (any(class(x_with_truth) == "tbl") && !is.null(x_with_truth)) {
+    data <- as.vector(as.data.frame(x_with_truth)[, 1])
+  }
+  
+  # 1.3 Check if input is numeric
+  if (!is.numeric(x_with_na)) {
+    stop("Input x_with_na is not numeric")
+  }
+  
+  if (!is.numeric(x_with_imputations)) {
+    stop("Input x_with_imputations is not numeric")
+  }
+  
+  if (!is.numeric(x_with_truth) && !is.null(x_with_truth)) {
+    stop("Input x_with_truth is not numeric")
   }
 
-  if (!is.numeric(data.withNA)) {
-    stop("Input data.withNA is not numeric")
-  }
-
-  if (!is.null(dim(data.withImputations)) && dim(data.withImputations)[2] != 1) {
-    stop("Input data.withImputations is not univariate")
-  }
-
-  if (!is.numeric(data.withImputations)) {
-    stop("Input data.withImputations is not numeric")
-  }
-
-  # Change zoo, xts, timeSeries objects to vector to avoid errors
-  if (is.ts(data.withNA)) data.withNA <- as.vector(data.withNA)
-  if (is.ts(data.withImputations)) data.withImputations <- as.vector(data.withImputations)
-  if (is.ts(data.withTruth)) data.withTruth <- as.vector(data.withTruth)
+  ind <- 
+  
+  # 1.3 Change all time series objects everything to vector
+  x_with_na <- as.vector(x_with_na)
+  x_with_imputations <- as.vector(x_with_imputations)
+  x_with_truth <- as.vector(x_with_truth)
 
   ##
-  ## Plotting Code #################
+  ## 2. Code for Plots
   ##
 
-  index_Imputatios <- 1:length(data.withImputations)
-  index_with_NA <- 1:length(data.withNA)
-
-  # real time series (data.withTruth) not available
-  if (is.null(data.withTruth)) {
-    gg <- ggplot2::ggplot() +
-      ggplot2::geom_line(aes(
-        x = index_Imputatios, y = data.withImputations,
-        # col = colWithImputations) +
-        col = colWithImputations,
-        ...
-      )) +
-      ggplot2::geom_point(aes(x = index_Imputatios, y = data.withImputations),
-        pch = pch, size = cex,
-        col = colWithImputations
-      ) +
-      ggplot2::geom_line(
-        aes(x = index_with_NA, y = data.withNA, col = colLines),
-        ...
-      ) +
-      ggplot2::geom_point(aes(x = index_with_NA, y = data.withNA),
-        pch = pch, size = cex,
-        col = colWithNA
-      ) +
-      ggplot2::ylab(ylab) + ggplot2::xlab(xlab) +
-      ggplot2::scale_color_manual(
-        values = c(colWithNA, colWithImputations),
-        labels = c(
-          "Imputed values",
-          "Known values"
-        )
-      ) +
-      ggplot2::ggtitle(main) +
-      theme +
-      ggplot2::theme(
-        legend.position = "none",
-        plot.title = ggplot2::element_text(hjust = 0.5)
-      )
-
-
-    if (legend) {
-      gg <- gg +
+  # 2.1 Code for Case Ground Truth not given / is.null(x_with_truth = T
+  
+  if (is.null(x_with_truth) == T) {
+    
+    # Combine input time series to one data.frame
+    series <- x_with_imputations
+    indicator = as.numeric(is.na(x_with_na))
+    df <- data.frame( series = series, indicator = indicator)
+             
+  
+      gg <- ggplot2::ggplot(data = df, ggplot2::aes(x= 1:nrow(df), y=series)) +
+        
+        #Add points of series without NAs imputed + linetype
+        ggplot2::geom_line(color = color_lines, linetype = linetype, size = size_lines) +
+        
+        ggplot2::geom_point(data = df, aes(x= 1:nrow(df), y=series ,colour = as.factor(indicator)),
+                            shape = shape_points, size = size_points,
+                            show.legend = TRUE) +
+        
+        ggplot2::scale_colour_manual(values=c("1"=color_imputations, "0"=color_points), 
+                            labels = c("1"="Imputed Values", "0"= "Known Values" )) + 
+        
+        ggplot2::ylab(ylab) + ggplot2::xlab(xlab) + ggplot2::ggtitle(main) +
         ggplot2::theme(
-          legend.position = "bottom",
-          axis.text.x = ggplot2::element_text(angle = 30, hjust = 1),
-          legend.title = ggplot2::element_blank()
-        )
-    }
-  }
+            legend.position =  base::ifelse(legend == TRUE, "bottom", "none"),
+            axis.text.x = ggplot2::element_text(angle = 30, hjust = 1),
+            legend.title = ggplot2::element_blank())
+  }  
+  
+  
+  
+  # 2.2 Code for Case Ground Truth available / / is.null(x_with_truth = F
   else {
-    # check also if data.withTruth has right format
-    if (!is.null(dim(data.withTruth)) && dim(data.withTruth)[2] != 1) {
-      stop("Input x.withTruth is not univariate")
-    }
-    if (!is.numeric(data.withTruth)) {
-      stop("Input x.withTruth is not numeric")
-    }
-
-    index_with_Truth <- 1:length(data.withTruth)
-
-    gg <- ggplot2::ggplot() +
-      ggplot2::geom_point(aes(
-        x = index_Imputatios, y = data.withImputations,
-        col = colWithImputations
-      ),
-      pch = pch, size = cex
-      ) +
-      ggplot2::geom_line(aes(x = index_with_Truth, y = data.withTruth),
-        col = colWithTruth, ...
-      ) +
-      ggplot2::geom_line(aes(x = index_with_NA, y = data.withNA),
-        col = "black", ...
-      ) +
-      ggplot2::geom_point(ggplot2::aes(
-        x = index_with_Truth, y = data.withTruth,
-        col = colWithTruth
-      ),
-      pch = pch, size = cex
-      ) +
-      ggplot2::geom_point(aes(
-        x = index_with_NA, y = data.withNA,
-        col = colWithNA
-      ),
-      pch = pch, size = cex
-      ) +
-      ggplot2::ylab(ylab) + ggplot2::xlab(xlab) +
-      ggplot2::scale_color_manual(
-        values = c(colWithTruth, colWithImputations, colWithNA),
-        labels = c(
-          "Real values",
-          "Imputed values",
-          "Known values"
-        )
-      ) +
-      ggplot2::ggtitle(main) +
-      theme +
+    
+    # Combine input time series to one data.frame
+    series <- x_with_truth
+    indicator = as.numeric(is.na(x_with_na))
+  #  indicator2.
+    df <- data.frame( series = series, indicator = indicator)
+    
+    
+    gg <- ggplot2::ggplot(data = df, ggplot2::aes(x= 1:nrow(df), y=series)) +
+      
+      #Add points of series without NAs imputed + linetype
+      ggplot2::geom_line(color = color_lines, linetype = linetype, size = size_lines) +
+      
+      ggplot2::geom_point(data = df, aes(x= 1:nrow(df), y=series ,colour = as.factor(indicator)),
+                          shape = shape_points, size = size_points,
+                          show.legend = TRUE) +
+      
+      ggplot2::scale_colour_manual(values=c("1"=color_imputations, "0"=color_points), 
+                                   labels = c("1"="Imputed Values", "0"= "Known Values" )) + 
+      
+      ggplot2::ylab(ylab) + ggplot2::xlab(xlab) + ggplot2::ggtitle(main) +
       ggplot2::theme(
-        legend.position = "none",
-        plot.title = ggplot2::element_text(hjust = 0.5)
-      )
-
-
-    if (legend) {
-      gg <- gg +
-        ggplot2::theme(
-          legend.position = "bottom",
-          axis.text.x = ggplot2::element_text(angle = 30, hjust = 1),
-          legend.title = ggplot2::element_blank()
-        )
-    }
+        legend.position =  base::ifelse(legend == TRUE, "bottom", "none"),
+        axis.text.x = ggplot2::element_text(angle = 30, hjust = 1),
+        legend.title = ggplot2::element_blank())
+    
   }
+    
+    
+        #mit real overplotten
+    #(beides zu DF mit indicator zusammen)
+    
+    #dann ggpoint add imputaton
+    
   return(gg)
 }
 

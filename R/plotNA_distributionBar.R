@@ -138,7 +138,7 @@ plotNA_distributionBar <- function(x, breaks = grDevices::nclass.Sturges(x),
 
 
   gg <- ggplot2::ggplot(df) +
-    ggplot2::geom_bar(aes(fill = df$value, y = na_amount, x = df$bin),
+    ggplot2::geom_bar(aes(fill = value, y = na_amount, x = bin),
       position = ggplot2::position_stack(reverse = TRUE),
       stat = "identity", color = colborder,
       width = c(rep(1, len_amo - 1), width_last) / (space + 1),
@@ -185,32 +185,3 @@ plotNA_distributionBar <- function(x, breaks = grDevices::nclass.Sturges(x),
   return(gg)
 }
 
-
-#' Deprecated use \code{\link[imputeTS]{plotNA_distributionBar}} instead.
-#' @description plotNA.distributionBar is replaced by \code{\link[imputeTS]{plotNA_distributionBar}}.
-#' The functionality stays the same. The new name better fits modern R code
-#' style guidelines (which prefer _ over . in function names).
-#' @inheritParams plotNA_distributionBar
-#' @keywords internal
-#' @export
-plotNA.distributionBar <- function(x, breaks = grDevices::nclass.Sturges(x),
-                                   breaksize = NULL, percentage = TRUE, legend = TRUE,
-                                   axes = TRUE, space = 0,
-                                   col = c("indianred2", "green2"),
-                                   main = "Distribution of NAs",
-                                   xlab = "Time Lapse", ylab = NULL,
-                                   colborder = "black", xangle = 0,
-                                   theme = ggplot2::theme_minimal(), ...) {
-  .Deprecated(
-    new = "plotNA_distributionBar",
-    msg = "plotNA.distributionBar will be replaced by plotNA_distributionBar
-    Functionality stays the same.
-    The new function name better fits modern R code style guidelines.
-    Please adjust your code accordingly."
-  )
-  plotNA_distributionBar(
-    x, breaks, breaksize, percentage, legend,
-    axes, space, col, main, xlab, ylab, colborder, xangle,
-    theme, ...
-  )
-}

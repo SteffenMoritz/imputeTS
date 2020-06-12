@@ -106,27 +106,3 @@ plotNA_distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "i
 }
 
 
-
-#' Deprecated use \code{\link[imputeTS]{plotNA_distribution}} instead.
-#' @description plotNA.distribution is replaced by \code{\link[imputeTS]{plotNA_distribution}}.
-#' The functionality stays the same. The new name better fits modern R code
-#' style guidelines (which prefer _ over . in function names).
-#' @inheritParams plotNA_distribution
-#' @keywords internal
-#' @export
-plotNA.distribution <- function(x, colPoints = "steelblue", colBackgroundMV = "indianred2",
-                                main = "Distribution of NAs", xlab = "Time", ylab = "Value",
-                                pch = 20, cexPoints = 2.5, col = "black",
-                                theme = ggplot2::theme_minimal(), ...) {
-  .Deprecated(
-    new = "plotNA_distribution",
-    msg = "plotNA.distribution will be replaced by plotNA_distribution.
-    Functionality stays the same.
-    The new function name better fits modern R code style guidelines.
-    Please adjust your code accordingly."
-  )
-  plotNA_distribution(
-    x, colPoints, colBackgroundMV,
-    main, xlab, ylab, pch, cexPoints, col, theme, ...
-  )
-}

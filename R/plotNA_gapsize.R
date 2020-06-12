@@ -119,14 +119,14 @@ plotNA_gapsize <- function(x, limit = 10, byTotalNA = FALSE,
 
   if (beside) {
     gg <- ggplot2::ggplot(data = df) +
-      ggplot2::geom_bar(aes(x = df$id, y = df$val, fill = df$label),
+      ggplot2::geom_bar(aes(x = id, y = val, fill = label),
         color = "black",
         stat = "identity", position = "dodge", ...
       )
     # stat = "identity", position = "dodge")
   } else {
     gg <- ggplot2::ggplot(data = df) +
-      ggplot2::geom_bar(aes(x = df$id, y = df$val, fill = df$label),
+      ggplot2::geom_bar(aes(x = id, y = val, fill = label),
         color = "black",
         stat = "identity", position = ggplot2::position_stack(reverse = TRUE), ...
       )

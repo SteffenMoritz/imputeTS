@@ -4,8 +4,13 @@
 \alias{na_seadec}
 \title{Seasonally Decomposed Missing Value Imputation}
 \usage{
-na_seadec(x, algorithm = "interpolation", find_frequency = FALSE,
-  maxgap = Inf, ...)
+na_seadec(
+  x,
+  algorithm = "interpolation",
+  find_frequency = FALSE,
+  maxgap = Inf,
+  ...
+)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})

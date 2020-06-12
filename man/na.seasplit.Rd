@@ -4,8 +4,13 @@
 \alias{na.seasplit}
 \title{Deprecated use \code{\link[imputeTS]{na_seasplit}} instead.}
 \usage{
-na.seasplit(x, algorithm = "interpolation", find_frequency = FALSE,
-  maxgap = Inf, ...)
+na.seasplit(
+  x,
+  algorithm = "interpolation",
+  find_frequency = FALSE,
+  maxgap = Inf,
+  ...
+)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})

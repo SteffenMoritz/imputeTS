@@ -4,11 +4,21 @@
 \alias{plotNA_gapsize}
 \title{Visualize Distribution of NA gap sizes}
 \usage{
-plotNA_gapsize(x, limit = 10, byTotalNA = FALSE, legend = TRUE,
+plotNA_gapsize(
+  x,
+  limit = 10,
+  byTotalNA = FALSE,
+  legend = TRUE,
   col = c("indianred", "steelblue"),
-  xlab = "Ranking of the different gap sizes", ylab = "Number",
-  main = "Occurrence of gap sizes (NAs in a row)", horiz = FALSE,
-  axes = TRUE, beside = TRUE, theme = ggplot2::theme_minimal(), ...)
+  xlab = "Ranking of the different gap sizes",
+  ylab = "Number",
+  main = "Occurrence of gap sizes (NAs in a row)",
+  horiz = FALSE,
+  axes = TRUE,
+  beside = TRUE,
+  theme = ggplot2::theme_minimal(),
+  ...
+)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs}

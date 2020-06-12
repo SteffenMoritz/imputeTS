@@ -1,6 +1,6 @@
 Package: imputeTS
 Version: 3.1
-Date: 2019-09-12
+Date: 2020-06-11
 Title: Time Series Missing Value Imputation
 Description: Imputation (replacement) of missing values 
              in univariate time series. 
@@ -12,11 +12,12 @@ Description: Imputation (replacement) of missing values
             'Kalman Smoothing on Structural Time Series models',
             'Kalman Smoothing on ARIMA models'. Published in Moritz and Bartz-Beielstein (2017) 
             <doi: 10.32614/RJ-2017-009>.
-Author: Steffen Moritz [aut, cre, cph] (<https://orcid.org/0000-0002-0085-1804>), Sebastian Gatscha [ctb]
+Author: Steffen Moritz [aut, cre, cph] (<https://orcid.org/0000-0002-0085-1804>), Sebastian Gatscha [aut], Earo Wang [ctb] 
 Authors@R: 
   c(
   person("Steffen", "Moritz", email="steffen.moritz10@gmail.com", role=c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-0085-1804")),
-  person("Sebastian", "Gatscha", email="sebastian_gatscha@gmx.at", role="aut")
+  person("Sebastian", "Gatscha", email="sebastian_gatscha@gmx.at", role="aut"),
+  person("Earo", "Wang", email = "earo.wang@gmail.com", role = c("ctb"), comment = c(ORCID = "0000-0001-6448-5260"))
   )
 Maintainer: Steffen Moritz <steffen.moritz10@gmail.com>
 LazyData: yes

@@ -4,8 +4,13 @@
 \alias{na_seasplit}
 \title{Seasonally Splitted Missing Value Imputation}
 \usage{
-na_seasplit(x, algorithm = "interpolation", find_frequency = FALSE,
-  maxgap = Inf, ...)
+na_seasplit(
+  x,
+  algorithm = "interpolation",
+  find_frequency = FALSE,
+  maxgap = Inf,
+  ...
+)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})

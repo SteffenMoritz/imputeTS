@@ -4,12 +4,23 @@
 \alias{plotNA_distributionBar}
 \title{Visualize Distribution of Missing Values (Barplot)}
 \usage{
-plotNA_distributionBar(x, breaks = grDevices::nclass.Sturges(x),
-  breaksize = NULL, percentage = TRUE, legend = TRUE, axes = TRUE,
-  space = 0, col = c("indianred2", "green2"),
-  main = "Distribution of NAs", xlab = "Time Lapse", ylab = NULL,
-  colborder = "black", xangle = 0, theme = ggplot2::theme_minimal(),
-  ...)
+plotNA_distributionBar(
+  x,
+  breaks = grDevices::nclass.Sturges(x),
+  breaksize = NULL,
+  percentage = TRUE,
+  legend = TRUE,
+  axes = TRUE,
+  space = 0,
+  col = c("indianred2", "green2"),
+  main = "Distribution of NAs",
+  xlab = "Time Lapse",
+  ylab = NULL,
+  colborder = "black",
+  xangle = 0,
+  theme = ggplot2::theme_minimal(),
+  ...
+)
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}}) object containing NAs}
