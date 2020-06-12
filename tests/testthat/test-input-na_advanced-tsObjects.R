@@ -159,11 +159,11 @@ test_that("multivariate zoo objects",
             else {
               require("zoo")
               require("stats")
-              time <- seq(from = as.Date(as.yearmon(start(tsAirgap)))[1],  by = "month" , 
-                          length.out = length(tsAirgap))
-              x <- data.frame(time, coredata(tsAirgap), coredata(tsAirgap), coredata(tsAirgapComplete))
+              time <- base::seq(from = zoo::as.Date(zoo::as.yearmon(stats::start(tsAirgap)))[1],  by = "month" , 
+                                length.out = length(tsAirgap))
+              x <- data.frame(time, zoo::coredata(tsAirgap), zoo::coredata(tsAirgap), zoo::coredata(tsAirgapComplete))
               
-              z <- read.zoo(x, format = "%Y-%m-%d")
+              z <- zoo::read.zoo(x, format = "%Y-%m-%d")
               
               expect_that(anyNA(na_mean(z)), is_false())
               expect_that(anyNA(na_kalman(z)), is_false())
