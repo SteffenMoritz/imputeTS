@@ -60,6 +60,7 @@ test_that("Imputation works for data.frame",
           {
             #Checking if NAs remain in data.frame
             x <- data.frame(tsAirgap, tsAirgap, tsAirgapComplete)
+            expect_that(anyNA(na_ma(x)), is_false())
             expect_that(anyNA(na_ma(x, weighting="simple", k = 4  )), is_false())
             expect_that(anyNA(na_ma(x, weighting="simple", k = 20)), is_false())
             expect_that(anyNA(na_ma(x, weighting="linear", k = 4  )), is_false())
