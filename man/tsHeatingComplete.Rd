@@ -26,15 +26,15 @@ Goal was to impute missing values in heating system sensor data as accurate as p
 
 In order to use this series for comparing imputation algorithm results,
 there are two time series provided. One series without missing values, which can
-be used as ground truth. Another series with NAs, on which the imputation 
+be used as ground truth. Another series with NAs, on which the imputation
 algorithms can be applied. The NAs thereby were inserted according to patterns
 found in similar time series.
 
 There are the two time series:
 \itemize{
-  \item tsHeating - The time series with NAs.
+\item tsHeating - The time series with NAs.
 
-  \item tsHeatingComplete - Time series without NAs.
+\item tsHeatingComplete - Time series without NAs.
 }
 }
 \seealso{

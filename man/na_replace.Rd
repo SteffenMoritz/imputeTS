@@ -42,9 +42,9 @@ x \%>\% na_replace(fill = 3.5)
 \seealso{
 \code{\link[imputeTS]{na_interpolation}},
 \code{\link[imputeTS]{na_kalman}}, \code{\link[imputeTS]{na_locf}},
- \code{\link[imputeTS]{na_ma}}, \code{\link[imputeTS]{na_mean}},
- \code{\link[imputeTS]{na_random}},
- \code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
+\code{\link[imputeTS]{na_ma}}, \code{\link[imputeTS]{na_mean}},
+\code{\link[imputeTS]{na_random}},
+\code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
 }
 \author{
 Steffen Moritz

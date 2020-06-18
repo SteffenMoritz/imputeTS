@@ -7,6 +7,7 @@
 \usepackage{RJournal}
 \usepackage{amsmath,amssymb,array}
 \usepackage{booktabs}
+\usepackage{textcomp}
 
 
 \begin{document}
@@ -45,7 +46,7 @@ This paper provides an introduction to the \pkg{imputeTS} package and its provid
 \section{Introduction}
 \label{sec:Introduction}
 
-In almost every domain from  industry \citep{billinton1996time} to  biology \citep{bar2003continuous}, finance \citep{taylor2007modelling} up to social science \citep{gottman1981time} different time series data are measured. While the recorded datasets itself may be different, one common problem are missing values. Many analysis methods require missing values to be replaced with reasonable values up-front. In statistics this process of replacing missing values is called \textit{imputation}.
+In almost every domain from  industry \citep{billinton1996time} to  biology \citep{bar2003continuous}, finance  \citep{taylor2007modelling} up to social science \citep{gottman1981time} different time series data are measured.  While the recorded datasets itself may be different, one common problem are missing values. Many analysis methods  require missing values to be replaced with reasonable values up-front. In statistics this process of replacing missing values is called \textit{imputation}.
 
 \noindent\\
 Time series imputation thereby is a special sub-field in the imputation research area. Most popular techniques like 
@@ -89,10 +90,10 @@ As can be seen in Table~\ref{tab:generaloverview}, beyond several imputation alg
 \begin{tabular}{@{}llll@{}}
 \toprule
 \textbf{Simple Imputation} & \textbf{Imputation} & \textbf{Plots \& Statistics} & \textbf{Datasets} \\ \midrule
-na\_locf                    & na\_interpolation    & plotNA.distribution          & tsAirgap          \\
-na\_mean                    & na\_kalman           & plotNA.distributionBar       & tsAirgapComplete  \\
-na\_random                  & na\_ma               & plotNA.gapsize               & tsHeating             \\
-na\_replace                 & na\_seadec           & plotNA.imputations           & tsHeatingComplete     \\
+na\_locf                    & na\_interpolation    & ggplot\_na\_distribution          & tsAirgap          \\
+na\_mean                    & na\_kalman           & ggplot\_na\_intervals      & tsAirgapComplete  \\
+na\_random                  & na\_ma               & ggplot\_na\_gapsize           & tsHeating             \\
+na\_replace                 & na\_seadec           & ggplot\_na\_imputations      & tsHeatingComplete     \\
 na\_remove                  & na\_seasplit         & statsNA                      & tsNH4         \\
                            &                     &                              & tsNH4Complete \\ \bottomrule
 \end{tabular}
@@ -101,7 +102,7 @@ na\_remove                  & na\_seasplit         & statsNA                    
 \end{table}
 
 \noindent
-As a whole, the package aims to support the user in the complete process of replacing missing values in time series. This process starts with analyzing the distribution of the missing values using the \code{statsNA} function and the plots of  \code{plotNA.distribution}, \code{plotNA.distributionBar}, \code{plotNA.gapsize}. In the next step the actual imputation can take place with one of the several algorithm options. Finally, the imputation results can be visualized with the \code{plotNA.imputations} function. Additionally, the package contains three datasets, each in a version with and without missing values, that can be used to test imputation algorithms.
+As a whole, the package aims to support the user in the complete process of replacing missing values in time series. This process starts with analyzing the distribution of the missing values using the \code{statsNA} function and the plots of  \code{ggplot\_na\_distribution}, \code{ggplot\_na\_intervals}, \code{ggplot\_na\_gapsize}. In the next step the actual imputation can take place with one of the several algorithm options. Finally, the imputation results can be visualized with the \code{ggplot\_na\_imputations} function. Additionally, the package contains three datasets, each in a version with and without missing values, that can be used to test imputation algorithms.
 \noindent \\
 
 \subsection{Plots \& Statistics functions}
@@ -112,10 +113,10 @@ An overview about the available plots and statistics functions can be found in T
 \begin{tabular}{@{}ll@{}}
 \toprule
 \textbf{Function}      & \textbf{Description}                               \\ \midrule
-plotNA.distribution    & Visualize Distribution of Missing Values           \\
-plotNA.distributionBar & Visualize Distribution of Missing Values (Barplot) \\
-plotNA.gapsize         & Visualize Distribution of NA gap sizes              \\
-plotNA.imputations     & Visualize Imputed Values                           \\
+ggplot\_na\_distribution    & Visualize Distribution of Missing Values           \\
+ggplot\_na\_intervals & Visualize Distribution of Missing Values (Barplot) \\
+ggplot\_na\_gapsize         & Visualize Distribution of NA gap sizes              \\
+ggplot\_na\_imputations     & Visualize Imputed Values                           \\
 statsNA                & Print Statistics about the Missing Data            \\ \bottomrule
 \end{tabular}
 \caption{Overview Plots \& Statistics}
@@ -124,8 +125,8 @@ statsNA                & Print Statistics about the Missing Data            \\ \
 
 \noindent
 The \code{statsNA} function calculates several missing data statistics of the input data. This includes overall percentage of missing values, absolute amount of missing values, amount of missing value in different sections of the data, longest series of consecutive NAs and occurrence of consecutive NAs.
-The \code{plotNA.distribution} function visualizes the distribution of NAs in a time series. This is done using a standard time series plot, in which areas with missing data are colored red. This enables the user to see at first sight where in the series most of the missing values are located. The \code{plotNA.distributionBar} function provides the same insights to users, but is designed for very large time series. This is necessary for time series with 1000 and more observations, where it is not possible to plot each observation as a single point.
-The \code{plotNA.gapsize} function provides information about consecutive NAs by showing the most common NA gap sizes in the time series. The \code{plotNA.imputations} function is designated for visual inspection of the results after applying an imputation algorithm. Therefore, newly imputed observations are shown in a different color than the rest of the series.
+The \code{ggplot\_na\_distribution} function visualizes the distribution of NAs in a time series. This is done using a standard time series plot, in which areas with missing data are colored red. This enables the user to see at first sight where in the series most of the missing values are located. The \code{ggplot\_na\_intervals} function provides the same insights to users, but is designed for very large time series. This is necessary for time series with 1000 and more observations, where it is not possible to plot each observation as a single point.
+The \code{ggplot\_na\_gapsize} function provides information about consecutive NAs by showing the most common NA gap sizes in the time series. The \code{ggplot\_na\_imputations} function is designated for visual inspection of the results after applying an imputation algorithm. Therefore, newly imputed observations are shown in a different color than the rest of the series.
 \noindent \\
 
 \subsection{Imputation functions}
@@ -294,7 +295,7 @@ Here is a usage example for the \code{na\_kalman} function applied on the \code{
 imp <- na\_kalman(tsAirgap)
 
 #Code for visualization
-plotNA.imputations(tsAirgap, x.imp, tsAirgapComplete)
+plotNA\_imputations(tsAirgap, x.imp, tsAirgapComplete)
 \end{example}
 
 
@@ -306,20 +307,20 @@ plotNA.imputations(tsAirgap, x.imp, tsAirgapComplete)
 \end{figure}
 \noindent
 \FloatBarrier
-\subsection{plotNA.distribution}
+\subsection{ggplot\_na\_distribution}
 
 This function visualizes the distribution of missing values within a time series. Therefore, the time series is plotted and whenever a value is NA the background is colored differently. This gives a nice overview, where in the time series most of the missing values occur. An example usage of the function can be seen below (for the plot see Figure~\ref{fig:distribution}).
 \begin{example}
-# Example Code 'plotNA.distribution'
+# Example Code 'plotNA\_distribution'
 # (tsAirgap is an example time series provided by the imputeTS package)
 
 # Visualize the missing values in this time series
-plotNA.distribution(tsAirgap)
+plotNA\_distribution(tsAirgap)
 \end{example}
 \begin{figure} [h]
 \centering
 \includegraphics[width=5.7in]{Figures.d/distribution.pdf}
-\caption{Example for plotNA.distribution}
+\caption{Example for plotNA\_distribution}
 \label{fig:distribution}
 \end{figure}
 \FloatBarrier
@@ -328,40 +329,40 @@ As can be seen in Figure~\ref{fig:distribution}, in areas with missing data the 
 \FloatBarrier
 \noindent\\
 
-\subsection{plotNA.distributionBar}
+\subsection{ggplot\_na\_intervals}
 This function also visualizes the distribution of missing values within a time series. This is done as a barplot, which is especially useful if the time series would otherwise be too large to be plotted. Multiple observations for time intervals are grouped together and represented as bars. For these intervals, information about the amount of missing values are shown. An example usage of the function can be seen below (for the plot see Figure~\ref{fig:distributionBar}).
 
 \begin{example}
-# Example Code 'plotNA.distributionBar'
+# Example Code 'plotNA_distributionBar'
 # (tsHeating is an example time series provided by the imputeTS package)
 
 # Visualize the missing values in this time series
-plotNA.distributionBar(tsHeating, breaks = 20)
+plotNA\_distributionBar(tsHeating, breaks = 20)
 
 \end{example}
 
 \begin{figure} [h]
 \centering
 \includegraphics[width=5.7in]{Figures.d/distributionbar.pdf}
-\caption{Example for plotNA.distributionBar}
+\caption{Example for plotNA\_distributionBar}
 \label{fig:distributionBar}
 \end{figure}
 \FloatBarrier
 \noindent\\
-As can be seen in the x-axis of Figure~\ref{fig:distributionBar}, the \code{tsHeating} series is with over 600.000 observations a very large time series. While the missing values in the \code{tsAirgap} series (144 observations) can be visualized with \code{plotNA.distribution} like in Figure~\ref{fig:distribution}, this would for sure not work out for \code{tsHeating}. There just isn't enough space for 600.000 single consecutive observations/points in the plotting area. The \code{plotNA.distributionBar} function solves this problem. Multiple observations are grouped together in intervals. The 'breaks' parameter in the example defines that there should be 20 intervals used. This means every interval in Figure~\ref{fig:distributionBar} represents approximately 30.000 observations. The first five intervals are completely green, which means there are no missing values present. This means from observation 1 up to observation 150.000 there are no missing values in the data. In the middle and at the end of the series there are several intervals each having around 40\% of missing data. This means in these intervals 12.000 out of 30.000 observation are NA. All in all, the plot is able to give a nice  but rough overview about the NA distribution in very large time series. 
+As can be seen in the x-axis of Figure~\ref{fig:distributionBar}, the \code{tsHeating} series is with over 600.000 observations a very large time series. While the missing values in the \code{tsAirgap} series (144 observations) can be visualized with \code{ggplot\_na\_distribution} like in Figure~\ref{fig:distribution}, this would for sure not work out for \code{tsHeating}. There just isn't enough space for 600.000 single consecutive observations/points in the plotting area. The \code{ggplot\_na\_intervals} function solves this problem. Multiple observations are grouped together in intervals. The 'breaks' parameter in the example defines that there should be 20 intervals used. This means every interval in Figure~\ref{fig:distributionBar} represents approximately 30.000 observations. The first five intervals are completely green, which means there are no missing values present. This means from observation 1 up to observation 150.000 there are no missing values in the data. In the middle and at the end of the series there are several intervals each having around 40\% of missing data. This means in these intervals 12.000 out of 30.000 observation are NA. All in all, the plot is able to give a nice  but rough overview about the  NA distribution in very large time series. 
 \noindent\\
 
-\subsection{plotNA.gapsize}
+\subsection{ggplot\_na\_gapsize}
 This plotting function can be used to visualize how often different NA gaps (NAs in a row) occur in a time series. The function shows this information as a ranking. This ranking can be ordered by total NAs gap sizes account for (number occurrence gap size * gap length) or just by the number of occurrences of gap sizes. In the end the results can be read like this: In time series x, 3 NAs in a row occur most often with 20 occurrences, 6 NAs in a row occur 2nd most with 5 occurrences, 2 NAs in a row occur 3rd most with 3 occurrences.
 An example usage of the function can be seen below(for the plot see Figure~\ref{fig:gapsize}).
 
 \begin{example}
 
-# Example Code 'plotNA.gapsize'
+# Example Code 'plotNA_gapsize'
 # (tsNH4 is an example time series provided by the imputeTS package)
 
 # Visualize the top gap sizes / NAs in a row
-plotNA.gapsize(tsNH4)
+plotNA\_gapsize(tsNH4)
 
 \end{example}
 
@@ -376,19 +377,19 @@ plotNA.gapsize(tsNH4)
 The example plot (Figure~\ref{fig:gapsize}) reads the following: In the time series \code{tsNH4} gap size 157 occurs just 1 time, but makes up for most NAs of all gap sizes (157 NAs). A gap size of 91 (91 NAs in a row) also occurs just once, but makes up for 2nd most NAs (91 NAs). A gap size of 42 occurs two times in the time series, which leads to 3rd most overall (84 NAs). A gap size of one (no other NAs before or behind the NA) occurs 68 times, which makes this 4th in overall NAs (68 NAs). 
 \noindent\\
 
-\subsection{plotNA.imputations}
+\subsection{ggplot\_na\_imputations}
 This plot can be used, to visualize the imputed values for a time series. Therefore, the imputed values (filled NA gaps) are shown in a different color than the other values. The function is used as below and Figure~\ref{fig:imputations} shows the output.
 
 \begin{example}
 
-# Example Code 'plotNA.imputations'
+# Example Code 'plotNA_imputations'
 # (tsAirgap is an example time series provided by the imputeTS package)
 
 # Step 1: Perform imputation for x using na\_mean
 tsAirgap.imp <- na\_mean(tsAirgap)
 
 # Step 2: Visualize the imputed values in the time series
-plotNA.imputations(tsAirgap, tsAirgap.imp)
+plotNA\_imputations(tsAirgap, tsAirgap.imp)
 
 
 \end{example}

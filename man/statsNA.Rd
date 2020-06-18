@@ -33,20 +33,20 @@ missing values in a univariate time series.
 \details{
 Prints the following information about the missing values in the time series:
 \itemize{
-   \item{"Length of time series" - Number of observations in the time series (including NAs)}
-   \item{"Number of Missing Values" - Number of missing values in the time series}
-   \item{"Percentage of Missing Values" - Percentage of missing values in the time series}
-   \item{"Number of Gaps" - Number of NA gaps (consisting of one or more consecutive NAs) in the time series}
-   \item{"Average Gap Size" - Average size of consecutive NAs for the NA gaps in the time series}
-   \item{"Stats for Bins" - Number/percentage of missing values for the split into bins }
-   \item{"Longest NA gap" - Longest series of consecutive missing values (NAs in a row) in the time series }
-   \item{"Most frequent gap size" - Most frequent occurring series of missing values in the time series}
-   \item{"Gap size accounting for most NAs" - The series of consecutive missing values that accounts for most missing values overall in the time series}
-   \item{"Overview NA series" - Overview about how often each series of consecutive missing values occurs. Series occurring 0 times are skipped}
-   }
-   It is furthermore, important to note, that you are able to choose whether
-   the function returns a list or prints the information only.
-   (see description of parameter "print_only")
+\item{"Length of time series" - Number of observations in the time series (including NAs)}
+\item{"Number of Missing Values" - Number of missing values in the time series}
+\item{"Percentage of Missing Values" - Percentage of missing values in the time series}
+\item{"Number of Gaps" - Number of NA gaps (consisting of one or more consecutive NAs) in the time series}
+\item{"Average Gap Size" - Average size of consecutive NAs for the NA gaps in the time series}
+\item{"Stats for Bins" - Number/percentage of missing values for the split into bins }
+\item{"Longest NA gap" - Longest series of consecutive missing values (NAs in a row) in the time series }
+\item{"Most frequent gap size" - Most frequent occurring series of missing values in the time series}
+\item{"Gap size accounting for most NAs" - The series of consecutive missing values that accounts for most missing values overall in the time series}
+\item{"Overview NA series" - Overview about how often each series of consecutive missing values occurs. Series occurring 0 times are skipped}
+}
+It is furthermore, important to note, that you are able to choose whether
+the function returns a list or prints the information only.
+(see description of parameter "print_only")
 }
 \examples{
 # Example 1: Print stats about the missing data in tsNH4
@@ -59,9 +59,9 @@ statsNA(tsAirgap, print_only = FALSE)
 tsNH4 \%>\% statsNA()
 }
 \seealso{
-\code{\link[imputeTS]{plotNA.distribution}},
-\code{\link[imputeTS]{plotNA.distributionBar}}, 
-\code{\link[imputeTS]{plotNA.gapsize}}
+\code{\link[imputeTS]{ggplot_na_distribution}},
+\code{\link[imputeTS]{ggplot_na_intervals}},
+\code{\link[imputeTS]{ggplot_na_gapsize}}
 }
 \author{
 Steffen Moritz

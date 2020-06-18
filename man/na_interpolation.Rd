@@ -12,10 +12,10 @@ object in which missing values shall be replaced}
 
 \item{option}{Algorithm to be used. Accepts the following input:
 \itemize{
-   \item{"linear" - for linear interpolation using \link{approx} }
-   \item{"spline" - for spline interpolation using \link{spline}}
-   \item{"stine" - for Stineman interpolation using \link[stinepack]{stinterp}}
-   }}
+\item{"linear" - for linear interpolation using \link{approx} }
+\item{"spline" - for spline interpolation using \link{spline}}
+\item{"stine" - for Stineman interpolation using \link[stinepack]{stinterp}}
+}}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.
 Default setting is to replace all NAs without restrictions. With this
@@ -28,7 +28,7 @@ treat long runs of NA afterwards separately.}
 }
 \value{
 Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
- object (dependent on given input at parameter x)
+object (dependent on given input at parameter x)
 }
 \description{
 Uses either linear, spline or stineman interpolation
@@ -62,9 +62,9 @@ Johannesson, Tomas, et al. (2015). "Package stinepack".
 }
 \seealso{
 \code{\link[imputeTS]{na_kalman}}, \code{\link[imputeTS]{na_locf}},
- \code{\link[imputeTS]{na_ma}}, \code{\link[imputeTS]{na_mean}},
- \code{\link[imputeTS]{na_random}}, \code{\link[imputeTS]{na_replace}},
- \code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
+\code{\link[imputeTS]{na_ma}}, \code{\link[imputeTS]{na_mean}},
+\code{\link[imputeTS]{na_random}}, \code{\link[imputeTS]{na_replace}},
+\code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
 }
 \author{
 Steffen Moritz

@@ -52,7 +52,7 @@ install_github("SteffenMoritz/imputeTS")
   To plot missing data statistics for a time series ***x***, run the following
   command:
   ```
-   plotNA.distribution(x)
+   ggplot_na_distribution(x)
   ```
   > This is also just one example for a plot. Overall there are four different types 
   > of missing data plots. (see also under caption "Missing Data Plots"). 
@@ -102,12 +102,12 @@ More detailed information about the algorithms and their options can be found in
 
 Here is a table with available plots to choose from:
 
-|      Function           |           Description                                 | 
-| :-----------------------|:------------------------------------------------------|
-| plotNA.distribution     |Visualize Distribution of Missing Values               |
-| plotNA.distributionBar  |Visualize Distribution of Missing Values (Barplot)     |
-| plotNA.gapsize          |Visualize Distribution of NA gapsizes                  |
-| plotNA.imputations      |Visualize Imputed Values                               | 
+|      Function           |           Description                                        | 
+| :-----------------------|:-------------------------------------------------------------|
+| ggplot_na_distribution  |Visualize Distribution of Missing Values                      |
+| ggplot_na_intervals     |Missing Values Summarized in Bins   |
+| ggplot_na_gapsize       |Visualize Distribution of NA Gapsizes                         |
+| ggplot_na_imputations   |Visualize Imputed Values                                      | 
 
 More detailed information about the plots can be found in the [imputeTS reference manual].
 

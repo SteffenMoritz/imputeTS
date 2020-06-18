@@ -14,25 +14,25 @@ object in which missing values shall be replaced}
 (on which KalmanSmooth is performed) can be chosen. Accepts the following input:
 
 \itemize{
-   \item{"auto.arima" - For using the state space representation of
-   arima model (using \link[forecast]{auto.arima})}
+\item{"auto.arima" - For using the state space representation of
+arima model (using \link[forecast]{auto.arima})}
 
-   \item{"StructTS" - For using a structural model fitted by maximum
-    likelihood (using \link[stats]{StructTS}) }
-   }
+\item{"StructTS" - For using a structural model fitted by maximum
+likelihood (using \link[stats]{StructTS}) }
+}
 
- For both auto.arima and StructTS additional parameters for model building can
- be given with the \dots parameter
+For both auto.arima and StructTS additional parameters for model building can
+be given with the \dots parameter
 
- Additionally it is also possible to use a user created state space model
- (See code Example 5). This state space model could for example be
- obtained from another R package for structural time series modeling.
- Furthermore providing the state space representation of a arima model
- from \link[stats]{arima} is also possible. But it is important to note,
- that user created state space models must meet the requirements specified
- under \link[stats]{KalmanLike}. This means the user supplied state space
- model has to be in form of a list with at least components T, Z, h , V, a, P, Pn.
- (more details under \link[stats]{KalmanLike})}
+Additionally it is also possible to use a user created state space model
+(See code Example 5). This state space model could for example be
+obtained from another R package for structural time series modeling.
+Furthermore providing the state space representation of a arima model
+from \link[stats]{arima} is also possible. But it is important to note,
+that user created state space models must meet the requirements specified
+under \link[stats]{KalmanLike}. This means the user supplied state space
+model has to be in form of a list with at least components T, Z, h , V, a, P, Pn.
+(more details under \link[stats]{KalmanLike})}
 
 \item{smooth}{if \code{TRUE} - \code{\link[stats]{KalmanSmooth}} is used for
 estimation, if \code{FALSE} - \code{\link[stats]{KalmanRun}} is used.

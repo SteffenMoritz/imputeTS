@@ -18,10 +18,10 @@ values present.}
 
 \item{weighting}{Weighting to be used. Accepts the following input:
 \itemize{
-   \item{"simple" - Simple Moving Average (SMA)}
-   \item{"linear" - Linear Weighted Moving Average (LWMA)}
-   \item{"exponential" - Exponential Weighted Moving Average (EWMA)}
-   }}
+\item{"simple" - Simple Moving Average (SMA)}
+\item{"linear" - Linear Weighted Moving Average (LWMA)}
+\item{"exponential" - Exponential Weighted Moving Average (EWMA)}
+}}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.
 Default setting is to replace all NAs without restrictions. With this
@@ -85,8 +85,8 @@ tsAirgap \%>\% na_ma(weighting = "simple")
 \code{\link[imputeTS]{na_interpolation}},
 \code{\link[imputeTS]{na_kalman}}, \code{\link[imputeTS]{na_locf}},
 \code{\link[imputeTS]{na_mean}},
- \code{\link[imputeTS]{na_random}}, \code{\link[imputeTS]{na_replace}},
- \code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
+\code{\link[imputeTS]{na_random}}, \code{\link[imputeTS]{na_replace}},
+\code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
 }
 \author{
 Steffen Moritz

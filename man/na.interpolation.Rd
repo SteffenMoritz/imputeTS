@@ -12,10 +12,10 @@ object in which missing values shall be replaced}
 
 \item{option}{Algorithm to be used. Accepts the following input:
 \itemize{
-   \item{"linear" - for linear interpolation using \link{approx} }
-   \item{"spline" - for spline interpolation using \link{spline}}
-   \item{"stine" - for Stineman interpolation using \link[stinepack]{stinterp}}
-   }}
+\item{"linear" - for linear interpolation using \link{approx} }
+\item{"spline" - for spline interpolation using \link{spline}}
+\item{"stine" - for Stineman interpolation using \link[stinepack]{stinterp}}
+}}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.
 Default setting is to replace all NAs without restrictions. With this

@@ -1,11 +1,11 @@
 ## Changes in Version 3.1
 Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting, 
 Thanks to Earo Wang for speedup of plotNA.gapsize,
-Special Thanks to Sebastian Gatscha for programming our new plotting functions, new na_mean options, new unit tests
+Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options, new unit tests
 
-* Plotting functions are all in ggplot now (way better looking): plotNA_distribution, plotNA_distributionBar, plotNA_gapsize, plotNA_imputations. - The classic plotting functions are still usable with plotNA.
+* Plotting functions are all in ggplot now (way better looking). Additionally they got renamed accordingly ggplot_na_distribution, ggplot_na_intervals, ggplot_na_gapsize, ggplot_na_imputations.
 
-* Speedup for plotNA_gapsize calculation (thx to Earo Wang) 
+* Speedup for plotNA_gapsize calculation (now renamed ggplot_na_gapsize)  (thx to Earo Wang) 
 
 * Renamed plotting functions to plotNA_distribution, plotNA_distributionBar, 
   plotNA_imputations, plotNA_gapsize
@@ -27,6 +27,9 @@ Special Thanks to Sebastian Gatscha for programming our new plotting functions, 
 * Added to statsNA: Number of Gaps, Average Gap Size + reformatting of code + 
   compatibility with other ts objects
 
+* Documentation improvements through newer roxygen version (Markup now possible in documentation)
+
+* updated Readme + Vignette to new function names
 
 ## Changes in Version 3.0
 

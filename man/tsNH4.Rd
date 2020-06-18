@@ -23,15 +23,15 @@ The time series is derived from the dataset of the  GECCO Industrial Challenge 2
 
 In order to use this series for comparing imputation algorithm results,
 there are two time series provided. One series without missing values, which can
-be used as ground truth. Another series with NAs, on which the imputation 
+be used as ground truth. Another series with NAs, on which the imputation
 algorithms can be applied. The NAs thereby were inserted according to patterns
 found in similar time series.
 
 There are the two time series:
 \itemize{
-  \item tsNH4 - The time series with NAs.
+\item tsNH4 - The time series with NAs.
 
-  \item tsNH4Complete - Time series without NAs.
+\item tsNH4Complete - Time series without NAs.
 }
 }
 \seealso{

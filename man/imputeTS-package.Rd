@@ -2,26 +2,39 @@
 % Please edit documentation in R/imputeTS-package.R
 \docType{package}
 \name{imputeTS-package}
+\alias{imputeTS}
 \alias{imputeTS-package}
-\title{imputeTS-package description}
+\title{imputeTS: Time Series Missing Value Imputation}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
+Imputation (replacement) of missing values 
+             in univariate time series. 
+             Offers several imputation functions
+             and missing data plots. 
+             Available imputation algorithms include: 
+            'Mean', 'LOCF', 'Interpolation', 
+            'Moving Average', 'Seasonal Decomposition', 
+            'Kalman Smoothing on Structural Time Series models',
+            'Kalman Smoothing on ARIMA models'. Published in Moritz and Bartz-Beielstein (2017) 
+            <doi: 10.32614/RJ-2017-009>.
+
 The imputeTS package is a collection of algorithms and tools for univariate time series imputation.
 }
 \details{
-The imputeTS package specializes on (univariate) time series imputation. 
-It offers several different imputation algorithm implementations. Beyond the imputation algorithms 
+The imputeTS package specializes on (univariate) time series imputation.
+It offers several different imputation algorithm implementations. Beyond the imputation algorithms
 the package also provides plotting and printing functions of missing data statistics.
 
 The package is easy to use:
-
-- To impute (fill all missing values) in a time series \code{x}, run:\cr
-> \code{na_interpolation(x)} \cr
-         
-- To plot missing data statistics for a time series \code{x}, run:\cr
-> \code{plotNA_distribution(x)}\cr
-
-- To print missing data statistics for a time series \code{x}, run:\cr
-> \code{statsNA(x)}\cr
+\itemize{
+\item To impute (fill all missing values) in a time series \code{x}, run:\cr
+\code{na_interpolation(x)} \cr
+\item To plot missing data statistics for a time series \code{x}, run:\cr
+\code{ggplot_na_distribution(x)}\cr
+\item To print missing data statistics for a time series \code{x}, run:\cr
+\code{statsNA(x)}\cr
+}
 
 Every other imputation function (starting with na_'algorithm name') and plotting
 function (starting with plotNA_'plot name') work the same way as in this example.
@@ -29,3 +42,27 @@ function (starting with plotNA_'plot name') work the same way as in this example
 \references{
 Moritz, Steffen, and Thomas Bartz-Beielstein. "imputeTS: Time Series Missing Value Imputation in R." R Journal 9.1 (2017). doi: 10.32614/RJ-2017-009.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/SteffenMoritz/imputeTS}
+  \item \url{https://steffenmoritz.github.io/imputeTS/}
+  \item Report bugs at \url{https://github.com/SteffenMoritz/imputeTS/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Steffen Moritz \email{steffen.moritz10@gmail.com} (\href{https://orcid.org/0000-0002-0085-1804}{ORCID}) [copyright holder]
+
+Authors:
+\itemize{
+  \item Sebastian Gatscha \email{sebastian_gatscha@gmx.at}
+}
+
+Other contributors:
+\itemize{
+  \item Earo Wang \email{earo.wang@gmail.com} (\href{https://orcid.org/0000-0001-6448-5260}{ORCID}) [contributor]
+}
+
+}
+\keyword{internal}

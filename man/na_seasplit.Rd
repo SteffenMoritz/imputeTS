@@ -19,15 +19,15 @@ object in which missing values shall be replaced}
 \item{algorithm}{Algorithm to be used after splits.
 Accepts the following input:
 \itemize{
-   \item{"interpolation" - Imputation by Interpolation}
-   \item{"locf" - Imputation by Last Observation Carried Forward}
-   \item{"mean" - Imputation by Mean Value}
-   \item{"random" - Imputation by Random Sample}
-   \item{"kalman" - Imputation by Kalman Smoothing and State Space Models}
-   \item{"ma" - Imputation by Weighted Moving Average}
-   }}
+\item{"interpolation" - Imputation by Interpolation}
+\item{"locf" - Imputation by Last Observation Carried Forward}
+\item{"mean" - Imputation by Mean Value}
+\item{"random" - Imputation by Random Sample}
+\item{"kalman" - Imputation by Kalman Smoothing and State Space Models}
+\item{"ma" - Imputation by Weighted Moving Average}
+}}
 
-\item{find_frequency}{If TRUE the algorithm will try to estimate the frequency 
+\item{find_frequency}{If TRUE the algorithm will try to estimate the frequency
 of the time-series automatically.}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.
@@ -64,9 +64,9 @@ tsAirgap \%>\% na_seasplit(algorithm = "interpolation")
 \seealso{
 \code{\link[imputeTS]{na_interpolation}},
 \code{\link[imputeTS]{na_kalman}}, \code{\link[imputeTS]{na_locf}},
- \code{\link[imputeTS]{na_ma}}, \code{\link[imputeTS]{na_mean}},
- \code{\link[imputeTS]{na_random}}, \code{\link[imputeTS]{na_replace}},
- \code{\link[imputeTS]{na_seadec}}
+\code{\link[imputeTS]{na_ma}}, \code{\link[imputeTS]{na_mean}},
+\code{\link[imputeTS]{na_random}}, \code{\link[imputeTS]{na_replace}},
+\code{\link[imputeTS]{na_seadec}}
 }
 \author{
 Steffen Moritz

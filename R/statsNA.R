@@ -40,9 +40,9 @@
 #'    (see description of parameter "print_only")
 #'
 #' @author Steffen Moritz
-#' @seealso \code{\link[imputeTS]{plotNA.distribution}},
-#' \code{\link[imputeTS]{plotNA.distributionBar}}, 
-#' \code{\link[imputeTS]{plotNA.gapsize}}
+#' @seealso \code{\link[imputeTS]{ggplot_na_distribution}},
+#' \code{\link[imputeTS]{ggplot_na_intervals}}, 
+#' \code{\link[imputeTS]{ggplot_na_gapsize}}
 #'
 #' @examples
 #' # Example 1: Print stats about the missing data in tsNH4

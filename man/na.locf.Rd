@@ -12,9 +12,9 @@ object in which missing values shall be replaced}
 
 \item{option}{Algorithm to be used. Accepts the following input:
 \itemize{
-   \item{"locf" - for Last Observation Carried Forward}
-   \item{"nocb" - for Next Observation Carried Backward}
-   }}
+\item{"locf" - for Last Observation Carried Forward}
+\item{"nocb" - for Next Observation Carried Backward}
+}}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.
 Default setting is to replace all NAs without restrictions. With this

@@ -12,17 +12,17 @@ object in which missing values shall be replaced}
 
 \item{option}{Algorithm to be used. Accepts the following input:
 \itemize{
-   \item{"locf" - for Last Observation Carried Forward}
-   \item{"nocb" - for Next Observation Carried Backward}
-   }}
+\item{"locf" - for Last Observation Carried Forward}
+\item{"nocb" - for Next Observation Carried Backward}
+}}
 
 \item{na_remaining}{Method to be used for remaining NAs.
 \itemize{
-   \item{"keep" - to return the series with NAs}
-   \item{"rm" - to remove remaining NAs}
-   \item{"mean" - to replace remaining NAs by overall mean}
-   \item{"rev" - to perform nocb / locf from the reverse direction}
-   }}
+\item{"keep" - to return the series with NAs}
+\item{"rm" - to remove remaining NAs}
+\item{"mean" - to replace remaining NAs by overall mean}
+\item{"rev" - to perform nocb / locf from the reverse direction}
+}}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.
 Default setting is to replace all NAs without restrictions. With this
@@ -36,9 +36,9 @@ object (dependent on given input at parameter x)
 }
 \description{
 Replaces each missing value with the most recent present value
- prior to it (Last Observation Carried Forward- LOCF). Optionally this can
- also be done starting from the back of the series (Next Observation Carried
- Backward - NOCB).
+prior to it (Last Observation Carried Forward- LOCF). Optionally this can
+also be done starting from the back of the series (Next Observation Carried
+Backward - NOCB).
 }
 \details{
 Replaces each missing value with the most recent present value
@@ -70,9 +70,9 @@ x \%>\% na_locf()
 \seealso{
 \code{\link[imputeTS]{na_interpolation}},
 \code{\link[imputeTS]{na_kalman}},
- \code{\link[imputeTS]{na_ma}}, \code{\link[imputeTS]{na_mean}},
- \code{\link[imputeTS]{na_random}}, \code{\link[imputeTS]{na_replace}},
- \code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
+\code{\link[imputeTS]{na_ma}}, \code{\link[imputeTS]{na_mean}},
+\code{\link[imputeTS]{na_random}}, \code{\link[imputeTS]{na_replace}},
+\code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
 }
 \author{
 Steffen Moritz

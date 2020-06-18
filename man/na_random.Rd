@@ -10,10 +10,10 @@ na_random(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf)
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
 object in which missing values shall be replaced}
 
-\item{lower_bound}{Lower bound for the random samples. 
+\item{lower_bound}{Lower bound for the random samples.
 If nothing or NULL is set min(x) will be used.}
 
-\item{upper_bound}{Upper bound for the random samples. 
+\item{upper_bound}{Upper bound for the random samples.
 If nothing or NULL is set man(x) will be used.}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.
@@ -52,9 +52,9 @@ x \%>\% na_random()
 \seealso{
 \code{\link[imputeTS]{na_interpolation}},
 \code{\link[imputeTS]{na_kalman}}, \code{\link[imputeTS]{na_locf}},
- \code{\link[imputeTS]{na_ma}}, \code{\link[imputeTS]{na_mean}},
- \code{\link[imputeTS]{na_replace}},
- \code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
+\code{\link[imputeTS]{na_ma}}, \code{\link[imputeTS]{na_mean}},
+\code{\link[imputeTS]{na_replace}},
+\code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
 }
 \author{
 Steffen Moritz

@@ -12,12 +12,12 @@ object in which missing values shall be replaced}
 
 \item{option}{Algorithm to be used. Accepts the following input:
 \itemize{
-   \item{"mean" - take the mean for imputation (default)}
-   \item{"median" - take the median for imputation}
-   \item{"mode" - take the mode for imputation}
-   \item{"harmonic" - take the harmonic mean}
-   \item{"geometric" - take the geometric mean}
-   }}
+\item{"mean" - take the mean for imputation (default)}
+\item{"median" - take the median for imputation}
+\item{"mode" - take the mode for imputation}
+\item{"harmonic" - take the harmonic mean}
+\item{"geometric" - take the geometric mean}
+}}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.
 Default setting is to replace all NAs without restrictions. With this
@@ -57,9 +57,9 @@ x \%>\% na_mean()
 \seealso{
 \code{\link[imputeTS]{na_interpolation}},
 \code{\link[imputeTS]{na_kalman}}, \code{\link[imputeTS]{na_locf}},
- \code{\link[imputeTS]{na_ma}},
- \code{\link[imputeTS]{na_random}}, \code{\link[imputeTS]{na_replace}},
- \code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
+\code{\link[imputeTS]{na_ma}},
+\code{\link[imputeTS]{na_random}}, \code{\link[imputeTS]{na_replace}},
+\code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
 }
 \author{
 Steffen Moritz

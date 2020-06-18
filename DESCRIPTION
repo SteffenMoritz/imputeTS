@@ -29,9 +29,11 @@ Repository: CRAN
 Depends:
     R (>= 3.0.1)
 Imports:
+    utils,
     stats,
     grDevices,
     ggplot2,
+    ggtext,
     stinepack,
     forecast,
     magrittr,
@@ -41,5 +43,6 @@ Suggests:
 License: GPL-3
 VignetteBuilder: R.rsp
 RoxygenNote: 7.1.0
+Roxygen: list(markdown = TRUE)
 LinkingTo: Rcpp
 Encoding: UTF-8
