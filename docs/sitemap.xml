@@ -4,6 +4,18 @@
     <loc>https://SteffenMoritz.github.io/imputeTS/index.html</loc>
   </url>
   <url>
+    <loc>https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_distribution.html</loc>
+  </url>
+  <url>
+    <loc>https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_gapsize.html</loc>
+  </url>
+  <url>
+    <loc>https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_imputations.html</loc>
+  </url>
+  <url>
+    <loc>https://SteffenMoritz.github.io/imputeTS/reference/ggplot_na_intervals.html</loc>
+  </url>
+  <url>
     <loc>https://SteffenMoritz.github.io/imputeTS/reference/imputeTS-package.html</loc>
   </url>
   <url>
@@ -65,18 +77,6 @@
   </url>
   <url>
     <loc>https://SteffenMoritz.github.io/imputeTS/reference/na_seasplit.html</loc>
-  </url>
-  <url>
-    <loc>https://SteffenMoritz.github.io/imputeTS/reference/plotNA.distribution.html</loc>
-  </url>
-  <url>
-    <loc>https://SteffenMoritz.github.io/imputeTS/reference/plotNA.distributionBar.html</loc>
-  </url>
-  <url>
-    <loc>https://SteffenMoritz.github.io/imputeTS/reference/plotNA.gapsize.html</loc>
-  </url>
-  <url>
-    <loc>https://SteffenMoritz.github.io/imputeTS/reference/plotNA.imputations.html</loc>
   </url>
   <url>
     <loc>https://SteffenMoritz.github.io/imputeTS/reference/reexports.html</loc>
