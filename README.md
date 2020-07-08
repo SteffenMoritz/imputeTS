@@ -55,7 +55,7 @@ install_github("SteffenMoritz/imputeTS")
    ggplot_na_distribution(x)
   ```
   <p align="center">
-  <img src="man/figures/ggplot_na_distribution.png" width="400" height="300" alt="Example ggplot_na_distribution plot" />
+  <img src="man/figures/ggplot_na_distribution.png" width="600" height="350" alt="Example ggplot_na_distribution plot" />
  </p>
   
   
