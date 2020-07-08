@@ -54,6 +54,11 @@ install_github("SteffenMoritz/imputeTS")
   ```
    ggplot_na_distribution(x)
   ```
+  <p align="center">
+  <img src="man/figures/ggplot_na_distribution.png" width="400" height="300" alt="Example ggplot_na_distribution plot" />
+ </p>
+  
+  
   > This is also just one example for a plot. Overall there are four different types 
   > of missing data plots. (see also under caption "Missing Data Plots"). 
 
