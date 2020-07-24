@@ -1,0 +1,701 @@
+
+R version 4.0.1 (2020-06-06) -- "See Things Now"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "TrendSLR"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('TrendSLR')
+
+Attaching package: ‘TrendSLR’
+
+The following object is masked from ‘package:base’:
+
+    summary
+
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("Balt")
+> ### * Balt
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: Balt
+> ### Title: Ocean water level data for Baltimore, USA
+> ### Aliases: Balt
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> data(Balt) # typical data file structure
+> ts1 <- ts(Balt[2], start = Balt[1, 1]) # convert to time series object
+> plot(ts1, type = "l", xlab = "Year", ylab = "Annual Average Mean Sea Level (mm)",
++ main = 'BALTIMORE, USA')
+> str(Balt) # check structure of data file
+'data.frame':	115 obs. of  2 variables:
+ $ Year: int  1904 1905 1906 1907 1908 1909 1910 1911 1912 1913 ...
+ $ MSL : int  6808 6825 6837 6825 6837 6844 6865 6850 6820 6828 ...
+> 
+> 
+> 
+> cleanEx()
+> nameEx("check.decomp")
+> ### * check.decomp
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: check.decomp
+> ### Title: Diagnostic tools to inspect SSA decomposition for mean sea level
+> ###   records.
+> ### Aliases: check.decomp
+> 
+> ### ** Examples
+> 
+> # -------------------------------------------------------------------------
+> # View application of different diagnostic tools for Baltimore mean sea level record.
+> # -------------------------------------------------------------------------
+> 
+> data(Balt) # Baltimore mean sea level record
+> ts1 <- ts(Balt[2], start = Balt[1, 1]) # create time series input object
+> 
+> g <- gap.fillview(ts1, station_name = "Baltimore", fillgaps = 1) # SSA filled gap
+gapfilling using iterative SSA setting applied
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> 
+> check.decomp(g, option = 3) # check screen plot, default settings
+no station name entered, field left blank
+Comps not entered, default setting applied, number = 50
+Time series display of individual components from SSA decomposition
+> check.decomp(g, option = 3, comps = 10) # check screen plot
+no station name entered, field left blank
+Time series display of individual components from SSA decomposition
+> check.decomp(g, option = 4) # check screen plot
+no station name entered, field left blank
+Comps not entered, default setting applied, number = 50
+Relative contributions of each component of SSA decomposition in low frequency band [0-0.01]
+> check.decomp(g, option = 5) # check screen plot, default settings
+no station name entered, field left blank
+Comps not entered, default setting applied, number = 50
+Default degrees of freedom applied to fitted cubic smoothing spline based on 1 DOF every 8 years
+DOF  = 14
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> check.decomp(g, option = 5, trend = c(1,2), DOF = 20) # check screen plot
+no station name entered, field left blank
+Comps not entered, default setting applied, number = 50
+Default degrees of freedom applied to fitted cubic smoothing spline based on 1 DOF every 8 years
+DOF  = 14
+Self input DOF  = 20
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> check.decomp(g, option = 5, trend = c(1,2,3), DOF = 30) # check screen plot
+no station name entered, field left blank
+Comps not entered, default setting applied, number = 50
+Default degrees of freedom applied to fitted cubic smoothing spline based on 1 DOF every 8 years
+DOF  = 14
+Self input DOF  = 30
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("custom.trend")
+> ### * custom.trend
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: custom.trend
+> ### Title: Isolate trend component from mean sea level records via
+> ###   customised input parameters and analysis
+> ### Aliases: custom.trend
+> 
+> ### ** Examples
+> 
+> 
+> data(Balt) # Baltimore mean sea level record
+> ts1 <- ts(Balt[2], start = Balt[1, 1]) # create time series input object
+> g <- gap.fillview(ts1, station_name = "Baltimore", fillgaps = 1) # SSA gap fill
+gapfilling using iterative SSA setting applied
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> 
+> data(t)
+> str(t) # check structure of object
+List of 12
+ $ Station.Name            : chr "Baltimore (USA)"
+ $ Summary                 :'data.frame':	115 obs. of  11 variables:
+  ..$ Year    : num [1:115] 1904 1905 1906 1907 1908 ...
+  ..$ MSL     : num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ Trend   : num [1:115] 6825 6828 6830 6832 6834 ...
+  ..$ TrendSD : num [1:115] 12.38 10.46 10.15 10.32 9.94 ...
+  ..$ Vel     : num [1:115] 1.89 1.88 1.87 1.87 1.88 ...
+  ..$ VelSD   : num [1:115] 0.982 0.965 0.92 0.854 0.779 ...
+  ..$ Acc     : num [1:115] NA NA NA 0.000336 0.02587 ...
+  ..$ AccSD   : num [1:115] NA NA NA 0.132 0.132 ...
+  ..$ Resids  : num [1:115] 15.68 -2.49 -5.61 9.38 -6.83 ...
+  ..$ FilledTS: num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ VelGeo  : num [1:115] 2.49 2.48 2.47 2.47 2.48 ...
+ $ Relative.Velocity       :List of 2
+  ..$ Peak.mm.yr: num 4.27
+  ..$ Year      : num 1935
+ $ Vertical.Land.Motion    :List of 1
+  ..$ mm.yr: num 0.6
+ $ Geocentric.Velocity     :List of 2
+  ..$ Peak.mm.yr: num 4.87
+  ..$ Year      : num 1935
+ $ Acceleration            :List of 2
+  ..$ Peak.mm.yr.yr: num 0.17
+  ..$ Year         : num 1928
+ $ Record.Length           :List of 3
+  ..$ Start: num 1904
+  ..$ End  : num 2018
+  ..$ Years: int 115
+ $ Fillgaps                :List of 2
+  ..$ Gaps  : int 1
+  ..$ Method: chr "Gap filling via SSA"
+ $ Bootstrapping.Iterations: num 500
+ $ Changepoints            :List of 2
+  ..$ Number: chr "zero"
+  ..$ Year  : chr "NA"
+ $ Trend.Components        : num [1:2] 1 2
+ $ DOF.Fitted.Spline       :List of 1
+  ..$ : chr "Default applied. DOF  = 14"
+ - attr(*, "class")= chr "custom.trend"
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("gap.fillview")
+> ### * gap.fillview
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: gap.fillview
+> ### Title: Inspect gap-filling options for mean sea level records.
+> ### Aliases: gap.fillview
+> 
+> ### ** Examples
+> 
+> # -------------------------------------------------------------------------
+> # View different options for filling the Baltimore annual mean sea level record.
+> # -------------------------------------------------------------------------
+> 
+> data(Balt) # Baltimore mean sea level record
+> ts1 <- ts(Balt[2], start = Balt[1, 1]) # create time series input object
+> 
+> g <- gap.fillview(ts1, station_name = "Baltimore", fillgaps = 1) # SSA
+gapfilling using iterative SSA setting applied
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> g <- gap.fillview(ts1, station_name = "Baltimore", fillgaps = 2) # Linear interpolation
+gapfilling using linear interpolation setting applied
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> g <- gap.fillview(ts1, station_name = "Baltimore", fillgaps = 3) # Cubic spline interpolation
+gapfilling using cubic spline interpolation setting applied
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> g <- gap.fillview(ts1, station_name = "Baltimore", fillgaps = 4) # Stineman's interpolation
+gapfilling using Stineman interpolation setting applied
+Warning: na.interpolation will be replaced by na_interpolation.
+           Functionality stays the same.
+           The new function name better fits modern R code style guidelines.
+           Please adjust your code accordingly.
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> g <- gap.fillview(ts1, station_name = "Baltimore", fillgaps = 5) # Weighted moving average
+gapfilling using weighted moving average setting applied
+Warning: na.ma will be replaced by na_ma.
+    Functionality stays the same.
+    The new function name better fits modern R code style guidelines.
+    Please adjust your code accordingly.
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> 
+> str(g) # Check structure of outputted object
+List of 3
+ $ Station.Name: chr "Baltimore"
+ $ Summary     :'data.frame':	115 obs. of  3 variables:
+  ..$ Year    : num [1:115] 1904 1905 1906 1907 1908 ...
+  ..$ MSL     : num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ FilledTS: num [1:115] 6808 6825 6837 6825 6837 ...
+ $ Fillgaps    : chr "Gap filling via Weighted Moving Average"
+ - attr(*, "class")= chr "gap.fillview"
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("msl.fileplot")
+> ### * msl.fileplot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: msl.fileplot
+> ### Title: Plotting to file options in JPEG format.
+> ### Aliases: msl.fileplot
+> 
+> ### ** Examples
+> 
+> 
+> # Plot to file from "custom.trend" object
+> 
+> data(t) # "custom.trend" object
+> str(t) # check object
+List of 12
+ $ Station.Name            : chr "Baltimore (USA)"
+ $ Summary                 :'data.frame':	115 obs. of  11 variables:
+  ..$ Year    : num [1:115] 1904 1905 1906 1907 1908 ...
+  ..$ MSL     : num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ Trend   : num [1:115] 6825 6828 6830 6832 6834 ...
+  ..$ TrendSD : num [1:115] 12.38 10.46 10.15 10.32 9.94 ...
+  ..$ Vel     : num [1:115] 1.89 1.88 1.87 1.87 1.88 ...
+  ..$ VelSD   : num [1:115] 0.982 0.965 0.92 0.854 0.779 ...
+  ..$ Acc     : num [1:115] NA NA NA 0.000336 0.02587 ...
+  ..$ AccSD   : num [1:115] NA NA NA 0.132 0.132 ...
+  ..$ Resids  : num [1:115] 15.68 -2.49 -5.61 9.38 -6.83 ...
+  ..$ FilledTS: num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ VelGeo  : num [1:115] 2.49 2.48 2.47 2.47 2.48 ...
+ $ Relative.Velocity       :List of 2
+  ..$ Peak.mm.yr: num 4.27
+  ..$ Year      : num 1935
+ $ Vertical.Land.Motion    :List of 1
+  ..$ mm.yr: num 0.6
+ $ Geocentric.Velocity     :List of 2
+  ..$ Peak.mm.yr: num 4.87
+  ..$ Year      : num 1935
+ $ Acceleration            :List of 2
+  ..$ Peak.mm.yr.yr: num 0.17
+  ..$ Year         : num 1928
+ $ Record.Length           :List of 3
+  ..$ Start: num 1904
+  ..$ End  : num 2018
+  ..$ Years: int 115
+ $ Fillgaps                :List of 2
+  ..$ Gaps  : int 1
+  ..$ Method: chr "Gap filling via SSA"
+ $ Bootstrapping.Iterations: num 500
+ $ Changepoints            :List of 2
+  ..$ Number: chr "zero"
+  ..$ Year  : chr "NA"
+ $ Trend.Components        : num [1:2] 1 2
+ $ DOF.Fitted.Spline       :List of 1
+  ..$ : chr "Default applied. DOF  = 14"
+ - attr(*, "class")= chr "custom.trend"
+> 
+> # -------------------------------------------------------------------------
+> # The following call to msl.fileplot can be found in the temporary
+> # directory under the file name "Plot1.jpeg".
+> # -------------------------------------------------------------------------
+> 
+> wd <- tempdir() # find temp directory
+> msl.fileplot(t, wdir = wd) # default screen plot output
+[1] "output can be found in defined directory as Plot1.jpeg"
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("msl.screenplot")
+> ### * msl.screenplot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: msl.screenplot
+> ### Title: Plotting to filescreen options.
+> ### Aliases: msl.screenplot
+> 
+> ### ** Examples
+> 
+> 
+> # Plot to screen from "msl.trend" object
+> 
+> data(s) # "msl.trend" object
+> str(s) # check object
+List of 10
+ $ Station.Name            : chr "BALTIMORE, USA"
+ $ Summary                 :'data.frame':	115 obs. of  11 variables:
+  ..$ Year    : num [1:115] 1904 1905 1906 1907 1908 ...
+  ..$ MSL     : num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ Trend   : num [1:115] 6825 6829 6832 6835 6838 ...
+  ..$ TrendSD : num [1:115] 5.59 5.58 5.55 5.45 5.36 ...
+  ..$ Vel     : num [1:115] 2.91 2.9 2.9 2.9 2.91 ...
+  ..$ VelSD   : num [1:115] 0.239 0.239 0.236 0.231 0.224 ...
+  ..$ Acc     : num [1:115] NA NA NA 0.00161 0.0108 ...
+  ..$ AccSD   : num [1:115] NA NA NA 0.0194 0.0221 ...
+  ..$ Resids  : num [1:115] 15.42 -3.87 -6.91 12.04 -3.97 ...
+  ..$ FilledTS: num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ VelGeo  : num [1:115] NA NA NA NA NA NA NA NA NA NA ...
+ $ Relative.Velocity       :List of 2
+  ..$ Peak.mm.yr: num 3.2
+  ..$ Year      : num 1937
+ $ Vertical.Land.Motion    :List of 1
+  ..$ mm.yr: chr "NA"
+ $ Geocentric.Velocity     :List of 2
+  ..$ Peak.mm.yr: chr "NA"
+  ..$ Year      : chr "NA"
+ $ Acceleration            :List of 2
+  ..$ Peak.mm.yr.yr: num 0.0454
+  ..$ Year         : num 1912
+ $ Record.Length           :List of 3
+  ..$ Start: num 1904
+  ..$ End  : num 2018
+  ..$ Years: int 115
+ $ Fillgaps                :List of 2
+  ..$ Gaps  : int 1
+  ..$ Method: chr "Cubic Spline Interpolation"
+ $ Bootstrapping.Iterations: num 500
+ $ Changepoints            :List of 2
+  ..$ Number: chr "zero"
+  ..$ Year  : chr "NA"
+ - attr(*, "class")= chr "msl.trend"
+> 
+> msl.screenplot(s) # default screen plot output, 3 panels, 95% confidence intervals
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> msl.screenplot(s, type=2) # plot time series, 95% confidence intervals
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> msl.screenplot(s, type=3) # plot velocity, 95% confidence intervals
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> msl.screenplot(s, type=4, ci=2) # plot acceleration, 99% confidence intervals
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> msl.screenplot(s, type=5, ci=2) # 2 panels, 99% confidence intervals
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("msl.trend")
+> ### * msl.trend
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: msl.trend
+> ### Title: Isolate trend component from mean sea level records.
+> ### Aliases: msl.trend
+> 
+> ### ** Examples
+> 
+> 
+> data(Balt) # Baltimore mean sea level record
+> ts1 <- ts(Balt[2], start = Balt[1, 1]) # create time series input object
+> 
+> data(s)
+> str(s) # check structure of object
+List of 10
+ $ Station.Name            : chr "BALTIMORE, USA"
+ $ Summary                 :'data.frame':	115 obs. of  11 variables:
+  ..$ Year    : num [1:115] 1904 1905 1906 1907 1908 ...
+  ..$ MSL     : num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ Trend   : num [1:115] 6825 6829 6832 6835 6838 ...
+  ..$ TrendSD : num [1:115] 5.59 5.58 5.55 5.45 5.36 ...
+  ..$ Vel     : num [1:115] 2.91 2.9 2.9 2.9 2.91 ...
+  ..$ VelSD   : num [1:115] 0.239 0.239 0.236 0.231 0.224 ...
+  ..$ Acc     : num [1:115] NA NA NA 0.00161 0.0108 ...
+  ..$ AccSD   : num [1:115] NA NA NA 0.0194 0.0221 ...
+  ..$ Resids  : num [1:115] 15.42 -3.87 -6.91 12.04 -3.97 ...
+  ..$ FilledTS: num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ VelGeo  : num [1:115] NA NA NA NA NA NA NA NA NA NA ...
+ $ Relative.Velocity       :List of 2
+  ..$ Peak.mm.yr: num 3.2
+  ..$ Year      : num 1937
+ $ Vertical.Land.Motion    :List of 1
+  ..$ mm.yr: chr "NA"
+ $ Geocentric.Velocity     :List of 2
+  ..$ Peak.mm.yr: chr "NA"
+  ..$ Year      : chr "NA"
+ $ Acceleration            :List of 2
+  ..$ Peak.mm.yr.yr: num 0.0454
+  ..$ Year         : num 1912
+ $ Record.Length           :List of 3
+  ..$ Start: num 1904
+  ..$ End  : num 2018
+  ..$ Years: int 115
+ $ Fillgaps                :List of 2
+  ..$ Gaps  : int 1
+  ..$ Method: chr "Cubic Spline Interpolation"
+ $ Bootstrapping.Iterations: num 500
+ $ Changepoints            :List of 2
+  ..$ Number: chr "zero"
+  ..$ Year  : chr "NA"
+ - attr(*, "class")= chr "msl.trend"
+> msl.screenplot(s) # check screen output
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("s")
+> ### * s
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: s
+> ### Title: sample 'msl.trend' object
+> ### Aliases: s
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> 
+> data(Balt) # Baltimore mean sea level record
+> ts1 <- ts(Balt[2], start = Balt[1, 1]) # create time series input object
+> 
+> data(s)
+> str(s) # check structure of object
+List of 10
+ $ Station.Name            : chr "BALTIMORE, USA"
+ $ Summary                 :'data.frame':	115 obs. of  11 variables:
+  ..$ Year    : num [1:115] 1904 1905 1906 1907 1908 ...
+  ..$ MSL     : num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ Trend   : num [1:115] 6825 6829 6832 6835 6838 ...
+  ..$ TrendSD : num [1:115] 5.59 5.58 5.55 5.45 5.36 ...
+  ..$ Vel     : num [1:115] 2.91 2.9 2.9 2.9 2.91 ...
+  ..$ VelSD   : num [1:115] 0.239 0.239 0.236 0.231 0.224 ...
+  ..$ Acc     : num [1:115] NA NA NA 0.00161 0.0108 ...
+  ..$ AccSD   : num [1:115] NA NA NA 0.0194 0.0221 ...
+  ..$ Resids  : num [1:115] 15.42 -3.87 -6.91 12.04 -3.97 ...
+  ..$ FilledTS: num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ VelGeo  : num [1:115] NA NA NA NA NA NA NA NA NA NA ...
+ $ Relative.Velocity       :List of 2
+  ..$ Peak.mm.yr: num 3.2
+  ..$ Year      : num 1937
+ $ Vertical.Land.Motion    :List of 1
+  ..$ mm.yr: chr "NA"
+ $ Geocentric.Velocity     :List of 2
+  ..$ Peak.mm.yr: chr "NA"
+  ..$ Year      : chr "NA"
+ $ Acceleration            :List of 2
+  ..$ Peak.mm.yr.yr: num 0.0454
+  ..$ Year         : num 1912
+ $ Record.Length           :List of 3
+  ..$ Start: num 1904
+  ..$ End  : num 2018
+  ..$ Years: int 115
+ $ Fillgaps                :List of 2
+  ..$ Gaps  : int 1
+  ..$ Method: chr "Cubic Spline Interpolation"
+ $ Bootstrapping.Iterations: num 500
+ $ Changepoints            :List of 2
+  ..$ Number: chr "zero"
+  ..$ Year  : chr "NA"
+ - attr(*, "class")= chr "msl.trend"
+> msl.screenplot(s) # check screen output
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> 
+> 
+> 
+> cleanEx()
+> nameEx("summary")
+> ### * summary
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: summary
+> ### Title: Summary outputs of decomposed time series.
+> ### Aliases: summary
+> 
+> ### ** Examples
+> 
+> 
+> data(s) # msl.trend object
+> data(t) # custom.trend object
+> summary(s) # summary for object of class 'msl.trend'
+List of 10
+ $ Station.Name            : chr "BALTIMORE, USA"
+ $ Summary                 :'data.frame':	115 obs. of  11 variables:
+  ..$ Year    : num [1:115] 1904 1905 1906 1907 1908 ...
+  ..$ MSL     : num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ Trend   : num [1:115] 6825 6829 6832 6835 6838 ...
+  ..$ TrendSD : num [1:115] 5.59 5.58 5.55 5.45 5.36 ...
+  ..$ Vel     : num [1:115] 2.91 2.9 2.9 2.9 2.91 ...
+  ..$ VelSD   : num [1:115] 0.239 0.239 0.236 0.231 0.224 ...
+  ..$ Acc     : num [1:115] NA NA NA 0.00161 0.0108 ...
+  ..$ AccSD   : num [1:115] NA NA NA 0.0194 0.0221 ...
+  ..$ Resids  : num [1:115] 15.42 -3.87 -6.91 12.04 -3.97 ...
+  ..$ FilledTS: num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ VelGeo  : num [1:115] NA NA NA NA NA NA NA NA NA NA ...
+ $ Relative.Velocity       :List of 2
+  ..$ Peak.mm.yr: num 3.2
+  ..$ Year      : num 1937
+ $ Vertical.Land.Motion    :List of 1
+  ..$ mm.yr: chr "NA"
+ $ Geocentric.Velocity     :List of 2
+  ..$ Peak.mm.yr: chr "NA"
+  ..$ Year      : chr "NA"
+ $ Acceleration            :List of 2
+  ..$ Peak.mm.yr.yr: num 0.0454
+  ..$ Year         : num 1912
+ $ Record.Length           :List of 3
+  ..$ Start: num 1904
+  ..$ End  : num 2018
+  ..$ Years: int 115
+ $ Fillgaps                :List of 2
+  ..$ Gaps  : int 1
+  ..$ Method: chr "Cubic Spline Interpolation"
+ $ Bootstrapping.Iterations: num 500
+ $ Changepoints            :List of 2
+  ..$ Number: chr "zero"
+  ..$ Year  : chr "NA"
+ - attr(*, "class")= chr "msl.trend"
+NULL
+> summary(t) # summary for object of class 'custom.trend'
+List of 12
+ $ Station.Name            : chr "Baltimore (USA)"
+ $ Summary                 :'data.frame':	115 obs. of  11 variables:
+  ..$ Year    : num [1:115] 1904 1905 1906 1907 1908 ...
+  ..$ MSL     : num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ Trend   : num [1:115] 6825 6828 6830 6832 6834 ...
+  ..$ TrendSD : num [1:115] 12.38 10.46 10.15 10.32 9.94 ...
+  ..$ Vel     : num [1:115] 1.89 1.88 1.87 1.87 1.88 ...
+  ..$ VelSD   : num [1:115] 0.982 0.965 0.92 0.854 0.779 ...
+  ..$ Acc     : num [1:115] NA NA NA 0.000336 0.02587 ...
+  ..$ AccSD   : num [1:115] NA NA NA 0.132 0.132 ...
+  ..$ Resids  : num [1:115] 15.68 -2.49 -5.61 9.38 -6.83 ...
+  ..$ FilledTS: num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ VelGeo  : num [1:115] 2.49 2.48 2.47 2.47 2.48 ...
+ $ Relative.Velocity       :List of 2
+  ..$ Peak.mm.yr: num 4.27
+  ..$ Year      : num 1935
+ $ Vertical.Land.Motion    :List of 1
+  ..$ mm.yr: num 0.6
+ $ Geocentric.Velocity     :List of 2
+  ..$ Peak.mm.yr: num 4.87
+  ..$ Year      : num 1935
+ $ Acceleration            :List of 2
+  ..$ Peak.mm.yr.yr: num 0.17
+  ..$ Year         : num 1928
+ $ Record.Length           :List of 3
+  ..$ Start: num 1904
+  ..$ End  : num 2018
+  ..$ Years: int 115
+ $ Fillgaps                :List of 2
+  ..$ Gaps  : int 1
+  ..$ Method: chr "Gap filling via SSA"
+ $ Bootstrapping.Iterations: num 500
+ $ Changepoints            :List of 2
+  ..$ Number: chr "zero"
+  ..$ Year  : chr "NA"
+ $ Trend.Components        : num [1:2] 1 2
+ $ DOF.Fitted.Spline       :List of 1
+  ..$ : chr "Default applied. DOF  = 14"
+ - attr(*, "class")= chr "custom.trend"
+NULL
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("t")
+> ### * t
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: t
+> ### Title: sample 'custom.trend' object
+> ### Aliases: t
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> 
+> data(Balt) # Baltimore mean sea level record
+> ts1 <- ts(Balt[2], start = Balt[1, 1]) # create time series input object
+> g <- gap.fillview(ts1, station_name = "Baltimore", fillgaps = 1) # SSA gap fill
+gapfilling using iterative SSA setting applied
+Warning in xt[ok.l] + x.off * xchar :
+  longer object length is not a multiple of shorter object length
+> 
+> data(t)
+> str(t) # check structure of object
+List of 12
+ $ Station.Name            : chr "Baltimore (USA)"
+ $ Summary                 :'data.frame':	115 obs. of  11 variables:
+  ..$ Year    : num [1:115] 1904 1905 1906 1907 1908 ...
+  ..$ MSL     : num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ Trend   : num [1:115] 6825 6828 6830 6832 6834 ...
+  ..$ TrendSD : num [1:115] 12.38 10.46 10.15 10.32 9.94 ...
+  ..$ Vel     : num [1:115] 1.89 1.88 1.87 1.87 1.88 ...
+  ..$ VelSD   : num [1:115] 0.982 0.965 0.92 0.854 0.779 ...
+  ..$ Acc     : num [1:115] NA NA NA 0.000336 0.02587 ...
+  ..$ AccSD   : num [1:115] NA NA NA 0.132 0.132 ...
+  ..$ Resids  : num [1:115] 15.68 -2.49 -5.61 9.38 -6.83 ...
+  ..$ FilledTS: num [1:115] 6808 6825 6837 6825 6837 ...
+  ..$ VelGeo  : num [1:115] 2.49 2.48 2.47 2.47 2.48 ...
+ $ Relative.Velocity       :List of 2
+  ..$ Peak.mm.yr: num 4.27
+  ..$ Year      : num 1935
+ $ Vertical.Land.Motion    :List of 1
+  ..$ mm.yr: num 0.6
+ $ Geocentric.Velocity     :List of 2
+  ..$ Peak.mm.yr: num 4.87
+  ..$ Year      : num 1935
+ $ Acceleration            :List of 2
+  ..$ Peak.mm.yr.yr: num 0.17
+  ..$ Year         : num 1928
+ $ Record.Length           :List of 3
+  ..$ Start: num 1904
+  ..$ End  : num 2018
+  ..$ Years: int 115
+ $ Fillgaps                :List of 2
+  ..$ Gaps  : int 1
+  ..$ Method: chr "Gap filling via SSA"
+ $ Bootstrapping.Iterations: num 500
+ $ Changepoints            :List of 2
+  ..$ Number: chr "zero"
+  ..$ Year  : chr "NA"
+ $ Trend.Components        : num [1:2] 1 2
+ $ DOF.Fitted.Spline       :List of 1
+  ..$ : chr "Default applied. DOF  = 14"
+ - attr(*, "class")= chr "custom.trend"
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  12.492 0.835 13.602 0.002 0.004 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

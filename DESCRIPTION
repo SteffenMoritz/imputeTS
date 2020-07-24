@@ -39,9 +39,9 @@ Imports:
     magrittr,
     Rcpp
 Suggests:
-    testthat,  R.rsp, zoo, timeSeries, tis, xts, tibble, tsibble
+    testthat,  R.rsp, knitr, zoo, timeSeries, tis, xts, tibble, tsibble
 License: GPL-3
-VignetteBuilder: R.rsp
+VignetteBuilder: R.rsp, knitr
 RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE)
 LinkingTo: Rcpp

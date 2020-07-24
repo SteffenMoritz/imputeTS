@@ -28,8 +28,11 @@ ggplot_na_intervals(
 using Sturges' formula. If the interval_size parameter is set to a value different to NULL
 this parameter is ignored.}
 
-\item{interval_size}{Defines how many observations should be in one bin/interval. The required number of
-overall bins is afterwards calculated automatically. If used this parameter overwrites the number_intervals parameter.}
+\item{interval_size}{Defines how many observations should be in one bin/interval.
+The required number of overall bins is afterwards calculated automatically.
+If used this parameter overwrites the number_intervals parameter.
+For a very long time series be sure to make the interval_size not extremely small,
+otherwise because of  overplotting issues nothing can be seen until you also increase the plot width.}
 
 \item{measure}{Whether the NA / non-NA ratio should be given as percent or absolute numbers.
 

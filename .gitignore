@@ -8,3 +8,5 @@ Icon
 *.o
 *.dll
 *.so
+doc
+Meta

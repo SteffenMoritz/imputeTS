@@ -6,9 +6,11 @@
 \usage{
 ggplot_na_distribution(
   x,
+  x_axis_labels = NULL,
   color_points = "steelblue",
   color_lines = "steelblue2",
   color_missing = "indianred",
+  color_missing_border = "indianred",
   alpha_missing = 0.5,
   title = "Distribution of Missing Values",
   subtitle = "Time Series with highlighted missing regions",
@@ -21,15 +23,22 @@ ggplot_na_distribution(
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
-object containing NAs}
+object containing NAs. This is the ONLY necessary parameter, all other are are
+only needed if you want to adjust the resulting plot.}
+
+\item{x_axis_labels}{For adding specific x-axis labels. Takes a vector (with the same length as x)
+of either Date or POSIXct objects as an input. Default (NULL) is using the
+observation number as  x-axis tick labels.}
 
 \item{color_points}{Point color for observations}
 
 \item{color_lines}{Line color}
 
-\item{color_missing}{Background color used for showing NA sequences}
+\item{color_missing}{Color used for highlighting the time spans with NA values}
 
-\item{alpha_missing}{Transparency value for background used for showing NA sequences}
+\item{color_missing_border}{Color used as border for time spans with NA values}
+
+\item{alpha_missing}{Transparency value used for highlighting the time spans with NA values}
 
 \item{title}{Title of the plot (NULL for deactivating title)}
 

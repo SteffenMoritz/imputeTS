@@ -7,10 +7,13 @@
 #'
 #' @param number_intervals Defines the number of bins to be created. Default number of intervals is calculated by \code{\link[grDevices]{nclass.Sturges}}
 #' using Sturges' formula. If the interval_size parameter is set to a value different to NULL
-#' this parameter is ignored.
+#' this parameter is ignored. 
 #'
-#' @param interval_size Defines how many observations should be in one bin/interval. The required number of
-#' overall bins is afterwards calculated automatically. If used this parameter overwrites the number_intervals parameter.
+#' @param interval_size Defines how many observations should be in one bin/interval. 
+#' The required number of overall bins is afterwards calculated automatically.
+#'  If used this parameter overwrites the number_intervals parameter. 
+#'  For a very long time series be sure to make the interval_size not extremely small, 
+#'  otherwise because of  overplotting issues nothing can be seen until you also increase the plot width.
 #'
 #' @param measure Whether the NA / non-NA ratio should be given as percent or absolute numbers. 
 #'
@@ -66,7 +69,8 @@
 #' @importFrom magrittr %>%
 #' @importFrom ggtext element_markdown
 #' @export
-ggplot_na_intervals <- function(x, number_intervals = grDevices::nclass.Sturges(x),
+ggplot_na_intervals <- function(x, 
+                                number_intervals = grDevices::nclass.Sturges(x),
                                 interval_size = NULL, 
                                 measure = "percent",
                                 color_missing = "indianred2",
@@ -81,26 +85,45 @@ ggplot_na_intervals <- function(x, number_intervals = grDevices::nclass.Sturges(
                                 theme = ggplot2::theme_linedraw()) {
   data <- x
 
-
   ##
-  ## Input check
+  ## 1. Input Check and Transformation
   ##
-  if (!is.null(dim(data)) && dim(data)[2] != 1) {
-    stop("Input x is not univariate")
+  
+  # 1.1 Check if the input is multivariate
+  if (!is.null(dim(data)[2]) && dim(data)[2] > 1) {
+    stop("x is not univariate. The function only works with univariate input for x. For data types with 
+         multiple variables/columns only input the column you want to plot as parameter x.")
   }
+  
+  # 1.2 special handling data types
+  if (any(class(data) == "tbl")) {
+    data <- as.vector(as.data.frame(data)[, 1])
+  }
+  
+  # 1.3 Checks and corrections for wrong data dimension
+  
+  # Altering multivariate objects with 1 column (which are essentially
+  # univariate) to be dim = NULL
+  if (!is.null(dim(data)[2])) {
+    data <- data[, 1]
+  }
+  
+  ## 1.4 Check if input is numeric
   if (!is.numeric(data)) {
     stop("Input x is not numeric")
   }
   
-  # Change zoo, xts, timeSeries objects to vector to avoid errors
-  if (is.ts(data)) {
-    data <- as.vector(data)
-  }
+  ##
+  ## End Input Check and Transformation
+  ##
   
   
   ##
-  ## Calculation break points
-  ##  
+  ## 2. Preparations
+  ##
+  
+  # 2.1 Calculation break points
+
   if (!is.null(interval_size)) {
     breaks <- seq(from = 0, to = length(data)-1, by = interval_size)
     breaks <- c(breaks, length(data))
@@ -112,10 +135,7 @@ ggplot_na_intervals <- function(x, number_intervals = grDevices::nclass.Sturges(
   binwidth <- breaks[2]
 
   
-
-  ##
-  ## Plotting Code
-  ##
+  # 2.2 Process parameter settings
   
   # Add alpha values to colors
   color_missing <- ggplot2::alpha(color_missing, alpha_missing)
@@ -124,9 +144,9 @@ ggplot_na_intervals <- function(x, number_intervals = grDevices::nclass.Sturges(
   # Set subtitle to default 
   # (needed because .Rd usage section gives error when using defaults > 90 chars )
   if (subtitle == "Amount of NA and non-NA for successive intervals") {
-  subtitle <-  "Amount of <b style='color:#ee6363CC;' >NA</b> 
-                and  <b style='color:#4682B48C' >non-NA</b> 
-                for successive intervals"
+  subtitle <-  paste0("Amount of <b style='color:",color_missing,";' >NA</b> 
+                and  <b style='color:",color_existing,"' >non-NA</b> 
+                for successive intervals")
   }
   
   # Set ylab according to choosen measure
@@ -139,13 +159,23 @@ ggplot_na_intervals <- function(x, number_intervals = grDevices::nclass.Sturges(
     xlab <- paste("Time Lapse (Interval Size:", binwidth ,")")
   }
   
-  # Data Frame for ggplot
+  
+  # 2.3 Create dataframe for ggplot2
+  
   index <- 1:length(data)
   miss <- as.factor(is.na(data))
   df <- data.frame(index, miss )
   
+  ##
+  ## End Preparations
+  ##
+  
+  
+  ##
+  ## 3. Create the ggplot2 plot
+  ##
 
-  # Create ggplot
+  # Create the ggplot2 plot
   gg <- ggplot2::ggplot(df, ggplot2::aes(index, fill = miss)) +
     
   ggplot2::scale_fill_manual(values = c(color_existing, color_missing), 

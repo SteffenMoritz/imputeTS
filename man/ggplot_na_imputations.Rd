@@ -8,6 +8,7 @@ ggplot_na_imputations(
   x_with_na,
   x_with_imputations,
   x_with_truth = NULL,
+  x_axis_labels = NULL,
   title = "Imputed Values",
   subtitle = "Visualization of missing value replacements",
   xlab = "Time",
@@ -40,7 +41,11 @@ x_with_imputations (and eventually x_with_truth if available) have to be set. Th
 \item{x_with_imputations}{Numeric Vector or Time Series (\code{\link{ts}}) object with NAs replaced by imputed values. This parameter and
 x_with_na (and eventually x_with_truth if available) have to be set. The rest of the parameters are only needed if you want to adjust the default design.}
 
-\item{x_with_truth}{Numeric Vector or Time Series (\code{\link{ts}}) object with the real values (can be set to NULL if not known).}
+\item{x_with_truth}{Numeric Vector or Time Series (\code{\link{ts}}) object with the real values (can be set to NULL if not known).
+
+@param x_axis_labels For adding specific x-axis labels. Takes a vector (with the same length as x)
+of either Date or POSIXct objects as an input. Default (NULL) is using the
+observation number as  x-axis tick labels.}
 
 \item{title}{Title of the plot.}
 

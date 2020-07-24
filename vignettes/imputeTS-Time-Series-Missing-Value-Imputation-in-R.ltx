@@ -255,8 +255,8 @@ For this we first need to create an example input series with missing data.
 On this time series we can apply different imputation algorithms. We start with using \code{na\_mean}, which substitutes the NAs with mean values.
 
 \begin{example}
-# Impute the missing values with na\_mean
- na\_mean(x)
+# Impute the missing values with na_mean
+ na_mean(x)
 \end{example}
 [1]~~~~1.0~~~~2.0~~~~3.0~~~~4.0~~~~5.0~~~~6.0~~~~7.0~~~~8.0
 \textbf{~~~~5.9~~~~5.9}~~~~11.0~~~~12.0
@@ -266,8 +266,8 @@ On this time series we can apply different imputation algorithms. We start with 
 Most of the functions also have additional options that provide further algorithms (of the same algorithm category). In the example below it can be seen that \code{na\_mean} can also be called with \code{option="median"}, which substitutes the NAs with median values.
 
 \begin{example}
-# Impute the missing values with na\_mean using option median
- na\_mean(x, option="median")
+# Impute the missing values with na_mean using option median
+ na_mean(x, option="median")
 \end{example}
  [1]~~~~1.0~~~~2.0~~~~3.0~~~~4.0~~~~5.0~~~~6.0~~~~7.0
  ~~~~8.0~~~~\textbf{5.5~~~~5.5}~~~~11.0~~~~12.0
@@ -277,8 +277,8 @@ While \code{na\_interpolation} and all other imputation functions are used the s
  
  
 \begin{example}
-# Impute the missing values with na\_interpolation
-na\_interpolation(x)
+# Impute the missing values with na_interpolation
+na_interpolation(x)
 \end{example}
 [1]~~~~1~~~~2~~~~3~~~~4~~~~5~~~~6~~~~7
  ~~~~8~~~~\textbf{9~~~~10}~~~~11~~~~12
@@ -290,12 +290,12 @@ For longer and more complex time series (with trend and seasonality) than in thi
 Here is a usage example for the \code{na\_kalman} function applied on the \code{tsAirgap} (described in ~\ref{subsec:Datasets}) time series. As can be seen in Figure~\ref{fig:imputations2}, \code{na\_kalman} provides really good results for this series, which contains a strong seasonality and a strong trend. 
 
 \begin{example}
-# Impute the missing values with na\_kalman
+# Impute the missing values with na_kalman
 # (tsAirgap is an example time series provided by the imputeTS package)
-imp <- na\_kalman(tsAirgap)
+imp <- na_kalman(tsAirgap)
 
 #Code for visualization
-plotNA\_imputations(tsAirgap, x.imp, tsAirgapComplete)
+ggplot_na_imputations(tsAirgap, imp, tsAirgapComplete)
 \end{example}
 
 
@@ -311,16 +311,16 @@ plotNA\_imputations(tsAirgap, x.imp, tsAirgapComplete)
 
 This function visualizes the distribution of missing values within a time series. Therefore, the time series is plotted and whenever a value is NA the background is colored differently. This gives a nice overview, where in the time series most of the missing values occur. An example usage of the function can be seen below (for the plot see Figure~\ref{fig:distribution}).
 \begin{example}
-# Example Code 'plotNA\_distribution'
+# Example Code 'ggplot_na_distribution'
 # (tsAirgap is an example time series provided by the imputeTS package)
 
 # Visualize the missing values in this time series
-plotNA\_distribution(tsAirgap)
+ggplot_na_distribution(tsAirgap)
 \end{example}
 \begin{figure} [h]
 \centering
 \includegraphics[width=5.7in]{Figures.d/distribution.pdf}
-\caption{Example for plotNA\_distribution}
+\caption{Example for ggplot\_na\_distribution}
 \label{fig:distribution}
 \end{figure}
 \FloatBarrier
@@ -333,18 +333,18 @@ As can be seen in Figure~\ref{fig:distribution}, in areas with missing data the 
 This function also visualizes the distribution of missing values within a time series. This is done as a barplot, which is especially useful if the time series would otherwise be too large to be plotted. Multiple observations for time intervals are grouped together and represented as bars. For these intervals, information about the amount of missing values are shown. An example usage of the function can be seen below (for the plot see Figure~\ref{fig:distributionBar}).
 
 \begin{example}
-# Example Code 'plotNA_distributionBar'
+# Example Code 'ggplot_na_intervals'
 # (tsHeating is an example time series provided by the imputeTS package)
 
 # Visualize the missing values in this time series
-plotNA\_distributionBar(tsHeating, breaks = 20)
+ggplot_na_intervals(tsNH4)
 
 \end{example}
 
 \begin{figure} [h]
 \centering
 \includegraphics[width=5.7in]{Figures.d/distributionbar.pdf}
-\caption{Example for plotNA\_distributionBar}
+\caption{Example for ggplot\_na\_distributionBar}
 \label{fig:distributionBar}
 \end{figure}
 \FloatBarrier
@@ -358,11 +358,11 @@ An example usage of the function can be seen below(for the plot see Figure~\ref{
 
 \begin{example}
 
-# Example Code 'plotNA_gapsize'
+# Example Code 'ggplot_na_gapsize'
 # (tsNH4 is an example time series provided by the imputeTS package)
 
 # Visualize the top gap sizes / NAs in a row
-plotNA\_gapsize(tsNH4)
+ggplot_na_gapsize(tsNH4)
 
 \end{example}
 
@@ -382,14 +382,14 @@ This plot can be used, to visualize the imputed values for a time series. Theref
 
 \begin{example}
 
-# Example Code 'plotNA_imputations'
+# Example Code 'ggplot_na_imputations'
 # (tsAirgap is an example time series provided by the imputeTS package)
 
-# Step 1: Perform imputation for x using na\_mean
-tsAirgap.imp <- na\_mean(tsAirgap)
+# Step 1: Perform imputation for x using na_mean
+tsAirgap.imp <- na_mean(tsAirgap)
 
 # Step 2: Visualize the imputed values in the time series
-plotNA\_imputations(tsAirgap, tsAirgap.imp)
+ggplot_na_imputations(tsAirgap, tsAirgap.imp)
 
 
 \end{example}

@@ -9,6 +9,10 @@
 #' x_with_na (and eventually x_with_truth if available) have to be set. The rest of the parameters are only needed if you want to adjust the default design.
 #' 
 #' @param x_with_truth Numeric Vector or Time Series (\code{\link{ts}}) object with the real values (can be set to NULL if not known).
+#'
+#'  @param x_axis_labels For adding specific x-axis labels. Takes a vector (with the same length as x) 
+#' of either Date or POSIXct objects as an input. Default (NULL) is using the 
+#' observation number as  x-axis tick labels.
 #' 
 #' @param title Title of the plot.
 #' @param subtitle Subtitle of the plot.
@@ -71,6 +75,7 @@
 ggplot_na_imputations <- function(x_with_na, 
                                   x_with_imputations,
                                   x_with_truth = NULL,
+                                  x_axis_labels = NULL,
                                   title = "Imputed Values",
                                   subtitle = "Visualization of missing value replacements",
                                   xlab = "Time", 
@@ -95,85 +100,131 @@ ggplot_na_imputations <- function(x_with_na,
                                   label_truth = "ground truth",
                                   theme = ggplot2::theme_linedraw()) {
 
-
+  
   ##
   ## 1. Input Check and Transformation
   ##
-
-  # 1.1 Check if input is univariate
-  if (!is.null(dim(x_with_na)) && dim(x_with_na)[2] != 1) {
-    stop("Input x_with_na is not univariate")
+  
+  # 1.1 Check if the input is multivariate
+  
+  if (!is.null(dim(x_with_na)[2]) && dim(x_with_na)[2] > 1) {
+    stop("x_with_na is not univariate. The function only works with univariate input for x_with_na. For data types with 
+         multiple variables/columns only input the column you want to plot as parameter x_with_na.")
   }
-
-  if (!is.null(dim(x_with_imputations)) && dim(x_with_imputations)[2] != 1) {
-    stop("Input x_with_imputations is not univariate")
+  
+  if (!is.null(dim(x_with_imputations)[2]) && dim(x_with_imputations)[2] > 1) {
+    stop("x_with_imputations is not univariate. The function only works with univariate input for x_with_imputations For data types with 
+         multiple variables/columns only input the column you want to plot as parameter x_with_imputations")
   }
-
-  if (!is.null(dim(x_with_truth)) && dim(x_with_truth)[2] != 1 && !is.null(x_with_truth)) {
-    stop("Input x_with_truth is not univariate")
+  
+  if (!is.null(dim(x_with_truth)[2]) && dim(x_with_truth)[2] > 1) {
+    stop("x_with_na is not univariate. The function only works with univariate input for x_with_truth For data types with 
+         multiple variables/columns only input the column you want to plot as parameter x_with_truth")
   }
-
-
+  
+  
   # 1.2 Special handling data types
+  
   if (any(class(x_with_na) == "tbl")) {
-    data <- as.vector(as.data.frame(x_with_na)[, 1])
+    x_with_na <- as.vector(as.data.frame(x_with_na)[, 1])
   }
-
+  
   if (any(class(x_with_imputations) == "tbl")) {
-    data <- as.vector(as.data.frame(x_with_imputations)[, 1])
+    x_with_imputations <- as.vector(as.data.frame(x_with_imputations)[, 1])
   }
-
+  
   if (any(class(x_with_truth) == "tbl") && !is.null(x_with_truth)) {
-    data <- as.vector(as.data.frame(x_with_truth)[, 1])
+    x_with_truth <- as.vector(as.data.frame(x_with_truth)[, 1])
   }
-
-  # 1.3 Check if input is numeric
+  
+  # 1.3 Checks and corrections for wrong data dimension
+  
+  # Altering multivariate objects with 1 column (which are essentially
+  # univariate) to be dim = NULL
+  if (!is.null(dim(data)[2])) {
+    x_with_na <- x_with_na[, 1]
+  }
+  if (!is.null(dim(data)[2])) {
+    x_with_imputations <- x_with_imputations[, 1]
+  }
+  if (!is.null(dim(data)[2])) {
+    x_with_truth <- x_with_truth[, 1]
+  }
+  
+  
+  # 1.4 Check if input is numeric
+  
   if (!is.numeric(x_with_na)) {
     stop("Input x_with_na is not numeric")
   }
-
   if (!is.numeric(x_with_imputations)) {
     stop("Input x_with_imputations is not numeric")
   }
-
   if (!is.numeric(x_with_truth) && !is.null(x_with_truth)) {
     stop("Input x_with_truth is not numeric")
   }
+  
+  ##
+  ## End Input Check and Transformation
+  ##
+  
+ 
 
+  ##
+  ## 2. Preparations
+  ##
+  
+  # 2.1 Create required data
 
-  # 1.3 Change all time series objects to vector
+  # Input as vector
+  
   x_with_na <- as.vector(x_with_na)
   x_with_imputations <- as.vector(x_with_imputations)
   x_with_truth <- as.vector(x_with_truth)
-
   
   
-  ##
-  ## 2. Code for Plots
-  ##
+  # 2.2 Create dataframe for ggplot2
   
-  
-  
-  if (!is.null(x_with_truth)) {
-    df <- data.frame(x_with_imputations, x_with_na, x_with_truth)
+  # Define x-axis label data
+  # if Date or POSIXct given for x_axis_labels time information can be plotted
+  if (any(class(x_axis_labels) == "Date")) {
+    time <- x_axis_labels
+  }
+  else if  (any(class(x_axis_labels) == "POSIXct"))
+  {
+    time <- x_axis_labels
+  }
+  else if (is.null(x_axis_labels)) {
+    time <- seq_along(x_with_na)
   }
   else {
-    df <- data.frame(x_with_imputations, x_with_na)
+    stop("Input for x_axis_labels is not in a supported format, must a 
+           vector of Date or a POSIXct objects with the same length as x_with_na and x_with_imputations")
+  }
+  
+  if (!is.null(x_with_truth)) {
+    df <- data.frame(time, x_with_imputations, x_with_na, x_with_truth)
+  }
+  else {
+    df <- data.frame(time, x_with_imputations, x_with_na)
   }
 
-  # Create df for ggplot
-
-
-  # Create ggplot
-  # für aes(x = dann einfach time info)
-
+  ##
+  ## End Preparations
+  ##
+  
+  ##
+  ## 3. Create the ggplot2 plot
+  ##
+  
+  # Create the plot
   gg <- ggplot2::ggplot(data = df)
 
   ## Add Lines
   # Don't connect the lines in the missing areas
   if (connect_na == F) {
     gg <- gg + ggplot2::geom_line(
-      data = df, aes(x = 1:nrow(df), y = x_with_na),
+      data = df, aes(x = time, y = x_with_na),
       na.rm = T, color = color_lines,
       linetype = linetype, size = size_lines
     )
@@ -181,7 +232,7 @@ ggplot_na_imputations <- function(x_with_na,
   # If truth available connect the true values in the missing areas
   else if (!is.null(x_with_truth)) {
     gg <- gg + ggplot2::geom_line(
-      data = df, aes(x = 1:nrow(df), y = x_with_truth),
+      data = df, aes(x = time, y = x_with_truth),
       na.rm = T, color = color_lines,
       linetype = linetype, size = size_lines
     )
@@ -189,7 +240,7 @@ ggplot_na_imputations <- function(x_with_na,
   #If no truth available connect the imputed values in the missing areas
   else {
     gg <- gg + ggplot2::geom_line(
-      data = df, aes(x = 1:nrow(df), y = x_with_imputations),
+      data = df, aes(x = time, y = x_with_imputations),
       na.rm = T, color = color_lines,
       linetype = linetype, size = size_lines
     )
@@ -205,17 +256,17 @@ ggplot_na_imputations <- function(x_with_na,
   ## Add points
   
   # Points for regular, known values
-     gg <- gg + ggplot2::geom_point(data = df, aes(x = 1:nrow(df), y = x_with_na, color = "1"), 
+     gg <- gg + ggplot2::geom_point(data = df, aes(x = time, y = x_with_na, color = "1"), 
                       na.rm = T, shape = shape_points, size = size_points ) 
   
    
   # Points for Imputations
-     gg <- gg + ggplot2::geom_point(data = df, aes(x = 1:nrow(df), y = x_with_imputations, color = "2"), 
+     gg <- gg + ggplot2::geom_point(data = df, aes(x = time, y = x_with_imputations, color = "2"), 
                                   na.rm = T, size = size_imputations , shape = shape_imputations) 
      
      # Points for truth
      if (!is.null(x_with_truth)) {
-       gg <- gg + ggplot2::geom_point(data = df, aes(x = 1:nrow(df), y = x_with_truth, color = "3"),
+       gg <- gg + ggplot2::geom_point(data = df, aes(x = time, y = x_with_truth, color = "3"),
                                       na.rm = T, shape = shape_truth, size = size_truth)
      }
     
@@ -257,7 +308,9 @@ ggplot_na_imputations <- function(x_with_na,
        legend.title = ggplot2::element_blank()
    )
 
-
+  ##
+  ##  End creating the ggplot2 plot
+  ##
 
   return(gg)
 }

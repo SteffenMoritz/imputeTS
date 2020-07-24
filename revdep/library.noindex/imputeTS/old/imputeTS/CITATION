@@ -1,0 +1,16 @@
+year <- sub("-.*", "", meta$Date)
+vers <- paste("R package version", meta$Version)
+
+citHeader("To cite the imputeTS package, use:")
+
+bibentry(bibtype = "Article",
+  title     = "{imputeTS: Time Series Missing Value Imputation in R}",
+  author    = personList(as.person("Steffen Moritz"),as.person("Thomas Bartz-Beielstein")),
+  journal   = "{The R Journal}",
+  volume    =  9,
+  number    =  1,
+  pages     = "207--218",
+  year      =  2017,
+  doi       = "10.32614/RJ-2017-009")
+  
+

@@ -8,3 +8,7 @@
 Icon
 Icon?
 Docs
+^doc$
+^Meta$
+^revdep
+
