@@ -10,7 +10,7 @@
 #' 
 #' @param x_with_truth Numeric Vector or Time Series (\code{\link{ts}}) object with the real values (can be set to NULL if not known).
 #'
-#'  @param x_axis_labels For adding specific x-axis labels. Takes a vector (with the same length as x) 
+#' @param x_axis_labels For adding specific x-axis labels. Takes a vector (with the same length as x) 
 #' of either Date or POSIXct objects as an input. Default (NULL) is using the 
 #' observation number as  x-axis tick labels.
 #' 
@@ -141,13 +141,13 @@ ggplot_na_imputations <- function(x_with_na,
   
   # Altering multivariate objects with 1 column (which are essentially
   # univariate) to be dim = NULL
-  if (!is.null(dim(data)[2])) {
+  if (!is.null(dim(x_with_na)[2])) {
     x_with_na <- x_with_na[, 1]
   }
-  if (!is.null(dim(data)[2])) {
+  if (!is.null(dim(x_with_imputations)[2])) {
     x_with_imputations <- x_with_imputations[, 1]
   }
-  if (!is.null(dim(data)[2])) {
+  if (!is.null(dim(x_with_truth)[2])) {
     x_with_truth <- x_with_truth[, 1]
   }
   

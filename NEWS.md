@@ -31,6 +31,12 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
 
 * updated Readme + Vignette to new function names
 
+* Added the imputeTS Cheat Sheet as Vignette
+
+* Added new vignette Gallery Missing Data Visualizations
+
+* Added revdep
+
 ## Changes in Version 3.0
 
 Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs
