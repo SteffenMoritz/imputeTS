@@ -59,7 +59,7 @@
 #' @param theme Set a theme for ggplot2. Default is
 #' \code{\link[ggplot2]{theme_linedraw}}
 #'
-#' @author Steffen Moritz
+#' @author Steffen Moritz, Sebastian Gatscha
 #'
 #' @return The output is a \code{\link[ggplot2]{ggplot2}} object that can be
 #' further adjusted by using the ggplot syntax

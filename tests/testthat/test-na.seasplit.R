@@ -1,4 +1,4 @@
-context("na.seasplit")
+context("Depreciated Functions: na.seasplit")
 
 test_that("All NA vector throws error",
           {

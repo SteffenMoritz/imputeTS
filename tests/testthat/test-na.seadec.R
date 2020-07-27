@@ -1,4 +1,4 @@
-context("na.seadec")
+context("Depreciated Functions: na.seadec")
 
 test_that("All NA vector throws error",
           {

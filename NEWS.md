@@ -22,6 +22,8 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
 
 * Additional unit tests for the all imputation functions (testing all NA input)
 
+* Update for testthat unit tests
+
 * Fixed a mistake in README.md (reported by Johannes Menzel)
 
 * Added to statsNA: Number of Gaps, Average Gap Size + reformatting of code + 

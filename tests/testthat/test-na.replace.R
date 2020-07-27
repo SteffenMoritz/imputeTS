@@ -1,4 +1,4 @@
-context("na.replace")
+context("Depreciated Functions: na.replace")
 
 test_that("All NA vector throws no error",
           {

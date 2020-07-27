@@ -237,23 +237,3 @@ na_seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, ma
     return(data)
   }
 }
-
-
-
-#' Deprecated use \code{\link[imputeTS]{na_seadec}} instead.
-#' @description na.seadec is replaced by \code{\link[imputeTS]{na_seadec}}.
-#' The functionality stays the same. The new name better fits modern R code
-#' style guidelines (which prefer _ over . in function names).
-#' @inheritParams na_seadec
-#' @keywords internal
-#' @export
-na.seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, maxgap = Inf, ...) {
-  .Deprecated(
-    new = "na_seadec",
-    msg = "na.seadec will be replaced by na_seadec.
-    Functionality stays the same.
-    The new function name better fits modern R code style guidelines.
-    Please adjust your code accordingly."
-  )
-  na_seadec(x, algorithm, find_frequency, maxgap, ...)
-}

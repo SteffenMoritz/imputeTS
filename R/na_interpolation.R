@@ -221,22 +221,3 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
     return(data)
   }
 }
-
-
-#' Deprecated use \code{\link[imputeTS]{na_interpolation}} instead.
-#' @description na.interpolation is replaced by \code{\link[imputeTS]{na_interpolation}}.
-#' The functionality stays the same. The new name better fits modern R code
-#' style guidelines (which prefer _ over . in function names).
-#' @inheritParams na_interpolation
-#' @keywords internal
-#' @export
-na.interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
-  .Deprecated(
-    new = "na_interpolation",
-    msg = "na.interpolation will be replaced by na_interpolation.
-           Functionality stays the same.
-           The new function name better fits modern R code style guidelines.
-           Please adjust your code accordingly."
-  )
-  na_interpolation(x, option, maxgap, ...)
-}

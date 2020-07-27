@@ -226,22 +226,3 @@ na_ma <- function(x, k = 4, weighting = "exponential", maxgap = Inf) {
     return(data)
   }
 }
-
-
-#' Deprecated use \code{\link[imputeTS]{na_ma}} instead.
-#' @description na.ma is replaced by \code{\link[imputeTS]{na_ma}}.
-#' The functionality stays the same. The new name better fits modern R code
-#' style guidelines (which prefer _ over . in function names).
-#' @inheritParams na_ma
-#' @keywords internal
-#' @export
-na.ma <- function(x, k = 4, weighting = "exponential", maxgap = Inf) {
-  .Deprecated(
-    new = "na_ma",
-    msg = "na.ma will be replaced by na_ma.
-    Functionality stays the same.
-    The new function name better fits modern R code style guidelines.
-    Please adjust your code accordingly."
-  )
-  na_ma(x, k, weighting, maxgap)
-}

@@ -236,22 +236,3 @@ na_mean <- function(x, option = "mean", maxgap = Inf) {
     return(data)
   }
 }
-
-
-#' Deprecated use \code{\link[imputeTS]{na_mean}} instead.
-#' @description na.mean is replaced by \code{\link[imputeTS]{na_mean}}.
-#' The functionality stays the same. The new name better fits modern R code
-#' style guidelines (which prefer _ over . in function names).
-#' @inheritParams na_mean
-#' @keywords internal
-#' @export
-na.mean <- function(x, option = "mean", maxgap = Inf) {
-  .Deprecated(
-    new = "na_mean",
-    msg = "na.mean will be replaced by na_mean.
-    Functionality stays the same.
-    The new function name better fits modern R code style guidelines.
-    Please adjust your code accordingly."
-  )
-  na_mean(x, option, maxgap)
-}

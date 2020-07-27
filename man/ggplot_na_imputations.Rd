@@ -122,5 +122,5 @@ tsAirgap \%>\%
 \code{\link[imputeTS]{ggplot_na_gapsize}}
 }
 \author{
-Steffen Moritz
+Steffen Moritz, Sebastian Gatscha
 }

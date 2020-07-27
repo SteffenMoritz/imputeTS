@@ -1,4 +1,4 @@
-context("na.mean")
+context("Depreciated Functions: na.mean")
             
 test_that("All NA vector throws error",
           {
@@ -51,14 +51,14 @@ test_that("Imputation works for data.frame",
           {
             #Checking if NAs remain in data.frame
             x <- data.frame(tsAirgap, tsAirgap, tsAirgapComplete)
-            expect_that(anyNA(na.mean(x, option ="mean")), is_false())
-            expect_that(anyNA(na.mean(x, option ="mode")), is_false())
-            expect_that(anyNA(na.mean(x, option ="median")), is_false())
+            expect_false(anyNA(na.mean(x, option ="mean")))
+            expect_false(anyNA(na.mean(x, option ="mode")))
+            expect_false(anyNA(na.mean(x, option ="median")))
           })
 
 test_that("Error for wrong input for option parameter",
           {
-            expect_that( na.mean(tsAirgap, option ="Wrong"), throws_error())
+            expect_error( na.mean(tsAirgap, option ="Wrong"))
           })
 
 
@@ -66,20 +66,20 @@ test_that("Test NA at beginning",
           {
             x <- tsAirgap
             x[1:4] <- NA
-            expect_that(anyNA(na.mean(x, option ="mean")), is_false())
-            expect_that(anyNA(na.mean(x, option ="mode")), is_false())
-            expect_that(anyNA(na.mean(x, option ="median")), is_false())
-            expect_that(anyNA(na.mean(x)), is_false())
+            expect_false(anyNA(na.mean(x, option ="mean")))
+            expect_false(anyNA(na.mean(x, option ="mode")))
+            expect_false(anyNA(na.mean(x, option ="median")))
+            expect_false(anyNA(na.mean(x)))
           })
 
 test_that("Test NA at end",
           {
             x <- tsAirgap
             x[140:144] <- NA
-            expect_that(anyNA(na.mean(x, option ="mean")), is_false())
-            expect_that(anyNA(na.mean(x, option ="mode")), is_false())
-            expect_that(anyNA(na.mean(x, option ="median")), is_false())
-            expect_that(anyNA(na.mean(x)), is_false())
+            expect_false(anyNA(na.mean(x, option ="mean")))
+            expect_false(anyNA(na.mean(x, option ="mode")))
+            expect_false(anyNA(na.mean(x, option ="median")))
+            expect_false(anyNA(na.mean(x)))
             
           })
 
@@ -87,10 +87,10 @@ test_that("Multiple NAs in a row",
           {
             x <- tsAirgap
             x[40:80] <- NA
-            expect_that(anyNA(na.mean(x, option ="mean")), is_false())
-            expect_that(anyNA(na.mean(x, option ="mode")), is_false())
-            expect_that(anyNA(na.mean(x, option ="median")), is_false())
-            expect_that(anyNA(na.mean(x)), is_false())
+            expect_false(anyNA(na.mean(x, option ="mean")))
+            expect_false(anyNA(na.mean(x, option ="mode")))
+            expect_false(anyNA(na.mean(x, option ="median")))
+            expect_false(anyNA(na.mean(x)))
             
           })
 
@@ -98,10 +98,10 @@ test_that("Over 90% NAs",
           {
             x <- tsAirgap
             x[10:140] <- NA
-            expect_that(anyNA(na.mean(x, option ="mean")), is_false())
-            expect_that(anyNA(na.mean(x, option ="mode")), is_false())
-            expect_that(anyNA(na.mean(x, option ="median")), is_false())
-            expect_that(anyNA(na.mean(x)), is_false())
+            expect_false(anyNA(na.mean(x, option ="mean")))
+            expect_false(anyNA(na.mean(x, option ="mode")))
+            expect_false(anyNA(na.mean(x, option ="median")))
+            expect_false(anyNA(na.mean(x)))
             
           })
 

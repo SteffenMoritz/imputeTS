@@ -296,21 +296,3 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
     return(data)
   }
 }
-
-#' Deprecated use \code{\link[imputeTS]{na_kalman}} instead.
-#' @description na.kalman is replaced by \code{\link[imputeTS]{na_kalman}}.
-#' The functionality stays the same. The new name better fits modern R code
-#' style guidelines (which prefer _ over . in function names).
-#' @inheritParams na_kalman
-#' @keywords internal
-#' @export
-na.kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = Inf, ...) {
-  .Deprecated(
-    new = "na_kalman",
-    msg = "na.kalman will be replaced by na_kalman.
-    Functionality stays the same.
-    The new function name better fits modern R code style guidelines.
-    Please adjust your code accordingly."
-  )
-  na_kalman(x, model, smooth, nit, maxgap, ...)
-}

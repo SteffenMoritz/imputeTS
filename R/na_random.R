@@ -225,22 +225,3 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
     return(data)
   }
 }
-
-
-#' Deprecated use \code{\link[imputeTS]{na_random}} instead.
-#' @description na.random is replaced by \code{\link[imputeTS]{na_random}}.
-#' The functionality stays the same. The new name better fits modern R code
-#' style guidelines (which prefer _ over . in function names).
-#' @inheritParams na_random
-#' @keywords internal
-#' @export
-na.random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
-  .Deprecated(
-    new = "na_random",
-    msg = "na.random will be replaced by na_random.
-    Functionality stays the same.
-    The new function name better fits modern R code style guidelines.
-    Please adjust your code accordingly."
-  )
-  na_random(x, lower_bound, upper_bound, maxgap)
-}

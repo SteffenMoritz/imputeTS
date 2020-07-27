@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot_na_distribution.R
 \name{ggplot_na_distribution}
 \alias{ggplot_na_distribution}
-\title{Visualize Distribution of Missing Values}
+\title{Visualize the Distribution of Missing Values}
 \usage{
 ggplot_na_distribution(
   x,
@@ -22,50 +22,73 @@ ggplot_na_distribution(
 )
 }
 \arguments{
-\item{x}{Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
-object containing NAs. This is the ONLY necessary parameter, all other are are
-only needed if you want to adjust the resulting plot.}
+\item{x}{Numeric Vector (\code{\link[base]{vector}}) or Time Series
+(\code{\link[stats]{ts}}) object containing NAs. This is the only mandatory
+parameter - all other parameters are only needed for adjusting the plot appearance.}
 
-\item{x_axis_labels}{For adding specific x-axis labels. Takes a vector (with the same length as x)
-of either Date or POSIXct objects as an input. Default (NULL) is using the
-observation number as  x-axis tick labels.}
+\item{x_axis_labels}{For adding specific x-axis labels. Takes a vector of
+\code{\link[base]{Date}} or \code{\link[base]{POSIXct}} objects
+as an input (needs the same length as x) . The Default (NULL) uses the
+observation numbers as  x-axis tick labels.}
 
-\item{color_points}{Point color for observations}
+\item{color_points}{Color for the Symbols/Points.}
 
-\item{color_lines}{Line color}
+\item{color_lines}{Color for the Lines.}
 
-\item{color_missing}{Color used for highlighting the time spans with NA values}
+\item{color_missing}{Color used for highlighting the time spans with NA values.}
 
-\item{color_missing_border}{Color used as border for time spans with NA values}
+\item{color_missing_border}{Color used as border for time spans with NA values.}
 
-\item{alpha_missing}{Transparency value used for highlighting the time spans with NA values}
+\item{alpha_missing}{Transparency value used for color_missing.}
 
-\item{title}{Title of the plot (NULL for deactivating title)}
+\item{title}{Title of the Plot (NULL for deactivating title).}
 
-\item{subtitle}{Subtitle of the plot (NULL for deactivating subtitle)}
+\item{subtitle}{Subtitle of the Plot (NULL for deactivating subtitle).}
 
-\item{xlab}{Label for x axis}
+\item{xlab}{Label for x-Axis.}
 
-\item{ylab}{Label for y axis}
+\item{ylab}{Label for y-Axis.}
 
-\item{shape_points}{Plotting 'character', i.e., symbol to use}
+\item{shape_points}{Symbol to use for the Observations/Points. See
+https://ggplot2.tidyverse.org/articles/ggplot2-specs.html as reference.}
 
-\item{size_points}{Character (or symbol) expansion: a numerical vector}
+\item{size_points}{Size of Symbols/Points.}
 
-\item{theme}{Set a theme for ggplot2. Default is \code{\link[ggplot2]{theme_linedraw}}}
+\item{theme}{Set a Theme for ggplot2. Default is ggplot2::theme_linedraw().
+(\code{\link[ggplot2]{theme_linedraw})}}
 }
 \description{
 Visualize the distribution of missing values within a time series.
 }
 \details{
-This function visualizes the distribution of missing values within a time series.
-If a value is NA, the background is colored differently. This gives a good overview
-of where most missing values occur.
+This function visualizes the distribution of missing values within
+a time series. If a value is NA, the background is colored differently.
+This gives a good overview of where most missing values occur.
+
+The only really needed parameter for this function is x (the univariate
+time series that shall be visualized). All other parameters are solely
+for altering the appearance of the plot.
+
+As long as the input is univariate and numeric the function also takes
+data.frame, tibble, tsibble, zoo, xts as an input.
+
+The plot can be adjusted to your needs via the function parameters.
+Additionally for more complex adjustments, the output can also be
+adjusted via ggplot2 syntax. This is possible, since the output
+of the function is a ggplot2 object. Also take a look at the Examples
+to see how adjustments are made.
+
+For very long time series it might happen, that the plot gets too crowded
+and overplotting issues occur. In this case the
+\code{\link[imputeTS]{ggplot_na_intervals}} plotting function can provide
+a more condensed overview.
 }
 \examples{
+library("ggplot2")
+
 # Example 1: Visualize the missing values in x
-# x <- ts(c(1:11, 4:9,NA,NA,NA,11:15,7:15,15:6,NA,NA,2:5,3:7))
-# ggplot_na_distribution(x)
+x <- stats::ts(c(1:11, 4:9, NA, NA, NA, 11:15, 7:15, 15:6, NA, NA, 2:5, 3:7))
+ggplot_na_distribution(x)
 
 # Example 2: Visualize the missing values in tsAirgap time series
 ggplot_na_distribution(tsAirgap)
@@ -73,11 +96,36 @@ ggplot_na_distribution(tsAirgap)
 # Example 3: Same as example 1, just written with pipe operator
 x <- ts(c(1:11, 4:9, NA, NA, NA, 11:15, 7:15, 15:6, NA, NA, 2:5, 3:7))
 x \%>\% ggplot_na_distribution()
+
+# Example 4: Visualize NAs in tsAirgap - different color for points
+# Plot adjustion via ggplot_na_distribution function parameters
+ggplot_na_distribution(tsAirgap, color_points = "grey")
+
+# Example 6: Visualize NAs in tsAirgap - different theme
+# Plot adjustion via ggplot_na_distribution function parameters
+ggplot_na_distribution(tsAirgap, theme = ggplot2::theme_classic())
+
+# Example 5: Visualize NAs in tsAirgap - title, subtitle in center
+# Plot adjustion via ggplot2 syntax
+ggplot_na_distribution(tsAirgap) +
+  ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
+  ggplot2::theme(plot.subtitle = ggplot2::element_text(hjust = 0.5))
+
+# Example 6: Visualize NAs in tsAirgap - title in center, no subtitle
+# Plot adjustion via ggplot2 syntax and funtion parameters
+ggplot_na_distribution(tsAirgap, subtitle = NULL) +
+  ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
+
+# Example 7: Visualize NAs in tsAirgap - x-axis texts with angle
+# Plot adjustion via ggplot2 syntax
+ggplot_na_distribution(tsAirgap, color_points = "grey") +
+  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1))
 }
 \seealso{
 \code{\link[imputeTS]{ggplot_na_intervals}},
-\code{\link[imputeTS]{ggplot_na_gapsize}}, \code{\link[imputeTS]{ggplot_na_imputations}}
+\code{\link[imputeTS]{ggplot_na_gapsize}},
+\code{\link[imputeTS]{ggplot_na_imputations}}
 }
 \author{
-Steffen Moritz
+Steffen Moritz, Sebastian Gatscha
 }

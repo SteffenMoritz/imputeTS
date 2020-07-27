@@ -1,4 +1,4 @@
-context("na.interpolation")
+context("Depreciated Functions: na.interpolation")
 
 test_that("All NA vector throws error",
           {
@@ -51,14 +51,14 @@ test_that("Imputation works for data.frame",
           {
             #Checking if NAs remain in data.frame
             x <- data.frame(tsAirgap, tsAirgap, tsAirgapComplete)
-            expect_that(anyNA(na.interpolation(x, option ="linear")), is_false())
-            expect_that(anyNA(na.interpolation(x, option ="spline")), is_false())
-            expect_that(anyNA(na.interpolation(x, option ="stine")), is_false())
+            expect_false(anyNA(na.interpolation(x, option ="linear")))
+            expect_false(anyNA(na.interpolation(x, option ="spline")))
+            expect_false(anyNA(na.interpolation(x, option ="stine")))
           })
 
 test_that("Error for wrong input for option parameter",
           {
-            expect_that( na.interpolation(tsAirgap, option="wrongOption"), throws_error())
+            expect_error( na.interpolation(tsAirgap, option="wrongOption"))
           })
 
 
@@ -67,10 +67,10 @@ test_that("Test NA at beginning",
           {
           x <- tsAirgap
           x[1:2] <- NA
-          expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
-          expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
-          expect_that(anyNA(na.interpolation(x, option="stine")), is_false())
-          expect_that(anyNA(na.interpolation(x)), is_false())   
+          expect_false(anyNA(na.interpolation(x, option="linear")))
+          expect_false(anyNA(na.interpolation(x, option="spline")))
+          expect_false(anyNA(na.interpolation(x, option="stine")))
+          expect_false(anyNA(na.interpolation(x)))   
           
           })
 
@@ -78,10 +78,10 @@ test_that("Test NA at end",
           {
             x <- tsAirgap
             x[143:144] <- NA
-            expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="stine")), is_false())
-            expect_that(anyNA(na.interpolation(x)), is_false())   
+            expect_false(anyNA(na.interpolation(x, option="linear")))
+            expect_false(anyNA(na.interpolation(x, option="spline")))
+            expect_false(anyNA(na.interpolation(x, option="stine")))
+            expect_false(anyNA(na.interpolation(x)))   
             
           })
 
@@ -89,10 +89,10 @@ test_that("Multiple NAs in a row",
           {
             x <- tsAirgap
             x[40:80] <- NA
-            expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="stine")), is_false())   
-            expect_that(anyNA(na.interpolation(x)), is_false())   
+            expect_false(anyNA(na.interpolation(x, option="linear")))
+            expect_false(anyNA(na.interpolation(x, option="spline")))
+            expect_false(anyNA(na.interpolation(x, option="stine")))   
+            expect_false(anyNA(na.interpolation(x)))   
             
             })
 
@@ -100,9 +100,9 @@ test_that("Over 90% NAs",
           {
             x <- tsAirgap
             x[10:140] <- NA
-            expect_that(anyNA(na.interpolation(x, option="linear")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="spline")), is_false())
-            expect_that(anyNA(na.interpolation(x, option="stine")), is_false()) 
-            expect_that(anyNA(na.interpolation(x)), is_false())   
+            expect_false(anyNA(na.interpolation(x, option="linear")))
+            expect_false(anyNA(na.interpolation(x, option="spline")))
+            expect_false(anyNA(na.interpolation(x, option="stine"))) 
+            expect_false(anyNA(na.interpolation(x)))   
             
             })

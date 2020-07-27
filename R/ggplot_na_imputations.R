@@ -48,7 +48,7 @@
 #' Imputed values (filled NA gaps) are shown in a different color than the other values.
 #' If real values (truth) for the NA gaps are known, they are added in a different color.
 #'
-#' @author Steffen Moritz
+#' @author Steffen Moritz, Sebastian Gatscha
 #'
 #'
 #' @seealso \code{\link[imputeTS]{ggplot_na_distribution}},\code{\link[imputeTS]{ggplot_na_intervals}},

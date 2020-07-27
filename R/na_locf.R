@@ -253,22 +253,3 @@ na_locf <- function(x, option = "locf", na_remaining = "rev", maxgap = Inf) {
     return(data)
   }
 }
-
-
-#' Deprecated use \code{\link[imputeTS]{na_locf}} instead.
-#' @description na.locf is replaced by \code{\link[imputeTS]{na_locf}}.
-#' The functionality stays the same. The new name better fits modern R code
-#' style guidelines (which prefer _ over . in function names).
-#' @inheritParams na_locf
-#' @keywords internal
-#' @export
-na.locf <- function(x, option = "locf", na.remaining = "rev", maxgap = Inf) {
-  .Deprecated(
-    new = "na_locf",
-    msg = "na.locf will be replaced by na_locf.
-    Functionality stays the same.
-    The new function name better fits modern R code style guidelines.
-    Please adjust your code accordingly."
-  )
-  na_locf(x, option, na.remaining, maxgap)
-}

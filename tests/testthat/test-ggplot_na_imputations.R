@@ -3,10 +3,10 @@ context("ggplot_na_imputations")
 test_that("Check that plot is running without error",
           {
 
-            expect_that( is.list(ggplot_na_imputations(tsAirgap,tsAirgapComplete)), is_true())
-            expect_that( is.list(ggplot_na_imputations(tsAirgap,na_mean(tsAirgap), tsAirgapComplete)), is_true())
-            expect_that( is.recursive(ggplot_na_imputations(tsAirgap,tsAirgapComplete)), is_true())
-            expect_that( is.recursive(ggplot_na_imputations(tsAirgap,na_mean(tsAirgap), tsAirgapComplete)), is_true())
+            expect_true( is.list(ggplot_na_imputations(tsAirgap,tsAirgapComplete)))
+            expect_true( is.list(ggplot_na_imputations(tsAirgap,na_mean(tsAirgap), tsAirgapComplete)))
+            expect_true( is.recursive(ggplot_na_imputations(tsAirgap,tsAirgapComplete)))
+            expect_true( is.recursive(ggplot_na_imputations(tsAirgap,na_mean(tsAirgap), tsAirgapComplete)))
 
             
             ## input not univariate

@@ -1,4 +1,4 @@
-context("na.ma")
+context("Depreciated Functions: na.ma")
 
 test_that("All NA vector throws error",
           {
@@ -60,23 +60,23 @@ test_that("Imputation works for data.frame",
           {
             #Checking if NAs remain in data.frame
             x <- data.frame(tsAirgap, tsAirgap, tsAirgapComplete)
-            expect_that(anyNA(na.ma(x, weighting="simple", k = 4  )), is_false())
-            expect_that(anyNA(na.ma(x, weighting="simple", k = 20)), is_false())
-            expect_that(anyNA(na.ma(x, weighting="linear", k = 4  )), is_false())
-            expect_that(anyNA(na.ma(x, weighting="linear", k = 20)), is_false())
-            expect_that(anyNA(na.ma(x, weighting="exponential", k = 4 )), is_false())
-            expect_that(anyNA(na.ma(x, weighting="exponential", k = 20)), is_false())
+            expect_false(anyNA(na.ma(x, weighting="simple", k = 4  )))
+            expect_false(anyNA(na.ma(x, weighting="simple", k = 20)))
+            expect_false(anyNA(na.ma(x, weighting="linear", k = 4  )))
+            expect_false(anyNA(na.ma(x, weighting="linear", k = 20)))
+            expect_false(anyNA(na.ma(x, weighting="exponential", k = 4 )))
+            expect_false(anyNA(na.ma(x, weighting="exponential", k = 20)))
           })
 
 
 test_that("Error for wrong input for k parameter",
           {
-            expect_that( na.ma(tsAirgap, k = -1), throws_error())
+            expect_error( na.ma(tsAirgap, k = -1))
           })
 
 test_that("Error for wrong input for weighting parameter",
           {
-            expect_that( na.ma(tsAirgap, weighting ="Wrong"), throws_error())
+            expect_error( na.ma(tsAirgap, weighting ="Wrong"))
           })
 
 
@@ -84,16 +84,16 @@ test_that("Test NA at beginning",
           {
             x <- tsAirgap
             x[1:2] <- NA
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x)), is_false())
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x)))
             
           })
 
@@ -101,16 +101,16 @@ test_that("Test NA at end",
           {
             x <- tsAirgap
             x[143:144] <- NA
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x)), is_false())
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x)))
             
           })
 
@@ -118,16 +118,16 @@ test_that("Multiple NAs in a row",
           {
             x <- tsAirgap
             x[40:80] <- NA
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x)), is_false())
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x)))
             
           })
 
@@ -135,15 +135,15 @@ test_that("Over 90% NAs",
           {
             x <- tsAirgap
             x[10:140] <- NA
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "simple")), is_false())
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "linear")), is_false())
-            expect_that(anyNA(na.ma(x, k = 4, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x, k = 1, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x, k = 20, weighting = "exponential")), is_false())
-            expect_that(anyNA(na.ma(x)), is_false())
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "simple")))
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "linear")))
+            expect_false(anyNA(na.ma(x, k = 4, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x, k = 1, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x, k = 20, weighting = "exponential")))
+            expect_false(anyNA(na.ma(x)))
             
           })

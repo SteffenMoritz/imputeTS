@@ -233,22 +233,3 @@ na_seasplit <- function(x, algorithm = "interpolation", find_frequency = FALSE, 
     return(data)
   }
 }
-
-
-#' Deprecated use \code{\link[imputeTS]{na_seasplit}} instead.
-#' @description na.seasplit is replaced by \code{\link[imputeTS]{na_seasplit}}.
-#' The functionality stays the same. The new name better fits modern R code
-#' style guidelines (which prefer _ over . in function names).
-#' @inheritParams na_seasplit
-#' @keywords internal
-#' @export
-na.seasplit <- function(x, algorithm = "interpolation", find_frequency = FALSE, maxgap = Inf, ...) {
-  .Deprecated(
-    new = "na_seasplit",
-    msg = "na.seasplit will be replaced by na_seasplit.
-    Functionality stays the same.
-    The new function name better fits modern R code style guidelines.
-    Please adjust your code accordingly."
-  )
-  na_seasplit(x, algorithm, find_frequency, maxgap, ...)
-}

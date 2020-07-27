@@ -42,7 +42,7 @@
 #'  are represented as intervals/bins of multiple values. For these intervals information about the amount of missing values are shown. This has the advantage, that also
 #' for large time series a plot which is easy to overview can be created.
 #'
-#' @author Steffen Moritz
+#' @author Steffen Moritz, Sebastian Gatscha
 #'
 #' @seealso \code{\link[imputeTS]{ggplot_na_distribution}},
 #'  \code{\link[imputeTS]{ggplot_na_gapsize}}, \code{\link[imputeTS]{ggplot_na_imputations}}

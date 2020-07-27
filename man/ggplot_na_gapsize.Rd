@@ -123,5 +123,5 @@ tsNH4 \%>\% ggplot_na_gapsize()
 \code{\link[imputeTS]{ggplot_na_imputations}}
 }
 \author{
-Steffen Moritz
+Steffen Moritz, Sebastian Gatscha
 }

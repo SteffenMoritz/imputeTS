@@ -1,4 +1,4 @@
-context("na.random")
+context("Depreciated Functions: na.random")
 
 test_that("All NA vector throws error",
           {

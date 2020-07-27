@@ -179,22 +179,3 @@ na_replace <- function(x, fill = 0, maxgap = Inf) {
     return(data)
   }
 }
-
-
-#' Deprecated use \code{\link[imputeTS]{na_replace}} instead.
-#' @description na.replace is replaced by \code{\link[imputeTS]{na_replace}}.
-#' The functionality stays the same. The new name better fits modern R code
-#' style guidelines (which prefer _ over . in function names).
-#' @inheritParams na_replace
-#' @keywords internal
-#' @export
-na.replace <- function(x, fill = 0, maxgap = Inf) {
-  .Deprecated(
-    new = "na_replace",
-    msg = "na.replace will be replaced by na_replace.
-    Functionality stays the same.
-    The new function name better fits modern R code style guidelines.
-    Please adjust your code accordingly."
-  )
-  na_replace(x, fill, maxgap)
-}

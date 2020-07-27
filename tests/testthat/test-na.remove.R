@@ -1,4 +1,4 @@
-context("na.remove")
+context("Depreciated Functions: na.remove")
 
 test_that("All NA vector throws error",
           {
