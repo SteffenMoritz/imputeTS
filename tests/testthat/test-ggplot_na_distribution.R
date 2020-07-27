@@ -24,16 +24,19 @@ test_that("Check that plot is running without error",
           })
 
 
-
 test_that("Plot with x_axis_labels works and yearly data works",
           {
             skip_on_cran()
-            
-            if ((!requireNamespace(c("zoo"), quietly = TRUE))&&(!requireNamespace(c("ggplot2"), quietly = TRUE)) ) {
-              warning("Packages zoo, ggplot2 needed for this test.",
+            if (!requireNamespace("ggplot2", quietly = TRUE)) {
+              warning("Pkg ggplot2 needed for this test.",
+                      call. = FALSE)
+            }
+            else if (!requireNamespace("zoo", quietly = TRUE)) {
+              warning("Pkg zoo needed for this test.",
                       call. = FALSE)
             }
             else {
+             
               require("zoo")
               require("ggplot2")
               # Yearly data

@@ -23,6 +23,4 @@ test_that("Correct warning for old, deprieciated imputation functions",
             expect_warning(na.replace(tsAirgap), regexp = "replaced by")
             expect_warning(na.seadec(tsAirgap), regexp = "replaced by")
             expect_warning(na.seasplit(tsAirgap), regexp = "replaced by")
-            
-
           })

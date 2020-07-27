@@ -84,8 +84,6 @@ and overplotting issues occur. In this case the
 a more condensed overview.
 }
 \examples{
-library("ggplot2")
-
 # Example 1: Visualize the missing values in x
 x <- stats::ts(c(1:11, 4:9, NA, NA, NA, 11:15, 7:15, 15:6, NA, NA, 2:5, 3:7))
 ggplot_na_distribution(x)
