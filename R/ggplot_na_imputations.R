@@ -187,12 +187,6 @@ ggplot_na_imputations <- function(x_with_na,
   
   # 1.4 Check preconditions about amount of NAs
   
-  noNA bei x_with_na -> error
-  
-  anyNA bei imputed datasets -> error (with imputation) -> warning... reicht weil geht ja trotzdem
-  
-  anyNA bei with truth -> warning
-  
   # exclude NA only inputs
   missindx_ <- is.na(data)
   if (all(missindx)) {
