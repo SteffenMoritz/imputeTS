@@ -236,7 +236,7 @@ ggplot_na_distribution <- function(x,
 
     # Adding the Points + Parameters
     ggplot2::geom_point(
-      data = df, na.rm = T,
+      data = df, na.rm = TRUE,
       ggplot2::aes(x = time, y = value), shape = shape_points,
       col = color_points, size = size_points
     ) +
@@ -251,7 +251,7 @@ ggplot_na_distribution <- function(x,
 
   if (length(id_na) > 0) {
     # Red Bars only if missing data in time series
-    na_val <- max(df$value, na.rm = T)
+    na_val <- max(df$value, na.rm = TRUE)
     gg <- gg +
       ggplot2::geom_bar(
         data = df[is.na(df$value), ], stat = "identity",

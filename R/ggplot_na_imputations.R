@@ -116,7 +116,7 @@ ggplot_na_imputations <- function(x_with_na,
                                   size_truth = 1.5,
                                   size_lines = 0.5,
                                   linetype = "solid",
-                                  connect_na = T,
+                                  connect_na = TRUE,
                                   legend = TRUE,
                                   legend_size = 5,
                                   label_known = "known values",
@@ -271,10 +271,10 @@ ggplot_na_imputations <- function(x_with_na,
 
   ## Add Lines
   # Don't connect the lines in the missing areas
-  if (connect_na == F) {
+  if (connect_na == FALSE) {
     gg <- gg + ggplot2::geom_line(
       data = df, ggplot2::aes(x = time, y = x_with_na),
-      na.rm = T, color = color_lines,
+      na.rm = TRUE, color = color_lines,
       linetype = linetype, size = size_lines
     )
   }
@@ -282,7 +282,7 @@ ggplot_na_imputations <- function(x_with_na,
   else if (!is.null(x_with_truth)) {
     gg <- gg + ggplot2::geom_line(
       data = df, ggplot2::aes(x = time, y = x_with_truth),
-      na.rm = T, color = color_lines,
+      na.rm = TRUE, color = color_lines,
       linetype = linetype, size = size_lines
     )
   }
@@ -290,7 +290,7 @@ ggplot_na_imputations <- function(x_with_na,
   else {
     gg <- gg + ggplot2::geom_line(
       data = df, ggplot2::aes(x = time, y = x_with_imputations),
-      na.rm = T, color = color_lines,
+      na.rm = TRUE, color = color_lines,
       linetype = linetype, size = size_lines
     )
   }
@@ -306,17 +306,17 @@ ggplot_na_imputations <- function(x_with_na,
   
   # Points for regular, known values
      gg <- gg + ggplot2::geom_point(data = df, ggplot2::aes(x = time, y = x_with_na, color = "1"), 
-                      na.rm = T, shape = shape_points, size = size_points ) 
+                      na.rm = TRUE, shape = shape_points, size = size_points ) 
   
    
   # Points for Imputations
      gg <- gg + ggplot2::geom_point(data = df, ggplot2::aes(x = time, y = x_with_imputations, color = "2"), 
-                                  na.rm = T, size = size_imputations , shape = shape_imputations) 
+                                  na.rm = TRUE, size = size_imputations , shape = shape_imputations) 
      
      # Points for truth
      if (!is.null(x_with_truth)) {
        gg <- gg + ggplot2::geom_point(data = df, ggplot2::aes(x = time, y = x_with_truth, color = "3"),
-                                      na.rm = T, shape = shape_truth, size = size_truth)
+                                      na.rm = TRUE, shape = shape_truth, size = size_truth)
      }
     
 

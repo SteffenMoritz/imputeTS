@@ -142,7 +142,7 @@
 #' @export
 ggplot_na_gapsize <- function(x,
                               limit = 10,
-                              include_total = T,
+                              include_total = TRUE,
                               ranked_by = "occurrence",
                               color_occurrence = "indianred",
                               color_total = "steelblue",
@@ -275,7 +275,7 @@ ggplot_na_gapsize <- function(x,
   df <- data.frame(id, val, label)
 
   # Only number of occurrences bar
-  if (include_total == F) {
+  if (include_total == FALSE) {
     df <- subset(df, label == "occurrence_bar")
   }
 
