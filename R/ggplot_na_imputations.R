@@ -186,15 +186,21 @@ ggplot_na_imputations <- function(x_with_na,
   
   
   # 1.4 Check preconditions about amount of NAs
-  
-  # exclude NA only inputs
-  missindx_ <- is.na(data)
-  if (all(missindx)) {
-    stop("Input data consists only of NAs. At least one non-NA numeric value is needed
-    for creating a meaningful ggplot_na_distribution plot)")
-  }
-  
-  
+  # 
+  # noNA bei x_with_na -> error
+  # 
+  # anyNA bei imputed datasets -> error (with imputation) -> warning... reicht weil geht ja trotzdem
+  # 
+  # anyNA bei with truth -> warning
+  # 
+  # # exclude NA only inputs
+  # missindx_ <- is.na(data)
+  # if (all(missindx)) {
+  #   stop("Input data consists only of NAs. At least one non-NA numeric value is needed
+  #   for creating a meaningful ggplot_na_distribution plot)")
+  # }
+  # 
+  # 
   # 1.5 Check if input is numeric
   
   if (!is.numeric(x_with_na)) {
