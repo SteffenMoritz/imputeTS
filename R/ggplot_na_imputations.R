@@ -4,44 +4,62 @@
 #'
 #' @param x_with_na Numeric Vector or Time Series (\code{\link{ts}}) object with NAs before imputation. This parameter and
 #' x_with_imputations (and eventually x_with_truth if available) have to be set. The rest of the parameters are only needed if you want to adjust the default design.
-#' 
+#'
 #' @param x_with_imputations Numeric Vector or Time Series (\code{\link{ts}}) object with NAs replaced by imputed values. This parameter and
 #' x_with_na (and eventually x_with_truth if available) have to be set. The rest of the parameters are only needed if you want to adjust the default design.
-#' 
+#'
 #' @param x_with_truth Numeric Vector or Time Series (\code{\link{ts}}) object with the real values (can be set to NULL if not known).
 #'
 #' @param x_axis_labels For adding specific x-axis labels. Takes a vector (with the same length as x) 
 #' of either Date or POSIXct objects as an input. Default (NULL) is using the 
 #' observation number as  x-axis tick labels.
-#' 
+#'
 #' @param title Title of the plot.
+#'
 #' @param subtitle Subtitle of the plot.
-#' 
+#'
 #' @param xlab Label for x axis.
+#'
 #' @param ylab Label for y axis.
 #'
 #' @param color_points Color of the symobls for the normal non-NA observations.
+#'
 #' @param color_imputations Color of the symbols for the imputed values.
+#'
 #' @param color_truth Color of the symbols for the ground truth of the NA values.
+#'
 #' @param shape_points Shape of the symobls for the normal non-NA observations.
+#'
 #' @param shape_imputations  Shape of the symbols for the imputed values.
+#'
 #' @param shape_truth Shape of the symbols for the ground truth of the NA values.
+#'
 #' @param size_points Size of the symobls for the normal non-NA observations.
+#'
 #' @param size_imputations Size of the symbols for the imputed values.
+#'
 #' @param size_truth Size of the symbols for the ground truth of the NA values.
-#' 
+#'
 #' @param color_lines Color for the lines connecting the observations/points.
+#'
 #' @param size_lines Size for the lines connecting the observations/points.
+#'
 #' @param linetype Linetype for the lines connecting the observations/points.
-#' @param connect_na If TRUE the imputations/ground truth values are connected to the normal
-#'  non-NA observations in the plot. Otherwise there are no connecting lines between symbols in NA areas.
-#' 
+#'
+#' @param connect_na If TRUE the imputations/ground truth values are connected
+#' to the normal non-NA observations in the plot. Otherwise there are no
+#' connecting lines between symbols in NA areas.
+#'
 #' @param legend If TRUE a legend is added at the bottom.
+#'
 #' @param legend_size Size of the symbols used in the legend.
+#'
 #' @param label_known Legend label for the normal non-NA observations.
+#'
 #' @param label_imputations Legend label for the imputed values.
+#'
 #' @param label_truth Legend label for the ground truth of the NA values.
-#' 
+#'
 #' @param theme Set a theme for ggplot2. Default is \code{\link[ggplot2]{theme_linedraw}}
 #'
 #' @details This plot can be used, to visualize imputed values for a time series.
@@ -68,10 +86,16 @@
 #' tsAirgap %>%
 #'   na_mean() %>%
 #'   ggplot_na_imputations(x_with_na = tsAirgap)
+#'
 #' @importFrom magrittr %>%
-#' @importFrom ggplot2 ggplot geom_line geom_point aes
-#' theme_minimal theme element_text element_blank xlab ylab ggtitle scale_color_manual guide_legend guides
+#'
+#' @importFrom ggplot2 theme_linedraw ggplot geom_line aes geom_point
+#' scale_color_manual element_blank xlab ylab ggtitle guides guide_legend
+#' theme theme_classic
+#'  
+#'
 #' @export
+
 ggplot_na_imputations <- function(x_with_na, 
                                   x_with_imputations,
                                   x_with_truth = NULL,
@@ -105,7 +129,30 @@ ggplot_na_imputations <- function(x_with_na,
   ## 1. Input Check and Transformation
   ##
   
-  # 1.1 Check if the input is multivariate
+  # 1.1 special handling data types
+  #x_with_na
+  if (any(class(x_with_na) == "tbl_ts")) {
+    x_with_na <- as.vector(as.data.frame(x_with_na)[, 2])
+  }
+  else if (any(class(x_with_na) == "tbl")) {
+    x_with_na <- as.vector(as.data.frame(x_with_na)[, 1])
+  }
+  #x_with_imputations
+  if (any(class(x_with_imputations) == "tbl_ts")) {
+    x_with_imputations <- as.vector(as.data.frame(x_with_imputations)[, 2])
+  }
+  else if (any(class(x_with_imputations) == "tbl")) {
+    x_with_imputations <- as.vector(as.data.frame(x_with_imputations)[, 1])
+  }
+  #x_with_truth
+  if (any(class(x_with_truth) == "tbl_ts")) {
+    x_with_truth <- as.vector(as.data.frame(x_with_truth)[, 2])
+  }
+  else if (any(class(x_with_truth) == "tbl")) {
+    x_with_truth <- as.vector(as.data.frame(x_with_truth)[, 1])
+  }
+  
+  # 1.2 Check if the input is multivariate
   
   if (!is.null(dim(x_with_na)[2]) && dim(x_with_na)[2] > 1) {
     stop("x_with_na is not univariate. The function only works with univariate input for x_with_na. For data types with 
@@ -123,20 +170,6 @@ ggplot_na_imputations <- function(x_with_na,
   }
   
   
-  # 1.2 Special handling data types
-  
-  if (any(class(x_with_na) == "tbl")) {
-    x_with_na <- as.vector(as.data.frame(x_with_na)[, 1])
-  }
-  
-  if (any(class(x_with_imputations) == "tbl")) {
-    x_with_imputations <- as.vector(as.data.frame(x_with_imputations)[, 1])
-  }
-  
-  if (any(class(x_with_truth) == "tbl") && !is.null(x_with_truth)) {
-    x_with_truth <- as.vector(as.data.frame(x_with_truth)[, 1])
-  }
-  
   # 1.3 Checks and corrections for wrong data dimension
   
   # Altering multivariate objects with 1 column (which are essentially
@@ -152,7 +185,23 @@ ggplot_na_imputations <- function(x_with_na,
   }
   
   
-  # 1.4 Check if input is numeric
+  # 1.4 Check preconditions about amount of NAs
+  
+  noNA bei x_with_na -> error
+  
+  anyNA bei imputed datasets -> error (with imputation) -> warning... reicht weil geht ja trotzdem
+  
+  anyNA bei with truth -> warning
+  
+  # exclude NA only inputs
+  missindx_ <- is.na(data)
+  if (all(missindx)) {
+    stop("Input data consists only of NAs. At least one non-NA numeric value is needed
+    for creating a meaningful ggplot_na_distribution plot)")
+  }
+  
+  
+  # 1.5 Check if input is numeric
   
   if (!is.numeric(x_with_na)) {
     stop("Input x_with_na is not numeric")
@@ -224,7 +273,7 @@ ggplot_na_imputations <- function(x_with_na,
   # Don't connect the lines in the missing areas
   if (connect_na == F) {
     gg <- gg + ggplot2::geom_line(
-      data = df, aes(x = time, y = x_with_na),
+      data = df, ggplot2::aes(x = time, y = x_with_na),
       na.rm = T, color = color_lines,
       linetype = linetype, size = size_lines
     )
@@ -232,7 +281,7 @@ ggplot_na_imputations <- function(x_with_na,
   # If truth available connect the true values in the missing areas
   else if (!is.null(x_with_truth)) {
     gg <- gg + ggplot2::geom_line(
-      data = df, aes(x = time, y = x_with_truth),
+      data = df, ggplot2::aes(x = time, y = x_with_truth),
       na.rm = T, color = color_lines,
       linetype = linetype, size = size_lines
     )
@@ -240,7 +289,7 @@ ggplot_na_imputations <- function(x_with_na,
   #If no truth available connect the imputed values in the missing areas
   else {
     gg <- gg + ggplot2::geom_line(
-      data = df, aes(x = time, y = x_with_imputations),
+      data = df, ggplot2::aes(x = time, y = x_with_imputations),
       na.rm = T, color = color_lines,
       linetype = linetype, size = size_lines
     )
@@ -256,33 +305,33 @@ ggplot_na_imputations <- function(x_with_na,
   ## Add points
   
   # Points for regular, known values
-     gg <- gg + ggplot2::geom_point(data = df, aes(x = time, y = x_with_na, color = "1"), 
+     gg <- gg + ggplot2::geom_point(data = df, ggplot2::aes(x = time, y = x_with_na, color = "1"), 
                       na.rm = T, shape = shape_points, size = size_points ) 
   
    
   # Points for Imputations
-     gg <- gg + ggplot2::geom_point(data = df, aes(x = time, y = x_with_imputations, color = "2"), 
+     gg <- gg + ggplot2::geom_point(data = df, ggplot2::aes(x = time, y = x_with_imputations, color = "2"), 
                                   na.rm = T, size = size_imputations , shape = shape_imputations) 
      
      # Points for truth
      if (!is.null(x_with_truth)) {
-       gg <- gg + ggplot2::geom_point(data = df, aes(x = time, y = x_with_truth, color = "3"),
+       gg <- gg + ggplot2::geom_point(data = df, ggplot2::aes(x = time, y = x_with_truth, color = "3"),
                                       na.rm = T, shape = shape_truth, size = size_truth)
      }
     
 
      if (!is.null(x_with_truth)) {
        
-       gg <- gg+  scale_color_manual(
-          name = element_blank(),
+       gg <- gg+  ggplot2::scale_color_manual(
+          name = ggplot2::element_blank(),
           breaks = c("1", "2","3"),
           labels = c( label_known, label_imputations, label_truth),
           values = c(  color_points, color_imputations, color_truth)
           ) 
      }
        else {
-         gg <- gg+  scale_color_manual(
-           name = element_blank(),
+         gg <- gg + ggplot2::scale_color_manual(
+           name = ggplot2::element_blank(),
            breaks = c("1", "2"),
            labels = c( label_known, label_imputations),
            values = c(  color_points, color_imputations)

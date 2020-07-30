@@ -122,7 +122,10 @@ ggplot_na_intervals <- function(x,
   ## 2. Preparations
   ##
   
-  # 2.1 Calculation break points
+  # 2.1 Input as vector
+  data <- as.vector(data)
+  
+  # 2.2 Calculation break points
 
   if (!is.null(interval_size)) {
     breaks <- seq(from = 0, to = length(data)-1, by = interval_size)
@@ -135,7 +138,7 @@ ggplot_na_intervals <- function(x,
   binwidth <- breaks[2]
 
   
-  # 2.2 Process parameter settings
+  # 2.3 Process parameter settings
   
   # Add alpha values to colors
   color_missing <- ggplot2::alpha(color_missing, alpha_missing)
@@ -160,7 +163,7 @@ ggplot_na_intervals <- function(x,
   }
   
   
-  # 2.3 Create dataframe for ggplot2
+  # 2.4 Create dataframe for ggplot2
   
   index <- 1:length(data)
   miss <- as.factor(is.na(data))

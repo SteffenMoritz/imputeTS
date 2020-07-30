@@ -1,9 +1,8 @@
 context("na_seadec")
 
-test_that("All NA vector throws error",
-          {
-            expect_error(na_seadec(c(NA,NA,NA,NA,NA)))
-          })
+test_that("All NA vector throws error", {
+  expect_error(na_seadec(c(NA, NA, NA, NA, NA)))
+})
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)", {
   skip_on_cran()
@@ -140,24 +139,23 @@ test_that("Correct results for all options with the tsAirgap dataset with find f
   x <- as.vector(tsAirgap)
   expect_equal(round(mean(na_seadec(x, algorithm = "interpolation", find_frequency = TRUE)), digits = 1), 280.4)
   expect_equal(round(mean(na_seadec(x, algorithm = "interpolation", find_frequency = FALSE)), digits = 1), 280.7)
-  
-  #Test if set frequencys are accepted as expected for find_frequency= F
-  expect_equal(round(mean(na_seadec(ts(x,frequency = 2), algorithm = "interpolation", find_frequency = FALSE)), digits = 1), 280.8)
-  
-  #Test if find_frequency works
-  expect_equal(round(mean(na_seadec(ts(x,frequency = 2), algorithm = "interpolation", find_frequency = TRUE)), digits = 1), 280.4)
-  
-  
+
+  # Test if set frequencys are accepted as expected for find_frequency= F
+  expect_equal(round(mean(na_seadec(ts(x, frequency = 2), algorithm = "interpolation", find_frequency = FALSE)), digits = 1), 280.8)
+
+  # Test if find_frequency works
+  expect_equal(round(mean(na_seadec(ts(x, frequency = 2), algorithm = "interpolation", find_frequency = TRUE)), digits = 1), 280.4)
+
+
   expect_equal(round(mean(na_seadec(x, algorithm = "locf", find_frequency = TRUE)), digits = 1), 279.7)
   expect_equal(round(mean(na_seadec(x, algorithm = "locf", find_frequency = FALSE)), digits = 1), 278.8)
-  
+
   expect_equal(round(mean(na_seadec(x, algorithm = "mean", find_frequency = TRUE)), digits = 1), 279.5)
   expect_equal(round(mean(na_seadec(x, algorithm = "mean", find_frequency = FALSE)), digits = 1), 279.8)
-  
+
   expect_true(round(mean(na_seadec(x, algorithm = "kalman", model = "auto.arima", find_frequency = TRUE)), digits = 1) > 277 &
-                round(mean(na_seadec(x, algorithm = "kalman", model = "auto.arima", find_frequency = TRUE)), digits = 1) < 283)
-  
+    round(mean(na_seadec(x, algorithm = "kalman", model = "auto.arima", find_frequency = TRUE)), digits = 1) < 283)
+
   expect_equal(round(mean(na_seadec(x, algorithm = "ma", find_frequency = TRUE)), digits = 1), 280.6)
   expect_equal(round(mean(na_seadec(x, algorithm = "ma", find_frequency = FALSE)), digits = 1), 281.2)
-
 })

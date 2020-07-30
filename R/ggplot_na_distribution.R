@@ -79,30 +79,31 @@
 #' x %>% ggplot_na_distribution()
 #'
 #' # Example 4: Visualize NAs in tsAirgap - different color for points
-#' # Plot adjustion via ggplot_na_distribution function parameters
+#' # Plot adjustments via ggplot_na_distribution function parameters
 #' ggplot_na_distribution(tsAirgap, color_points = "grey")
 #'
-#' # Example 6: Visualize NAs in tsAirgap - different theme
-#' # Plot adjustion via ggplot_na_distribution function parameters
+#' # Example 5: Visualize NAs in tsAirgap - different theme
+#' # Plot adjustments via ggplot_na_distribution function parameters
 #' ggplot_na_distribution(tsAirgap, theme = ggplot2::theme_classic())
 #'
-#' # Example 5: Visualize NAs in tsAirgap - title, subtitle in center
-#' # Plot adjustion via ggplot2 syntax
+#' # Example 6: Visualize NAs in tsAirgap - title, subtitle in center
+#' # Plot adjustments via ggplot2 syntax
 #' ggplot_na_distribution(tsAirgap) +
 #'   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
 #'   ggplot2::theme(plot.subtitle = ggplot2::element_text(hjust = 0.5))
 #'
-#' # Example 6: Visualize NAs in tsAirgap - title in center, no subtitle
-#' # Plot adjustion via ggplot2 syntax and funtion parameters
+#' # Example 7: Visualize NAs in tsAirgap - title in center, no subtitle
+#' # Plot adjustments via ggplot2 syntax and function parameters
 #' ggplot_na_distribution(tsAirgap, subtitle = NULL) +
 #'   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
 #'
-#' # Example 7: Visualize NAs in tsAirgap - x-axis texts with angle
-#' # Plot adjustion via ggplot2 syntax
+#' # Example 8: Visualize NAs in tsAirgap - x-axis texts with angle
+#' # Plot adjustments via ggplot2 syntax and function parameters
 #' ggplot_na_distribution(tsAirgap, color_points = "grey") +
 #'   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1))
-#' @importFrom ggplot2 ggplot geom_point aes geom_line geom_bar ggtitle
-#' xlab ylab theme theme_linedraw element_text theme_classic
+#'   
+#' @importFrom ggplot2 theme_linedraw ggplot geom_point aes geom_line geom_bar ggtitle
+#' xlab ylab theme element_text theme_classic
 #'
 #' @importFrom stats ts
 #'
@@ -131,17 +132,21 @@ ggplot_na_distribution <- function(x,
   ## 1. Input Check and Transformation
   ##
 
-  # 1.1 Check if the input is multivariate
+  # 1.1 special handling data types
+  if (any(class(data) == "tbl_ts")) {
+    data <- as.vector(as.data.frame(data)[, 2])
+  }
+  else if (any(class(data) == "tbl")) {
+    data <- as.vector(as.data.frame(data)[, 1])
+  }
+  
+  # 1.2 Check if the input is multivariate
   if (!is.null(dim(data)[2]) && dim(data)[2] > 1) {
     stop("x is not univariate. The function only works with univariate
     input for x. For data types with multiple variables/columns only input
-         the column you want to plot as parameter x.")
+    the column you want to plot as parameter x.")
   }
 
-  # 1.2 special handling data types
-  if (any(class(data) == "tbl")) {
-    data <- as.vector(as.data.frame(data)[, 1])
-  }
 
   # 1.3 Checks and corrections for wrong data dimension
 
@@ -151,7 +156,17 @@ ggplot_na_distribution <- function(x,
     data <- data[, 1]
   }
 
-  ## 1.4 Check if input is numeric
+  # 1.4 Check preconditions about amount of NAs
+  
+  # exclude NA only inputs
+  missindx <- is.na(data)
+  if (all(missindx)) {
+    stop("Input data consists only of NAs. At least one non-NA numeric value is needed
+    for creating a meaningful ggplot_na_distribution plot)")
+  }
+  
+  
+  # 1.5 Check if input is numeric
   if (!is.numeric(data)) {
     stop("Input x is not numeric")
   }

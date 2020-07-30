@@ -96,28 +96,29 @@ x <- ts(c(1:11, 4:9, NA, NA, NA, 11:15, 7:15, 15:6, NA, NA, 2:5, 3:7))
 x \%>\% ggplot_na_distribution()
 
 # Example 4: Visualize NAs in tsAirgap - different color for points
-# Plot adjustion via ggplot_na_distribution function parameters
+# Plot adjustments via ggplot_na_distribution function parameters
 ggplot_na_distribution(tsAirgap, color_points = "grey")
 
-# Example 6: Visualize NAs in tsAirgap - different theme
-# Plot adjustion via ggplot_na_distribution function parameters
+# Example 5: Visualize NAs in tsAirgap - different theme
+# Plot adjustments via ggplot_na_distribution function parameters
 ggplot_na_distribution(tsAirgap, theme = ggplot2::theme_classic())
 
-# Example 5: Visualize NAs in tsAirgap - title, subtitle in center
-# Plot adjustion via ggplot2 syntax
+# Example 6: Visualize NAs in tsAirgap - title, subtitle in center
+# Plot adjustments via ggplot2 syntax
 ggplot_na_distribution(tsAirgap) +
   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
   ggplot2::theme(plot.subtitle = ggplot2::element_text(hjust = 0.5))
 
-# Example 6: Visualize NAs in tsAirgap - title in center, no subtitle
-# Plot adjustion via ggplot2 syntax and funtion parameters
+# Example 7: Visualize NAs in tsAirgap - title in center, no subtitle
+# Plot adjustments via ggplot2 syntax and function parameters
 ggplot_na_distribution(tsAirgap, subtitle = NULL) +
   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
 
-# Example 7: Visualize NAs in tsAirgap - x-axis texts with angle
-# Plot adjustion via ggplot2 syntax
+# Example 8: Visualize NAs in tsAirgap - x-axis texts with angle
+# Plot adjustments via ggplot2 syntax and function parameters
 ggplot_na_distribution(tsAirgap, color_points = "grey") +
   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1))
+  
 }
 \seealso{
 \code{\link[imputeTS]{ggplot_na_intervals}},

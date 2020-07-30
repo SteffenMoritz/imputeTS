@@ -1,9 +1,8 @@
 context("na_seasplit")
 
-test_that("All NA vector throws error",
-          {
-            expect_error(na_seasplit(c(NA,NA,NA,NA,NA)))
-          })
+test_that("All NA vector throws error", {
+  expect_error(na_seasplit(c(NA, NA, NA, NA, NA)))
+})
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)", {
   skip_on_cran()
@@ -140,27 +139,26 @@ test_that("Correct results for all options with the tsAirgap dataset for find_fr
   # In order to avoid writing down the complete resulting vector
   # Using rounded version in order to avoid writing down all decimals
   x <- as.vector(tsAirgap)
-  
+
   expect_equal(round(mean(na_seasplit(x, algorithm = "interpolation", find_frequency = TRUE)), digits = 1), 280.3)
   expect_equal(round(mean(na_seasplit(x, algorithm = "interpolation", find_frequency = FALSE)), digits = 1), 280.7)
-  
+
   # Check that other frequencys lead to different result if find_frequency is FALSE
   expect_equal(round(mean(na_seasplit(ts(x, frequency = 2), algorithm = "interpolation", find_frequency = FALSE)), digits = 1), 281.7)
-  
+
   # Check that find_frequency overrides frequency for find_frequency = T
   expect_equal(round(mean(na_seasplit(ts(x, frequency = 2), algorithm = "interpolation", find_frequency = TRUE)), digits = 1), 280.3)
-  
+
   expect_equal(round(mean(na_seasplit(x, algorithm = "locf", find_frequency = TRUE)), digits = 1), 278.2)
   expect_equal(round(mean(na_seasplit(x, algorithm = "locf", find_frequency = FALSE)), digits = 1), 278.8)
-  
+
   expect_equal(round(mean(na_seasplit(x, algorithm = "mean", find_frequency = TRUE)), digits = 1), 279.3)
   expect_equal(round(mean(na_seasplit(x, algorithm = "mean", find_frequency = FALSE)), digits = 1), 279.8)
-  
-  
+
+
   expect_true(round(mean(na_seasplit(x, algorithm = "kalman", model = "auto.arima", find_frequency = TRUE)), digits = 1) > 277 &
-                round(mean(na_seasplit(x, algorithm = "kalman", model = "auto.arima", find_frequency = TRUE)), digits = 1) < 281)
-  
+    round(mean(na_seasplit(x, algorithm = "kalman", model = "auto.arima", find_frequency = TRUE)), digits = 1) < 281)
+
   expect_equal(round(mean(na_seasplit(x, algorithm = "ma", find_frequency = TRUE)), digits = 1), 280.3)
   expect_equal(round(mean(na_seasplit(x, algorithm = "ma", find_frequency = FALSE)), digits = 1), 281.2)
-  
 })
