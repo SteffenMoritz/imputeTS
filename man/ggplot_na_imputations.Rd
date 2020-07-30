@@ -25,7 +25,7 @@ ggplot_na_imputations(
   size_truth = 1.5,
   size_lines = 0.5,
   linetype = "solid",
-  connect_na = T,
+  connect_na = TRUE,
   legend = TRUE,
   legend_size = 5,
   label_known = "known values",
