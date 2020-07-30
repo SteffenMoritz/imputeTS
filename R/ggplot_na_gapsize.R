@@ -108,7 +108,7 @@
 #' ggplot_na_gapsize(tsNH4, limit = 20)
 #'
 #' # Example 5: Visualize top gap sizes in tsNH4 without showing total NAs
-#' ggplot_na_gapsize(tsNH4, limit = 20, include_total = F)
+#' ggplot_na_gapsize(tsNH4, limit = 20, include_total = FALSE)
 #'
 #' # Example 6: Visualize top gap sizes in tsNH4 but ordered by total NAs
 #' # (total = occurrence * gap length)

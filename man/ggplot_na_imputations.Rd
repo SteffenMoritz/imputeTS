@@ -79,8 +79,9 @@ observation number as  x-axis tick labels.}
 
 \item{linetype}{Linetype for the lines connecting the observations/points.}
 
-\item{connect_na}{If TRUE the imputations/ground truth values are connected to the normal
-non-NA observations in the plot. Otherwise there are no connecting lines between symbols in NA areas.}
+\item{connect_na}{If TRUE the imputations/ground truth values are connected
+to the normal non-NA observations in the plot. Otherwise there are no
+connecting lines between symbols in NA areas.}
 
 \item{legend}{If TRUE a legend is added at the bottom.}
 
@@ -116,6 +117,7 @@ ggplot_na_imputations(tsAirgap, impLOCF.Airgap, tsAirgapComplete)
 tsAirgap \%>\%
   na_mean() \%>\%
   ggplot_na_imputations(x_with_na = tsAirgap)
+
 }
 \seealso{
 \code{\link[imputeTS]{ggplot_na_distribution}},\code{\link[imputeTS]{ggplot_na_intervals}},
