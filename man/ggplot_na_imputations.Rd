@@ -35,92 +35,166 @@ ggplot_na_imputations(
 )
 }
 \arguments{
-\item{x_with_na}{Numeric Vector or Time Series (\code{\link{ts}}) object with NAs before imputation. This parameter and
-x_with_imputations (and eventually x_with_truth if available) have to be set. The rest of the parameters are only needed if you want to adjust the default design.}
+\item{x_with_na}{Numeric Vector or Time Series (\code{\link{ts}}) object
+with NAs before imputation. This parameter and x_with_imputation shave to
+be set. The rest of the parameters are mostly needed for adjusting the plot
+appearance.}
 
-\item{x_with_imputations}{Numeric Vector or Time Series (\code{\link{ts}}) object with NAs replaced by imputed values. This parameter and
-x_with_na (and eventually x_with_truth if available) have to be set. The rest of the parameters are only needed if you want to adjust the default design.}
+\item{x_with_imputations}{Numeric Vector or Time Series (\code{\link{ts}})
+object with NAs replaced by imputed values. This parameter and
+x_with_imputation shave to be set.The rest of the parameters are mostly
+needed for adjusting the plot appearance.}
 
-\item{x_with_truth}{Numeric Vector or Time Series (\code{\link{ts}}) object with the real values (can be set to NULL if not known).}
+\item{x_with_truth}{Numeric Vector or Time Series (\code{\link{ts}}) object
+with the real values (optional parameter). If the ground truth is known
+(e.g. in experiments where the missing values were artificially added)
+it can be displayed in the plot with this parameter.
+Default is NULL (ground truth not known).}
 
-\item{x_axis_labels}{For adding specific x-axis labels. Takes a vector (with the same length as x)
-of either Date or POSIXct objects as an input. Default (NULL) is using the
-observation number as  x-axis tick labels.}
+\item{x_axis_labels}{For adding specific x-axis labels. Takes a vector of
+\code{\link[base]{Date}} or \code{\link[base]{POSIXct}} objects as an input
+(needs the same length as x_with_na).
+The Default (NULL) uses the observation numbers as x-axis tick labels.}
 
-\item{title}{Title of the plot.}
+\item{title}{Title of the Plot.}
 
-\item{subtitle}{Subtitle of the plot.}
+\item{subtitle}{Subtitle of the Plot.}
 
-\item{xlab}{Label for x axis.}
+\item{xlab}{Label for x-Axis.}
 
-\item{ylab}{Label for y axis.}
+\item{ylab}{Label for y-Axis.}
 
-\item{color_points}{Color of the symobls for the normal non-NA observations.}
+\item{color_points}{Color for the Symbols/Points of the non-NA Observations.}
 
-\item{color_imputations}{Color of the symbols for the imputed values.}
+\item{color_imputations}{Color for the Symbols/Points of the Imputed Values.}
 
-\item{color_truth}{Color of the symbols for the ground truth of the NA values.}
+\item{color_truth}{Color for the Symbols/Points of the NA value Ground Truth
+(only relevant when x_with_truth available).}
 
-\item{color_lines}{Color for the lines connecting the observations/points.}
+\item{color_lines}{Color for the Lines connecting the Observations/Points.}
 
-\item{shape_points}{Shape of the symobls for the normal non-NA observations.}
+\item{shape_points}{Shape for the Symbols/Points of the non-NA observations.
+See https://ggplot2.tidyverse.org/articles/ggplot2-specs.html as reference.}
 
-\item{shape_imputations}{Shape of the symbols for the imputed values.}
+\item{shape_imputations}{Shape for the Symbols/Points of the imputed values.
+See https://ggplot2.tidyverse.org/articles/ggplot2-specs.html as reference.}
 
-\item{shape_truth}{Shape of the symbols for the ground truth of the NA values.}
+\item{shape_truth}{Shape for the Symbols/Points of the NA value Ground Truth
+(only relevant when x_with_truth available).}
 
-\item{size_points}{Size of the symobls for the normal non-NA observations.}
+\item{size_points}{Size for the Symbols/Points of the non-NA Observations.}
 
-\item{size_imputations}{Size of the symbols for the imputed values.}
+\item{size_imputations}{Size for the Symbols/Points of the Imputed Values.}
 
-\item{size_truth}{Size of the symbols for the ground truth of the NA values.}
+\item{size_truth}{Size for the Symbols/Points of the NA value Ground Truth
+(only relevant when x_with_truth available).}
 
-\item{size_lines}{Size for the lines connecting the observations/points.}
+\item{size_lines}{Size for the Lines connecting the Observations/Points.}
 
-\item{linetype}{Linetype for the lines connecting the observations/points.}
+\item{linetype}{Linetype for the Lines connecting the Observations/Points.}
 
-\item{connect_na}{If TRUE the imputations/ground truth values are connected
-to the normal non-NA observations in the plot. Otherwise there are no
+\item{connect_na}{If TRUE the Imputations are connected
+to the non-NA observations in the plot. Otherwise there are no
 connecting lines between symbols in NA areas.}
 
-\item{legend}{If TRUE a legend is added at the bottom.}
+\item{legend}{If TRUE a Legend is added at the bottom.}
 
-\item{legend_size}{Size of the symbols used in the legend.}
+\item{legend_size}{Size of the Symbols used in the Legend.}
 
-\item{label_known}{Legend label for the normal non-NA observations.}
+\item{label_known}{Legend label for the non-NA Observations.}
 
-\item{label_imputations}{Legend label for the imputed values.}
+\item{label_imputations}{Legend label for the Imputed Values.}
 
-\item{label_truth}{Legend label for the ground truth of the NA values.}
+\item{label_truth}{Legend label for the Ground Truth of the NA values.}
 
-\item{theme}{Set a theme for ggplot2. Default is \code{\link[ggplot2]{theme_linedraw}}}
+\item{theme}{Set a Theme for ggplot2. Default is ggplot2::theme_linedraw().
+(\code{\link[ggplot2]{theme_linedraw})}}
 }
 \description{
 Visualize the imputed values in a time series.
 }
 \details{
-This plot can be used, to visualize imputed values for a time series.
-Imputed values (filled NA gaps) are shown in a different color than the other values.
-If real values (truth) for the NA gaps are known, they are added in a different color.
+This plot can be used, to visualize imputed values for a time
+series. Imputed values (filled NA gaps) are shown in a different color
+than the other values. If real values (ground truth) for the NA gaps are known,
+they can be optionally added in a different color.
+
+The only really needed parameters for this function are x_with_na
+(the time series with NAs before imputation) and x_with_imputations
+(the time series without NAs after imputation). All other parameters
+are msotly for altering the appearance of the plot.
+
+As long as the input is univariate and numeric the function also takes
+data.frame, tibble, tsibble, zoo, xts as an input.
+
+The plot can be adjusted to your needs via the function parameters.
+Additionally for more complex adjustments, the output can also be
+adjusted via ggplot2 syntax. This is possible, since the output
+of the function is a ggplot2 object. Also take a look at the Examples
+to see how adjustments are made.
 }
 \examples{
-# Example 1: Visualize the values that were imputed by na.mean in the time series
-impMean.Airgap <- na_mean(tsAirgap)
-ggplot_na_imputations(tsAirgap, impMean.Airgap)
+# Example 1: Visualize imputation by na.mean
+imp_mean <- na_mean(tsAirgap)
+ggplot_na_imputations(tsAirgap, imp_mean)
 
 
-# Example 2: Visualize the imputed values by na_locf and the true values in the time series
-impLOCF.Airgap <- na_locf(tsAirgap)
-ggplot_na_imputations(tsAirgap, impLOCF.Airgap, tsAirgapComplete)
+# Example 2: Visualize imputation by na_locf and added ground truth 
+imp_locf <- na_locf(tsAirgap)
+ggplot_na_imputations(x_with_na = tsAirgap, 
+                      x_with_imputations = imp_locf,
+                      x_with_truth = tsAirgapComplete
+                      )
 
-# Example 3: Same as example 1, just written with pipe operator
+
+# Example 3: Visualize imputation by na_kalman
+imp_kalman <- na_kalman(tsAirgap)
+ggplot_na_imputations(x_with_na = tsAirgap, x_with_imputations = imp_kalman)
+
+
+# Example 4: Same as example 1, just written with pipe operator
 tsAirgap \%>\%
   na_mean() \%>\%
   ggplot_na_imputations(x_with_na = tsAirgap)
+  
 
+# Example 5: Visualize imputation by na_seadec - different color for imputed points
+# Plot adjustments via ggplot_na_imputations function parameters
+imp_seadec <- na_seadec(tsAirgap)
+ggplot_na_imputations(x_with_na = tsAirgap, 
+                      x_with_imputations = imp_seadec,
+                      color_imputations = "gold")
+
+
+# Example 6: Visualize imputation - different theme, point size imputations
+# Plot adjustments via ggplot_na_imputations function parameters
+imp_seadec <- na_seadec(tsAirgap)
+ggplot_na_imputations(x_with_na = tsAirgap, 
+                      x_with_imputations = imp_seadec,
+                      theme = ggplot2::theme_classic(),
+                      size_imputations = 5)
+
+                 
+# Example 7: Visualize imputation - title, subtitle in center
+# Plot adjustments via ggplot2 syntax
+imp_seadec <- na_seadec(tsAirgap)
+ggplot_na_imputations(x_with_na = tsAirgap,  x_with_imputations = imp_seadec) + 
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
+    ggplot2::theme(plot.subtitle = ggplot2::element_text(hjust = 0.5))   
+
+
+# Example 8: Visualize imputation - title in center, no subtitle
+# Plot adjustments via ggplot2 syntax and function parameters
+imp_mean <- na_mean(tsAirgap)
+ggplot_na_imputations(x_with_na = tsAirgap,  
+                      x_with_imputations = imp_mean,
+                      subtitle = NULL) +
+     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
+  
 }
 \seealso{
-\code{\link[imputeTS]{ggplot_na_distribution}},\code{\link[imputeTS]{ggplot_na_intervals}},
+\code{\link[imputeTS]{ggplot_na_distribution}},
+\code{\link[imputeTS]{ggplot_na_intervals}},
 \code{\link[imputeTS]{ggplot_na_gapsize}}
 }
 \author{

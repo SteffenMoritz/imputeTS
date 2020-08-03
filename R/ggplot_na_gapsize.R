@@ -187,7 +187,20 @@ ggplot_na_gapsize <- function(x,
     data <- data[, 1]
   }
 
-  # 1.4 Check preconditions about amount of NAs
+  
+  
+  # 1.4 Input as vector
+  data <- as.vector(data)
+  
+  
+  
+  # 1.5 Check if input is numeric
+  if (!is.numeric(data)) {
+    stop("Input x is not numeric")
+  }
+  
+  
+  # 1.6 Check preconditions about amount of NAs
   
   # exclude NA only inputs
   missindx <- is.na(data)
@@ -202,10 +215,7 @@ ggplot_na_gapsize <- function(x,
          to create a meaningful ggplot_na_gapsize plot)")
   }
   
-  # 1.5 Check if input is numeric
-  if (!is.numeric(data)) {
-    stop("Input x is not numeric")
-  }
+ 
 
   ##
   ## End Input Check and Transformation
@@ -219,9 +229,7 @@ ggplot_na_gapsize <- function(x,
 
 
   # 2.1 Create required data
-
-  # Input as vector
-  data <- as.vector(data)
+  
 
   # Calculation consecutive NA information
   rle_na <- rle(is.na(data))

@@ -155,8 +155,21 @@ ggplot_na_distribution <- function(x,
   if (!is.null(dim(data)[2])) {
     data <- data[, 1]
   }
+  
+  
+  
+  # 1.4 Input as vector
+  data <- as.vector(data)
 
-  # 1.4 Check preconditions about amount of NAs
+  
+  
+  # 1.5 Check if input is numeric
+  if (!is.numeric(data)) {
+    stop("Input x is not numeric")
+  }
+  
+  
+  # 1.6 Check preconditions about amount of NAs
   
   # exclude NA only inputs
   missindx <- is.na(data)
@@ -166,25 +179,19 @@ ggplot_na_distribution <- function(x,
   }
   
   
-  # 1.5 Check if input is numeric
-  if (!is.numeric(data)) {
-    stop("Input x is not numeric")
-  }
 
   ##
   ## End Input Check and Transformation
   ##
 
 
+  
 
   ##
   ## 2. Preparations
   ##
 
   # 2.1 Create required data
-
-  # Input as vector
-  data <- as.vector(data)
 
   # Get NA positions
   id_na <- which(is.na(data))

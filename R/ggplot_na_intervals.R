@@ -65,7 +65,7 @@
 #' @importFrom grDevices nclass.Sturges
 #' @importFrom ggplot2 ggplot aes alpha theme_linedraw
 #' scale_fill_manual theme element_blank scale_x_continuous scale_y_continuous
-#' labs xlab ylab stat_bin
+#' labs xlab ylab stat_bin theme_classic
 #' @importFrom magrittr %>%
 #' @importFrom ggtext element_markdown
 #' @export

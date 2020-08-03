@@ -5,7 +5,7 @@ test_that("Old functions give error", {
   expect_error(plotNA.gapsize(tsAirgap))
 })
 
-test_that("Check that plot is running without error", {
+test_that("Check that all parameters of plot  run without error", {
   expect_true(is.recursive(ggplot_na_gapsize(tsAirgap)))
   expect_true(is.list(ggplot_na_gapsize(tsAirgap)))
   expect_true(is.list(ggplot_na_gapsize(tsAirgap, ranked_by = "total")))
@@ -27,8 +27,10 @@ test_that("Check that plot is running without error", {
   expect_true(is.list(ggplot_na_gapsize(tsAirgap, label_occurrence = "occ")))
   expect_true(is.list(ggplot_na_gapsize(tsAirgap, label_total = "total")))
   expect_true(is.list(ggplot_na_gapsize(tsAirgap, theme = ggplot2::theme_classic())))
+})
 
-
+test_that("Errors for wrong input", {
+  
   ## input not univariate
   x <- data.frame(
     x = runif(10, 0, 10),
@@ -45,7 +47,7 @@ test_that("Check that plot is running without error", {
   expect_error(ggplot_na_gapsize(x))
 
 
-  all_na <- c(NA, NA, NA, NA, NA, NA, NA, NA)
+  all_na <- as.numeric(c(NA, NA, NA, NA, NA, NA, NA, NA))
   expect_error(ggplot_na_gapsize(all_na))
 })
 
