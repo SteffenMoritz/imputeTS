@@ -84,15 +84,42 @@
 #' # Example 1: Visualize the missing values in tsNH4 time series
 #' ggplot_na_intervals(tsNH4)
 #'
-#' # Example 2: Add legend to example 1
-#' library("ggplot2")
-#' ggplot_na_intervals(tsNH4) + theme(legend.position = "right")
-#'
-#' # Example 3: Visualize the missing values in tsHeating time series
+#' # Example 2: Visualize the missing values in tsHeating time series
 #' ggplot_na_intervals(tsHeating)
 #'
-#' # Example 4: Same as example 1, just written with pipe operator
+#' # Example 3: Same as example 1, just written with pipe operator
 #' tsNH4 %>% ggplot_na_intervals()
+#' 
+#' # Example 4: Visualize NAs in tsNH4 - exactly 8 intervals
+#' ggplot_na_intervals(tsNH4, number_intervals = 8)
+#' 
+#' # Example 5: Visualize NAs in tsNH4 - 300 observations per interval
+#' ggplot_na_intervals(tsNH4, interval_size = 300)
+#' 
+#' # Example 6: Visualize NAs in tsAirgap - different color for NAs
+#' # Plot adjustments via ggplot_na_intervals function parameters
+#' ggplot_na_intervals(tsAirgap, color_missing = "pink")
+#'
+#' # Example 7: Visualize NAs in tsNH4 - different theme
+#' # Plot adjustments via ggplot_na_intervals function parameters
+#' ggplot_na_intervals(tsNH4, theme = ggplot2::theme_classic())
+#'
+#' # Example 8: Visualize NAs in tsAirgap - title, subtitle in center
+#' # Plot adjustments via ggplot2 syntax
+#' ggplot_na_intervals(tsAirgap) +
+#'   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
+#'   ggplot2::theme(plot.subtitle = ggtext::element_markdown(hjust = 0.5))
+#'
+#' # Example 9: Visualize NAs in tsAirgap - title in center, no subtitle
+#' # Plot adjustments via ggplot2 syntax and function parameters
+#' ggplot_na_intervals(tsAirgap, subtitle = NULL) +
+#'   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
+#'
+#' # Example 10: Visualize NAs in tsAirgap - x-axis texts with angle
+#' # Plot adjustments via ggplot2 syntax and function parameters
+#' ggplot_na_intervals(tsAirgap, color_missing = "grey") +
+#'   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1))
+#'   
 #' @importFrom magrittr %>%
 #'
 #' @importFrom grDevices nclass.Sturges
@@ -208,7 +235,7 @@ ggplot_na_intervals <- function(x,
 
   # Set subtitle to default
   # (needed because .Rd usage section gives error when using defaults > 90 chars )
-  if (subtitle == "Amount of NA and non-NA for successive intervals") {
+  if ( (!is.null(subtitle)) && (subtitle == "Amount of NA and non-NA for successive intervals")) {
     subtitle <- paste0("Amount of <b style='color:", color_missing, ";' >NA</b>
                 and  <b style='color:", color_existing, "' >non-NA</b>
                 for successive intervals")
