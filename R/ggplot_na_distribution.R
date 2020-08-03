@@ -157,10 +157,8 @@ ggplot_na_distribution <- function(x,
   }
   
   
-  
   # 1.4 Input as vector
   data <- as.vector(data)
-
   
   
   # 1.5 Check if input is numeric
@@ -196,8 +194,7 @@ ggplot_na_distribution <- function(x,
   # Get NA positions
   id_na <- which(is.na(data))
 
-
-
+  
   # 2.2 Create dataframe for ggplot2
 
   # Define x-axis label data

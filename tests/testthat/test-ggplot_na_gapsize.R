@@ -6,31 +6,39 @@ test_that("Old functions give error", {
 })
 
 test_that("Check that all parameters of plot  run without error", {
-  expect_true(is.recursive(ggplot_na_gapsize(tsAirgap)))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap)))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, ranked_by = "total")))
-  expect_true(is.list(ggplot_na_gapsize(tsNH4, limit = 2)))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, legend = F)))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, orientation = "horizontal")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, include_total = F)))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_occurrence = "blue")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, limit = 1)))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, include_total = F)))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, ranked_by = "total")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_occurrence = "gold")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_total = "green")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, title = "test")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, subtitle = "test2")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, xlab = "test")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, ylab = "test")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, orientation = "vertical")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, label_occurrence = "occ")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, label_total = "total")))
-  expect_true(is.list(ggplot_na_gapsize(tsAirgap, theme = ggplot2::theme_classic())))
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    warning("Pkg ggplot2 needed for this test.",
+      call. = FALSE
+    )
+  }
+  else {
+    require("ggplot2")
+    expect_true(is.recursive(ggplot_na_gapsize(tsAirgap)))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap)))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, ranked_by = "total")))
+    expect_true(is.list(ggplot_na_gapsize(tsNH4, limit = 2)))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, legend = F)))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, orientation = "horizontal")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, include_total = F)))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_occurrence = "blue")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, limit = 1)))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, include_total = F)))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, ranked_by = "total")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_occurrence = "gold")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_total = "green")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, title = "test")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, subtitle = "test2")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, xlab = "test")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, ylab = "test")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, orientation = "vertical")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, label_occurrence = "occ")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, label_total = "total")))
+    expect_true(is.list(ggplot_na_gapsize(tsAirgap, theme = ggplot2::theme_classic())))
+  }
 })
 
 test_that("Errors for wrong input", {
-  
+
   ## input not univariate
   x <- data.frame(
     x = runif(10, 0, 10),

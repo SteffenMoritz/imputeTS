@@ -5,25 +5,33 @@ test_that("Old functions give error", {
 })
 
 test_that("Check that all parameters of plot run without error", {
-  expect_true(is.list(ggplot_na_distribution(tsAirgap)))
-  expect_true(is.list(ggplot_na_distribution(tsAirgap,
-                                             color_points = "blue",
-                                             color_lines = "gold",
-                                             color_missing = "darkgreen",
-                                             color_missing_border = "green",
-                                             alpha_missing = 0.1,
-                                             title = "test",
-                                             subtitle = "test",
-                                             xlab = "test",
-                                             ylab = "test",
-                                             shape_points = 15,
-                                             size_points = 2,
-                                             theme = ggplot2::theme_classic()
-                                             )))
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    warning("Pkg ggplot2 needed for this test.",
+      call. = FALSE
+    )
+  }
+  {
+    require("ggplot2")
+    expect_true(is.list(ggplot_na_distribution(tsAirgap)))
+    expect_true(is.list(ggplot_na_distribution(tsAirgap,
+      color_points = "blue",
+      color_lines = "gold",
+      color_missing = "darkgreen",
+      color_missing_border = "green",
+      alpha_missing = 0.1,
+      title = "test",
+      subtitle = "test",
+      xlab = "test",
+      ylab = "test",
+      shape_points = 15,
+      size_points = 2,
+      theme = ggplot2::theme_classic()
+    )))
+  }
 })
-  
+
 test_that("Errors for wrong input", {
-    
+
   ## input not univariate
   x <- data.frame(
     x = runif(10, 0, 10),
@@ -35,18 +43,17 @@ test_that("Errors for wrong input", {
   x <- c("a", 1, 2, 3)
   expect_error(ggplot_na_distribution(x))
 
-  #input only NA
+  # input only NA
   all_na <- as.numeric(c(NA, NA, NA, NA, NA, NA, NA, NA))
   expect_error(ggplot_na_distribution(all_na))
 })
 
-test_that("Works with tsNH4",
-          {
-            expect_is(
-              ggplot_na_distribution(tsNH4),
-              "ggplot"
-            )
-          })
+test_that("Works with tsNH4", {
+  expect_is(
+    ggplot_na_distribution(tsNH4),
+    "ggplot"
+  )
+})
 
 test_that("Plot with x_axis_labels works and yearly data works", {
   skip_on_cran()
