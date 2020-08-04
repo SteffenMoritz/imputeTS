@@ -79,6 +79,18 @@
     <loc>https://SteffenMoritz.github.io/imputeTS/reference/na_seasplit.html</loc>
   </url>
   <url>
+    <loc>https://SteffenMoritz.github.io/imputeTS/reference/plotNA.distribution.html</loc>
+  </url>
+  <url>
+    <loc>https://SteffenMoritz.github.io/imputeTS/reference/plotNA.distributionBar.html</loc>
+  </url>
+  <url>
+    <loc>https://SteffenMoritz.github.io/imputeTS/reference/plotNA.gapsize.html</loc>
+  </url>
+  <url>
+    <loc>https://SteffenMoritz.github.io/imputeTS/reference/plotNA.imputations.html</loc>
+  </url>
+  <url>
     <loc>https://SteffenMoritz.github.io/imputeTS/reference/reexports.html</loc>
   </url>
   <url>
@@ -101,5 +113,8 @@
   </url>
   <url>
     <loc>https://SteffenMoritz.github.io/imputeTS/reference/tsNH4Complete.html</loc>
+  </url>
+  <url>
+    <loc>https://SteffenMoritz.github.io/imputeTS/articles/gallery_visualizations.html</loc>
   </url>
 </urlset>

@@ -110,7 +110,7 @@ Here is a table with available plots to choose from:
 |      Function           |           Description                                        | 
 | :-----------------------|:-------------------------------------------------------------|
 | ggplot_na_distribution  |Visualize Distribution of Missing Values                      |
-| ggplot_na_intervals     |Missing Values Summarized in Bins   |
+| ggplot_na_intervals     |Missing Values Summarized in Intervals                        |
 | ggplot_na_gapsize       |Visualize Distribution of NA Gapsizes                         |
 | ggplot_na_imputations   |Visualize Imputed Values                                      | 
 

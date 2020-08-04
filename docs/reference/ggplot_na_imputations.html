@@ -95,6 +95,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/gallery_visualizations.html">Gallery: Times Series Missing Data Visualizations</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -132,6 +144,7 @@
   <span class='no'>x_with_na</span>,
   <span class='no'>x_with_imputations</span>,
   <span class='kw'>x_with_truth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>x_axis_labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Imputed Values"</span>,
   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"Visualization of missing value replacements"</span>,
   <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Time"</span>,
@@ -148,7 +161,7 @@
   <span class='kw'>size_truth</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
   <span class='kw'>size_lines</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>connect_na</span> <span class='kw'>=</span> <span class='no'>T</span>,
+  <span class='kw'>connect_na</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>legend_size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>label_known</span> <span class='kw'>=</span> <span class='st'>"known values"</span>,
@@ -162,135 +175,209 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x_with_na</th>
-      <td><p>Numeric Vector or Time Series (<code><a href='https://rdrr.io/r/stats/ts.html'>ts</a></code>) object with NAs before imputation. This parameter and
-x_with_imputations (and eventually x_with_truth if available) have to be set. The rest of the parameters are only needed if you want to adjust the default design.</p></td>
+      <td><p>Numeric Vector or Time Series (<code><a href='https://rdrr.io/r/stats/ts.html'>ts</a></code>) object
+with NAs before imputation. This parameter and x_with_imputation shave to
+be set. The rest of the parameters are mostly needed for adjusting the plot
+appearance.</p></td>
     </tr>
     <tr>
       <th>x_with_imputations</th>
-      <td><p>Numeric Vector or Time Series (<code><a href='https://rdrr.io/r/stats/ts.html'>ts</a></code>) object with NAs replaced by imputed values. This parameter and
-x_with_na (and eventually x_with_truth if available) have to be set. The rest of the parameters are only needed if you want to adjust the default design.</p></td>
+      <td><p>Numeric Vector or Time Series (<code><a href='https://rdrr.io/r/stats/ts.html'>ts</a></code>)
+object with NAs replaced by imputed values. This parameter and
+x_with_imputation shave to be set.The rest of the parameters are mostly
+needed for adjusting the plot appearance.</p></td>
     </tr>
     <tr>
       <th>x_with_truth</th>
-      <td><p>Numeric Vector or Time Series (<code><a href='https://rdrr.io/r/stats/ts.html'>ts</a></code>) object with the real values (can be set to NULL if not known).</p></td>
+      <td><p>Numeric Vector or Time Series (<code><a href='https://rdrr.io/r/stats/ts.html'>ts</a></code>) object
+with the real values (optional parameter). If the ground truth is known
+(e.g. in experiments where the missing values were artificially added)
+it can be displayed in the plot with this parameter.
+Default is NULL (ground truth not known).</p></td>
+    </tr>
+    <tr>
+      <th>x_axis_labels</th>
+      <td><p>For adding specific x-axis labels. Takes a vector of
+<code><a href='https://rdrr.io/r/base/Dates.html'>Date</a></code> or <code><a href='https://rdrr.io/r/base/DateTimeClasses.html'>POSIXct</a></code> objects as an input
+(needs the same length as x_with_na).
+The Default (NULL) uses the observation numbers as x-axis tick labels.</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p>Title of the plot.</p></td>
+      <td><p>Title of the Plot.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
-      <td><p>Subtitle of the plot.</p></td>
+      <td><p>Subtitle of the Plot.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>Label for x axis.</p></td>
+      <td><p>Label for x-Axis.</p></td>
     </tr>
     <tr>
       <th>ylab</th>
-      <td><p>Label for y axis.</p></td>
+      <td><p>Label for y-Axis.</p></td>
     </tr>
     <tr>
       <th>color_points</th>
-      <td><p>Color of the symobls for the normal non-NA observations.</p></td>
+      <td><p>Color for the Symbols/Points of the non-NA Observations.</p></td>
     </tr>
     <tr>
       <th>color_imputations</th>
-      <td><p>Color of the symbols for the imputed values.</p></td>
+      <td><p>Color for the Symbols/Points of the Imputed Values.</p></td>
     </tr>
     <tr>
       <th>color_truth</th>
-      <td><p>Color of the symbols for the ground truth of the NA values.</p></td>
+      <td><p>Color for the Symbols/Points of the NA value Ground Truth
+(only relevant when x_with_truth available).</p></td>
     </tr>
     <tr>
       <th>color_lines</th>
-      <td><p>Color for the lines connecting the observations/points.</p></td>
+      <td><p>Color for the Lines connecting the Observations/Points.</p></td>
     </tr>
     <tr>
       <th>shape_points</th>
-      <td><p>Shape of the symobls for the normal non-NA observations.</p></td>
+      <td><p>Shape for the Symbols/Points of the non-NA observations.
+See https://ggplot2.tidyverse.org/articles/ggplot2-specs.html as reference.</p></td>
     </tr>
     <tr>
       <th>shape_imputations</th>
-      <td><p>Shape of the symbols for the imputed values.</p></td>
+      <td><p>Shape for the Symbols/Points of the imputed values.
+See https://ggplot2.tidyverse.org/articles/ggplot2-specs.html as reference.</p></td>
     </tr>
     <tr>
       <th>shape_truth</th>
-      <td><p>Shape of the symbols for the ground truth of the NA values.</p></td>
+      <td><p>Shape for the Symbols/Points of the NA value Ground Truth
+(only relevant when x_with_truth available).</p></td>
     </tr>
     <tr>
       <th>size_points</th>
-      <td><p>Size of the symobls for the normal non-NA observations.</p></td>
+      <td><p>Size for the Symbols/Points of the non-NA Observations.</p></td>
     </tr>
     <tr>
       <th>size_imputations</th>
-      <td><p>Size of the symbols for the imputed values.</p></td>
+      <td><p>Size for the Symbols/Points of the Imputed Values.</p></td>
     </tr>
     <tr>
       <th>size_truth</th>
-      <td><p>Size of the symbols for the ground truth of the NA values.</p></td>
+      <td><p>Size for the Symbols/Points of the NA value Ground Truth
+(only relevant when x_with_truth available).</p></td>
     </tr>
     <tr>
       <th>size_lines</th>
-      <td><p>Size for the lines connecting the observations/points.</p></td>
+      <td><p>Size for the Lines connecting the Observations/Points.</p></td>
     </tr>
     <tr>
       <th>linetype</th>
-      <td><p>Linetype for the lines connecting the observations/points.</p></td>
+      <td><p>Linetype for the Lines connecting the Observations/Points.</p></td>
     </tr>
     <tr>
       <th>connect_na</th>
-      <td><p>If TRUE the imputations/ground truth values are connected to the normal
-non-NA observations in the plot. Otherwise there are no connecting lines between symbols in NA areas.</p></td>
+      <td><p>If TRUE the Imputations are connected
+to the non-NA observations in the plot. Otherwise there are no
+connecting lines between symbols in NA areas.</p></td>
     </tr>
     <tr>
       <th>legend</th>
-      <td><p>If TRUE a legend is added at the bottom.</p></td>
+      <td><p>If TRUE a Legend is added at the bottom.</p></td>
     </tr>
     <tr>
       <th>legend_size</th>
-      <td><p>Size of the symbols used in the legend.</p></td>
+      <td><p>Size of the Symbols used in the Legend.</p></td>
     </tr>
     <tr>
       <th>label_known</th>
-      <td><p>Legend label for the normal non-NA observations.</p></td>
+      <td><p>Legend label for the non-NA Observations.</p></td>
     </tr>
     <tr>
       <th>label_imputations</th>
-      <td><p>Legend label for the imputed values.</p></td>
+      <td><p>Legend label for the Imputed Values.</p></td>
     </tr>
     <tr>
       <th>label_truth</th>
-      <td><p>Legend label for the ground truth of the NA values.</p></td>
+      <td><p>Legend label for the Ground Truth of the NA values.</p></td>
     </tr>
     <tr>
       <th>theme</th>
-      <td><p>Set a theme for ggplot2. Default is <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a></code></p></td>
+      <td><p>Set a Theme for ggplot2. Default is ggplot2::theme_linedraw().
+(<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a>)</code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This plot can be used, to visualize imputed values for a time series.
-Imputed values (filled NA gaps) are shown in a different color than the other values.
-If real values (truth) for the NA gaps are known, they are added in a different color.</p>
+    <p>This plot can be used, to visualize imputed values for a time
+series. Imputed values (filled NA gaps) are shown in a different color
+than the other values. If real values (ground truth) for the NA gaps are known,
+they can be optionally added in a different color.</p>
+<p>The only really needed parameters for this function are x_with_na
+(the time series with NAs before imputation) and x_with_imputations
+(the time series without NAs after imputation). All other parameters
+are msotly for altering the appearance of the plot.</p>
+<p>As long as the input is univariate and numeric the function also takes
+data.frame, tibble, tsibble, zoo, xts as an input.</p>
+<p>The plot can be adjusted to your needs via the function parameters.
+Additionally for more complex adjustments, the output can also be
+adjusted via ggplot2 syntax. This is possible, since the output
+of the function is a ggplot2 object. Also take a look at the Examples
+to see how adjustments are made.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='ggplot_na_distribution.html'>ggplot_na_distribution</a></code>,<code><a href='ggplot_na_intervals.html'>ggplot_na_intervals</a></code>,
+    <div class='dont-index'><p><code><a href='ggplot_na_distribution.html'>ggplot_na_distribution</a></code>,
+<code><a href='ggplot_na_intervals.html'>ggplot_na_intervals</a></code>,
 <code><a href='ggplot_na_gapsize.html'>ggplot_na_gapsize</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example 1: Visualize the values that were imputed by na.mean in the time series</span>
-<span class='no'>impMean.Airgap</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_mean.html'>na_mean</a></span>(<span class='no'>tsAirgap</span>)
-<span class='fu'>ggplot_na_imputations</span>(<span class='no'>tsAirgap</span>, <span class='no'>impMean.Airgap</span>)</div><div class='img'><img src='ggplot_na_imputations-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># Example 1: Visualize imputation by na.mean</span>
+<span class='no'>imp_mean</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_mean.html'>na_mean</a></span>(<span class='no'>tsAirgap</span>)
+<span class='fu'>ggplot_na_imputations</span>(<span class='no'>tsAirgap</span>, <span class='no'>imp_mean</span>)</div><div class='img'><img src='ggplot_na_imputations-1.png' alt='' width='700' height='433' /></div><div class='input'>
 
-<span class='co'># Example 2: Visualize the imputed values by na_locf and the true values in the time series</span>
-<span class='no'>impLOCF.Airgap</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_locf.html'>na_locf</a></span>(<span class='no'>tsAirgap</span>)
-<span class='fu'>ggplot_na_imputations</span>(<span class='no'>tsAirgap</span>, <span class='no'>impLOCF.Airgap</span>, <span class='no'>tsAirgapComplete</span>)</div><div class='img'><img src='ggplot_na_imputations-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 3: Same as example 1, just written with pipe operator</span>
+<span class='co'># Example 2: Visualize imputation by na_locf and added ground truth </span>
+<span class='no'>imp_locf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_locf.html'>na_locf</a></span>(<span class='no'>tsAirgap</span>)
+<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>,
+                      <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_locf</span>,
+                      <span class='kw'>x_with_truth</span> <span class='kw'>=</span> <span class='no'>tsAirgapComplete</span>
+                      )</div><div class='img'><img src='ggplot_na_imputations-2.png' alt='' width='700' height='433' /></div><div class='input'>
+
+<span class='co'># Example 3: Visualize imputation by na_kalman</span>
+<span class='no'>imp_kalman</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_kalman.html'>na_kalman</a></span>(<span class='no'>tsAirgap</span>)
+<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>, <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_kalman</span>)</div><div class='img'><img src='ggplot_na_imputations-3.png' alt='' width='700' height='433' /></div><div class='input'>
+
+<span class='co'># Example 4: Same as example 1, just written with pipe operator</span>
 <span class='no'>tsAirgap</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='na_mean.html'>na_mean</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>)</div><div class='img'><img src='ggplot_na_imputations-3.png' alt='' width='700' height='433' /></div></pre>
+  <span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>)</div><div class='img'><img src='ggplot_na_imputations-4.png' alt='' width='700' height='433' /></div><div class='input'>
+
+<span class='co'># Example 5: Visualize imputation by na_seadec - different color for imputed points</span>
+<span class='co'># Plot adjustments via ggplot_na_imputations function parameters</span>
+<span class='no'>imp_seadec</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_seadec.html'>na_seadec</a></span>(<span class='no'>tsAirgap</span>)
+<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>,
+                      <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_seadec</span>,
+                      <span class='kw'>color_imputations</span> <span class='kw'>=</span> <span class='st'>"gold"</span>)</div><div class='img'><img src='ggplot_na_imputations-5.png' alt='' width='700' height='433' /></div><div class='input'>
+
+<span class='co'># Example 6: Visualize imputation - different theme, point size imputations</span>
+<span class='co'># Plot adjustments via ggplot_na_imputations function parameters</span>
+<span class='no'>imp_seadec</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_seadec.html'>na_seadec</a></span>(<span class='no'>tsAirgap</span>)
+<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>,
+                      <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_seadec</span>,
+                      <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_classic</a></span>(),
+                      <span class='kw'>size_imputations</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='img'><img src='ggplot_na_imputations-6.png' alt='' width='700' height='433' /></div><div class='input'>
+
+<span class='co'># Example 7: Visualize imputation - title, subtitle in center</span>
+<span class='co'># Plot adjustments via ggplot2 syntax</span>
+<span class='no'>imp_seadec</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_seadec.html'>na_seadec</a></span>(<span class='no'>tsAirgap</span>)
+<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>,  <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_seadec</span>) +
+    <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>plot.title</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)) +
+    <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>plot.subtitle</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>))</div><div class='img'><img src='ggplot_na_imputations-7.png' alt='' width='700' height='433' /></div><div class='input'>
+
+<span class='co'># Example 8: Visualize imputation - title in center, no subtitle</span>
+<span class='co'># Plot adjustments via ggplot2 syntax and function parameters</span>
+<span class='no'>imp_mean</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_mean.html'>na_mean</a></span>(<span class='no'>tsAirgap</span>)
+<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>,
+                      <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_mean</span>,
+                      <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>) +
+     <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>plot.title</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>))</div><div class='img'><img src='ggplot_na_imputations-8.png' alt='' width='700' height='433' /></div><div class='input'>  
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
