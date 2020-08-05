@@ -29,7 +29,6 @@ Repository: CRAN
 Depends:
     R (>= 3.0.1)
 Imports:
-    utils,
     stats,
     grDevices,
     ggplot2,
