@@ -1,3 +1,8 @@
+## Changes in Version 3.2
+
+* Fix to remove CRAN note - removed not used utils from DESCRIPTION imports
+
+
 ## Changes in Version 3.1
 Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting, 
 Thanks to Earo Wang for speedup of plotNA.gapsize,
