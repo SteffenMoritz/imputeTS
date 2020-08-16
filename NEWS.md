@@ -11,9 +11,6 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
 * Plotting functions are all in ggplot now (way better looking). Additionally they got renamed accordingly ggplot_na_distribution, ggplot_na_intervals, ggplot_na_gapsize, ggplot_na_imputations.
 
 * Speedup for plotNA_gapsize calculation (now renamed ggplot_na_gapsize)  (thx to Earo Wang) 
-
-* Renamed plotting functions to plotNA_distribution, plotNA_distributionBar, 
-  plotNA_imputations, plotNA_gapsize
   
 * Added harmonic and geometric mean as option for na_mean
 
