@@ -255,7 +255,7 @@ ggplot_na_distribution <- function(x,
 
   if (length(id_na) > 0) {
     # Red Bars only if missing data in time series
-    na_val <- max(df$value, na.rm = TRUE)
+    na_val <- max(df$value*1.05, na.rm = TRUE)
     gg <- gg +
       ggplot2::geom_bar(
         data = df[is.na(df$value), ], stat = "identity",

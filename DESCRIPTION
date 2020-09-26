@@ -41,7 +41,7 @@ Suggests:
     testthat,  R.rsp, knitr, zoo, timeSeries, tis, xts, tibble, tsibble, rmarkdown
 License: GPL-3
 VignetteBuilder: R.rsp, knitr, rmarkdown
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 LinkingTo: Rcpp
 Encoding: UTF-8
