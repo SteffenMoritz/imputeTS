@@ -227,10 +227,10 @@ statsNA <- function(x, bins = 4, print_only = TRUE) {
     print(paste(longest_NA, "in a row"))
     print("-------------------------")
     print("Most frequent gap size (series of consecutive NA series)")
-    print(paste0(common_NA, " NA in a row (occuring ", common_NAnum, " times)"))
+    print(paste0(common_NA, " NA in a row (occurring ", common_NAnum, " times)"))
     print("-------------------------")
     print("Gap size accounting for most NAs")
-    print(paste0(wcommon_NA, " NA in a row (occuring ", wcommon_NAnum / wcommon_NA, 
+    print(paste0(wcommon_NA, " NA in a row (occurring ", wcommon_NAnum / wcommon_NA, 
                  " times, making up for overall ", wcommon_NAnum, " NAs)"))
     print("-------------------------")
 
