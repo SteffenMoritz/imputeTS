@@ -4,6 +4,8 @@
 
 * Minor fix to ggplot_na_distribution (bars end now at max(timeseries)*1.05)
 
+* Typo corrections in statsNA
+
 
 ## Changes in Version 3.1
 Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting, 
