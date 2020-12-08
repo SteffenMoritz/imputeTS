@@ -31,7 +31,7 @@ Depends:
 Imports:
     stats,
     grDevices,
-    ggplot2,
+    ggplot2 (>= 3.3.0),
     ggtext,
     stinepack,
     forecast,

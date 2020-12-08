@@ -128,7 +128,7 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
 
     # 1.6 Check and set values for param lower_bound and upper_bound
 
-    # If lower or upper bound is NULL, which is the funtion default usw min/max
+    # If lower or upper bound is NULL, which is the function default usw min/max
     if (is.null(lower_bound)) {
       lower_bound <- min(data, na.rm = TRUE)
     }

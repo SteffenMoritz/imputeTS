@@ -1,10 +1,16 @@
 ## Changes in Version 3.2
+Thanks to Mark J. Lamias for bug / issue reporting.
+Thanks to Cyrus Mohammadian for bug reporting.
 
 * Fix to remove CRAN note - removed not used utils from DESCRIPTION imports
 
 * Minor fix to ggplot_na_distribution (bars end now at max(timeseries)*1.05)
 
 * Typo corrections in statsNA
+
+* Specified ggplot2 (>= 3.3.0) in imports, to prevent errors with older ggplot2 versions (reported by Cyrus Mohammadian)
+
+* Updated na_locf documentation to make behavior of na_remaining parameter more clear (issue reported by Mark J. Lamias)
 
 
 ## Changes in Version 3.1
