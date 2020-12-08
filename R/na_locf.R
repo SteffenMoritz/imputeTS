@@ -10,16 +10,16 @@
 #'
 #' @param option Algorithm to be used. Accepts the following input:
 #' \itemize{
-#'    \item{"locf" - for Last Observation Carried Forward}
+#'    \item{"locf" - for Last Observation Carried Forward} (default choice)
 #'    \item{"nocb" - for Next Observation Carried Backward}
 #'    }
 #'
 #' @param na_remaining Method to be used for remaining NAs.
 #' \itemize{
+#'    \item{"rev" - to perform nocb / locf from the reverse direction} (default choice)
 #'    \item{"keep" - to return the series with NAs}
 #'    \item{"rm" - to remove remaining NAs}
 #'    \item{"mean" - to replace remaining NAs by overall mean}
-#'    \item{"rev" - to perform nocb / locf from the reverse direction}
 #'    }
 #'
 #' @param maxgap Maximum number of successive NAs to still perform imputation on.
