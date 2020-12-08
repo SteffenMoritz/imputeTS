@@ -10,7 +10,7 @@
 #' \itemize{
 #'    \item{"simple" - Simple Moving Average (SMA)}
 #'    \item{"linear" - Linear Weighted Moving Average (LWMA)}
-#'    \item{"exponential" - Exponential Weighted Moving Average (EWMA)}
+#'    \item{"exponential" - Exponential Weighted Moving Average (EWMA)} (default choice)
 #'    }
 #'
 #' @param k integer width of the moving average window. Expands to both sides

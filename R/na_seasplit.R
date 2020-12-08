@@ -9,7 +9,7 @@
 #' @param algorithm Algorithm to be used after splits.
 #' Accepts the following input:
 #' \itemize{
-#'    \item{"interpolation" - Imputation by Interpolation}
+#'    \item{"interpolation" - Imputation by Interpolation} (default choice)
 #'    \item{"locf" - Imputation by Last Observation Carried Forward}
 #'    \item{"mean" - Imputation by Mean Value}
 #'    \item{"random" - Imputation by Random Sample}

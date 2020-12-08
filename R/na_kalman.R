@@ -11,7 +11,7 @@
 #'
 #' \itemize{
 #'    \item{"auto.arima" - For using the state space representation of
-#'    arima model (using \link[forecast]{auto.arima})}
+#'    arima model (using \link[forecast]{auto.arima})} (default choice)
 #'
 #'    \item{"StructTS" - For using a structural model fitted by maximum
 #'     likelihood (using \link[stats]{StructTS}) }

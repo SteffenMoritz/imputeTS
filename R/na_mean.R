@@ -8,7 +8,7 @@
 #'
 #' @param option Algorithm to be used. Accepts the following input:
 #' \itemize{
-#'    \item{"mean" - take the mean for imputation (default)}
+#'    \item{"mean" - take the mean for imputation (default choice)}
 #'    \item{"median" - take the median for imputation}
 #'    \item{"mode" - take the mode for imputation}
 #'    \item{"harmonic" - take the harmonic mean}
