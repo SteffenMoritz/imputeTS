@@ -23,6 +23,13 @@
 #' @seealso \code{\link[imputeTS]{tsAirgap}},\code{\link[imputeTS]{tsHeating}}
 #' @name tsNH4
 #' @usage tsNH4
-#' @source \url{http://www.spotseven.de/gecco-challenge/gecco-challenge-2014/}
+#' 
+#' @source \cite{Friese, Martina, Fischbach, Andreas, Flasch, Oliver, Mersmann, Olaf,
+#' Bartz-Beielstein, Thomas, and Walbeck, Klaus. (2014, July 16). 
+#' GECCO Industrial Challenge 2014 Dataset: A water quality dataset for the 
+#' 'Active protection against pollution of the surface water' competition at the 
+#' Genetic and Evolutionary Computation Conference 2015, Vancouver, Canada. 
+#' http://www.spotseven.de/gecco-challenge/gecco-challenge-2014}
+#' 
 #' @format Time Series (\code{\link{ts}}) with 4552 rows including 883 NAs.
 NULL
