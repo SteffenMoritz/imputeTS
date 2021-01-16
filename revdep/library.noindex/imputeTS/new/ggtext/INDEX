@@ -1,0 +1,6 @@
+element_markdown        Theme element that enables markdown text.
+element_textbox         Theme element that enables markdown text in a
+                        box.
+geom_richtext           Richtext labels
+geom_textbox            Draw boxes containing text
+ggtext                  Improved text rendering support for ggplot2

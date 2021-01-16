@@ -218,7 +218,7 @@ Warning in xt[ok.l] + x.off * xchar :
   longer object length is not a multiple of shorter object length
 > g <- gap.fillview(ts1, station_name = "Baltimore", fillgaps = 4) # Stineman's interpolation
 gapfilling using Stineman interpolation setting applied
-Warning: na.interpolation will replaced by na_interpolation.
+Warning: na.interpolation will be replaced by na_interpolation.
            Functionality stays the same.
            The new function name better fits modern R code style guidelines.
            Please adjust your code accordingly.
@@ -226,7 +226,7 @@ Warning in xt[ok.l] + x.off * xchar :
   longer object length is not a multiple of shorter object length
 > g <- gap.fillview(ts1, station_name = "Baltimore", fillgaps = 5) # Weighted moving average
 gapfilling using weighted moving average setting applied
-Warning: na.ma will replaced by na_ma.
+Warning: na.ma will be replaced by na_ma.
     Functionality stays the same.
     The new function name better fits modern R code style guidelines.
     Please adjust your code accordingly.
@@ -689,7 +689,7 @@ List of 12
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  12.483 0.798 13.57 0.002 0.003 
+Time elapsed:  15.853 1.087 17.325 0.003 0.005 
 > grDevices::dev.off()
 null device 
           1 

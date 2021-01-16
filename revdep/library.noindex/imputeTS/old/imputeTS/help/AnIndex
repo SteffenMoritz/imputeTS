@@ -1,5 +1,10 @@
 imputeTS-package	imputeTS-package
 %>%	reexports
+ggplot_na_distribution	ggplot_na_distribution
+ggplot_na_gapsize	ggplot_na_gapsize
+ggplot_na_imputations	ggplot_na_imputations
+ggplot_na_intervals	ggplot_na_intervals
+imputeTS	imputeTS-package
 na.interpolation	na.interpolation
 na.kalman	na.kalman
 na.locf	na.locf
@@ -20,10 +25,6 @@ na_remove	na_remove
 na_replace	na_replace
 na_seadec	na_seadec
 na_seasplit	na_seasplit
-plotNA.distribution	plotNA.distribution
-plotNA.distributionBar	plotNA.distributionBar
-plotNA.gapsize	plotNA.gapsize
-plotNA.imputations	plotNA.imputations
 reexports	reexports
 statsNA	statsNA
 tsAirgap	tsAirgap

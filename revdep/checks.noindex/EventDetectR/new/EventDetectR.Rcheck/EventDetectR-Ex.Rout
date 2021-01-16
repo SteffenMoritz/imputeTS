@@ -382,7 +382,7 @@ function (y, model = "ZZZ", damped = NULL, alpha = NULL, beta = NULL,
     model$lambda <- lambda
     return(structure(model, class = "ets"))
 }
-<bytecode: 0x7fd6ab264880>
+<bytecode: 0x7f9850632118>
 <environment: namespace:forecast>
 
 $internal$postProcessing
@@ -418,8 +418,8 @@ function (model, events)
     }
     return(realEvents)
 }
-<bytecode: 0x7fd6a8280c60>
-<environment: 0x7fd6a8284d78>
+<bytecode: 0x7f985142f3c8>
+<environment: 0x7f9851429658>
 
 
 $modelList
@@ -12738,7 +12738,7 @@ function (y, order = c(0, 0, 0), seasonal = c(0, 0, 0), xreg = NULL,
     out$series <- series
     return(out)
 }
-<bytecode: 0x7fd6ab25daa8>
+<bytecode: 0x7f98511916d8>
 <environment: namespace:forecast>
 
 $internal$postProcessing
@@ -12774,8 +12774,8 @@ function (model, events)
     }
     return(realEvents)
 }
-<bytecode: 0x7fd6a8280c60>
-<environment: 0x7fd6a8184d38>
+<bytecode: 0x7f985142f3c8>
+<environment: 0x7f98506ebbb0>
 
 
 $modelList
@@ -13315,8 +13315,8 @@ function (x, y)
 {
     1/2 * (y - x)^2
 }
-<bytecode: 0x7fd6aa25d4a8>
-<environment: 0x7fd6aa25fd30>
+<bytecode: 0x7f98552e0798>
+<environment: 0x7f98552ea8b0>
 attr(,"type")
 [1] "sse"
 
@@ -13325,8 +13325,8 @@ function (x)
 {
     1/(1 + exp(-x))
 }
-<bytecode: 0x7fd6aa25ca88>
-<environment: 0x7fd6aa25c190>
+<bytecode: 0x7f9854e87158>
+<environment: 0x7f9854e932a8>
 attr(,"type")
 [1] "logistic"
 
@@ -14451,8 +14451,8 @@ function (x, y)
 {
     1/2 * (y - x)^2
 }
-<bytecode: 0x7fd6aa25d4a8>
-<environment: 0x7fd6abf02c58>
+<bytecode: 0x7f98552e0798>
+<environment: 0x7f9857ddd838>
 attr(,"type")
 [1] "sse"
 
@@ -14461,8 +14461,8 @@ function (x)
 {
     1/(1 + exp(-x))
 }
-<bytecode: 0x7fd6aa25ca88>
-<environment: 0x7fd6abf030f0>
+<bytecode: 0x7f9854e87158>
+<environment: 0x7f9857dd53c0>
 attr(,"type")
 [1] "logistic"
 
@@ -15486,8 +15486,8 @@ function (x, y)
 {
     1/2 * (y - x)^2
 }
-<bytecode: 0x7fd6aa25d4a8>
-<environment: 0x7fd6ab2fca78>
+<bytecode: 0x7f98552e0798>
+<environment: 0x7f98548b9e40>
 attr(,"type")
 [1] "sse"
 
@@ -15496,8 +15496,8 @@ function (x)
 {
     1/(1 + exp(-x))
 }
-<bytecode: 0x7fd6aa25ca88>
-<environment: 0x7fd6ab2fc5e0>
+<bytecode: 0x7f9854e87158>
+<environment: 0x7f98548b9938>
 attr(,"type")
 [1] "logistic"
 
@@ -16521,8 +16521,8 @@ function (x, y)
 {
     1/2 * (y - x)^2
 }
-<bytecode: 0x7fd6aa25d4a8>
-<environment: 0x7fd6ae145e38>
+<bytecode: 0x7f98552e0798>
+<environment: 0x7f985a82ec10>
 attr(,"type")
 [1] "sse"
 
@@ -16531,8 +16531,8 @@ function (x)
 {
     1/(1 + exp(-x))
 }
-<bytecode: 0x7fd6aa25ca88>
-<environment: 0x7fd6ae141bc0>
+<bytecode: 0x7f9854e87158>
+<environment: 0x7f985a82f0a8>
 attr(,"type")
 [1] "logistic"
 
@@ -17657,8 +17657,8 @@ function (x, y)
 {
     1/2 * (y - x)^2
 }
-<bytecode: 0x7fd6aa25d4a8>
-<environment: 0x7fd6ae32cdc8>
+<bytecode: 0x7f98552e0798>
+<environment: 0x7f985a8a03a0>
 attr(,"type")
 [1] "sse"
 
@@ -17667,8 +17667,8 @@ function (x)
 {
     1/(1 + exp(-x))
 }
-<bytecode: 0x7fd6aa25ca88>
-<environment: 0x7fd6ae327350>
+<bytecode: 0x7f9854e87158>
+<environment: 0x7f985a8a0838>
 attr(,"type")
 [1] "logistic"
 
@@ -18692,8 +18692,8 @@ function (x, y)
 {
     1/2 * (y - x)^2
 }
-<bytecode: 0x7fd6aa25d4a8>
-<environment: 0x7fd6a71936e0>
+<bytecode: 0x7f98552e0798>
+<environment: 0x7f9856ef4808>
 attr(,"type")
 [1] "sse"
 
@@ -18702,8 +18702,8 @@ function (x)
 {
     1/(1 + exp(-x))
 }
-<bytecode: 0x7fd6aa25ca88>
-<environment: 0x7fd6a7197158>
+<bytecode: 0x7f9854e87158>
+<environment: 0x7f9856ef4ca0>
 attr(,"type")
 [1] "logistic"
 
@@ -19727,8 +19727,8 @@ function (x, y)
 {
     1/2 * (y - x)^2
 }
-<bytecode: 0x7fd6aa25d4a8>
-<environment: 0x7fd6af869b60>
+<bytecode: 0x7f98552e0798>
+<environment: 0x7f98572c22e0>
 attr(,"type")
 [1] "sse"
 
@@ -19737,8 +19737,8 @@ function (x)
 {
     1/(1 + exp(-x))
 }
-<bytecode: 0x7fd6aa25ca88>
-<environment: 0x7fd6af8660e8>
+<bytecode: 0x7f9854e87158>
+<environment: 0x7f98572c1e10>
 attr(,"type")
 [1] "logistic"
 
@@ -20762,8 +20762,8 @@ function (x, y)
 {
     1/2 * (y - x)^2
 }
-<bytecode: 0x7fd6aa25d4a8>
-<environment: 0x7fd6aa208890>
+<bytecode: 0x7f98552e0798>
+<environment: 0x7f98522d2770>
 attr(,"type")
 [1] "sse"
 
@@ -20772,8 +20772,8 @@ function (x)
 {
     1/(1 + exp(-x))
 }
-<bytecode: 0x7fd6aa25ca88>
-<environment: 0x7fd6aa2083c0>
+<bytecode: 0x7f9854e87158>
+<environment: 0x7f98522d2c08>
 attr(,"type")
 [1] "logistic"
 
@@ -21797,8 +21797,8 @@ function (x, y)
 {
     1/2 * (y - x)^2
 }
-<bytecode: 0x7fd6aa25d4a8>
-<environment: 0x7fd6afa562e0>
+<bytecode: 0x7f98552e0798>
+<environment: 0x7f9855c14338>
 attr(,"type")
 [1] "sse"
 
@@ -21807,8 +21807,8 @@ function (x)
 {
     1/(1 + exp(-x))
 }
-<bytecode: 0x7fd6aa25ca88>
-<environment: 0x7fd6afa56778>
+<bytecode: 0x7f9854e87158>
+<environment: 0x7f9855c13ea0>
 attr(,"type")
 [1] "logistic"
 
@@ -22933,8 +22933,8 @@ function (x, y)
 {
     1/2 * (y - x)^2
 }
-<bytecode: 0x7fd6aa25d4a8>
-<environment: 0x7fd6ab9825b8>
+<bytecode: 0x7f98552e0798>
+<environment: 0x7f985695f328>
 attr(,"type")
 [1] "sse"
 
@@ -22943,8 +22943,8 @@ function (x)
 {
     1/(1 + exp(-x))
 }
-<bytecode: 0x7fd6aa25ca88>
-<environment: 0x7fd6ab982120>
+<bytecode: 0x7f9854e87158>
+<environment: 0x7f985695ee20>
 attr(,"type")
 [1] "logistic"
 
@@ -23968,8 +23968,8 @@ function (x, y)
 {
     1/2 * (y - x)^2
 }
-<bytecode: 0x7fd6aa25d4a8>
-<environment: 0x7fd6a6560e98>
+<bytecode: 0x7f98552e0798>
+<environment: 0x7f98522d3810>
 attr(,"type")
 [1] "sse"
 
@@ -23978,8 +23978,8 @@ function (x)
 {
     1/(1 + exp(-x))
 }
-<bytecode: 0x7fd6aa25ca88>
-<environment: 0x7fd6a6560a00>
+<bytecode: 0x7f9854e87158>
+<environment: 0x7f98522d3ca8>
 attr(,"type")
 [1] "logistic"
 
@@ -24711,8 +24711,8 @@ function (model, events)
     }
     return(realEvents)
 }
-<bytecode: 0x7fd6a8280c60>
-<environment: 0x7fd6acba7780>
+<bytecode: 0x7f985142f3c8>
+<environment: 0x7f98598cad48>
 
 
 $userConfig
@@ -24930,7 +24930,7 @@ Prediction FALSE TRUE
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  8.706 0.786 9.984 0.002 0.004 
+Time elapsed:  8.402 0.904 9.853 0.003 0.005 
 > grDevices::dev.off()
 null device 
           1 

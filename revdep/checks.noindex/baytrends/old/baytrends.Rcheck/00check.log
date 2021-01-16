@@ -5,7 +5,7 @@
 * using options ‘--no-manual --no-build-vignettes’
 * checking for file ‘baytrends/DESCRIPTION’ ... OK
 * checking extension type ... Package
-* this is package ‘baytrends’ version ‘1.2.1’
+* this is package ‘baytrends’ version ‘2.0.2’
 * package encoding: UTF-8
 * checking package namespace information ... OK
 * checking package dependencies ... OK
@@ -32,7 +32,9 @@
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
 * checking loading without being on the library search path ... OK
-* checking dependencies in R code ... OK
+* checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘XML’
+  All declared Imports should be used.
 * checking S3 generic/method consistency ... OK
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
@@ -53,11 +55,15 @@
 * checking installed files from ‘inst/doc’ ... OK
 * checking files in ‘vignettes’ ... OK
 * checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ... OK
+  Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK
 * checking running R code from vignettes ... NONE
-  ‘create_Seasonally_Detrended_Flow_and_Salinity_Data_Sets.Rmd’ using ‘UTF-8’... OK
-  ‘vignette_qw.Rmd’ using ‘UTF-8’... OK
+  ‘Detrending_Flow_and_Salinity_Data.Rmd’ using ‘UTF-8’... OK
+  ‘Processing_Censored_Data.Rmd’ using ‘UTF-8’... OK
+  ‘test.Rmd’ using ‘UTF-8’... OK
 * checking re-building of vignette outputs ... SKIPPED
 * DONE
-Status: OK
+Status: 1 NOTE

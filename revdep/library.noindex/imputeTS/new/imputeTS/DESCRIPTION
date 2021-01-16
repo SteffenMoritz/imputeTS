@@ -1,6 +1,6 @@
 Package: imputeTS
-Version: 3.1
-Date: 2020-06-11
+Version: 3.2
+Date: 2021-01-16
 Title: Time Series Missing Value Imputation
 Description: Imputation (replacement) of missing values 
              in univariate time series. 
@@ -12,7 +12,7 @@ Description: Imputation (replacement) of missing values
             'Kalman Smoothing on Structural Time Series models',
             'Kalman Smoothing on ARIMA models'. Published in Moritz and Bartz-Beielstein (2017) 
             <doi: 10.32614/RJ-2017-009>.
-Author: Steffen Moritz [aut, cre, cph] (<https://orcid.org/0000-0002-0085-1804>), Sebastian Gatscha [aut], Earo Wang [ctb] 
+Author: Steffen Moritz [aut, cre, cph] (<https://orcid.org/0000-0002-0085-1804>), Sebastian Gatscha [aut], Earo Wang [ctb] (<https://orcid.org/0000-0001-6448-5260>)
 Authors@R: 
   c(
   person("Steffen", "Moritz", email="steffen.moritz10@gmail.com", role=c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-0085-1804")),
@@ -28,18 +28,18 @@ URL: https://github.com/SteffenMoritz/imputeTS,
         https://steffenmoritz.github.io/imputeTS/
 Repository: CRAN
 Depends: R (>= 3.0.1)
-Imports: utils, stats, grDevices, ggplot2, ggtext, stinepack, forecast,
-        magrittr, Rcpp
+Imports: stats, grDevices, ggplot2 (>= 3.3.0), ggtext, stinepack,
+        forecast, magrittr, Rcpp
 Suggests: testthat, R.rsp, knitr, zoo, timeSeries, tis, xts, tibble,
-        tsibble
+        tsibble, rmarkdown
 License: GPL-3
-VignetteBuilder: R.rsp, knitr
-RoxygenNote: 7.1.0
+VignetteBuilder: R.rsp, knitr, rmarkdown
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 LinkingTo: Rcpp
 Encoding: UTF-8
 RemoteType: local
 RemoteUrl: /Users/Steve/Dropbox/imputeTS
 NeedsCompilation: yes
-Packaged: 2020-07-15 07:22:47 UTC; Steve
-Built: R 4.0.1; x86_64-apple-darwin17.0; 2020-07-15 07:22:48 UTC; unix
+Packaged: 2021-01-16 00:37:08 UTC; Steve
+Built: R 4.0.1; x86_64-apple-darwin17.0; 2021-01-16 00:37:10 UTC; unix

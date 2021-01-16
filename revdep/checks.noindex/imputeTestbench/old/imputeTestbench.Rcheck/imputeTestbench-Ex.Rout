@@ -4266,6 +4266,7 @@ Type 'q()' to quit R.
 > 
 > # change plot aesthetics
 > library(ggplot2)
+Warning: package ‘ggplot2’ was built under R version 4.0.2
 > p <- sample_dat(a, plot = TRUE)
 > p + scale_colour_manual(values = c('black', 'grey'))
 Scale for 'colour' is already present. Adding another scale for 'colour',
@@ -4283,7 +4284,7 @@ detaching ‘package:ggplot2’
 
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  7.706 0.347 8.473 0.003 0.005 
+Time elapsed:  8.242 0.457 9.361 0.003 0.004 
 > grDevices::dev.off()
 null device 
           1 

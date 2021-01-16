@@ -1,3 +1,7 @@
+isoband 0.2.3
+----------------------------------------
+- Fix build for testthat 3.0.
+
 isoband 0.2.2
 ----------------------------------------
 - Remove Rcpp dependency (#11, @thomasp85).

@@ -1,9 +1,13 @@
+imputeTS-header.png
+imputeTS-header.jpg
+imputeTS-logo1800x2100.png
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^.*\.yml$
 ^.*\.yaml$
 ^.*\.ini$
 ^.*\.txt$
+^.*\.pptx$
 ^appveyor\.yml$
 Icon
 Icon?

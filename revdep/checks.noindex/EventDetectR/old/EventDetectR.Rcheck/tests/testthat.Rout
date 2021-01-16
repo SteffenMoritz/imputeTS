@@ -16,13 +16,48 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(testthat)
+Warning message:
+package 'testthat' was built under R version 4.0.2 
 > 
 > test_check("EventDetectR")
 Loading required package: EventDetectR
 [1] "EDS is working on index: 500"
-══ testthat results  ═══════════════════════════════════════════════════════════
-[ OK: 26 | SKIPPED: 2 | WARNINGS: 3 | FAILED: 0 ]
+══ Skipped tests ═══════════════════════════════════════════════════════════════
+● On CRAN (2)
+
+══ Warnings ════════════════════════════════════════════════════════════════════
+── [1m[35mWarning[39m (test-detectionQuality.R:5:15): confusionMatrix works[22m ─────────────────────
+package 'ggplot2' was built under R version 4.0.2
+[1mBacktrace:[22m
+[90m 1. [39mbase::require("caret") [90mtest-detectionQuality.R:5:14[39m
+[90m 6. [39mbase::library(...)
+[90m 7. [39mbase::.getRequiredPackages2(pkgInfo, quietly = quietly)
+[90m 8. [39mbase::library(...)
+[90m 9. [39mbase:::testRversion(pkgInfo, package, pkgpath)
+── [1m[35mWarning[39m (test-detectionQuality.R:5:15): confusionMatrix works[22m ─────────────────────
+package 'e1071' was built under R version 4.0.2
+[1mBacktrace:[22m
+[90m 1. [39mbase::require("e1071") [90mtest-detectionQuality.R:5:14[39m
+[90m 6. [39mbase::library(...)
+[90m 7. [39mbase:::testRversion(pkgInfo, package, pkgpath)
+── [1m[35mWarning[39m (test-eventClassification.R:68:15): neural network prediction works[22m ─────────────────────
+Some of the variables in your data set contain no variance,
+                        they will be ignored in the event detection process
+[1mBacktrace:[22m
+[90m 1. [39mEventDetectR::buildEDModel(...) [90mtest-eventClassification.R:68:14[39m
+── [1m[35mWarning[39m (test-eventClassification.R:82:15): neural network prediction works[22m ─────────────────────
+Some of the variables in your data set contain no variance,
+                        they will be ignored in the event detection process
+[1mBacktrace:[22m
+[90m 1. [39mEventDetectR::buildEDModel(...) [90mtest-eventClassification.R:82:14[39m
+── [1m[35mWarning[39m (test-eventClassification.R:83:15): neural network prediction works[22m ─────────────────────
+Some of the variables in your data set contain no variance,
+                        they will be ignored in the event detection process
+[1mBacktrace:[22m
+[90m 1. [39mEventDetectR::buildEDModel(...) [90mtest-eventClassification.R:83:14[39m
+
+[ [33mFAIL[39m 0 | [35mWARN[39m 5 | [34mSKIP[39m 2 | [32mPASS[39m 24 ]
 > 
 > proc.time()
    user  system elapsed 
- 32.357   0.798  36.842 
+ 32.875   1.042  36.732 

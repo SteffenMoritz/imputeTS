@@ -88,15 +88,6 @@ test_that("neural network prediction works",
               expect_true(!any(p2$Event))
 
 
-              #Check that normalization is really deactivated if setting says so
-              x <- stationBData[100:200,-1]
-              m <- buildEDModel(x, dataPreparationControl = list(useNormalization = F),buildModelAlgo = "NeuralNetwork",ignoreVarianceWarning = TRUE)
-              excludedVariable <- length(m$excludedVariables)
-              newDataReal <- stationBData[201:220,-1]
-              p <- predict.NeuralNetwork(m,newDataReal)
-              expect_equal(nrow(p$predictions),nrow(newDataReal))
-              expect_equal(ncol(p$predictions),(ncol(stationBData)-1-excludedVariable))
-
           })
 
 

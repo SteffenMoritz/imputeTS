@@ -1,0 +1,386 @@
+export(quantmodenv, .quantmodEnv)
+S3method(print, quantmodEnv)
+
+# NAMESPACE file for quantmod
+import(methods, zoo, xts, TTR)
+
+importFrom(graphics,
+  abline,
+  axTicks,
+  axis,
+  box,
+  grid,
+  layout,
+  legend,
+  lines,
+  locator,
+  par,
+  plot,
+  plot.new,
+  plot.window,
+  points,
+  polygon,
+  rect,
+  segments,
+  strwidth,
+  text,
+  title)
+
+importFrom(grDevices,
+  colorRampPalette,
+  dev.cur,
+  dev.off)
+
+importFrom(stats,
+  anova,
+  as.formula,
+  as.ts,
+  coef,
+  coefficients,
+  end,
+  fitted,
+  fitted.values,
+  formula,
+  glm,
+  lag,
+  lm,
+  loess,
+  logLik,
+  model.frame,
+  na.exclude,
+  na.omit,
+  predict,
+  resid,
+  residuals,
+  sd,
+  setNames,
+  start,
+  step,
+  terms,
+  vcov)
+
+importFrom(utils,
+  browseURL,
+  download.file,
+  getAnywhere,
+  modifyList,
+  read.csv,
+  read.delim,
+  read.table,
+  select.list,
+  str,
+  type.convert)
+
+# new plotting functions (experimental)
+export(new.replot,
+       current.chob,
+       chart_Series, add_Series,
+       add_EMA,
+       add_EVWMA,
+       add_VMA,
+       add_WMA,
+       add_SMA,
+       add_DEMA,
+       add_VWAP,
+       add_GMMA,
+       add_Vo,add_BBands,add_RSI,add_SMI,add_TA,
+       chart_theme, chart_pars,
+       add_axis,
+       add_MACD, zoom_Chart)
+
+export(axTicksByValue)
+export(axTicksByTime2)
+S3method(plot, replot)
+S3method(print, replot)
+
+#export(.chob,write.chob,get.chob,release.chob)
+
+export(.chob)
+export(.chart.theme,chartTheme)
+
+export(listTA,
+       setTA,
+       unsetTA,
+       
+       addTA,
+       chartTA,
+       newTA,
+
+       dropTA,
+       moveTA,
+       swapTA
+      )
+
+export(
+       # quantmod-only code
+       addVo,       # volume
+       addExpiry,   # expiration dates
+       addEnvelope, # envelope
+
+       addShading,  chartShading,
+       addLines,
+       addPoints
+
+      # package:graphics functionality wrappers NYI
+      #add.lines,
+      #add.points,
+      #add.curve,
+      #add.rect,
+      #add.segments,
+      
+      )
+
+     
+
+# TTR functionality
+export(
+       # Moving Averages
+       addSMA,   	# simple moving average
+       addEMA,   	# exponential moving average
+       addWMA,   	# weigthed moving average
+       addDEMA,  	# double exponential moving average
+       addEVWMA, 	# elastic, volume-weighted moving average
+       addZLEMA, 	# zero lag exponential moving average
+
+      # not yet implemented
+      #addVHF,      # vertical horizontal filter
+      #addWilliamsAD, # william's AD
+
+       addOBV,      # on balance volume
+       addCLV,      # close location value
+       addEMV,      # ease of movement 
+       addChAD,     # chaikin AD
+       addChVol,    # chaikin Volatility
+       addVolatility, # volatility (close, garman.klass, parkinson, rogers.satchell)
+       addZigZag,   # Zig-Zag
+       addAroon,    # aroon
+       addAroonOsc, # aroon oscillator
+       addKST,      # know sure thing
+       addMFI,      # money flow index
+       addTDI,      # trend detection index
+       addSMI,   	# stochastic momentum index
+       addADX,   	# directional movement index 
+       addDPO,   	# de-trended price oscillator 
+       addCCI,   	# commodity channel index
+       addCMF,   	# chaikin money flow
+       addCMO,   	# chande momentum oscillator
+       addMomentum, # momentum
+       addATR,      # average true range
+       addTRIX,     # triple smoothed exponential oscillator
+       addRSI,      # relative strength index
+       addROC,      # rate of change
+       addWPR,      # william's %R
+       addSAR,      # parabolic stop-and-reverse
+       addMACD,     # moving average convergence divergence
+       addBBands    # Bollinger Bands
+      #addPctB      # Bollinger %b
+      #addBBwidth   # Bollinger band width
+      )
+
+
+export(
+       modelData,
+       modelSignal,
+
+       Op, has.Op,
+       Lo, has.Lo,
+       Hi, has.Hi,
+       Cl, has.Cl,
+       Vo, has.Vo,
+       Ad, has.Ad,
+
+       # Price extraction functions
+       getPrice,
+       is.BBO, is.TBBO,
+       has.Bid,
+       has.Ask,
+       has.Price,
+       has.Trade,
+       has.Qty,
+
+       OHLC, has.OHLC, is.OHLC, # OHLC extraction and test
+       OHLCV, has.OHLCV, is.OHLCV, # OHLCV extraction and test
+       HLC, has.HLC, is.HLC,    # HLC  extraction and test
+
+       # quick delta calculation functions
+       OpCl, OpOp, ClCl, OpHi, OpLo, LoCl, HiCl, LoHi,
+
+       seriesHi,seriesLo,
+       seriesIncr, seriesDecr,
+       seriesAccel, seriesDecel,
+
+       findPeaks,
+       findValleys,
+       peak, # deprecated
+       valley, # deprecated
+
+       Delt,
+       Next,
+       Lag,
+
+       options.expiry,futures.expiry,
+
+    periodReturn,
+    dailyReturn,weeklyReturn,monthlyReturn,quarterlyReturn,annualReturn,
+    yearlyReturn,
+    allReturns,
+    tradeModel,
+#    saveModels,
+#    loadModels,
+#	period.apply,
+#	breakpoints,
+	specifyModel,
+	getModelData,
+#    predictModel,
+
+    getFinancials,getFin,
+    viewFinancials,viewFin,
+
+    getDividends,
+    getSplits,
+
+    getQuote,
+    standardQuote,
+    yahooQF,
+    yahooQuote.EOD,
+
+    getOptionChain,
+
+    attachSymbols,
+    flushSymbols,
+
+    loadSymbols,
+    getSymbols,
+    getSymbols.MySQL,
+    getSymbols.SQLite,
+    getSymbols.mysql,
+    getSymbols.FRED,
+    getSymbols.yahoo,
+    getSymbols.yahooj,
+    getSymbols.oanda,
+    getSymbols.tiingo,
+    #getSymbols.Bloomberg,
+    #getSymbols.IBrokers,
+    getSymbols.csv,
+    getSymbols.rda,
+    getSymbols.RData,
+    getSymbols.google,
+    getSymbols.av,
+    getSymbols.alphavantage,
+
+    getFX,
+    getMetals,
+
+    oanda.currencies,
+
+    adjustOHLC,
+
+    showSymbols,
+    removeSymbols,
+    saveSymbols,
+
+    fittedModel,
+	buildModel,
+	buildData,
+
+    is.quantmod,
+    is.quantmodResults,
+    as.quantmod.OHLC)
+
+export(
+       # symbol lookup utilities
+
+       setSymbolLookup,
+       getSymbolLookup,
+       saveSymbolLookup,
+       loadSymbolLookup
+      )
+
+#export(tradeLog)
+#export(gainloss)
+
+export(
+       # main charting functions
+ 
+       chartSeries,
+       reChart,
+       saveChart,
+
+       zoomChart,
+       zooom,
+
+       barChart,
+       lineChart,
+       candleChart,
+       matchChart
+      )
+
+# Defaults functionality
+export( 
+       importDefaults,
+       setDefaults,
+       unsetDefaults,
+       getDefaults
+      )
+
+# S3 methods
+S3method(seriesHi,default)
+S3method(seriesHi,ts)
+S3method(seriesLo,default)
+S3method(seriesLo,ts)
+
+S3method(print,financials)
+S3method(print,chart.theme)
+
+S3method(Next,zoo)
+S3method(Next,numeric)
+S3method(Next,data.frame)
+S3method(Next,quantmod.OHLC)
+
+S3method(Lag,default)
+S3method(Lag,numeric)
+S3method(Lag,data.frame)
+S3method(Lag,zoo)
+S3method(Lag,xts)
+S3method(Lag,quantmod.OHLC)
+
+S3method(formula,quantmod)
+S3method(fitted,quantmod)
+S3method(fitted.values,quantmod)
+S3method(coef,quantmod)
+S3method(coefficients,quantmod)
+S3method(logLik,quantmod)
+S3method(vcov,quantmod)
+S3method(residuals,quantmod)
+S3method(resid,quantmod)
+S3method(anova,quantmod)
+S3method(plot,quantmod)
+S3method(plot,chobTA)
+S3method(plot,quantmodResults)
+S3method(print,quantmodResults)
+S3method(as.zoo,data.frame)
+S3method(as.zoo,quantmod.OHLC)
+S3method(as.quantmod.OHLC,data.frame)
+S3method(as.quantmod.OHLC,zoo)
+S3method(as.quantmod.OHLC,quantmod.OHLC)
+S3method('[',quantmod.OHLC)
+#S3method(periodReturn,zoo)
+#S3method(periodReturn,quantmod.OHLC)
+#S3method(periodReturn,quantmodResults)
+S3method(predictModel,default)
+S3method(predictModel,nnet)
+S3method(predictModel,mars)
+S3method(predictModel,polymars)
+S3method(predictModel,lars)
+S3method(predictModel,rpart)
+S3method(predictModel,tree)
+S3method(predictModel,randomForest)
+
+# trade signal functionality
+
+exportClass(quantmod)
+#exportClass(quantmodResults,quantmodReturn)
+exportClass(quantmodReturn)
+exportClass(tradeLog)
+exportClass(chob,chobTA)
+exportMethods(show,summary,'fittedModel<-')

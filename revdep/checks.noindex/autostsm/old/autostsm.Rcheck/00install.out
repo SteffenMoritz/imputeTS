@@ -1,0 +1,41 @@
+* installing *source* package ‘autostsm’ ...
+** Paket ‘autostsm’ erfolgreich entpackt und MD5 Summen überprüft
+** using staged installation
+** libs
+clang++ -mmacosx-version-min=10.13 -std=gnu++11 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Users/Steve/Dropbox/imputeTS/revdep/library.noindex/autostsm/Rcpp/include' -I'/Users/Steve/Dropbox/imputeTS/revdep/library.noindex/autostsm/RcppArmadillo/include' -I/usr/local/include  -g -O2 -stdlib=libc++ -fPIC  -Wall -g -O2  -c RcppExports.cpp -o RcppExports.o
+In file included from RcppExports.cpp:4:
+In file included from /Users/Steve/Dropbox/imputeTS/revdep/library.noindex/autostsm/RcppArmadillo/include/RcppArmadillo.h:34:
+In file included from /Users/Steve/Dropbox/imputeTS/revdep/library.noindex/autostsm/Rcpp/include/Rcpp.h:57:
+/Users/Steve/Dropbox/imputeTS/revdep/library.noindex/autostsm/Rcpp/include/Rcpp/DataFrame.h:136:18: warning: unused variable 'data' [-Wunused-variable]
+            SEXP data = Parent::get__();
+                 ^
+1 warning generated.
+clang++ -mmacosx-version-min=10.13 -std=gnu++11 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG  -I'/Users/Steve/Dropbox/imputeTS/revdep/library.noindex/autostsm/Rcpp/include' -I'/Users/Steve/Dropbox/imputeTS/revdep/library.noindex/autostsm/RcppArmadillo/include' -I/usr/local/include  -g -O2 -stdlib=libc++ -fPIC  -Wall -g -O2  -c kalmanfilter.cpp -o kalmanfilter.o
+In file included from kalmanfilter.cpp:1:
+In file included from /Users/Steve/Dropbox/imputeTS/revdep/library.noindex/autostsm/RcppArmadillo/include/RcppArmadillo.h:34:
+In file included from /Users/Steve/Dropbox/imputeTS/revdep/library.noindex/autostsm/Rcpp/include/Rcpp.h:57:
+/Users/Steve/Dropbox/imputeTS/revdep/library.noindex/autostsm/Rcpp/include/Rcpp/DataFrame.h:136:18: warning: unused variable 'data' [-Wunused-variable]
+            SEXP data = Parent::get__();
+                 ^
+1 warning generated.
+clang++ -mmacosx-version-min=10.13 -std=gnu++11 -dynamiclib -Wl,-headerpad_max_install_names -undefined dynamic_lookup -single_module -multiply_defined suppress -L/Library/Frameworks/R.framework/Resources/lib -L/usr/local/lib -o autostsm.so RcppExports.o kalmanfilter.o -L/Library/Frameworks/R.framework/Resources/lib -lRlapack -L/Library/Frameworks/R.framework/Resources/lib -lRblas -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin18/8.2.0 -L/usr/local/gfortran/lib -lgfortran -lquadmath -lm -F/Library/Frameworks/R.framework/.. -framework R -Wl,-framework -Wl,CoreFoundation
+ld: warning: directory not found for option '-L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin18/8.2.0'
+ld: warning: directory not found for option '-L/usr/local/gfortran/lib'
+installing to /Users/Steve/Dropbox/imputeTS/revdep/checks.noindex/autostsm/old/autostsm.Rcheck/00LOCK-autostsm/00new/autostsm/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Warnmeldung:
+Paket ‘data.table’ wurde unter R Version 4.0.2 erstellt 
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+Warnung: package ‘data.table’ was built under R version 4.0.2
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+Warnung: package ‘data.table’ was built under R version 4.0.2
+** testing if installed package keeps a record of temporary installation path
+* DONE (autostsm)

@@ -1,0 +1,23 @@
+citHeader("To cite in publications use:")
+
+## R >= 2.8.0 passes package metadata to citation().
+if(!exists("meta") || is.null(meta)) meta <- packageDescription("tseries")
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s.", meta$Version)
+
+citEntry(entry = "Manual",
+	 title = "tseries: Time Series Analysis and Computational Finance",
+	 author = c(
+           person("Adrian", "Trapletti",
+                  email = "adrian@trapletti.org"),
+           person("Kurt", "Hornik",
+                  email = "Kurt.Hornik@R-project.org")),
+         year = year,
+	 note = note,
+	 url = "https://CRAN.R-project.org/package=tseries",
+	 textVersion = {
+             paste("Adrian Trapletti and Kurt Hornik",
+	           sprintf("(%s).", year),	     		   
+                   "tseries: Time Series Analysis and Computational Finance.",
+                   note)
+         })

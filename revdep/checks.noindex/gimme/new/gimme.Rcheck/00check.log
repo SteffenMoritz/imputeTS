@@ -4,7 +4,7 @@
 * using session charset: UTF-8
 * using options ‘--no-manual --no-build-vignettes’
 * checking for file ‘gimme/DESCRIPTION’ ... OK
-* this is package ‘gimme’ version ‘0.7-1’
+* this is package ‘gimme’ version ‘0.7-4’
 * package encoding: UTF-8
 * checking package namespace information ... OK
 * checking package dependencies ... OK

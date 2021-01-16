@@ -1,0 +1,33 @@
+
+year <- sub("-.*", "", meta$Date)
+if(!length(year))
+  year <- substr(Sys.Date(),1,4)
+vers <- meta$Version
+if(is.null(vers))
+  vers <- packageVersion("forecast")
+vers <- paste("R package version", vers)
+
+# Grab authors from DESCRIPTION file
+# authors <- eval(parse(text=as.list(read.dcf("../DESCRIPTION")[1, ])$`Authors@R`))
+# authors <- authors[sapply(authors$role, function(roles) "aut" %in% roles)]
+# authors <- sapply(authors, function(author) paste(author$given, author$family))
+# authors <- paste(authors, collapse = " and ")
+
+citHeader("To cite the forecast package in publications, please use:")
+
+bibentry(bibtype = "Manual",
+  title = "{forecast}: Forecasting functions for time series and linear models",
+  author = "Rob Hyndman and George Athanasopoulos and Christoph Bergmeir and Gabriel Caceres and Leanne Chhay and Mitchell O'Hara-Wild and Fotios Petropoulos and Slava Razbash and Earo Wang and Farah Yasmeen",
+  year = year,
+  note = vers,
+  url = "https://pkg.robjhyndman.com/forecast/")
+
+bibentry(bibtype = "Article",
+  title     = "Automatic time series forecasting: the forecast package for {R}",
+  author    = personList(as.person("Rob J Hyndman"),as.person("Yeasmin Khandakar")),
+  journal   = "Journal of Statistical Software",
+  volume    =  26,
+  number    =  3,
+  pages     = "1--22",
+  year      =  2008,
+  url       = "https://www.jstatsoft.org/article/view/v027i03")

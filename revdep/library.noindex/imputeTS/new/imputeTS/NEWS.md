@@ -1,14 +1,31 @@
+## Changes in Version 3.2
+
+Thanks to Mark J. Lamias for bug / issue reporting.
+Thanks to Cyrus Mohammadian for bug reporting.
+Thanks to Miroslaw Janik for issue reporting. 
+
+* Fix to remove CRAN note - removed not used utils from DESCRIPTION imports
+
+* Minor fix to ggplot_na_distribution (bars end now at max(timeseries)*1.05)
+
+* Typo corrections in statsNA
+
+* Specified ggplot2 (>= 3.3.0) in imports, to prevent errors with older ggplot2 versions (reported by Cyrus Mohammadian)
+
+* Updated na_locf documentation to make behavior of na_remaining parameter more clear (issue reported by Mark J. Lamias)
+
+* ggplot_na_intervals, has now percentages with % sign (e.g. 10%) on y-scale instead of just numbers (e.g. 0,1)
+  (suggestion from Miroslaw Janik)
+
+
 ## Changes in Version 3.1
-Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting, 
-Thanks to Earo Wang for speedup of plotNA.gapsize,
-Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options, new unit tests
+Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting. 
+Thanks to Earo Wang for speedup of plotNA.gapsize.
+Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options, new unit tests.
 
 * Plotting functions are all in ggplot now (way better looking). Additionally they got renamed accordingly ggplot_na_distribution, ggplot_na_intervals, ggplot_na_gapsize, ggplot_na_imputations.
 
 * Speedup for plotNA_gapsize calculation (now renamed ggplot_na_gapsize)  (thx to Earo Wang) 
-
-* Renamed plotting functions to plotNA_distribution, plotNA_distributionBar, 
-  plotNA_imputations, plotNA_gapsize
   
 * Added harmonic and geometric mean as option for na_mean
 
@@ -22,6 +39,8 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
 
 * Additional unit tests for the all imputation functions (testing all NA input)
 
+* Update for testthat unit tests
+
 * Fixed a mistake in README.md (reported by Johannes Menzel)
 
 * Added to statsNA: Number of Gaps, Average Gap Size + reformatting of code + 
@@ -31,10 +50,16 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
 
 * updated Readme + Vignette to new function names
 
+* Added the imputeTS Cheat Sheet as Vignette
+
+* Added new vignette Gallery Missing Data Visualizations
+
+* Added revdep
+
 ## Changes in Version 3.0
 
-Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs
-Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementation
+Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs.
+Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementation.
 
  * tibble and tstibble compatibility
  

@@ -1,0 +1,45 @@
+Package: crayon
+Title: Colored Terminal Output
+Version: 1.3.4.9000
+Authors@R: c(
+    person("Gábor", "Csárdi", , "csardi.gabor@gmail.com",
+    role = c("aut", "cre")),
+    person(
+    "Brodie", "Gaslam", email="brodie.gaslam@yahoo.com",
+    role=c("ctb"))
+    )
+Description: Colored terminal output on terminals that support 'ANSI'
+    color and highlight codes. It also works in 'Emacs' 'ESS'. 'ANSI'
+    color support is automatically detected. Colors and highlighting can
+    be combined and nested. New styles can also be created easily.
+    This package was inspired by the 'chalk' 'JavaScript' project.
+License: MIT + file LICENSE
+LazyData: true
+URL: https://github.com/r-lib/crayon#readme
+BugReports: https://github.com/r-lib/crayon/issues
+Collate: 'aaa-rstudio-detect.R' 'aab-num-ansi-colors.R' 'ansi-256.r'
+        'combine.r' 'string.r' 'utils.r' 'crayon-package.r'
+        'disposable.r' 'has_ansi.r' 'has_color.r' 'link.R' 'styles.r'
+        'machinery.r' 'parts.r' 'print.r' 'rematch2.R' 'style-var.r'
+        'show.r' 'string_operations.r'
+Imports: grDevices, methods, utils
+Suggests: mockery, rstudioapi, testthat, withr
+RoxygenNote: 7.1.1
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: crayon
+RemoteUsername: r-lib
+RemoteRef: master
+RemoteSha: 7679d0f069818ecb6e710e04ec28edf56444055f
+GithubRepo: crayon
+GithubUsername: r-lib
+GithubRef: master
+GithubSHA1: 7679d0f069818ecb6e710e04ec28edf56444055f
+NeedsCompilation: no
+Packaged: 2021-01-16 00:36:47 UTC; Steve
+Author: Gábor Csárdi [aut, cre],
+  Brodie Gaslam [ctb]
+Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
+Built: R 4.0.1; ; 2021-01-16 00:36:47 UTC; unix

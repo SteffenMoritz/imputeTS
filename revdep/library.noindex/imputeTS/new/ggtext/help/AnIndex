@@ -1,0 +1,9 @@
+element_markdown	element_markdown
+element_textbox	element_textbox
+element_textbox_simple	element_textbox
+GeomRichText	geom_richtext
+GeomRichtext	geom_richtext
+GeomTextBox	geom_richtext
+geom_richtext	geom_richtext
+geom_textbox	geom_textbox
+ggtext	ggtext

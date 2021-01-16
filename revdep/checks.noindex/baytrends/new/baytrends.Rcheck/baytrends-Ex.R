@@ -6,137 +6,6 @@ library('baytrends')
 base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
 cleanEx()
-nameEx("Arith-censored")
-### * Arith-censored
-
-flush(stderr()); flush(stdout())
-
-### Name: Arith-censored
-### Title: Arithmetic Methods for 'lcens', 'mcens', and 'qw' objects
-### Aliases: Arith-censored Arith,lcens,numeric-method
-###   Arith,numeric,lcens-method Arith,lcens,lcens-method
-###   Arith,mcens,numeric-method Arith,numeric,mcens-method
-###   Arith,mcens,mcens-method Arith,qw,numeric-method
-###   Arith,numeric,qw-method Arith,qw,qw-method
-### Keywords: internal manip methods
-
-### ** Examples
-
-as.lcens(c(1, 3), 2) + 1
-as.lcens(c(1, 3), 2) * 2
-
-
-
-
-cleanEx()
-nameEx("Math-censored")
-### * Math-censored
-
-flush(stderr()); flush(stdout())
-
-### Name: Math-censored
-### Title: Mathematical Transform Methods for 'lcens' objects
-### Aliases: Math-censored Math,lcens-method Math,mcens-method
-###   Math,qw-method
-### Keywords: internal manip methods
-
-### ** Examples
-
-log(as.lcens(c(1, 3), 2))
-
-
-
-
-cleanEx()
-nameEx("Q05078470")
-### * Q05078470
-
-flush(stderr()); flush(stdout())
-
-### Name: Q05078470
-### Title: Daily Streamflow
-### Aliases: Q05078470
-### Keywords: datasets
-
-### ** Examples
-
-data(Q05078470)
-# Plot the data for station 05078470
-with(Q05078470, plot(DATES, FLOW, type='l'))
-
-
-
-cleanEx()
-nameEx("QW05078470")
-### * QW05078470
-
-flush(stderr()); flush(stdout())
-
-### Name: QW05078470
-### Title: Stream Water Quality
-### Aliases: QW05078470
-### Keywords: datasets
-
-### ** Examples
-
-
-data(QW05078470)
-# Plot the data
-with(QW05078470, plot(DATES, P00665, log='y'))
-
-
-
-
-cleanEx()
-nameEx("QWstacked")
-### * QWstacked
-
-flush(stderr()); flush(stdout())
-
-### Name: QWstacked
-### Title: Stream Water Quality
-### Aliases: QWstacked
-### Keywords: datasets
-
-### ** Examples
-
-
-data(QWstacked)
-# Plot the data for whole-water phosphorus
-with(subset(QWstacked, parm_cd == "00665"), plot(sample_dt, result_va))
-# Overlay the data for dissolved phosphorus (should be smaller values)
-with(subset(QWstacked, parm_cd == "00666"), points(sample_dt, result_va, col='red'))
-
-
-
-cleanEx()
-nameEx("addCaption")
-### * addCaption
-
-flush(stderr()); flush(stdout())
-
-### Name: addCaption
-### Title: Add Caption
-### Aliases: addCaption
-### Keywords: aplot internal
-
-### ** Examples
-
-## Not run: 
-##D set.seed(1)
-##D X <- runif(25)
-##D Y <- runif(25)
-##D setGD()
-##D AA.pl <- xyPlot(X, Y)
-##D addCaption("Twenty five random points")
-##D # See for examples of addCaption:
-##D # vignette(topic="GraphSetup", package="smwrGraphs")
-##D # demo(topic="AnnualFlowBarChart", package="smwrGraphs")
-## End(Not run)
-
-
-
-cleanEx()
 nameEx("analysisOrganizeData")
 ### * analysisOrganizeData
 
@@ -154,100 +23,16 @@ dfr <- analysisOrganizeData(dataCensored)
 df        <- dfr[["df"]]
 analySpec <- dfr[["analySpec"]]
 
-# analyze bottom dissolved oxygen at 2 stations
+# analyze bottom dissolved oxygen at 2 stations using only data from 1/1/1995-12/31/2015
 analySpec <-list()
 analySpec$parameterFilt <- c('do')
 analySpec$layerFilt     <- c('B')
 analySpec$stationFilt   <- c('CB3.3C', 'CB5.4')
+analySpec$dateFilt      <- as.POSIXct(c("1995-01-01", "2015-12-31"))
 dfr <- analysisOrganizeData(dataCensored, analySpec)
 df        <- dfr[["df"]]
 analySpec <- dfr[["analySpec"]]
 
-
-
-
-cleanEx()
-nameEx("as.double")
-### * as.double
-
-flush(stderr()); flush(stdout())
-
-### Name: as.double.qw
-### Title: Numeric Representations
-### Aliases: as.double.qw
-### Keywords: internal manip
-
-### ** Examples
-
-
-## Create a simple qw object 
-Test.qw <- as.qw(c(1,2,3,2,4,4), c("<", "<", "<", " ", " ", " "), "", NA_real_,
-"Miss", "None", "Mine", "TEST", "")
-as.double(Test.qw)
-as.numeric(Test.qw)
-
-
-
-
-cleanEx()
-nameEx("as.lcens")
-### * as.lcens
-
-flush(stderr()); flush(stdout())
-
-### Name: as.lcens
-### Title: Left-censored Data Conversion
-### Aliases: as.lcens as.lcens,lcens,missing,missing-method
-###   as.lcens,numeric,missing,missing-method
-###   as.lcens,numeric,numeric,missing-method
-###   as.lcens,numeric,numeric,logical-method
-###   as.lcens,numeric,numeric,character-method
-###   as.lcens,numeric,missing,logical-method
-###   as.lcens,numeric,missing,character-method
-###   as.lcens,qw,missing,missing-method as.lcens,qw,numeric,missing-method
-###   as.lcens,character,missing,missing-method
-### Keywords: internal manip methods
-
-### ** Examples
-
-
-## The first value is censored at 2
-as.lcens(c(1,3), 2)
-## Set the first value to censored at that level and the detection limit is
-# carried forward
-as.lcens(c(1,3), censor.codes=c("<", ""))
-# For combined remark and values:
-as.lcens(c("<1", "1", "<1", "1", "2"))
-
-
-
-
-cleanEx()
-nameEx("as.mcens")
-### * as.mcens
-
-flush(stderr()); flush(stdout())
-
-### Name: as.mcens
-### Title: Multiply-censored Data Conversion
-### Aliases: as.mcens as.mcens,mcens,missing,missing-method
-###   as.mcens,lcens,missing,missing-method
-###   as.mcens,numeric,missing,missing-method
-###   as.mcens,numeric,numeric,missing-method
-###   as.mcens,numeric,missing,numeric-method
-###   as.mcens,numeric,missing,integer-method
-###   as.mcens,numeric,missing,character-method
-###   as.mcens,qw,missing,missing-method
-###   as.mcens,character,missing,missing-method
-### Keywords: internal manip methods
-
-### ** Examples
-
-## Create one of each type of censoring, including uncensored
-# the last value is missing
-as.mcens(c(-Inf, 2, 2, 5, NA), c(1, 2, 3, Inf, NA))
-# For combined remark and values:
-as.mcens(c("<1", "1", ">3", "1", "2"))
 
 
 
@@ -297,89 +82,6 @@ baseDay2decimal(bd.tmp)
 
 
 cleanEx()
-nameEx("c")
-### * c
-
-flush(stderr()); flush(stdout())
-
-### Name: c.lcens
-### Title: Combine Values into a Vector
-### Aliases: c.lcens c.mcens c.qw
-### Keywords: internal
-
-### ** Examples
-
-
-c(as.lcens(c(1,3), 2), 2)
-
-
-
-
-cleanEx()
-nameEx("censorLevels")
-### * censorLevels
-
-flush(stderr()); flush(stdout())
-
-### Name: censorLevels
-### Title: Describe Censoring
-### Aliases: censorLevels censorLevels.default censorLevels.lcens
-###   censorLevels.mcens censorLevels.qw
-### Keywords: attribute censored internal
-
-### ** Examples
-
-
-censorLevels(2.3) # a simple number
-censorLevels(as.lcens(1, 2)) # left-censored 
-
-
-
-
-cleanEx()
-nameEx("censoring")
-### * censoring
-
-flush(stderr()); flush(stdout())
-
-### Name: censoring
-### Title: Describe Censoring
-### Aliases: censoring censoring.default censoring.lcens censoring.mcens
-###   censoring.qw
-### Keywords: attribute censored internal
-
-### ** Examples
-
-
-censoring(2.3) # a simple number
-censoring(as.lcens(1, 2)) # left-censored 
-
-
-
-
-cleanEx()
-nameEx("censpp")
-### * censpp
-
-flush(stderr()); flush(stdout())
-
-### Name: censpp
-### Title: Probability Plotting Positions
-### Aliases: censpp censpp.default censpp.lcens censpp.mcens
-### Keywords: internal manip
-
-### ** Examples
-
-# This example demonstrates the probability adjustments made for censoring
-# The raw, uncensored data:
-ppoints(7, .44)
-# censor ar 0.5 (the lowest 3 values)
-censpp(as.lcens(ppoints(7, .44), 0.5))
-
-
-
-
-cleanEx()
 nameEx("closeOut")
 ### * closeOut
 
@@ -392,81 +94,6 @@ flush(stderr()); flush(stdout())
 ### ** Examples
 
 closeOut()
-
-
-
-cleanEx()
-nameEx("colorPlot")
-### * colorPlot
-
-flush(stderr()); flush(stdout())
-
-### Name: colorPlot
-### Title: Plot Data
-### Aliases: colorPlot colorPlot,numeric,numeric-method
-###   colorPlot,Date,numeric-method colorPlot,POSIXt,numeric-method
-### Keywords: hplot internal methods
-
-### ** Examples
-
-## Not run: 
-##D set.seed(1)
-##D X <- rnorm(32)
-##D Y <- X + rnorm(32)
-##D Z <- sqrt(X^2 + Y^2) # distance from origin
-##D setGD()
-##D # All defaults: color ramp from Z
-##D colorPlot(X, Y, Z)
-##D # See for examples of colorPlot:
-##D #vignette(topic="LineScatter", package="smwrGraphs")
-## End(Not run)
-
-
-
-cleanEx()
-nameEx("convert2qw")
-### * convert2qw
-
-flush(stderr()); flush(stdout())
-
-### Name: convert2qw
-### Title: Water-Quality Data
-### Aliases: convert2qw
-### Keywords: IO datasets internal
-
-### ** Examples
-
-# Make a dummy partial dataset
-tmp.dum <- data.frame(sta=c("A", "B"),
- Val=c(1, 1.2),
- Val.rmk=c("<", ""),
- Val.dl=c(1, 1), stringsAsFactors=FALSE)
-convert2qw(tmp.dum, scheme="partial")
-
-
-
-
-cleanEx()
-nameEx("convertFqw")
-### * convertFqw
-
-flush(stderr()); flush(stdout())
-
-### Name: convertFqw
-### Title: Water-Quality Data
-### Aliases: convertFqw
-### Keywords: IO datasets internal
-
-### ** Examples
-
-# Make a dummy partial dataset
-tmp.dum <- data.frame(sta=c("A", "B"),
- Val=c(1, 1.2),
- Val.rmk=c("<", ""),
- Val.dl=c(1, 1), stringsAsFactors=FALSE)
-tmp.qw <- convert2qw(tmp.dum, scheme="partial")
-# Expand the result
-convertFqw(tmp.qw)
 
 
 
@@ -568,26 +195,6 @@ flush(stderr()); flush(stdout())
 ##D salinity.detrended <- detrended.salinity(df.sal, dvAvgWinSel, 
 ##D                                  lowess.f, minObs, minObs.sd) 
 ## End(Not run)              
-
-
-
-cleanEx()
-nameEx("dlimit")
-### * dlimit
-
-flush(stderr()); flush(stdout())
-
-### Name: dlimit
-### Title: Impute Detection Limits
-### Aliases: dlimit
-### Keywords: internal manip
-
-### ** Examples
-
-
-## The actual detection limits are 2,2,2,1,1,1.
-dlimit(c(2,2,3,1,1,2), c(" ", "<", " ", " ", "<", " "))
-
 
 
 
@@ -867,30 +474,6 @@ flush(stderr()); flush(stdout())
 
 
 cleanEx()
-nameEx("dot-layerAggregation")
-### * dot-layerAggregation
-
-flush(stderr()); flush(stdout())
-
-### Name: .layerAggregation
-### Title: Aggregate data layers
-### Aliases: .layerAggregation
-### Keywords: internal
-
-### ** Examples
-
-# retrieve all corrected chlorophyll-a concentrations for Station CB2.2.
-# A warning is displayed indicating that data set has layers but user did
-# not specify layer in retrieval. layerAggregation then aggregates across
-# all layers.
-#df  <- dataMB
-#df1 <- selectData(df, "chla", "CB2.2")
-#df2 <- layerAggregation(df1[[1]], avgTechnique="median", layerAggOption=4)
-#str(df2)
-
-
-
-cleanEx()
 nameEx("dot-reAttDF")
 ### * dot-reAttDF
 
@@ -994,26 +577,6 @@ wgts<- filterWgts(7,"centered")
 wgts<- filterWgts(7,"weighted")
 x <- 1:100
 filter(x, filterWgts(7,"weighted"), sides=1)
-
-
-
-cleanEx()
-nameEx("format")
-### * format
-
-flush(stderr()); flush(stdout())
-
-### Name: format.lcens
-### Title: Encode in a Common Format
-### Aliases: format.lcens format.mcens format.qw
-### Keywords: internal manip
-
-### ** Examples
-
-
-format(as.lcens(1:3, 1))
-format(as.mcens(1:3, 1:3))
-
 
 
 
@@ -1217,100 +780,6 @@ df <- getUSGSflow(siteNumber, yearStart, yearEnd)
 
 
 cleanEx()
-nameEx("group2row")
-### * group2row
-
-flush(stderr()); flush(stdout())
-
-### Name: group2row
-### Title: Restructure Data
-### Aliases: group2row
-### Keywords: internal manip
-
-### ** Examples
-
-## Not run: 
-##D #library(smwrData)
-##D data(QWstacked)
-##D group2row(QWstacked, c("site_no", "sample_dt", "sample_tm"), "parm_cd", 
-##D  c("result_va", "remark_cd"))
-## End(Not run)
-
-
-
-cleanEx()
-nameEx("importNWISqw")
-### * importNWISqw
-
-flush(stderr()); flush(stdout())
-
-### Name: importNWISqw
-### Title: Water-Quality Data
-### Aliases: importNWISqw
-### Keywords: IO datasets internal
-
-### ** Examples
-
-
-## Not run: 
-##D importNWISqw("05330000", "00608") # Ammonia samples from the Minnesota River at Jordan.
-##D Empty <- importNWISqw('05330000',c('00400','00403'),begin.date='2008-01-01')
-## End(Not run)
-
-
-
-cleanEx()
-nameEx("importQW")
-### * importQW
-
-flush(stderr()); flush(stdout())
-
-### Name: importQW
-### Title: Water-Quality Data
-### Aliases: importQW
-### Keywords: IO datasets internal
-
-### ** Examples
-
-## Not run: 
-##D # Convert the stacked qw data supplied in smwrData
-##D #library(smwrData)
-##D data(QWstacked)
-##D QWstacked$result_va <- as.numeric(QWstacked$result_va) # raw data are character
-##D # The units are both mg/l, no analyte name, generate column names from parameter codes
-##D head(importQW(QWstacked, c("site_no", "sample_dt", "sample_tm", "medium_cd"),
-##D  "result_va", "remark_cd", "val_qual_tx", "rpt_lev_va", "rpt_lev_cd", 
-##D  "mg/l", "meth_cd", "", "parm_cd", "parm_cd"))
-##D # A simple example having the minimum information
-##D data(QW05078470)
-##D importQW(QW05078470, c("DATES", "TIMES"), "P00665", "R00665", "", 0.005, "User", 
-##D "mg/l", "Unk", "Dissolved Phosporus", "00665", "DissP")
-## End(Not run)
-
-
-
-cleanEx()
-nameEx("importRDB")
-### * importRDB
-
-flush(stderr()); flush(stdout())
-
-### Name: importRDB
-### Title: Import Files
-### Aliases: importRDB
-### Keywords: IO internal manip
-
-### ** Examples
-
-## Not run: 
-##D ## This dataset is available in smwrData as a text file
-##D #TestDir <- system.file("misc", package="smwrData")
-##D #TestFull <- importRDB(file.path(TestDir, "TestFull.rdb"))
-## End(Not run)
-
-
-
-cleanEx()
 nameEx("impute")
 ### * impute
 
@@ -1322,96 +791,65 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
-x  <- dataCensored[1:20,"tdp"]
-x.lower <- impute(x,'lower')
-x.mid   <- impute(x,'mid')
-x.upper <- impute(x,'upper')
-x.norm  <- impute(x,'norm')
-x.lnorm <- impute(x,'lnorm')
+## Not run: 
+##D x  <- dataCensored[1:20,"tdp"]
+##D x.lower <- impute(x,'lower')
+##D x.mid   <- impute(x,'mid')
+##D x.upper <- impute(x,'upper')
+##D x.norm  <- impute(x,'norm')
+##D x.lnorm <- impute(x,'lnorm')
+## End(Not run)
 
 
 
 cleanEx()
-nameEx("is.na")
-### * is.na
+nameEx("imputeDF")
+### * imputeDF
 
 flush(stderr()); flush(stdout())
 
-### Name: is.na.lcens
-### Title: Missing Values
-### Aliases: is.na.lcens is.na.mcens is.na.qw
-### Keywords: internal manip
+### Name: imputeDF
+### Title: Impute Censored Values in dataframes
+### Aliases: imputeDF
 
 ### ** Examples
 
-
-is.na(as.lcens(c(1,3, NA), 2))
-
+## Not run: 
+##D df  <- dataCensored[1:20, ]
+##D df.lower <- imputeDF(df,'lower')
+##D df.mid   <- imputeDF(df,'mid')
+##D df.upper <- imputeDF(df,'upper')
+##D df.norm  <- imputeDF(df,'norm')
+##D df.lnorm <- imputeDF(df,'lnorm')
+## End(Not run)
 
 
 
 cleanEx()
-nameEx("isLike")
-### * isLike
+nameEx("layerAggregation")
+### * layerAggregation
 
 flush(stderr()); flush(stdout())
 
-### Name: isLike
-### Title: Test whether an object can be treated in a particular way
-### Aliases: isLike isCharLike isDateLike isGroupLike isNumberLike
-### Keywords: internal manip
+### Name: layerAggregation
+### Title: Aggregate data layers
+### Aliases: layerAggregation
 
 ### ** Examples
 
-# The first should be FALSE and the second TRUE
-isCharLike(as.Date("2004-12-31"))
-isCharLike("32")
-# The first should be FALSE and the second TRUE
-isDateLike(32)
-isDateLike(as.Date("2004-12-31"))
-# The first should be FALSE and the second TRUE
-isGroupLike(as.Date("2004-12-31"))
-isGroupLike(32)
-# The first should be FALSE and the second TRUE
-isNumberLike(as.Date("2004-12-31"))
-isNumberLike(32)
-
-
-
-cleanEx()
-nameEx("lcens-class")
-### * lcens-class
-
-flush(stderr()); flush(stdout())
-
-### Name: lcens-class
-### Title: Left-censored Data
-### Aliases: lcens-class
-### Keywords: classes internal
-
-### ** Examples
-
-
-showClass("lcens")
-
-
-
-
-cleanEx()
-nameEx("length")
-### * length
-
-flush(stderr()); flush(stdout())
-
-### Name: length.lcens
-### Title: Length of an Object
-### Aliases: length.lcens length.mcens length.qw
-### Keywords: attribute internal
-
-### ** Examples
-
-
-length(as.lcens(c(1,3, NA), 2))
+## Not run: 
+##D dfr    <- analysisOrganizeData(dataCensored)
+##D 
+##D # retrieve all corrected chlorophyll-a concentrations for Station CB5.4,
+##D # missing values are removed and transformation applied. Note, a 
+##D # warning is displayed indicating that data set has layers but user did
+##D # not specify layer in retrieval. layerAggregation then aggregates per 
+##D # specifications
+##D dfr2   <- selectData(dfr[["df"]], 'chla', 'CB5.4', analySpec=dfr[["analySpec"]])
+##D df2    <- dfr2[[1]]   # data frame of selected data
+##D iSpec2 <- dfr2[[2]]   # meta data about selected data
+##D df2a   <- layerAggregation(df2, avgTechnique="mean", layerAggOption=4)
+## End(Not run)
 
 
 
@@ -1443,60 +881,30 @@ analySpec$gamModels <- loadModels(c('gam0','gam1','gam2'))
 
 
 cleanEx()
-nameEx("mcens-class")
-### * mcens-class
+nameEx("makeSurvDF")
+### * makeSurvDF
 
 flush(stderr()); flush(stdout())
 
-### Name: mcens-class
-### Title: Mutliply-censored Data
-### Aliases: mcens-class
-### Keywords: classes internal
+### Name: makeSurvDF
+### Title: Convert dataframe to include survival (Surv) objects
+### Aliases: makeSurvDF
 
 ### ** Examples
 
+df <- dataCensored[1:20,]
+colnames(df)
+df1 <- unSurvDF(df)
+colnames(df1)
+# Default values
+df2 <- makeSurvDF(df1)
+colnames(df2)
+# User values
+df3 <- unSurvDF(df, "_LOW", "_HIGH")
+colnames(df3)
+df4 <- makeSurvDF(df3, "_LOW", "_HIGH")
+colnames(df4)
 
-showClass("mcens")
-
-
-
-
-cleanEx()
-nameEx("medianStats")
-### * medianStats
-
-flush(stderr()); flush(stdout())
-
-### Name: median.lcens
-### Title: Median Value
-### Aliases: median.lcens median.mcens median.qw
-### Keywords: censored internal univariate
-
-### ** Examples
-
-median(as.lcens(1:4, 2))
-
-
-
-
-cleanEx()
-nameEx("month.USGS")
-### * month.USGS
-
-flush(stderr()); flush(stdout())
-
-### Name: month.USGS
-### Title: Month Abbreviations
-### Aliases: month.USGS
-### Keywords: internal
-
-### ** Examples
-
-print(month.USGS)
-## Not run: 
-##D # For examples of month.USGS in graphs see
-##D #vignette(topic="LineScatter", package="smwrGraphs")
-## End(Not run)
 
 
 
@@ -1520,230 +928,30 @@ na2miss(c(1, 2, 3, NA, 5, 6))
 
 
 cleanEx()
-nameEx("pcodeColData")
-### * pcodeColData
+nameEx("nobs")
+### * nobs
 
 flush(stderr()); flush(stdout())
 
-### Name: pcodeColData
-### Title: Selected USGS parameter Codes
-### Aliases: pcodeColData
-### Keywords: datasets
+### Name: nobs
+### Title: Compute the Number of Non-Missing Observations
+### Aliases: nobs
 
 ### ** Examples
 
-data(pcodeColData)
-# just print some rows
-head(pcodeColData)
-tail(pcodeColData)
-
-
-
-cleanEx()
-nameEx("pcodeNWISqw")
-### * pcodeNWISqw
-
-flush(stderr()); flush(stdout())
-
-### Name: pcodeNWISqw
-### Title: Parameter Code Information
-### Aliases: pcodeNWISqw
-### Keywords: IO datasets internal
-
-### ** Examples
-
-
-## Not run: 
-##D pcodeNWISqw("00925")
-## End(Not run)
-
-
-
-
-cleanEx()
-nameEx("quantile")
-### * quantile
-
-flush(stderr()); flush(stdout())
-
-### Name: quantile.lcens
-### Title: Sample Quantiles
-### Aliases: quantile.lcens quantile.mcens quantile.qw
-### Keywords: internal univar
-
-### ** Examples
-
-
-set.seed(28)
-Xu <- rnorm(23)
-quantile(as.lcens(Xu, 0)) 
-
-
-
-
-cleanEx()
-nameEx("qw-class")
-### * qw-class
-
-flush(stderr()); flush(stdout())
-
-### Name: qw-class
-### Title: Water-quality Data
-### Aliases: qw-class
-### Keywords: classes internal
-
-### ** Examples
-
-
-showClass("qw")
-
-
-
-
-cleanEx()
-nameEx("qw.export")
-### * qw.export
-
-flush(stderr()); flush(stdout())
-
-### Name: qw.export
-### Title: qw.export
-### Aliases: qw.export
-
-### ** Examples
-
-## Not run: 
-##D # define data frame with qw column classes
-##D myDF <- dataCensored
-##D 
-##D # directory to save output
-##D dir.save <- getwd()
-##D 
-##D # prefix for file names ()
-##D fn.out <- "data_censored_test.csv" 
-##D 
-##D # run function
-##D qw.export(myDF, dir.save, fn.out)
-## End(Not run)
-
-
-
-cleanEx()
-nameEx("qw.import")
-### * qw.import
-
-flush(stderr()); flush(stdout())
-
-### Name: qw.import
-### Title: qw.import
-### Aliases: qw.import
-
-### ** Examples
-
-## Not run: 
-##D # Use internal function to export dataCensored as example for import
-##D qw.export(dataCensored, getwd(), "data_censored_test.csv")
-##D 
-##D 
-##D # Import Test file as a qw object
-##D 
-##D # Define function parameters
-##D fn.import <- file.path(".", "data_censored_test.csv")
-##D qw.names <- c("secchi", "chla", "do", "tn", "tp", "po4", "tdp"
-##D               , "no23", "nh4", "tdn", "tss")
-##D rounding <- c(3, 4)
-##D 
-##D # Import
-##D dataCensored.test<- qw.import(fn.import, qw.names, rounding)
-##D 
-##D # Check for qw class
-##D str(dataCensored.test)
-##D 
-##D # Save
-##D save(dataCensored.test, file="data_censored_test.rda")
-##D 
-##D 
-##D # Show slot names for a qw object.
-##D slotNames("qw")
-##D 
-##D ####
-##D # convert date field to POSIXct
-##D #dataCensored.test[,"date"] <- as.POSIXct(dataCensored.test[,"date"])
-##D # str(dataCensored.test)
-##D # as.numeric() and as.integer() can be used to convert columns of those types.
-## End(Not run)
-
-
-
-cleanEx()
-nameEx("readNWQLdl")
-### * readNWQLdl
-
-flush(stderr()); flush(stdout())
-
-### Name: readNWQLdl
-### Title: Historical Reporting Limits
-### Aliases: readNWQLdl
-### Keywords: IO internal
-
-### ** Examples
-
-
-## Not run: 
-##D # This function works only within the internal USGS network.
-##D #readNWQLdl("00608")
-## End(Not run)
-
-
-
-
-cleanEx()
-nameEx("refLine")
-### * refLine
-
-flush(stderr()); flush(stdout())
-
-### Name: refLine
-### Title: Reference Line
-### Aliases: refLine
-### Keywords: aplot internal
-
-### ** Examples
-
-## Not run: 
-##D set.seed(1)
-##D X <- rnorm(32)
-##D Y <- X + rnorm(32)
-##D setGD()
-##D xyPlot(X, Y)
-##D # Add the 1:1 line
-##D refLine(coefficient=c(0,1))
-##D # For more details of refLine see
-##D #vignette(topic="GraphAdditions", package="smwrGraphs")
-##D #demo(topic="Coplot-complexScatterPlot", package="smwrGraphs")
-## End(Not run)
-
-
-
-cleanEx()
-nameEx("rmse")
-### * rmse
-
-flush(stderr()); flush(stdout())
-
-### Name: rmse
-### Title: Root-Mean-Squared and Relative Differences
-### Aliases: rmse rmse.default rmse.lm rpd
-### Keywords: internal univar
-
-### ** Examples
-
-
-# Example 15.2 from Harvey.
-dupX1 <- c(160, 196, 207, 185, 172, 133)
-dupX2 <- c(147, 202, 196, 193, 188, 119)
-rmse(dupX1, dupX2)
-rpd(dupX1, dupX2)
+x <- c(1,2,3,5,NA,6,7,1,NA )
+length(x)
+nobs(x)
+
+df <- data.frame(x=rnorm(100), y=rnorm(100))
+df[1,1] <- NA
+df[1,2] <- NA
+df[2,1] <- NA
+
+nobs(df)
+
+fit <- lm(y ~ x, data=df)
+nobs(fit)
 
 
 
@@ -1795,310 +1003,80 @@ df <- seasAdjflow(df,"01578310")
 
 
 cleanEx()
-nameEx("setColor")
-### * setColor
+nameEx("selectData")
+### * selectData
 
 flush(stderr()); flush(stdout())
 
-### Name: setColor
-### Title: Colors
-### Aliases: setColor
-### Keywords: dplot internal
+### Name: selectData
+### Title: Select data for analysis from a larger data frame
+### Aliases: selectData
 
 ### ** Examples
 
 ## Not run: 
-##D # See for examples of setColor:
-##D #vignette(topic="PiperPlot", package="smwrGraphs")
-##D #demo(topic="PiperScript", package="smwrGraphs")
+##D dfr    <- analysisOrganizeData(dataCensored)
+##D 
+##D # retrieve Secchi depth for Station CB5.4, no transformations are applied
+##D dfr1   <- selectData(dfr[["df"]], 'secchi', 'CB5.4', 'S', transform=FALSE,
+##D                     remMiss=FALSE, analySpec=dfr[["analySpec"]])
+##D df1    <- dfr1[[1]]   # data frame of selected data
+##D iSpec1 <- dfr1[[2]]   # meta data about selected data
+##D 
+##D # retrieve surface corrected chlorophyll-a concentrations for Station CB5.4,
+##D # missing values are removed and transformation applied
+##D dfr2   <- selectData(dfr[["df"]], 'chla', 'CB5.4', 'S', analySpec=dfr[["analySpec"]])
+##D df2    <- dfr2[[1]]   # data frame of selected data
+##D iSpec2 <- dfr2[[2]]   # meta data about selected data
 ## End(Not run)
 
 
 
 cleanEx()
-nameEx("setPage")
-### * setPage
+nameEx("unSurv")
+### * unSurv
 
 flush(stderr()); flush(stdout())
 
-### Name: setGD
-### Title: Graphics Page
-### Aliases: setGD setPage setPDF setSweave setKnitr setPNG setRStudio
-### Keywords: dplot internal
+### Name: unSurv
+### Title: Converts Surv object into a 3-column matrix
+### Aliases: unSurv
 
 ### ** Examples
 
-## Not run: 
-##D # See for examples of setGD:
-##D #demo(topic="AnnualFlowBarChart", package="smwrGraphs")
-##D #demo(topic="Coplot-complexScatterPlot", package="smwrGraphs")
-##D #demo(topic="Coplot-simpleBoxPlot", package="smwrGraphs")
-##D #demo(topic="DurationHydrograph", package="smwrGraphs")
-##D #demo(topic="FlowDur-Measurements", package="smwrGraphs")
-##D #demo(topic="HydroPrecip", package="smwrGraphs")
-##D # See for examples of setPage:
-##D #demo(topic="PiperScript", package="smwrGraphs")
-##D # See for examples of setPDF:
-##D #demo(topic="MeasurementRating", package="smwrGraphs")
-##D #demo(topic="PiperScript", package="smwrGraphs")
-##D #demo(topic="RightAxisExample", package="smwrGraphs")
-##D #demo(topic="TopAxisExample", package="smwrGraphs")
-##D # See for examples of setSweave:
-##D #vignette(topic="BoxPlots", package="smwrGraphs")
-##D #vignette(topic="DateAxisFormats", package="smwrGraphs")
-##D #vignette(topic="GraphAdditions", package="smwrGraphs")
-##D #vignette(topic="GraphGallery", package="smwrGraphs")
-##D #vignette(topic="GraphSetup", package="smwrGraphs")
-##D #vignette(topic="LineScatter", package="smwrGraphs")
-##D #vignette(topic="PiperPlot", package="smwrGraphs")
-##D #vignette(topic="ProbabilityPlots", package="smwrGraphs")
-## End(Not run)
-
-
-
-cleanEx()
-nameEx("smwr.colors")
-### * smwr.colors
-
-flush(stderr()); flush(stdout())
-
-### Name: smwr.colors
-### Title: Generate a Range of Colors
-### Aliases: smwr.colors greenRed.colors blueRed.colors redBlue.colors
-###   coolWarm.colors warmCool.colors redGreen.colors pastel.colors
-### Keywords: color internal
-
-### ** Examples
-
-## Not run: 
-##D redGreen.colors(2)
-##D blueRed.colors(2)
-##D # For examples of warmCool.colors in graphs see
-##D #demo(topic="DurationHydrograph", package="smwrGraphs")
-##D # All have similar usage
-## End(Not run)
-
-
-
-cleanEx()
-nameEx("sort.censored")
-### * sort.censored
-
-flush(stderr()); flush(stdout())
-
-### Name: sort.lcens
-### Title: Sorting Vectors
-### Aliases: sort.lcens sort.mcens
-### Keywords: internal manip
-
-### ** Examples
-
-set.seed(5422)
-XR <- rnorm(10)
-sort(as.lcens(XR, rep(c(0, -1), each=5))) # censors at 0 and -1
+df1 <- dataCensored[dataCensored$station=="CB3.3C","chla"][1:30]
+colnames(df1)
+# Default values
+df2 <- unSurv(df1)
+colnames(df2)
+# User values
+df3 <- unSurv(df1, "LOW", "HIGH")
+colnames(df3)
 
 
 
 
 cleanEx()
-nameEx("splitQual")
-### * splitQual
+nameEx("unSurvDF")
+### * unSurvDF
 
 flush(stderr()); flush(stdout())
 
-### Name: splitQual
-### Title: Split Leading Qualifiers
-### Aliases: splitQual
-### Keywords: internal
+### Name: unSurvDF
+### Title: Converts Surv objects in a dataframe to "lo" and "hi" values
+### Aliases: unSurvDF
 
 ### ** Examples
 
-splitQual(c("<1", "1", "<1", "1", "2"), name="Dummy")
+df <- dataCensored[dataCensored$station=="CB3.3C", ][1:20,]
+colnames(df)
+# Default values
+df2 <- unSurvDF(df)
+colnames(df2)
+# User values
+df3 <- unSurvDF(df, "_LOW", "_HIGH")
+colnames(df3)
 
-
-
-
-cleanEx()
-nameEx("str")
-### * str
-
-flush(stderr()); flush(stdout())
-
-### Name: str.lcens
-### Title: Display Structure
-### Aliases: str.lcens str.mcens str.qw
-### Keywords: internal
-
-### ** Examples
-
-
-str(as.lcens(c(1,3), 2))
-
-
-
-
-cleanEx()
-nameEx("strip.blanks")
-### * strip.blanks
-
-flush(stderr()); flush(stdout())
-
-### Name: strip.blanks
-### Title: Remove Spaces
-### Aliases: strip.blanks
-### Keywords: internal manip
-
-### ** Examples
-
-
-strip.blanks("   keep me   ")
-
-
-
-
-cleanEx()
-nameEx("subset")
-### * subset
-
-flush(stderr()); flush(stdout())
-
-### Name: [.lcens
-### Title: Subset an Object
-### Aliases: [.lcens [.mcens [.qw subset.qw
-### Keywords: internal manip
-
-### ** Examples
-
-Xcens <- as.lcens(c(1, 2, 3, 4), 2)
-# Extract the 3rd value
-Xcens[3]
-# Change the 3rd value to NA and print the data
-Xcens[3,] <- NA
-Xcens
-
-
-
-cleanEx()
-nameEx("summary")
-### * summary
-
-flush(stderr()); flush(stdout())
-
-### Name: summary.lcens
-### Title: Summarize Data
-### Aliases: summary.lcens summary.mcens summary.qw
-### Keywords: internal misc
-
-### ** Examples
-
-
-## Not run: 
-##D # Summrize these data
-##D summary(importNWISqw("05330000", "00608"))
-## End(Not run)
-
-
-
-
-cleanEx()
-nameEx("timePlot")
-### * timePlot
-
-flush(stderr()); flush(stdout())
-
-### Name: timePlot
-### Title: Time-series Plots
-### Aliases: timePlot timePlot,Date,numeric-method
-###   timePlot,POSIXt,numeric-method timePlot,numeric,numeric-method
-###   timePlot,integer,numeric-method timePlot,difftime,numeric-method
-### Keywords: hplot internal methods
-
-### ** Examples
-
-## Not run: 
-##D # the months function is in lubridate
-##D X <- as.Date("2001-01-15") + months(0:11)
-##D set.seed(1)
-##D Y <- runif(12)
-##D setGD()
-##D timePlot(X, Y)
-##D # For more details of timePlot see
-##D #vignette(topic="DateAxisFormats", package="smwrGraphs")
-##D #vignette(topic="LineScatter", package="smwrGraphs")
-##D #demo(topic="AnnualFlowBarChart", package="smwrGraphs")
-##D #demo(topic="DurationHydrograph", package="smwrGraphs")
-##D #demo(topic="HydroPrecip", package="smwrGraphs")
-##D #demo(topic="RightAxisExample", package="smwrGraphs")
-## End(Not run)
-
-
-
-cleanEx()
-nameEx("xyPlot")
-### * xyPlot
-
-flush(stderr()); flush(stdout())
-
-### Name: xyPlot
-### Title: Plot Data
-### Aliases: xyPlot xyPlot,numeric,numeric-method
-###   xyPlot,factor,numeric-method xyPlot,character,numeric-method
-### Keywords: hplot internal methods
-
-### ** Examples
-
-## Not run: 
-##D set.seed(1)
-##D X <- rnorm(32)
-##D Y <- X + rnorm(32)
-##D setGD()
-##D AA.pl <- xyPlot(X, Y, Plot=list(color="cyan4"))
-##D # For more details of xyPlot see
-##D #vignette(topic="GraphAdditions", package="smwrGraphs")
-##D #vignette(topic="GraphGallery", package="smwrGraphs")
-##D #vignette(topic="GraphSetup", package="smwrGraphs")
-##D #vignette(topic="LineScatter", package="smwrGraphs")
-##D #demo(topic="Coplot-complexScatterPlot", package="smwrGraphs")
-##D #demo(topic="TopAxisExample", package="smwrGraphs")
-## End(Not run)
-
-
-
-cleanEx()
-nameEx("zcn")
-### * zcn
-
-flush(stderr()); flush(stdout())
-
-### Name: %cn%
-### Title: Partial Value Matching
-### Aliases: %cn%
-### Keywords: internal manip
-
-### ** Examples
-
-
-## A simple example
-c("abc", "def") %cn% "c"
-
-
-
-cleanEx()
-nameEx("zeq")
-### * zeq
-
-flush(stderr()); flush(stdout())
-
-### Name: %~=%
-### Title: Possible Equality
-### Aliases: %~=%
-### Keywords: internal manip
-
-### ** Examples
-
-as.mcens(1, 2) %~=% 0.5
-as.mcens(1, 2) %~=% 1.5
-as.mcens(1, 2) %~=% 2.5
 
 
 

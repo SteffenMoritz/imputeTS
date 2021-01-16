@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>R: Forecasting Functions for Time Series and Linear Models</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+<h1> Forecasting Functions for Time Series and Linear Models
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]" />
+</h1>
+<hr/>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
+</div><h2>Documentation for package &lsquo;forecast&rsquo; version 8.13</h2>
+
+<ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+<li><a href="../doc/index.html">User guides, package vignettes and other documentation.</a></li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<p style="text-align: center;">
+<a href="# "> </a>
+<a href="#A">A</a>
+<a href="#B">B</a>
+<a href="#C">C</a>
+<a href="#D">D</a>
+<a href="#E">E</a>
+<a href="#F">F</a>
+<a href="#G">G</a>
+<a href="#H">H</a>
+<a href="#I">I</a>
+<a href="#M">M</a>
+<a href="#N">N</a>
+<a href="#O">O</a>
+<a href="#P">P</a>
+<a href="#R">R</a>
+<a href="#S">S</a>
+<a href="#T">T</a>
+<a href="#W">W</a>
+<a href="#misc">misc</a>
+</p>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="forecast-package.html">forecast-package</a></td>
+<td>Forecasting Functions for Time Series and Linear Models</td></tr>
+</table>
+
+<h2><a name="A">-- A --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="accuracy.html">accuracy</a></td>
+<td>Accuracy measures for a forecast model</td></tr>
+<tr><td style="width: 25%;"><a href="accuracy.html">accuracy.default</a></td>
+<td>Accuracy measures for a forecast model</td></tr>
+<tr><td style="width: 25%;"><a href="Acf.html">Acf</a></td>
+<td>(Partial) Autocorrelation and Cross-Correlation Function Estimation</td></tr>
+<tr><td style="width: 25%;"><a href="arfima.html">arfima</a></td>
+<td>Fit a fractionally differenced ARFIMA model</td></tr>
+<tr><td style="width: 25%;"><a href="Arima.html">Arima</a></td>
+<td>Fit ARIMA model to univariate time series</td></tr>
+<tr><td style="width: 25%;"><a href="arima.errors.html">arima.errors</a></td>
+<td>Errors from a regression model with ARIMA errors</td></tr>
+<tr><td style="width: 25%;"><a href="arimaorder.html">arimaorder</a></td>
+<td>Return the order of an ARIMA or ARFIMA model</td></tr>
+<tr><td style="width: 25%;"><a href="Arima.html">as.character.Arima</a></td>
+<td>Fit ARIMA model to univariate time series</td></tr>
+<tr><td style="width: 25%;"><a href="bats.html">as.character.bats</a></td>
+<td>BATS model (Exponential smoothing state space model with Box-Cox transformation, ARMA errors, Trend and Seasonal components)</td></tr>
+<tr><td style="width: 25%;"><a href="ets.html">as.character.ets</a></td>
+<td>Exponential smoothing state space model</td></tr>
+<tr><td style="width: 25%;"><a href="tbats.html">as.character.tbats</a></td>
+<td>TBATS model (Exponential smoothing state space model with Box-Cox transformation, ARMA errors, Trend and Seasonal components)</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.html">as.data.frame.forecast</a></td>
+<td>Forecasting time series</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.mts.html">as.data.frame.mforecast</a></td>
+<td>Forecasting time series</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.html">as.ts.forecast</a></td>
+<td>Forecasting time series</td></tr>
+<tr><td style="width: 25%;"><a href="auto.arima.html">auto.arima</a></td>
+<td>Fit best ARIMA model to univariate time series</td></tr>
+<tr><td style="width: 25%;"><a href="autolayer.html">autolayer</a></td>
+<td>Create a ggplot layer appropriate to a particular data type</td></tr>
+<tr><td style="width: 25%;"><a href="plot.forecast.html">autolayer.forecast</a></td>
+<td>Forecast plot</td></tr>
+<tr><td style="width: 25%;"><a href="plot.mforecast.html">autolayer.mforecast</a></td>
+<td>Multivariate forecast plot</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.ts.html">autolayer.msts</a></td>
+<td>Automatically create a ggplot for time series objects</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.ts.html">autolayer.mts</a></td>
+<td>Automatically create a ggplot for time series objects</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.ts.html">autolayer.ts</a></td>
+<td>Automatically create a ggplot for time series objects</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.acf.html">autoplot.acf</a></td>
+<td>ggplot (Partial) Autocorrelation and Cross-Correlation Function Estimation and Plotting</td></tr>
+<tr><td style="width: 25%;"><a href="plot.Arima.html">autoplot.ar</a></td>
+<td>Plot characteristic roots from ARIMA model</td></tr>
+<tr><td style="width: 25%;"><a href="plot.Arima.html">autoplot.Arima</a></td>
+<td>Plot characteristic roots from ARIMA model</td></tr>
+<tr><td style="width: 25%;"><a href="plot.bats.html">autoplot.bats</a></td>
+<td>Plot components from BATS model</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.seas.html">autoplot.decomposed.ts</a></td>
+<td>Plot time series decomposition components using ggplot</td></tr>
+<tr><td style="width: 25%;"><a href="plot.ets.html">autoplot.ets</a></td>
+<td>Plot components from ETS model</td></tr>
+<tr><td style="width: 25%;"><a href="plot.forecast.html">autoplot.forecast</a></td>
+<td>Forecast plot</td></tr>
+<tr><td style="width: 25%;"><a href="plot.mforecast.html">autoplot.mforecast</a></td>
+<td>Multivariate forecast plot</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.acf.html">autoplot.mpacf</a></td>
+<td>ggplot (Partial) Autocorrelation and Cross-Correlation Function Estimation and Plotting</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.seas.html">autoplot.mstl</a></td>
+<td>Plot time series decomposition components using ggplot</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.ts.html">autoplot.msts</a></td>
+<td>Automatically create a ggplot for time series objects</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.ts.html">autoplot.mts</a></td>
+<td>Automatically create a ggplot for time series objects</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.seas.html">autoplot.seas</a></td>
+<td>Plot time series decomposition components using ggplot</td></tr>
+<tr><td style="width: 25%;"><a href="plot.forecast.html">autoplot.splineforecast</a></td>
+<td>Forecast plot</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.seas.html">autoplot.stl</a></td>
+<td>Plot time series decomposition components using ggplot</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.seas.html">autoplot.StructTS</a></td>
+<td>Plot time series decomposition components using ggplot</td></tr>
+<tr><td style="width: 25%;"><a href="plot.bats.html">autoplot.tbats</a></td>
+<td>Plot components from BATS model</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.ts.html">autoplot.ts</a></td>
+<td>Automatically create a ggplot for time series objects</td></tr>
+</table>
+
+<h2><a name="B">-- B --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="baggedModel.html">baggedETS</a></td>
+<td>Forecasting using a bagged model</td></tr>
+<tr><td style="width: 25%;"><a href="baggedModel.html">baggedModel</a></td>
+<td>Forecasting using a bagged model</td></tr>
+<tr><td style="width: 25%;"><a href="bats.html">bats</a></td>
+<td>BATS model (Exponential smoothing state space model with Box-Cox transformation, ARMA errors, Trend and Seasonal components)</td></tr>
+<tr><td style="width: 25%;"><a href="bizdays.html">bizdays</a></td>
+<td>Number of trading days in each season</td></tr>
+<tr><td style="width: 25%;"><a href="bld.mbb.bootstrap.html">bld.mbb.bootstrap</a></td>
+<td>Box-Cox and Loess-based decomposition bootstrap.</td></tr>
+<tr><td style="width: 25%;"><a href="BoxCox.html">BoxCox</a></td>
+<td>Box Cox Transformation</td></tr>
+<tr><td style="width: 25%;"><a href="BoxCox.lambda.html">BoxCox.lambda</a></td>
+<td>Automatic selection of Box Cox transformation parameter</td></tr>
+</table>
+
+<h2><a name="C">-- C --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Acf.html">Ccf</a></td>
+<td>(Partial) Autocorrelation and Cross-Correlation Function Estimation</td></tr>
+<tr><td style="width: 25%;"><a href="checkresiduals.html">checkresiduals</a></td>
+<td>Check that residuals from a time series model look like white noise</td></tr>
+<tr><td style="width: 25%;"><a href="ets.html">coef.ets</a></td>
+<td>Exponential smoothing state space model</td></tr>
+<tr><td style="width: 25%;"><a href="croston.html">croston</a></td>
+<td>Forecasts for intermittent demand using Croston's method</td></tr>
+<tr><td style="width: 25%;"><a href="CV.html">CV</a></td>
+<td>Cross-validation statistic</td></tr>
+<tr><td style="width: 25%;"><a href="CVar.html">CVar</a></td>
+<td>k-fold Cross-Validation applied to an autoregressive model</td></tr>
+</table>
+
+<h2><a name="D">-- D --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="dm.test.html">dm.test</a></td>
+<td>Diebold-Mariano test for predictive accuracy</td></tr>
+<tr><td style="width: 25%;"><a href="dshw.html">dshw</a></td>
+<td>Double-Seasonal Holt-Winters Forecasting</td></tr>
+</table>
+
+<h2><a name="E">-- E --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="easter.html">easter</a></td>
+<td>Easter holidays in each season</td></tr>
+<tr><td style="width: 25%;"><a href="ets.html">ets</a></td>
+<td>Exponential smoothing state space model</td></tr>
+</table>
+
+<h2><a name="F">-- F --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="findfrequency.html">findfrequency</a></td>
+<td>Find dominant frequency of a time series</td></tr>
+<tr><td style="width: 25%;"><a href="fitted.Arima.html">fitted.ar</a></td>
+<td>h-step in-sample forecasts for time series models.</td></tr>
+<tr><td style="width: 25%;"><a href="fitted.Arima.html">fitted.ARFIMA</a></td>
+<td>h-step in-sample forecasts for time series models.</td></tr>
+<tr><td style="width: 25%;"><a href="fitted.Arima.html">fitted.Arima</a></td>
+<td>h-step in-sample forecasts for time series models.</td></tr>
+<tr><td style="width: 25%;"><a href="fitted.Arima.html">fitted.bats</a></td>
+<td>h-step in-sample forecasts for time series models.</td></tr>
+<tr><td style="width: 25%;"><a href="fitted.Arima.html">fitted.ets</a></td>
+<td>h-step in-sample forecasts for time series models.</td></tr>
+<tr><td style="width: 25%;"><a href="fitted.Arima.html">fitted.forecast_ARIMA</a></td>
+<td>h-step in-sample forecasts for time series models.</td></tr>
+<tr><td style="width: 25%;"><a href="fitted.Arima.html">fitted.modelAR</a></td>
+<td>h-step in-sample forecasts for time series models.</td></tr>
+<tr><td style="width: 25%;"><a href="fitted.Arima.html">fitted.nnetar</a></td>
+<td>h-step in-sample forecasts for time series models.</td></tr>
+<tr><td style="width: 25%;"><a href="fitted.Arima.html">fitted.tbats</a></td>
+<td>h-step in-sample forecasts for time series models.</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.html">forecast</a></td>
+<td>Forecasting time series</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.Arima.html">forecast.ar</a></td>
+<td>Forecasting using ARIMA or ARFIMA models</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.Arima.html">forecast.Arima</a></td>
+<td>Forecasting using ARIMA or ARFIMA models</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.baggedModel.html">forecast.baggedModel</a></td>
+<td>Forecasting using a bagged model</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.bats.html">forecast.bats</a></td>
+<td>Forecasting using BATS and TBATS models</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.html">forecast.default</a></td>
+<td>Forecasting time series</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.ets.html">forecast.ets</a></td>
+<td>Forecasting using ETS models</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.Arima.html">forecast.forecast_ARIMA</a></td>
+<td>Forecasting using ARIMA or ARFIMA models</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.Arima.html">forecast.fracdiff</a></td>
+<td>Forecasting using ARIMA or ARFIMA models</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.HoltWinters.html">forecast.HoltWinters</a></td>
+<td>Forecasting using Holt-Winters objects</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.lm.html">forecast.lm</a></td>
+<td>Forecast a linear model with possible time series components</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.mlm.html">forecast.mlm</a></td>
+<td>Forecast a multiple linear model with possible time series components</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.modelAR.html">forecast.modelAR</a></td>
+<td>Forecasting using user-defined model</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.mts.html">forecast.mts</a></td>
+<td>Forecasting time series</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.nnetar.html">forecast.nnetar</a></td>
+<td>Forecasting using neural network models</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.stl.html">forecast.stl</a></td>
+<td>Forecasting using stl objects</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.stl.html">forecast.stlm</a></td>
+<td>Forecasting using stl objects</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.StructTS.html">forecast.StructTS</a></td>
+<td>Forecasting using Structural Time Series models</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.bats.html">forecast.tbats</a></td>
+<td>Forecasting using BATS and TBATS models</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.html">forecast.ts</a></td>
+<td>Forecasting time series</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.ts.html">fortify.ts</a></td>
+<td>Automatically create a ggplot for time series objects</td></tr>
+<tr><td style="width: 25%;"><a href="fourier.html">fourier</a></td>
+<td>Fourier terms for modelling seasonality</td></tr>
+<tr><td style="width: 25%;"><a href="fourier.html">fourierf</a></td>
+<td>Fourier terms for modelling seasonality</td></tr>
+</table>
+
+<h2><a name="G">-- G --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="gas.html">gas</a></td>
+<td>Australian monthly gas production</td></tr>
+<tr><td style="width: 25%;"><a href="geom_forecast.html">GeomForecast</a></td>
+<td>Forecast plot</td></tr>
+<tr><td style="width: 25%;"><a href="geom_forecast.html">geom_forecast</a></td>
+<td>Forecast plot</td></tr>
+<tr><td style="width: 25%;"><a href="getResponse.html">getResponse</a></td>
+<td>Get response variable from time series model.</td></tr>
+<tr><td style="width: 25%;"><a href="getResponse.html">getResponse.ar</a></td>
+<td>Get response variable from time series model.</td></tr>
+<tr><td style="width: 25%;"><a href="getResponse.html">getResponse.Arima</a></td>
+<td>Get response variable from time series model.</td></tr>
+<tr><td style="width: 25%;"><a href="getResponse.html">getResponse.baggedModel</a></td>
+<td>Get response variable from time series model.</td></tr>
+<tr><td style="width: 25%;"><a href="getResponse.html">getResponse.bats</a></td>
+<td>Get response variable from time series model.</td></tr>
+<tr><td style="width: 25%;"><a href="getResponse.html">getResponse.default</a></td>
+<td>Get response variable from time series model.</td></tr>
+<tr><td style="width: 25%;"><a href="getResponse.html">getResponse.fracdiff</a></td>
+<td>Get response variable from time series model.</td></tr>
+<tr><td style="width: 25%;"><a href="getResponse.html">getResponse.lm</a></td>
+<td>Get response variable from time series model.</td></tr>
+<tr><td style="width: 25%;"><a href="getResponse.html">getResponse.mforecast</a></td>
+<td>Get response variable from time series model.</td></tr>
+<tr><td style="width: 25%;"><a href="getResponse.html">getResponse.tbats</a></td>
+<td>Get response variable from time series model.</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.acf.html">ggAcf</a></td>
+<td>ggplot (Partial) Autocorrelation and Cross-Correlation Function Estimation and Plotting</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.acf.html">ggCcf</a></td>
+<td>ggplot (Partial) Autocorrelation and Cross-Correlation Function Estimation and Plotting</td></tr>
+<tr><td style="width: 25%;"><a href="gghistogram.html">gghistogram</a></td>
+<td>Histogram with optional normal and kernel density functions</td></tr>
+<tr><td style="width: 25%;"><a href="gglagplot.html">gglagchull</a></td>
+<td>Time series lag ggplots</td></tr>
+<tr><td style="width: 25%;"><a href="gglagplot.html">gglagplot</a></td>
+<td>Time series lag ggplots</td></tr>
+<tr><td style="width: 25%;"><a href="ggmonthplot.html">ggmonthplot</a></td>
+<td>Create a seasonal subseries ggplot</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.acf.html">ggPacf</a></td>
+<td>ggplot (Partial) Autocorrelation and Cross-Correlation Function Estimation and Plotting</td></tr>
+<tr><td style="width: 25%;"><a href="seasonplot.html">ggseasonplot</a></td>
+<td>Seasonal plot</td></tr>
+<tr><td style="width: 25%;"><a href="ggmonthplot.html">ggsubseriesplot</a></td>
+<td>Create a seasonal subseries ggplot</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.acf.html">ggtaperedacf</a></td>
+<td>ggplot (Partial) Autocorrelation and Cross-Correlation Function Estimation and Plotting</td></tr>
+<tr><td style="width: 25%;"><a href="autoplot.acf.html">ggtaperedpacf</a></td>
+<td>ggplot (Partial) Autocorrelation and Cross-Correlation Function Estimation and Plotting</td></tr>
+<tr><td style="width: 25%;"><a href="tsdisplay.html">ggtsdisplay</a></td>
+<td>Time series display</td></tr>
+<tr><td style="width: 25%;"><a href="gold.html">gold</a></td>
+<td>Daily morning gold prices</td></tr>
+</table>
+
+<h2><a name="H">-- H --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="ses.html">holt</a></td>
+<td>Exponential smoothing forecasts</td></tr>
+<tr><td style="width: 25%;"><a href="ses.html">hw</a></td>
+<td>Exponential smoothing forecasts</td></tr>
+</table>
+
+<h2><a name="I">-- I --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="BoxCox.html">InvBoxCox</a></td>
+<td>Box Cox Transformation</td></tr>
+<tr><td style="width: 25%;"><a href="is.ets.html">is.acf</a></td>
+<td>Is an object a particular model type?</td></tr>
+<tr><td style="width: 25%;"><a href="is.ets.html">is.Arima</a></td>
+<td>Is an object a particular model type?</td></tr>
+<tr><td style="width: 25%;"><a href="is.ets.html">is.baggedModel</a></td>
+<td>Is an object a particular model type?</td></tr>
+<tr><td style="width: 25%;"><a href="is.ets.html">is.bats</a></td>
+<td>Is an object a particular model type?</td></tr>
+<tr><td style="width: 25%;"><a href="is.constant.html">is.constant</a></td>
+<td>Is an object constant?</td></tr>
+<tr><td style="width: 25%;"><a href="is.ets.html">is.ets</a></td>
+<td>Is an object a particular model type?</td></tr>
+<tr><td style="width: 25%;"><a href="is.forecast.html">is.forecast</a></td>
+<td>Is an object a particular forecast type?</td></tr>
+<tr><td style="width: 25%;"><a href="is.forecast.html">is.mforecast</a></td>
+<td>Is an object a particular forecast type?</td></tr>
+<tr><td style="width: 25%;"><a href="is.ets.html">is.modelAR</a></td>
+<td>Is an object a particular model type?</td></tr>
+<tr><td style="width: 25%;"><a href="is.ets.html">is.nnetar</a></td>
+<td>Is an object a particular model type?</td></tr>
+<tr><td style="width: 25%;"><a href="is.ets.html">is.nnetarmodels</a></td>
+<td>Is an object a particular model type?</td></tr>
+<tr><td style="width: 25%;"><a href="is.forecast.html">is.splineforecast</a></td>
+<td>Is an object a particular forecast type?</td></tr>
+<tr><td style="width: 25%;"><a href="is.ets.html">is.stlm</a></td>
+<td>Is an object a particular model type?</td></tr>
+</table>
+
+<h2><a name="M">-- M --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="ma.html">ma</a></td>
+<td>Moving-average smoothing</td></tr>
+<tr><td style="width: 25%;"><a href="meanf.html">meanf</a></td>
+<td>Mean Forecast</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.mts.html">mforecast</a></td>
+<td>Forecasting time series</td></tr>
+<tr><td style="width: 25%;"><a href="modelAR.html">modelAR</a></td>
+<td>Time Series Forecasts with a user-defined model</td></tr>
+<tr><td style="width: 25%;"><a href="monthdays.html">monthdays</a></td>
+<td>Number of days in each season</td></tr>
+<tr><td style="width: 25%;"><a href="mstl.html">mstl</a></td>
+<td>Multiple seasonal decomposition</td></tr>
+<tr><td style="width: 25%;"><a href="msts.html">msts</a></td>
+<td>Multi-Seasonal Time Series</td></tr>
+</table>
+
+<h2><a name="N">-- N --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="na.interp.html">na.interp</a></td>
+<td>Interpolate missing values in a time series</td></tr>
+<tr><td style="width: 25%;"><a href="naive.html">naive</a></td>
+<td>Naive and Random Walk Forecasts</td></tr>
+<tr><td style="width: 25%;"><a href="ndiffs.html">ndiffs</a></td>
+<td>Number of differences required for a stationary series</td></tr>
+<tr><td style="width: 25%;"><a href="nnetar.html">nnetar</a></td>
+<td>Neural Network Time Series Forecasts</td></tr>
+<tr><td style="width: 25%;"><a href="nsdiffs.html">nsdiffs</a></td>
+<td>Number of differences required for a seasonally stationary series</td></tr>
+</table>
+
+<h2><a name="O">-- O --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="ocsb.test.html">ocsb.test</a></td>
+<td>Osborn, Chui, Smith, and Birchenhall Test for Seasonal Unit Roots</td></tr>
+</table>
+
+<h2><a name="P">-- P --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Acf.html">Pacf</a></td>
+<td>(Partial) Autocorrelation and Cross-Correlation Function Estimation</td></tr>
+<tr><td style="width: 25%;"><a href="plot.Arima.html">plot.ar</a></td>
+<td>Plot characteristic roots from ARIMA model</td></tr>
+<tr><td style="width: 25%;"><a href="plot.Arima.html">plot.Arima</a></td>
+<td>Plot characteristic roots from ARIMA model</td></tr>
+<tr><td style="width: 25%;"><a href="plot.bats.html">plot.bats</a></td>
+<td>Plot components from BATS model</td></tr>
+<tr><td style="width: 25%;"><a href="plot.ets.html">plot.ets</a></td>
+<td>Plot components from ETS model</td></tr>
+<tr><td style="width: 25%;"><a href="plot.forecast.html">plot.forecast</a></td>
+<td>Forecast plot</td></tr>
+<tr><td style="width: 25%;"><a href="plot.mforecast.html">plot.mforecast</a></td>
+<td>Multivariate forecast plot</td></tr>
+<tr><td style="width: 25%;"><a href="plot.forecast.html">plot.splineforecast</a></td>
+<td>Forecast plot</td></tr>
+<tr><td style="width: 25%;"><a href="plot.bats.html">plot.tbats</a></td>
+<td>Plot components from BATS model</td></tr>
+<tr><td style="width: 25%;"><a href="Arima.html">print.ARIMA</a></td>
+<td>Fit ARIMA model to univariate time series</td></tr>
+<tr><td style="width: 25%;"><a href="baggedModel.html">print.baggedModel</a></td>
+<td>Forecasting using a bagged model</td></tr>
+<tr><td style="width: 25%;"><a href="bats.html">print.bats</a></td>
+<td>BATS model (Exponential smoothing state space model with Box-Cox transformation, ARMA errors, Trend and Seasonal components)</td></tr>
+<tr><td style="width: 25%;"><a href="CVar.html">print.CVar</a></td>
+<td>k-fold Cross-Validation applied to an autoregressive model</td></tr>
+<tr><td style="width: 25%;"><a href="ets.html">print.ets</a></td>
+<td>Exponential smoothing state space model</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.html">print.forecast</a></td>
+<td>Forecasting time series</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.mts.html">print.mforecast</a></td>
+<td>Forecasting time series</td></tr>
+<tr><td style="width: 25%;"><a href="modelAR.html">print.modelAR</a></td>
+<td>Time Series Forecasts with a user-defined model</td></tr>
+<tr><td style="width: 25%;"><a href="msts.html">print.msts</a></td>
+<td>Multi-Seasonal Time Series</td></tr>
+<tr><td style="width: 25%;"><a href="naive.html">print.naive</a></td>
+<td>Naive and Random Walk Forecasts</td></tr>
+<tr><td style="width: 25%;"><a href="nnetar.html">print.nnetar</a></td>
+<td>Neural Network Time Series Forecasts</td></tr>
+<tr><td style="width: 25%;"><a href="nnetar.html">print.nnetarmodels</a></td>
+<td>Neural Network Time Series Forecasts</td></tr>
+<tr><td style="width: 25%;"><a href="ocsb.test.html">print.OCSBtest</a></td>
+<td>Osborn, Chui, Smith, and Birchenhall Test for Seasonal Unit Roots</td></tr>
+<tr><td style="width: 25%;"><a href="tbats.html">print.tbats</a></td>
+<td>TBATS model (Exponential smoothing state space model with Box-Cox transformation, ARMA errors, Trend and Seasonal components)</td></tr>
+</table>
+
+<h2><a name="R">-- R --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="seasonal.html">remainder</a></td>
+<td>Extract components from a time series decomposition</td></tr>
+<tr><td style="width: 25%;"><a href="residuals.forecast.html">residuals.ar</a></td>
+<td>Residuals for various time series models</td></tr>
+<tr><td style="width: 25%;"><a href="residuals.forecast.html">residuals.ARFIMA</a></td>
+<td>Residuals for various time series models</td></tr>
+<tr><td style="width: 25%;"><a href="residuals.forecast.html">residuals.Arima</a></td>
+<td>Residuals for various time series models</td></tr>
+<tr><td style="width: 25%;"><a href="residuals.forecast.html">residuals.bats</a></td>
+<td>Residuals for various time series models</td></tr>
+<tr><td style="width: 25%;"><a href="residuals.forecast.html">residuals.ets</a></td>
+<td>Residuals for various time series models</td></tr>
+<tr><td style="width: 25%;"><a href="residuals.forecast.html">residuals.forecast</a></td>
+<td>Residuals for various time series models</td></tr>
+<tr><td style="width: 25%;"><a href="residuals.forecast.html">residuals.forecast_ARIMA</a></td>
+<td>Residuals for various time series models</td></tr>
+<tr><td style="width: 25%;"><a href="residuals.forecast.html">residuals.nnetar</a></td>
+<td>Residuals for various time series models</td></tr>
+<tr><td style="width: 25%;"><a href="residuals.forecast.html">residuals.stlm</a></td>
+<td>Residuals for various time series models</td></tr>
+<tr><td style="width: 25%;"><a href="residuals.forecast.html">residuals.tbats</a></td>
+<td>Residuals for various time series models</td></tr>
+<tr><td style="width: 25%;"><a href="residuals.forecast.html">residuals.tslm</a></td>
+<td>Residuals for various time series models</td></tr>
+<tr><td style="width: 25%;"><a href="naive.html">rwf</a></td>
+<td>Naive and Random Walk Forecasts</td></tr>
+</table>
+
+<h2><a name="S">-- S --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="seasadj.html">seasadj</a></td>
+<td>Seasonal adjustment</td></tr>
+<tr><td style="width: 25%;"><a href="seasadj.html">seasadj.decomposed.ts</a></td>
+<td>Seasonal adjustment</td></tr>
+<tr><td style="width: 25%;"><a href="seasadj.html">seasadj.mstl</a></td>
+<td>Seasonal adjustment</td></tr>
+<tr><td style="width: 25%;"><a href="seasadj.html">seasadj.seas</a></td>
+<td>Seasonal adjustment</td></tr>
+<tr><td style="width: 25%;"><a href="seasadj.html">seasadj.stl</a></td>
+<td>Seasonal adjustment</td></tr>
+<tr><td style="width: 25%;"><a href="seasadj.html">seasadj.tbats</a></td>
+<td>Seasonal adjustment</td></tr>
+<tr><td style="width: 25%;"><a href="seasonal.html">seasonal</a></td>
+<td>Extract components from a time series decomposition</td></tr>
+<tr><td style="width: 25%;"><a href="seasonaldummy.html">seasonaldummy</a></td>
+<td>Seasonal dummy variables</td></tr>
+<tr><td style="width: 25%;"><a href="seasonaldummy.html">seasonaldummyf</a></td>
+<td>Seasonal dummy variables</td></tr>
+<tr><td style="width: 25%;"><a href="seasonplot.html">seasonplot</a></td>
+<td>Seasonal plot</td></tr>
+<tr><td style="width: 25%;"><a href="ses.html">ses</a></td>
+<td>Exponential smoothing forecasts</td></tr>
+<tr><td style="width: 25%;"><a href="simulate.ets.html">simulate.ar</a></td>
+<td>Simulation from a time series model</td></tr>
+<tr><td style="width: 25%;"><a href="simulate.ets.html">simulate.Arima</a></td>
+<td>Simulation from a time series model</td></tr>
+<tr><td style="width: 25%;"><a href="simulate.ets.html">simulate.ets</a></td>
+<td>Simulation from a time series model</td></tr>
+<tr><td style="width: 25%;"><a href="simulate.ets.html">simulate.fracdiff</a></td>
+<td>Simulation from a time series model</td></tr>
+<tr><td style="width: 25%;"><a href="simulate.ets.html">simulate.lagwalk</a></td>
+<td>Simulation from a time series model</td></tr>
+<tr><td style="width: 25%;"><a href="simulate.ets.html">simulate.modelAR</a></td>
+<td>Simulation from a time series model</td></tr>
+<tr><td style="width: 25%;"><a href="simulate.ets.html">simulate.nnetar</a></td>
+<td>Simulation from a time series model</td></tr>
+<tr><td style="width: 25%;"><a href="sindexf.html">sindexf</a></td>
+<td>Forecast seasonal index</td></tr>
+<tr><td style="width: 25%;"><a href="naive.html">snaive</a></td>
+<td>Naive and Random Walk Forecasts</td></tr>
+<tr><td style="width: 25%;"><a href="splinef.html">splinef</a></td>
+<td>Cubic Spline Forecast</td></tr>
+<tr><td style="width: 25%;"><a href="geom_forecast.html">StatForecast</a></td>
+<td>Forecast plot</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.stl.html">stlf</a></td>
+<td>Forecasting using stl objects</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.stl.html">stlm</a></td>
+<td>Forecasting using stl objects</td></tr>
+<tr><td style="width: 25%;"><a href="subset.ts.html">subset.msts</a></td>
+<td>Subsetting a time series</td></tr>
+<tr><td style="width: 25%;"><a href="subset.ts.html">subset.ts</a></td>
+<td>Subsetting a time series</td></tr>
+<tr><td style="width: 25%;"><a href="Arima.html">summary.Arima</a></td>
+<td>Fit ARIMA model to univariate time series</td></tr>
+<tr><td style="width: 25%;"><a href="ets.html">summary.ets</a></td>
+<td>Exponential smoothing state space model</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.html">summary.forecast</a></td>
+<td>Forecasting time series</td></tr>
+<tr><td style="width: 25%;"><a href="forecast.mts.html">summary.mforecast</a></td>
+<td>Forecasting time series</td></tr>
+</table>
+
+<h2><a name="T">-- T --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Acf.html">taperedacf</a></td>
+<td>(Partial) Autocorrelation and Cross-Correlation Function Estimation</td></tr>
+<tr><td style="width: 25%;"><a href="Acf.html">taperedpacf</a></td>
+<td>(Partial) Autocorrelation and Cross-Correlation Function Estimation</td></tr>
+<tr><td style="width: 25%;"><a href="taylor.html">taylor</a></td>
+<td>Half-hourly electricity demand</td></tr>
+<tr><td style="width: 25%;"><a href="tbats.html">tbats</a></td>
+<td>TBATS model (Exponential smoothing state space model with Box-Cox transformation, ARMA errors, Trend and Seasonal components)</td></tr>
+<tr><td style="width: 25%;"><a href="tbats.components.html">tbats.components</a></td>
+<td>Extract components of a TBATS model</td></tr>
+<tr><td style="width: 25%;"><a href="thetaf.html">thetaf</a></td>
+<td>Theta method forecast</td></tr>
+<tr><td style="width: 25%;"><a href="seasonal.html">trendcycle</a></td>
+<td>Extract components from a time series decomposition</td></tr>
+<tr><td style="width: 25%;"><a href="tsclean.html">tsclean</a></td>
+<td>Identify and replace outliers and missing values in a time series</td></tr>
+<tr><td style="width: 25%;"><a href="tsCV.html">tsCV</a></td>
+<td>Time series cross-validation</td></tr>
+<tr><td style="width: 25%;"><a href="ets.html">tsdiag.ets</a></td>
+<td>Exponential smoothing state space model</td></tr>
+<tr><td style="width: 25%;"><a href="tsdisplay.html">tsdisplay</a></td>
+<td>Time series display</td></tr>
+<tr><td style="width: 25%;"><a href="tslm.html">tslm</a></td>
+<td>Fit a linear model with time series components</td></tr>
+<tr><td style="width: 25%;"><a href="tsoutliers.html">tsoutliers</a></td>
+<td>Identify and replace outliers in a time series</td></tr>
+</table>
+
+<h2><a name="W">-- W --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="msts.html">window.msts</a></td>
+<td>Multi-Seasonal Time Series</td></tr>
+<tr><td style="width: 25%;"><a href="wineind.html">wineind</a></td>
+<td>Australian total wine sales</td></tr>
+<tr><td style="width: 25%;"><a href="woolyrnq.html">woolyrnq</a></td>
+<td>Quarterly production of woollen yarn in Australia</td></tr>
+</table>
+
+<h2><a name="misc">-- misc --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="msts.html">`[.msts`</a></td>
+<td>Multi-Seasonal Time Series</td></tr>
+</table>
+</body></html>

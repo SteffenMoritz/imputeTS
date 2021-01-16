@@ -1,0 +1,31 @@
+Package: quantmod
+Type: Package
+Title: Quantitative Financial Modelling Framework
+Version: 0.4.18
+Authors@R: c(
+  person(given=c("Jeffrey","A."), family="Ryan", role=c("aut","cph")),
+  person(given=c("Joshua","M."), family="Ulrich", role=c("cre","aut"), email="josh.m.ulrich@gmail.com"),
+  person(given="Wouter", family="Thielen", role="ctb"),
+  person(given="Paul", family="Teetor", role="ctb"),
+  person(given="Steve", family="Bronder", role="ctb")
+  )
+Depends: R (>= 3.2.0), xts(>= 0.9-0), zoo, TTR(>= 0.2), methods
+Imports: curl
+Suggests: DBI,RMySQL,RSQLite,timeSeries,xml2,downloader,jsonlite(>=
+        1.1)
+Description: Specify, build, trade, and analyse quantitative financial trading strategies.
+LazyLoad: yes
+License: GPL-3
+URL: http://www.quantmod.com https://github.com/joshuaulrich/quantmod
+BugReports: https://github.com/joshuaulrich/quantmod/issues
+NeedsCompilation: no
+Packaged: 2020-12-08 16:05:30 UTC; josh
+Author: Jeffrey A. Ryan [aut, cph],
+  Joshua M. Ulrich [cre, aut],
+  Wouter Thielen [ctb],
+  Paul Teetor [ctb],
+  Steve Bronder [ctb]
+Maintainer: Joshua M. Ulrich <josh.m.ulrich@gmail.com>
+Repository: CRAN
+Date/Publication: 2020-12-09 08:30:12 UTC
+Built: R 4.0.2; ; 2020-12-10 11:37:31 UTC; unix

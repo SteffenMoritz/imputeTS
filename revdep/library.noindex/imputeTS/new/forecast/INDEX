@@ -1,0 +1,118 @@
+Acf                     (Partial) Autocorrelation and Cross-Correlation
+                        Function Estimation
+Arima                   Fit ARIMA model to univariate time series
+BoxCox                  Box Cox Transformation
+BoxCox.lambda           Automatic selection of Box Cox transformation
+                        parameter
+CV                      Cross-validation statistic
+CVar                    k-fold Cross-Validation applied to an
+                        autoregressive model
+StatForecast            Forecast plot
+accuracy                Accuracy measures for a forecast model
+arfima                  Fit a fractionally differenced ARFIMA model
+arima.errors            Errors from a regression model with ARIMA
+                        errors
+arimaorder              Return the order of an ARIMA or ARFIMA model
+auto.arima              Fit best ARIMA model to univariate time series
+autolayer               Create a ggplot layer appropriate to a
+                        particular data type
+autolayer.mts           Automatically create a ggplot for time series
+                        objects
+autoplot.acf            ggplot (Partial) Autocorrelation and
+                        Cross-Correlation Function Estimation and
+                        Plotting
+autoplot.decomposed.ts
+                        Plot time series decomposition components using
+                        ggplot
+autoplot.mforecast      Multivariate forecast plot
+baggedModel             Forecasting using a bagged model
+bats                    BATS model (Exponential smoothing state space
+                        model with Box-Cox transformation, ARMA errors,
+                        Trend and Seasonal components)
+bizdays                 Number of trading days in each season
+bld.mbb.bootstrap       Box-Cox and Loess-based decomposition
+                        bootstrap.
+checkresiduals          Check that residuals from a time series model
+                        look like white noise
+croston                 Forecasts for intermittent demand using
+                        Croston's method
+dm.test                 Diebold-Mariano test for predictive accuracy
+dshw                    Double-Seasonal Holt-Winters Forecasting
+easter                  Easter holidays in each season
+ets                     Exponential smoothing state space model
+findfrequency           Find dominant frequency of a time series
+fitted.ARFIMA           h-step in-sample forecasts for time series
+                        models.
+forecast                Forecasting time series
+forecast-package        Forecasting Functions for Time Series and
+                        Linear Models
+forecast.HoltWinters    Forecasting using Holt-Winters objects
+forecast.StructTS       Forecasting using Structural Time Series models
+forecast.baggedModel    Forecasting using a bagged model
+forecast.bats           Forecasting using BATS and TBATS models
+forecast.ets            Forecasting using ETS models
+forecast.fracdiff       Forecasting using ARIMA or ARFIMA models
+forecast.lm             Forecast a linear model with possible time
+                        series components
+forecast.mlm            Forecast a multiple linear model with possible
+                        time series components
+forecast.modelAR        Forecasting using user-defined model
+forecast.mts            Forecasting time series
+forecast.nnetar         Forecasting using neural network models
+forecast.stl            Forecasting using stl objects
+fourier                 Fourier terms for modelling seasonality
+gas                     Australian monthly gas production
+getResponse             Get response variable from time series model.
+gghistogram             Histogram with optional normal and kernel
+                        density functions
+gglagplot               Time series lag ggplots
+ggmonthplot             Create a seasonal subseries ggplot
+ggseasonplot            Seasonal plot
+ggtsdisplay             Time series display
+gold                    Daily morning gold prices
+is.acf                  Is an object a particular model type?
+is.constant             Is an object constant?
+is.forecast             Is an object a particular forecast type?
+ma                      Moving-average smoothing
+meanf                   Mean Forecast
+modelAR                 Time Series Forecasts with a user-defined model
+monthdays               Number of days in each season
+mstl                    Multiple seasonal decomposition
+msts                    Multi-Seasonal Time Series
+na.interp               Interpolate missing values in a time series
+ndiffs                  Number of differences required for a stationary
+                        series
+nnetar                  Neural Network Time Series Forecasts
+nsdiffs                 Number of differences required for a seasonally
+                        stationary series
+ocsb.test               Osborn, Chui, Smith, and Birchenhall Test for
+                        Seasonal Unit Roots
+plot.Arima              Plot characteristic roots from ARIMA model
+plot.bats               Plot components from BATS model
+plot.ets                Plot components from ETS model
+plot.forecast           Forecast plot
+residuals.forecast      Residuals for various time series models
+rwf                     Naive and Random Walk Forecasts
+seasadj                 Seasonal adjustment
+seasonal                Extract components from a time series
+                        decomposition
+seasonaldummy           Seasonal dummy variables
+ses                     Exponential smoothing forecasts
+simulate.ets            Simulation from a time series model
+sindexf                 Forecast seasonal index
+splinef                 Cubic Spline Forecast
+subset.ts               Subsetting a time series
+taylor                  Half-hourly electricity demand
+tbats                   TBATS model (Exponential smoothing state space
+                        model with Box-Cox transformation, ARMA errors,
+                        Trend and Seasonal components)
+tbats.components        Extract components of a TBATS model
+thetaf                  Theta method forecast
+tsCV                    Time series cross-validation
+tsclean                 Identify and replace outliers and missing
+                        values in a time series
+tslm                    Fit a linear model with time series components
+tsoutliers              Identify and replace outliers in a time series
+wineind                 Australian total wine sales
+woolyrnq                Quarterly production of woollen yarn in
+                        Australia

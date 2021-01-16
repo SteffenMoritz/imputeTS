@@ -16,12 +16,28 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(testthat)
+Warning message:
+package 'testthat' was built under R version 4.0.2 
 > library(naniar)
 > 
 > test_check("naniar")
-══ testthat results  ═══════════════════════════════════════════════════════════
-[ OK: 557 | SKIPPED: 32 | WARNINGS: 0 | FAILED: 0 ]
+══ Skipped tests ═══════════════════════════════════════════════════════════════
+● On CRAN (33)
+
+══ Warnings ════════════════════════════════════════════════════════════════════
+── Warning (test-geom-miss-point.R:12:1): (code run outside of `test_that()`) ──
+package 'ggplot2' was built under R version 4.0.2
+Backtrace:
+ 1. base::library(ggplot2) test-geom-miss-point.R:12:0
+ 2. base:::testRversion(pkgInfo, package, pkgpath)
+── Warning (test-miss-var-run.R:3:1): (code run outside of `test_that()`) ──────
+package 'dplyr' was built under R version 4.0.2
+Backtrace:
+ 1. base::library(dplyr) test-miss-var-run.R:3:0
+ 2. base:::testRversion(pkgInfo, package, pkgpath)
+
+[ FAIL 0 | WARN 2 | SKIP 33 | PASS 525 ]
 > 
 > proc.time()
    user  system elapsed 
- 10.309   0.277  10.745 
+ 10.316   0.421  12.326 

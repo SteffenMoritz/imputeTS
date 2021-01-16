@@ -5,7 +5,7 @@
 * using options ‘--no-manual --no-build-vignettes’
 * checking for file ‘naniar/DESCRIPTION’ ... OK
 * checking extension type ... Package
-* this is package ‘naniar’ version ‘0.5.2’
+* this is package ‘naniar’ version ‘0.6.0’
 * package encoding: UTF-8
 * checking package namespace information ... OK
 * checking package dependencies ... OK

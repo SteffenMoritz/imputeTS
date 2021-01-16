@@ -5,7 +5,8 @@
 * using options ‘--no-manual --no-build-vignettes’
 * checking for file ‘EventDetectR/DESCRIPTION’ ... OK
 * checking extension type ... Package
-* this is package ‘EventDetectR’ version ‘0.3.4’
+* this is package ‘EventDetectR’ version ‘0.3.5’
+* package encoding: UTF-8
 * checking package namespace information ... OK
 * checking package dependencies ... OK
 * checking if this is a source package ... OK

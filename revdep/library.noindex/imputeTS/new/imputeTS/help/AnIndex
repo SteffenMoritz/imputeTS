@@ -25,6 +25,10 @@ na_remove	na_remove
 na_replace	na_replace
 na_seadec	na_seadec
 na_seasplit	na_seasplit
+plotNA.distribution	plotNA.distribution
+plotNA.distributionBar	plotNA.distributionBar
+plotNA.gapsize	plotNA.gapsize
+plotNA.imputations	plotNA.imputations
 reexports	reexports
 statsNA	statsNA
 tsAirgap	tsAirgap

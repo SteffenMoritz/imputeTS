@@ -674,7 +674,7 @@ Loading required package: polspline
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  4.529 0.22 4.868 0 0 
+Time elapsed:  5.039 0.303 5.539 0 0 
 > grDevices::dev.off()
 null device 
           1 

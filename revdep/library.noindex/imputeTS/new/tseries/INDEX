@@ -1,0 +1,42 @@
+NelPlo                  Nelson-Plosser Macroeconomic Time Series
+USeconomic              U.S. Economic Variables
+adf.test                Augmented Dickey-Fuller Test
+arma                    Fit ARMA Models to Time Series
+arma-methods            Methods for Fitted ARMA Models
+bds.test                BDS Test
+bev                     Beveridge Wheat Price Index, 1500-1869.
+camp                    Mount Campito Yearly Treering Data, -3435-1969.
+garch                   Fit GARCH Models to Time Series
+garch-methods           Methods for Fitted GARCH Models
+get.hist.quote          Download Historical Finance Data
+ice.river               Icelandic River Data
+irts                    Irregularly Spaced Time-Series
+irts-functions          Basic Functions for Irregular Time-Series
+                        Objects
+irts-methods            Methods for Irregular Time-Series Objects
+jarque.bera.test        Jarque-Bera Test
+kpss.test               KPSS Test for Stationarity
+maxdrawdown             Maximum Drawdown or Maximum Loss
+na.remove               NA Handling Routines for Time Series
+nino                    Sea Surface Temperature (SST) Nino 3 and Nino
+                        3.4 Indices
+plotOHLC                Plot Open-High-Low-Close Bar Chart
+po.test                 Phillips-Ouliaris Cointegration Test
+portfolio.optim         Portfolio Optimization
+pp.test                 Phillips-Perron Unit Root Test
+quadmap                 Quadratic Map (Logistic Equation)
+read.matrix             Read Matrix Data
+read.ts                 Read Time Series Data
+runs.test               Runs Test
+seqplot.ts              Plot Two Time Series
+sharpe                  Sharpe Ratio
+sterling                Sterling Ratio
+summary.arma            Summarizing ARMA Model Fits
+summary.garch           Summarizing GARCH Model Fits
+surrogate               Generate Surrogate Data and Statistics
+tcm                     Monthly Yields on Treasury Securities
+tcmd                    Daily Yields on Treasury Securities
+terasvirta.test         Teraesvirta Neural Network Test for
+                        Nonlinearity
+tsbootstrap             Bootstrap for General Stationary Data
+white.test              White Neural Network Test for Nonlinearity

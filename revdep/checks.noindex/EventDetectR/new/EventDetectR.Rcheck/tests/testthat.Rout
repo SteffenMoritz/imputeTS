@@ -16,13 +16,48 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(testthat)
+Warning message:
+package 'testthat' was built under R version 4.0.2 
 > 
 > test_check("EventDetectR")
 Loading required package: EventDetectR
 [1] "EDS is working on index: 500"
-══ testthat results  ═══════════════════════════════════════════════════════════
-[ OK: 26 | SKIPPED: 2 | WARNINGS: 3 | FAILED: 0 ]
+══ Skipped tests ═══════════════════════════════════════════════════════════════
+● On CRAN (2)
+
+══ Warnings ════════════════════════════════════════════════════════════════════
+── Warning (test-detectionQuality.R:5:15): confusionMatrix works ───────────────
+package 'ggplot2' was built under R version 4.0.2
+Backtrace:
+ 1. base::require("caret") test-detectionQuality.R:5:14
+ 6. base::library(...)
+ 7. base::.getRequiredPackages2(pkgInfo, quietly = quietly)
+ 8. base::library(...)
+ 9. base:::testRversion(pkgInfo, package, pkgpath)
+── Warning (test-detectionQuality.R:5:15): confusionMatrix works ───────────────
+package 'e1071' was built under R version 4.0.2
+Backtrace:
+ 1. base::require("e1071") test-detectionQuality.R:5:14
+ 6. base::library(...)
+ 7. base:::testRversion(pkgInfo, package, pkgpath)
+── Warning (test-eventClassification.R:68:15): neural network prediction works ──
+Some of the variables in your data set contain no variance,
+                        they will be ignored in the event detection process
+Backtrace:
+ 1. EventDetectR::buildEDModel(...) test-eventClassification.R:68:14
+── Warning (test-eventClassification.R:82:15): neural network prediction works ──
+Some of the variables in your data set contain no variance,
+                        they will be ignored in the event detection process
+Backtrace:
+ 1. EventDetectR::buildEDModel(...) test-eventClassification.R:82:14
+── Warning (test-eventClassification.R:83:15): neural network prediction works ──
+Some of the variables in your data set contain no variance,
+                        they will be ignored in the event detection process
+Backtrace:
+ 1. EventDetectR::buildEDModel(...) test-eventClassification.R:83:14
+
+[ FAIL 0 | WARN 5 | SKIP 2 | PASS 24 ]
 > 
 > proc.time()
    user  system elapsed 
- 32.515   0.732  34.600 
+ 28.356   0.842  30.273 

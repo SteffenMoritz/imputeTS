@@ -83,7 +83,7 @@ Backward - NOCB)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">imputeTS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.2</span>
       </span>
     </div>
 
@@ -159,17 +159,17 @@ object in which missing values shall be replaced</p></td>
     <tr>
       <th>option</th>
       <td><p>Algorithm to be used. Accepts the following input:</p><ul>
-<li><p>"locf" - for Last Observation Carried Forward</p></li>
+<li><p>"locf" - for Last Observation Carried Forward (default choice)</p></li>
 <li><p>"nocb" - for Next Observation Carried Backward</p></li>
 </ul></td>
     </tr>
     <tr>
       <th>na_remaining</th>
       <td><p>Method to be used for remaining NAs.</p><ul>
+<li><p>"rev" - to perform nocb / locf from the reverse direction (default choice)</p></li>
 <li><p>"keep" - to return the series with NAs</p></li>
 <li><p>"rm" - to remove remaining NAs</p></li>
 <li><p>"mean" - to replace remaining NAs by overall mean</p></li>
-<li><p>"rev" - to perform nocb / locf from the reverse direction</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -188,15 +188,39 @@ treat long runs of NA afterwards separately.</p></td>
 object (dependent on given input at parameter x)</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Replaces each missing value with the most recent present value
-prior to it (Last Observation Carried Forward- LOCF). This can also be
-done from the reverse direction -starting from the back (Next Observation
-Carried Backward - NOCB). Both options have the issue, that NAs at the
-beginning (or for nocb at the end) of the time series cannot be imputed
-(since there is no last value to be carried forward present yet). In this
-case there are remaining NAs in the imputed time series. Since this only
-concerns very few values at the beginning of the series, na_remaining
-offers some quick solutions to get a series without NAs back.</p>
+    
+<h3>General Functionality</h3>
+
+
+<p>Replaces each missing value with the most recent present value
+prior to it (Last Observation Carried Forward - LOCF). This can also be
+done in reverse direction, starting from the end of the series (then
+called Next Observation Carried Backward - NOCB).</p>
+
+<h3>Handling for NAs at the beginning of the series</h3>
+
+
+<p>In case one or more successive observations directly at the start of the
+time series are NA, there exists no 'last value' yet, that can be carried
+forward. Thus, no LOCF imputation can be performed for these NAs. As soon
+as the first non-NA value appears, LOCF can be performed as expected. The
+same applies to NOCB, but from the opposite direction.</p>
+<p>While this problem might appear seldom and will only affect a very small
+amount of values at the beginning, it is something to consider.
+The <code>na_remaining</code> parameter helps to define, what should happen with these
+values at the start, that would remain NA after pure LOCF.</p>
+<p>Default setting is <code>na_remaining = "rev"</code>, which performs nocb / locf from
+the other direction to fill these NAs. So a NA at the beginning will be
+filled with the next non-NA value appearing in the series.</p>
+<p>With <code>na_remaining = "keep"</code> NAs at the beginning (that can not be imputed
+with pure LOCF) are just left as remaining NAs.</p>
+<p>With <code>na_remaining = "rm"</code> NAs at the beginning of the series are completely
+removed. Thus, the time series is basically shortened.</p>
+<p>Also available is <code>na_remaining = "mean"</code>, which uses the overall mean of the
+time series to replace these remaining NAs. (but beware, mean is usually
+not a good imputation choice - even if it  only affects the values at the
+beginning)</p>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='na_interpolation.html'>na_interpolation</a></code>,

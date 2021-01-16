@@ -16,6 +16,9 @@ Thanks to Miroslaw Janik for issue reporting.
 
 * ggplot_na_intervals, has now percentages with % sign (e.g. 10%) on y-scale instead of just numbers (e.g. 0,1)
   (suggestion from Miroslaw Janik)
+  
+* Added some figures and the Cheat Sheet .pptx to .Rbuildignore to avoid CRAN warning about  
+  package size. These files and figures were not needed for the CRAN version. 
 
 
 ## Changes in Version 3.1

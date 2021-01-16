@@ -1,0 +1,72 @@
+.quantmodEnv            Internal quantmod Objects
+Delt                    Calculate Percent Change
+Lag                     Lag a Time Series
+Next                    Advance a Time Series
+OHLC.Transformations    Extract and Transform OHLC Time-Series Columns
+TA                      Add Technical Indicator to Chart
+addADX                  Add Directional Movement Index
+addBBands               Add Bollinger Bands to Chart
+addCCI                  Add Commodity Channel Index
+addExpiry               Add Contract Expiration Bars to Chart
+addMA                   Add Moving Average to Chart
+addMACD                 Add Moving Average Convergence Divergence to
+                        Chart
+addROC                  Add Rate Of Change to Chart
+addRSI                  Add Relative Strength Index to Chart
+addSAR                  Add Parabolic Stop and Reversal to Chart
+addSMI                  Add Stochastic Momentum Indicator to Chart
+addVo                   Add Volume to Chart
+addWPR                  Add William's Percent R to Chart
+adjustOHLC              Adjust Open,High,Low,Close Prices For Splits
+                        and Dividends
+attachSymbols           Attach and Flush DDB
+buildData               Create Data Object for Modelling
+buildModel              Build quantmod model given specified fitting
+                        method
+chartSeries             Create Financial Charts
+chartTheme              Create A Chart Theme
+chart_Series            Experimental Charting Version 2
+chob-class              A Chart Object Class
+chobTA-class            A Technical Analysis Chart Object
+create.binding          Create DDB Bindings
+findPeaks               Find Peaks and Valleys In A Series
+fittedModel             quantmod Fitted Objects
+getDividends            Load Financial Dividend Data
+getFX                   Download Exchange Rates
+getFinancials           Download and View Financial Statements
+getMetals               Download Daily Metals Prices
+getModelData            Update model's dataset
+getOptionChain          Download Option Chains
+getQuote                Download Current Stock Quote
+getSplits               Load Financial Split Data
+getSymbols              Load and Manage Data from Multiple Sources
+getSymbols.FRED         Download Federal Reserve Economic Data -
+                        FRED(R)
+getSymbols.MySQL        Retrieve Data from MySQL Database
+getSymbols.SQLite       Retrieve Data from SQLite Database
+getSymbols.av           Download OHLC Data from Alpha Vantage
+getSymbols.csv          Load Data from csv File
+getSymbols.oanda        Download Currency and Metals Data from
+                        Oanda.com
+getSymbols.rda          Load Data from R Binary File
+getSymbols.tiingo       Download OHLC Data from Tiingo
+getSymbols.yahoo        Download OHLC Data From Yahoo Finance
+getSymbols.yahooj       Download OHLC Data From Yahoo! Japan Finance
+has.OHLC                Check For OHLC Data
+importDefaults          Manage Default Argument Values for quantmod
+                        Functions
+is.quantmod             Test If Object of Type quantmod
+modelData               Extract Dataset Created by specifyModel
+modelSignal             Extract Model Signal Object
+newTA                   Create A New TA Indicator For chartSeries
+options.expiry          Calculate Contract Expirations
+periodReturn            Calculate Periodic Returns
+quantmod-class          Class "quantmod"
+quantmod-package        Quantitative Financial Modelling Framework
+quantmod.OHLC           Create Open High Low Close Object
+saveChart               Save Chart to External File
+setSymbolLookup         Manage Symbol Lookup Table
+setTA                   Manage TA Argument Lists
+specifyModel            Specify Model Formula For quantmod Process
+tradeModel              Simulate Trading of Fitted quantmod Object
+zoomChart               Change Zoom Level Of Current Chart
