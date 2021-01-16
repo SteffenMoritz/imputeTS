@@ -1,4 +1,0 @@
-gridtext                Improved text rendering support for grid
-                        graphics
-richtext_grob           Draw formatted text labels
-textbox_grob            Draw formatted multi-line text with word wrap
