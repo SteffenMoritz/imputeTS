@@ -81,41 +81,44 @@
 #'  \code{\link[imputeTS]{ggplot_na_imputations}}
 #'
 #' @examples
-#' # Example 1: Visualize the missing values in tsNH4 time series
+#' # Example 1: Visualize the missing values in tsNH4 time series as percentages
 #' ggplot_na_intervals(tsNH4)
-#'
-#' # Example 2: Visualize the missing values in tsHeating time series
+#' 
+#' # Example 2: Visualize the missing values in tsNH4 time series as counts 
+#' ggplot_na_intervals(tsNH4, measure = "count")
+#' 
+#' # Example 3: Visualize the missing values in tsHeating time series
 #' ggplot_na_intervals(tsHeating)
 #'
-#' # Example 3: Same as example 1, just written with pipe operator
+#' # Example 4: Same as example 1, just written with pipe operator
 #' tsNH4 %>% ggplot_na_intervals()
 #' 
-#' # Example 4: Visualize NAs in tsNH4 - exactly 8 intervals
+#' # Example 5: Visualize NAs in tsNH4 - exactly 8 intervals
 #' ggplot_na_intervals(tsNH4, number_intervals = 8)
 #' 
-#' # Example 5: Visualize NAs in tsNH4 - 300 observations per interval
+#' # Example 6: Visualize NAs in tsNH4 - 300 observations per interval
 #' ggplot_na_intervals(tsNH4, interval_size = 300)
 #' 
-#' # Example 6: Visualize NAs in tsAirgap - different color for NAs
+#' # Example 7: Visualize NAs in tsAirgap - different color for NAs
 #' # Plot adjustments via ggplot_na_intervals function parameters
 #' ggplot_na_intervals(tsAirgap, color_missing = "pink")
 #'
-#' # Example 7: Visualize NAs in tsNH4 - different theme
+#' # Example 8: Visualize NAs in tsNH4 - different theme
 #' # Plot adjustments via ggplot_na_intervals function parameters
 #' ggplot_na_intervals(tsNH4, theme = ggplot2::theme_classic())
 #'
-#' # Example 8: Visualize NAs in tsAirgap - title, subtitle in center
+#' # Example 9: Visualize NAs in tsAirgap - title, subtitle in center
 #' # Plot adjustments via ggplot2 syntax
 #' ggplot_na_intervals(tsAirgap) +
 #'   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
 #'   ggplot2::theme(plot.subtitle = ggtext::element_markdown(hjust = 0.5))
 #'
-#' # Example 9: Visualize NAs in tsAirgap - title in center, no subtitle
+#' # Example 10: Visualize NAs in tsAirgap - title in center, no subtitle
 #' # Plot adjustments via ggplot2 syntax and function parameters
 #' ggplot_na_intervals(tsAirgap, subtitle = NULL) +
 #'   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
 #'
-#' # Example 10: Visualize NAs in tsAirgap - x-axis texts with angle
+#' # Example 11: Visualize NAs in tsAirgap - x-axis texts with angle
 #' # Plot adjustments via ggplot2 syntax and function parameters
 #' ggplot_na_intervals(tsAirgap, color_missing = "grey") +
 #'   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1))
@@ -282,7 +285,6 @@ ggplot_na_intervals <- function(x,
       panel.grid.minor.x = ggplot2::element_blank(),
     ) +
     ggplot2::scale_x_continuous(expand = c(0, 0)) +
-    ggplot2::scale_y_continuous(expand = c(0, 0)) +
     ggplot2::labs(title = title, subtitle = subtitle) +
     ggplot2::xlab(xlab) +
     ggplot2::ylab(ylab)
@@ -291,12 +293,14 @@ ggplot_na_intervals <- function(x,
   if (measure == "percent") {
     gg <- gg + ggplot2::stat_bin(ggplot2::aes(y = ggplot2::after_stat(count / binwidth)),
       col = color_border, breaks = breaks, closed = "right"
-    )
+    ) + 
+    ggplot2::scale_y_continuous(expand = c(0, 0), labels = function(x) paste0(x*100, "%"))
   }
   else {
     gg <- gg + ggplot2::stat_bin(ggplot2::aes(y = ggplot2::after_stat(count)),
       col = color_border, breaks = breaks, closed = "right"
-    )
+    ) +  
+    ggplot2::scale_y_continuous(expand = c(0, 0))
   }
 
   return(gg)

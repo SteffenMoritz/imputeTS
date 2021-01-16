@@ -1,6 +1,8 @@
 ## Changes in Version 3.2
+
 Thanks to Mark J. Lamias for bug / issue reporting.
 Thanks to Cyrus Mohammadian for bug reporting.
+Thanks to Miroslaw Janik for issue reporting. 
 
 * Fix to remove CRAN note - removed not used utils from DESCRIPTION imports
 
@@ -12,11 +14,14 @@ Thanks to Cyrus Mohammadian for bug reporting.
 
 * Updated na_locf documentation to make behavior of na_remaining parameter more clear (issue reported by Mark J. Lamias)
 
+* ggplot_na_intervals, has now percentages with % sign (e.g. 10%) on y-scale instead of just numbers (e.g. 0,1)
+  (suggestion from Miroslaw Janik)
+
 
 ## Changes in Version 3.1
-Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting, 
-Thanks to Earo Wang for speedup of plotNA.gapsize,
-Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options, new unit tests
+Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting. 
+Thanks to Earo Wang for speedup of plotNA.gapsize.
+Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options, new unit tests.
 
 * Plotting functions are all in ggplot now (way better looking). Additionally they got renamed accordingly ggplot_na_distribution, ggplot_na_intervals, ggplot_na_gapsize, ggplot_na_imputations.
 
@@ -53,8 +58,8 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
 
 ## Changes in Version 3.0
 
-Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs
-Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementation
+Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs.
+Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementation.
 
  * tibble and tstibble compatibility
  
