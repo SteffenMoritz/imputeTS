@@ -36,7 +36,7 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
  it requires no minimum of non-NA values (reported by Jan - jmablans)
  
 * Improved na.random input check (usable with all NA input now if upper and lower bound
-  paramters are exlicitly set to numeric values)
+  paramters are explicitly set to numeric values)
 
 * Additional unit tests for the plotting functions
 

@@ -27,7 +27,7 @@ to the heating time series except that no value is missing.
 The time series originates from the GECCO Industrial Challenge 2015.
 This Challenge was about "Recovering missing information in heating system operating data".
 Goal was to impute missing values in heating system sensor data as accurate as possible.
-(\url{https://doi.org/10.5281/zenodo.3884899})
+(\doi{10.5281/zenodo.3884899})
 
 In order to use this series for comparing imputation algorithm results,
 there are two time series provided. One series without missing values, which can
