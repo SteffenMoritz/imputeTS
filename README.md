@@ -157,7 +157,7 @@ If you found a bug or have suggestions, feel free to get in contact via steffen.
 
 
 ### Version
-**3.2**
+**3.3**
 
 ### License
 GPL-3
