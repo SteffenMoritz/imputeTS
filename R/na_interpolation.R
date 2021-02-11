@@ -59,7 +59,7 @@
 #' @importFrom magrittr %>%
 #' @export
 
-na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
+na_interpolation <- function(x, option = "linear", maxgap = Inf, rule = 2, ...) {
   data <- x
 
   #----------------------------------------------------------
@@ -146,7 +146,7 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
     data_vec <- as.vector(data)
 
     if (option == "linear") {
-      interp <- stats::approx(indx, data_vec[indx], 1:n, rule = 2, ...)$y
+      interp <- stats::approx(indx, data_vec[indx], 1:n, rule = rule, ...)$y
     }
     else if (option == "spline") {
       interp <- stats::spline(indx, data_vec[indx], n = n, ...)$y
