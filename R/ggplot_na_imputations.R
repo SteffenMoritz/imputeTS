@@ -104,7 +104,7 @@
 #'  \code{\link[imputeTS]{ggplot_na_gapsize}}
 #'
 #' @examples
-#' # Example 1: Visualize imputation by na.mean
+#' # Example 1: Visualize imputation by na_mean
 #' imp_mean <- na_mean(tsAirgap)
 #' ggplot_na_imputations(tsAirgap, imp_mean)
 #'
