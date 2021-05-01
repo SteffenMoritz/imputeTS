@@ -108,7 +108,7 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (sum(!missindx) < 2) {
-      stop("Input data needs at least 2 non-NA data point for applying na_interpolation")
+      stop("Input data needs at least 2 non-NA data points for applying na_interpolation")
     }
 
     # 1.4 Checks and corrections for wrong data dimension

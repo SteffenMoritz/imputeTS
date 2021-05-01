@@ -102,7 +102,7 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (sum(!missindx) < 2 && !(!is.null(upper_bound) && !is.null(lower_bound) )) {
-      stop("Input data needs at least 2 non-NA data point for applying na_random 
+      stop("Input data needs at least 2 non-NA data points for applying na_random 
            with default lower_bound and upper_bound settings.")
     }
 

@@ -1,6 +1,6 @@
 ## Changes in Version 3.3
 
-*
+* Corrected typo in 'Input data needs at least x non-NA data points' error message
 
 
 ## Changes in Version 3.2

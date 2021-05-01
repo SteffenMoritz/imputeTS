@@ -146,7 +146,7 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (sum(!missindx) < 3) {
-      stop("Input data needs at least 3 non-NA data point for applying na_kalman")
+      stop("Input data needs at least 3 non-NA data points for applying na_kalman")
     }
 
 

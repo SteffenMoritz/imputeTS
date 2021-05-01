@@ -107,7 +107,7 @@ na_seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, ma
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (sum(!missindx) < 3) {
-      stop("Input data needs at least 3 non-NA data point for applying na_seadec")
+      stop("Input data needs at least 3 non-NA data points for applying na_seadec")
     }
 
     # 1.4 Checks and corrections for wrong data dimension
