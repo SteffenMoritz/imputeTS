@@ -108,14 +108,16 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (sum(!missindx) < 2) {
-      stop("Input data needs at least 2 non-NA data points for applying na_interpolation")
+      warning("No imputation performed: Input data needs at least 2 non-NA data points for applying na_interpolation")
+      return(data)
     }
 
     # 1.4 Checks and corrections for wrong data dimension
 
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
-      stop("Wrong input type for parameter x")
+      warning("No imputation performed: Wrong input type for parameter x")
+      return(data)
     }
 
     # Altering multivariate objects with 1 column (which are essentially
@@ -126,7 +128,8 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
 
     # 1.5 Check if input is numeric
     if (!is.numeric(data)) {
-      stop("Input x is not numeric")
+      warning("No imputation performed: Input x is not numeric")
+      return(data)
     }
 
     ##

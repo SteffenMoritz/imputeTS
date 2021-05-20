@@ -134,7 +134,7 @@ of the function is a ggplot2 object. Also take a look at the Examples
 to see how adjustments are made.
 }
 \examples{
-# Example 1: Visualize imputation by na.mean
+# Example 1: Visualize imputation by na_mean
 imp_mean <- na_mean(tsAirgap)
 ggplot_na_imputations(tsAirgap, imp_mean)
 
