@@ -1,6 +1,6 @@
 Package: imputeTS
 Version: 3.3
-Date: 2021-02-01
+Date: 2021-06-01
 Title: Time Series Missing Value Imputation
 Description: Imputation (replacement) of missing values 
              in univariate time series. 
