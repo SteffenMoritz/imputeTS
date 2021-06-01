@@ -10,4 +10,4 @@ r_github_packages:
   - SteffenMoritz/imputeTS
 
 after_success:
-  - Rscript -e 'library(covr);codecov()'
+  - Rscript -e 'covr::codecov()'

@@ -38,7 +38,7 @@ Imports:
     magrittr,
     Rcpp
 Suggests:
-    testthat,  R.rsp, knitr, zoo, timeSeries, tis, xts, tibble, tsibble, rmarkdown
+    testthat,  R.rsp, knitr, zoo, timeSeries, tis, xts, tibble, tsibble, rmarkdown, covr
 License: GPL-3
 VignetteBuilder: R.rsp, knitr, rmarkdown
 RoxygenNote: 7.1.1
