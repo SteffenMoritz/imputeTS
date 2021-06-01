@@ -5,8 +5,5 @@ cache: packages
 
 sudo: required
 
-r_github_packages:
-  - SteffenMoritz/imputeTS
-
 after_success:
   - Rscript -e 'covr::codecov()'
