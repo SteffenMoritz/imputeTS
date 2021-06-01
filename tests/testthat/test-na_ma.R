@@ -1,7 +1,7 @@
 context("na_ma")
 
-test_that("All NA vector throws error", {
-  expect_error(na_ma(c(NA, NA, NA, NA, NA)))
+test_that("All NA vector gives warning", {
+  expect_warning(na_ma(c(NA, NA, NA, NA, NA)))
 })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)", {
@@ -65,11 +65,11 @@ test_that("Imputation works for data.frame", {
 })
 
 
-test_that("Error for wrong input for k parameter", {
+test_that("Warning for wrong input for k parameter", {
   expect_error(na_ma(tsAirgap, k = -1))
 })
 
-test_that("Error for wrong input for weighting parameter", {
+test_that("Warning for wrong input for weighting parameter", {
   expect_error(na_ma(tsAirgap, weighting = "Wrong"))
 })
 

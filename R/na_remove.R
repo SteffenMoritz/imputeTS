@@ -41,6 +41,9 @@
 #' @export
 
 na_remove <- function(x) {
+  
+  # Variable 'data' is used for all transformations to the time series
+  # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
 
 
@@ -70,7 +73,7 @@ na_remove <- function(x) {
 
     # 1.1 Check if NAs are present
     if (!anyNA(data)) {
-      return(data)
+      return(x)
     }
 
     # 1.2 special handling data types
@@ -80,7 +83,8 @@ na_remove <- function(x) {
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (all(missindx)) {
-      stop("Input data has only NAs")
+      warning("No action performed: Input data has only NAs")
+      return(x)
     }
 
 
@@ -88,7 +92,8 @@ na_remove <- function(x) {
 
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
-      stop("Wrong input type for parameter x")
+      warning("No action performed: Wrong input type for parameter x")
+      return(x)
     }
 
     # Altering multivariate objects with 1 column (which are essentially
@@ -97,10 +102,6 @@ na_remove <- function(x) {
       data <- data[, 1]
     }
 
-    # 1.5 Check if input is numeric
-    if (!is.numeric(data)) {
-      stop("Input x is not numeric")
-    }
 
     ##
     ## End Input Check and Transformation

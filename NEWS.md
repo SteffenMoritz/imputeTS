@@ -1,6 +1,10 @@
 ## Changes in Version 3.3
+Thanks to Sabrina Krys for bug / issue reporting.
 
 * Corrected typo in 'Input data needs at least x non-NA data points' error message
+
+* Bugfix for issue when using imputeTS together with pipes. For some specific cases the  input checks performed by imputeTS stopped the whole pipe workflow. To prevent this, stop() is now only called, when the  user supplied imputeTS algorithm parameter options are wrong or misspelled. Unsupported input data will only give a warning() in the future (and of course don't perform any action on the data). Thus, there is no call to stop(), that cancels the whole pipe workflow. This was e.g. a problem when group_by lead to single all NA subsets - which failed the input check and then stopped the whole pipe workflow.
+(issue reported by Sabrina Krys)
 
 
 ## Changes in Version 3.2

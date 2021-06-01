@@ -31,41 +31,42 @@
 #' @return Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
 #' object (dependent on given input at parameter x)
 #'
-#' @details 
-#' 
+#' @details
+#'
 #' ## General Functionality
 #' Replaces each missing value with the most recent present value
 #' prior to it (Last Observation Carried Forward - LOCF). This can also be
-#' done in reverse direction, starting from the end of the series (then 
-#' called Next Observation Carried Backward - NOCB). 
-#' 
-#' 
-#' ## Handling for NAs at the beginning of the series 
-#' In case one or more successive observations directly at the start of the 
+#' done in reverse direction, starting from the end of the series (then
+#' called Next Observation Carried Backward - NOCB).
+#'
+#'
+#' ## Handling for NAs at the beginning of the series
+#' In case one or more successive observations directly at the start of the
 #' time series are NA, there exists no 'last value' yet, that can be carried
 #' forward. Thus, no LOCF imputation can be performed for these NAs. As soon
 #' as the first non-NA value appears, LOCF can be performed as expected. The
-#' same applies to NOCB, but from the opposite direction. 
-#' 
-#' While this problem might appear seldom and will only affect a very small 
-#' amount of values at the beginning, it is something to consider. 
-#' The \code{na_remaining} parameter helps to define, what should happen with these
-#'  values at the start, that would remain NA after pure LOCF.
-#'  
-#' Default setting is \code{na_remaining = "rev"}, which performs nocb / locf from 
-#' the other direction to fill these NAs. So a NA at the beginning will be 
-#' filled with the next non-NA value appearing in the series.
-#' 
-#' With \code{na_remaining = "keep"} NAs at the beginning (that can not be imputed
-#'  with pure LOCF) are just left as remaining NAs.
-#'  
-#'  With \code{na_remaining = "rm"} NAs at the beginning of the series are completely 
-#'  removed. Thus, the time series is basically shortened.
-#'  
-#'  Also available is \code{na_remaining = "mean"}, which uses the overall mean of the
-#'   time series to replace these remaining NAs. (but beware, mean is usually 
-#'   not a good imputation choice - even if it  only affects the values at the
-#'    beginning)
+#' same applies to NOCB, but from the opposite direction.
+#'
+#' While this problem might appear seldom and will only affect a very small
+#' amount of values at the beginning, it is something to consider.
+#' The \code{na_remaining} parameter helps to define, what should happen
+#' with these values at the start, that would remain NA after pure LOCF.
+#'
+#' Default setting is \code{na_remaining = "rev"}, which performs
+#' nocb / locf from the other direction to fill these NAs. So a NA
+#' at the beginning will be filled with the next non-NA value appearing
+#' in the series.
+#'
+#' With \code{na_remaining = "keep"} NAs at the beginning (that can not
+#' be imputed with pure LOCF) are just left as remaining NAs.
+#'
+#'  With \code{na_remaining = "rm"} NAs at the beginning of the series are
+#'  completely removed. Thus, the time series is basically shortened.
+#'
+#'  Also available is \code{na_remaining = "mean"}, which uses the overall
+#'  mean of the time series to replace these remaining NAs. (but beware,
+#'  mean is usually not a good imputation choice - even if it  only affects
+#'  the values at the beginning)
 #'
 #' @author Steffen Moritz
 #'
@@ -78,16 +79,16 @@
 #' @examples
 #' # Prerequisite: Create Time series with missing values
 #' x <- ts(c(NA, 3, 4, 5, 6, NA, 7, 8))
-#' 
+#'
 #' # Example 1: Perform LOCF
 #' na_locf(x)
-#' 
+#'
 #' # Example 2: Perform NOCF
 #' na_locf(x, option = "nocb")
-#' 
+#'
 #' # Example 3: Perform LOCF and remove remaining NAs
 #' na_locf(x, na_remaining = "rm")
-#' 
+#'
 #' # Example 4: Same as example 1, just written with pipe operator
 #' x %>% na_locf()
 #' @importFrom stats ts
@@ -95,6 +96,9 @@
 #' @export
 
 na_locf <- function(x, option = "locf", na_remaining = "rev", maxgap = Inf) {
+
+  # Variable 'data' is used for all transformations to the time series
+  # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
 
 
@@ -111,9 +115,10 @@ na_locf <- function(x, option = "locf", na_remaining = "rev", maxgap = Inf) {
         next
       }
       # if imputing a column does not work - mostly because it is not numeric - the column is left unchanged
-      tryCatch(data[, i] <- na_locf(data[, i], option, na_remaining, maxgap), error = function(cond) {
-        warning(paste("imputeTS: No imputation performed for column", i, "because of this", cond), call. = FALSE)
-      })
+      tryCatch( data[, i] <- na_locf(data[, i], option, na_remaining, maxgap), 
+               warning = function(cond) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond), call. = FALSE)},
+               error = function(cond2) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond2), call. = FALSE)}
+               )
     }
     return(data)
   }
@@ -134,7 +139,7 @@ na_locf <- function(x, option = "locf", na_remaining = "rev", maxgap = Inf) {
 
     # 1.1 Check if NAs are present
     if (!anyNA(data)) {
-      return(data)
+      return(x)
     }
 
     # 1.2 special handling data types
@@ -145,7 +150,7 @@ na_locf <- function(x, option = "locf", na_remaining = "rev", maxgap = Inf) {
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (all(missindx)) {
       warning("No imputation performed: Input data has only NAs. Input data needs at least 1 non-NA data point for applying na_locf")
-      return(data)
+      return(x)
     }
 
 
@@ -154,7 +159,7 @@ na_locf <- function(x, option = "locf", na_remaining = "rev", maxgap = Inf) {
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
       warning("No imputation performed: Wrong input type for parameter x")
-      return(data)
+      return(x)
     }
 
     # Altering multivariate objects with 1 column (which are essentially
@@ -166,7 +171,7 @@ na_locf <- function(x, option = "locf", na_remaining = "rev", maxgap = Inf) {
     # 1.5 Check if input is numeric
     if (!is.numeric(data)) {
       warning("No imputation performed: Input x is not numeric")
-      return(data)
+      return(x)
     }
 
     ##
@@ -193,7 +198,7 @@ na_locf <- function(x, option = "locf", na_remaining = "rev", maxgap = Inf) {
     }
     # Wrong input
     else {
-      stop("Wrong parameter 'option' given. Value must be either 'locf' or 'nocb'.")
+      stop("No imputation performed: Wrong parameter 'option' given. Value must be either 'locf' or 'nocb'.")
     }
 
     data[missindx] <- imputed[missindx]
@@ -224,7 +229,7 @@ na_locf <- function(x, option = "locf", na_remaining = "rev", maxgap = Inf) {
     }
     # Wrong Input
     else {
-      stop("Wrong parameter 'na_remaining' given. Value must be either 'keep', 'rm', 'mean' or 'rev'.")
+      stop("No imputation performed: Wrong parameter 'na_remaining' given. Value must be either 'keep', 'rm', 'mean' or 'rev'.")
     }
 
     ##

@@ -59,23 +59,24 @@ same applies to NOCB, but from the opposite direction.
 
 While this problem might appear seldom and will only affect a very small
 amount of values at the beginning, it is something to consider.
-The \code{na_remaining} parameter helps to define, what should happen with these
-values at the start, that would remain NA after pure LOCF.
+The \code{na_remaining} parameter helps to define, what should happen
+with these values at the start, that would remain NA after pure LOCF.
 
-Default setting is \code{na_remaining = "rev"}, which performs nocb / locf from
-the other direction to fill these NAs. So a NA at the beginning will be
-filled with the next non-NA value appearing in the series.
+Default setting is \code{na_remaining = "rev"}, which performs
+nocb / locf from the other direction to fill these NAs. So a NA
+at the beginning will be filled with the next non-NA value appearing
+in the series.
 
-With \code{na_remaining = "keep"} NAs at the beginning (that can not be imputed
-with pure LOCF) are just left as remaining NAs.
+With \code{na_remaining = "keep"} NAs at the beginning (that can not
+be imputed with pure LOCF) are just left as remaining NAs.
 
-With \code{na_remaining = "rm"} NAs at the beginning of the series are completely
-removed. Thus, the time series is basically shortened.
+With \code{na_remaining = "rm"} NAs at the beginning of the series are
+completely removed. Thus, the time series is basically shortened.
 
-Also available is \code{na_remaining = "mean"}, which uses the overall mean of the
-time series to replace these remaining NAs. (but beware, mean is usually
-not a good imputation choice - even if it  only affects the values at the
-beginning)
+Also available is \code{na_remaining = "mean"}, which uses the overall
+mean of the time series to replace these remaining NAs. (but beware,
+mean is usually not a good imputation choice - even if it  only affects
+the values at the beginning)
 }
 }
 \examples{

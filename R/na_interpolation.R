@@ -60,7 +60,11 @@
 #' @export
 
 na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
+  
+  # Variable 'data' is used for all transformations to the time series
+  # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
+  
 
   #----------------------------------------------------------
   # Mulivariate Input
@@ -98,7 +102,7 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
 
     # 1.1 Check if NAs are present
     if (!anyNA(data)) {
-      return(data)
+      return(x)
     }
 
     # 1.2 special handling data types
@@ -109,7 +113,7 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (sum(!missindx) < 2) {
       warning("No imputation performed: Input data needs at least 2 non-NA data points for applying na_interpolation")
-      return(data)
+      return(x)
     }
 
     # 1.4 Checks and corrections for wrong data dimension
@@ -117,7 +121,7 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
       warning("No imputation performed: Wrong input type for parameter x")
-      return(data)
+      return(x)
     }
 
     # Altering multivariate objects with 1 column (which are essentially
@@ -129,7 +133,7 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
     # 1.5 Check if input is numeric
     if (!is.numeric(data)) {
       warning("No imputation performed: Input x is not numeric")
-      return(data)
+      return(x)
     }
 
     ##
@@ -163,7 +167,7 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
       }
     }
     else {
-      stop("Wrong parameter 'option' given. Value must be either 'linear', 'spline' or 'stine'.")
+      stop("No imputation performed: Wrong parameter 'option' given. Value must be either 'linear', 'spline' or 'stine'.")
     }
 
     # Merge interpolated values back into original time series
