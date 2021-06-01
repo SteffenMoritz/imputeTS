@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">imputeTS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -114,7 +114,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/SteffenMoritz/imputeTS/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,35 +140,35 @@
     <p>Visualize the imputed values in a time series.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggplot_na_imputations</span>(
-  <span class='no'>x_with_na</span>,
-  <span class='no'>x_with_imputations</span>,
-  <span class='kw'>x_with_truth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x_axis_labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Imputed Values"</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"Visualization of missing value replacements"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Time"</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"Value"</span>,
-  <span class='kw'>color_points</span> <span class='kw'>=</span> <span class='st'>"steelblue"</span>,
-  <span class='kw'>color_imputations</span> <span class='kw'>=</span> <span class='st'>"indianred"</span>,
-  <span class='kw'>color_truth</span> <span class='kw'>=</span> <span class='st'>"seagreen3"</span>,
-  <span class='kw'>color_lines</span> <span class='kw'>=</span> <span class='st'>"lightslategray"</span>,
-  <span class='kw'>shape_points</span> <span class='kw'>=</span> <span class='fl'>16</span>,
-  <span class='kw'>shape_imputations</span> <span class='kw'>=</span> <span class='fl'>18</span>,
-  <span class='kw'>shape_truth</span> <span class='kw'>=</span> <span class='fl'>16</span>,
-  <span class='kw'>size_points</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>size_imputations</span> <span class='kw'>=</span> <span class='fl'>2.5</span>,
-  <span class='kw'>size_truth</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>size_lines</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>connect_na</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>legend_size</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>label_known</span> <span class='kw'>=</span> <span class='st'>"known values"</span>,
-  <span class='kw'>label_imputations</span> <span class='kw'>=</span> <span class='st'>"imputed values"</span>,
-  <span class='kw'>label_truth</span> <span class='kw'>=</span> <span class='st'>"ground truth"</span>,
-  <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a></span>()
-)</pre>
+    <pre class="usage"><span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>
+  <span class='va'>x_with_na</span>,
+  <span class='va'>x_with_imputations</span>,
+  x_with_truth <span class='op'>=</span> <span class='cn'>NULL</span>,
+  x_axis_labels <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title <span class='op'>=</span> <span class='st'>"Imputed Values"</span>,
+  subtitle <span class='op'>=</span> <span class='st'>"Visualization of missing value replacements"</span>,
+  xlab <span class='op'>=</span> <span class='st'>"Time"</span>,
+  ylab <span class='op'>=</span> <span class='st'>"Value"</span>,
+  color_points <span class='op'>=</span> <span class='st'>"steelblue"</span>,
+  color_imputations <span class='op'>=</span> <span class='st'>"indianred"</span>,
+  color_truth <span class='op'>=</span> <span class='st'>"seagreen3"</span>,
+  color_lines <span class='op'>=</span> <span class='st'>"lightslategray"</span>,
+  shape_points <span class='op'>=</span> <span class='fl'>16</span>,
+  shape_imputations <span class='op'>=</span> <span class='fl'>18</span>,
+  shape_truth <span class='op'>=</span> <span class='fl'>16</span>,
+  size_points <span class='op'>=</span> <span class='fl'>1.5</span>,
+  size_imputations <span class='op'>=</span> <span class='fl'>2.5</span>,
+  size_truth <span class='op'>=</span> <span class='fl'>1.5</span>,
+  size_lines <span class='op'>=</span> <span class='fl'>0.5</span>,
+  linetype <span class='op'>=</span> <span class='st'>"solid"</span>,
+  connect_na <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  legend <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  legend_size <span class='op'>=</span> <span class='fl'>5</span>,
+  label_known <span class='op'>=</span> <span class='st'>"known values"</span>,
+  label_imputations <span class='op'>=</span> <span class='st'>"imputed values"</span>,
+  label_truth <span class='op'>=</span> <span class='st'>"ground truth"</span>,
+  theme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -326,57 +326,68 @@ to see how adjustments are made.</p>
     <div class='dont-index'><p><code><a href='ggplot_na_distribution.html'>ggplot_na_distribution</a></code>,
 <code><a href='ggplot_na_intervals.html'>ggplot_na_intervals</a></code>,
 <code><a href='ggplot_na_gapsize.html'>ggplot_na_gapsize</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Steffen Moritz, Sebastian Gatscha</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example 1: Visualize imputation by na.mean</span>
-<span class='no'>imp_mean</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_mean.html'>na_mean</a></span>(<span class='no'>tsAirgap</span>)
-<span class='fu'>ggplot_na_imputations</span>(<span class='no'>tsAirgap</span>, <span class='no'>imp_mean</span>)</div><div class='img'><img src='ggplot_na_imputations-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># Example 1: Visualize imputation by na_mean</span>
+<span class='va'>imp_mean</span> <span class='op'>&lt;-</span> <span class='fu'><a href='na_mean.html'>na_mean</a></span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span>
+<span class='fu'>ggplot_na_imputations</span><span class='op'>(</span><span class='va'>tsAirgap</span>, <span class='va'>imp_mean</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_imputations-1.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># Example 2: Visualize imputation by na_locf and added ground truth </span>
-<span class='no'>imp_locf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_locf.html'>na_locf</a></span>(<span class='no'>tsAirgap</span>)
-<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>,
-                      <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_locf</span>,
-                      <span class='kw'>x_with_truth</span> <span class='kw'>=</span> <span class='no'>tsAirgapComplete</span>
-                      )</div><div class='img'><img src='ggplot_na_imputations-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>imp_locf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='na_locf.html'>na_locf</a></span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span>
+<span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>x_with_na <span class='op'>=</span> <span class='va'>tsAirgap</span>, 
+                      x_with_imputations <span class='op'>=</span> <span class='va'>imp_locf</span>,
+                      x_with_truth <span class='op'>=</span> <span class='va'>tsAirgapComplete</span>
+                      <span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_imputations-2.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># Example 3: Visualize imputation by na_kalman</span>
-<span class='no'>imp_kalman</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_kalman.html'>na_kalman</a></span>(<span class='no'>tsAirgap</span>)
-<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>, <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_kalman</span>)</div><div class='img'><img src='ggplot_na_imputations-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>imp_kalman</span> <span class='op'>&lt;-</span> <span class='fu'><a href='na_kalman.html'>na_kalman</a></span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span>
+<span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>x_with_na <span class='op'>=</span> <span class='va'>tsAirgap</span>, x_with_imputations <span class='op'>=</span> <span class='va'>imp_kalman</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_imputations-3.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># Example 4: Same as example 1, just written with pipe operator</span>
-<span class='no'>tsAirgap</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='na_mean.html'>na_mean</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>)</div><div class='img'><img src='ggplot_na_imputations-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>tsAirgap</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='na_mean.html'>na_mean</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>x_with_na <span class='op'>=</span> <span class='va'>tsAirgap</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_imputations-4.png' alt='' width='700' height='433' /></div><div class='input'>  
 
 <span class='co'># Example 5: Visualize imputation by na_seadec - different color for imputed points</span>
 <span class='co'># Plot adjustments via ggplot_na_imputations function parameters</span>
-<span class='no'>imp_seadec</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_seadec.html'>na_seadec</a></span>(<span class='no'>tsAirgap</span>)
-<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>,
-                      <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_seadec</span>,
-                      <span class='kw'>color_imputations</span> <span class='kw'>=</span> <span class='st'>"gold"</span>)</div><div class='img'><img src='ggplot_na_imputations-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>imp_seadec</span> <span class='op'>&lt;-</span> <span class='fu'><a href='na_seadec.html'>na_seadec</a></span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span>
+<span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>x_with_na <span class='op'>=</span> <span class='va'>tsAirgap</span>, 
+                      x_with_imputations <span class='op'>=</span> <span class='va'>imp_seadec</span>,
+                      color_imputations <span class='op'>=</span> <span class='st'>"gold"</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_imputations-5.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># Example 6: Visualize imputation - different theme, point size imputations</span>
 <span class='co'># Plot adjustments via ggplot_na_imputations function parameters</span>
-<span class='no'>imp_seadec</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_seadec.html'>na_seadec</a></span>(<span class='no'>tsAirgap</span>)
-<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>,
-                      <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_seadec</span>,
-                      <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_classic</a></span>(),
-                      <span class='kw'>size_imputations</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='img'><img src='ggplot_na_imputations-6.png' alt='' width='700' height='433' /></div><div class='input'>
-
+<span class='va'>imp_seadec</span> <span class='op'>&lt;-</span> <span class='fu'><a href='na_seadec.html'>na_seadec</a></span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span>
+<span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>x_with_na <span class='op'>=</span> <span class='va'>tsAirgap</span>, 
+                      x_with_imputations <span class='op'>=</span> <span class='va'>imp_seadec</span>,
+                      theme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_classic</a></span><span class='op'>(</span><span class='op'>)</span>,
+                      size_imputations <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_imputations-6.png' alt='' width='700' height='433' /></div><div class='input'>
+                 
 <span class='co'># Example 7: Visualize imputation - title, subtitle in center</span>
 <span class='co'># Plot adjustments via ggplot2 syntax</span>
-<span class='no'>imp_seadec</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_seadec.html'>na_seadec</a></span>(<span class='no'>tsAirgap</span>)
-<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>,  <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_seadec</span>) +
-    <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>plot.title</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)) +
-    <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>plot.subtitle</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>))</div><div class='img'><img src='ggplot_na_imputations-7.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>imp_seadec</span> <span class='op'>&lt;-</span> <span class='fu'><a href='na_seadec.html'>na_seadec</a></span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span>
+<span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>x_with_na <span class='op'>=</span> <span class='va'>tsAirgap</span>,  x_with_imputations <span class='op'>=</span> <span class='va'>imp_seadec</span><span class='op'>)</span> <span class='op'>+</span> 
+    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.subtitle <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>   
+</div><div class='img'><img src='ggplot_na_imputations-7.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># Example 8: Visualize imputation - title in center, no subtitle</span>
 <span class='co'># Plot adjustments via ggplot2 syntax and function parameters</span>
-<span class='no'>imp_mean</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='na_mean.html'>na_mean</a></span>(<span class='no'>tsAirgap</span>)
-<span class='fu'>ggplot_na_imputations</span>(<span class='kw'>x_with_na</span> <span class='kw'>=</span> <span class='no'>tsAirgap</span>,
-                      <span class='kw'>x_with_imputations</span> <span class='kw'>=</span> <span class='no'>imp_mean</span>,
-                      <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>) +
-     <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>plot.title</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>hjust</span> <span class='kw'>=</span> <span class='fl'>0.5</span>))</div><div class='img'><img src='ggplot_na_imputations-8.png' alt='' width='700' height='433' /></div><div class='input'>  
+<span class='va'>imp_mean</span> <span class='op'>&lt;-</span> <span class='fu'><a href='na_mean.html'>na_mean</a></span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span>
+<span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>x_with_na <span class='op'>=</span> <span class='va'>tsAirgap</span>,  
+                      x_with_imputations <span class='op'>=</span> <span class='va'>imp_mean</span>,
+                      subtitle <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>+</span>
+     <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_imputations-8.png' alt='' width='700' height='433' /></div><div class='input'>  
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -393,7 +404,7 @@ to see how adjustments are made.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

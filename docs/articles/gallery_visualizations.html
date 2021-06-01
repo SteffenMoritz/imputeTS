@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">imputeTS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -72,7 +72,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/SteffenMoritz/imputeTS/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -86,13 +86,13 @@
 
       
 
-      </header><script src="gallery_visualizations_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="gallery_visualizations_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Gallery: Times Series Missing Data Visualizations</h1>
                         <h4 class="author">Steffen Moritz</h4>
             
-            <h4 class="date">2021-01-16</h4>
+            <h4 class="date">2021-06-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/SteffenMoritz/imputeTS/blob/master/vignettes/gallery_visualizations.Rmd"><code>vignettes/gallery_visualizations.Rmd</code></a></small>
       <div class="hidden name"><code>gallery_visualizations.Rmd</code></div>
@@ -113,12 +113,14 @@
 <a href="#getting-a-first-overview-ggplot_na_distribution" class="anchor"></a>Getting a first overview (<code>ggplot_na_distribution</code>)</h2>
 <p>The best starting point for getting an overview about the missing data in your (univariate) time series is the <code><a href="../reference/ggplot_na_distribution.html">ggplot_na_distribution()</a></code> plot. It gives a nice first overview where in the time series the missing values occur and how they are distributed. It also already gives a rough impression on how many missing data are in different intervals of the time series.</p>
 <p>Usage is easy: just supply the (univariate) time series to the function call. Only the time series is needed as input - all additional parameters are only needed to alter the appearance of the plot.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"imputeTS"</span>)
-<span class="fu"><a href="../reference/ggplot_na_distribution.html">ggplot_na_distribution</a></span>(<span class="no">tsAirgap</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/SteffenMoritz/imputeTS">"imputeTS"</a></span><span class="op">)</span>
+<span class="fu"><a href="../reference/ggplot_na_distribution.html">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">tsAirgap</span><span class="op">)</span></code></pre></div>
 <p><img src="gallery_visualizations_files/figure-html/ggplot-na-distribution-1.png" width="600" style="display: block; margin: auto;"></p>
 <p>It is important to note, that the input itself needs to be univariate. For data types with multiple variables/columns only use the column you want to plot as input parameter <code>x</code>. The x-axis time information can be added with the <code>x_axis_labels</code> parameter - otherwise the consecutive index of observations in the series is used as x-axis tick label.</p>
 <p>Thus for a data.frame <code>df</code> with multiple columns <code>df$date</code>, <code>df$value</code>, <code>df$another_value</code>, <code>df$yet_another_value</code> where we want to plot <code>df$value</code> with Dates on the x-axis the required function call would look like this:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/ggplot_na_distribution.html">ggplot_na_distribution</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">df</span>$<span class="no">value</span>, <span class="kw">x_axis_labels</span> <span class="kw">=</span> <span class="no">df</span>$<span class="no">date</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ggplot_na_distribution.html">ggplot_na_distribution</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">value</span>, x_axis_labels <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">date</span><span class="op">)</span></code></pre></div>
 <p><img src="gallery_visualizations_files/figure-html/ggplot-na-distribution2-1.png" width="600" style="display: block; margin: auto;"></p>
 </div>
 <div id="detailed-information-about-certain-intervals-ggplot_na_intervals" class="section level2">
@@ -126,10 +128,12 @@
 <a href="#detailed-information-about-certain-intervals-ggplot_na_intervals" class="anchor"></a>Detailed information about certain intervals (<code>ggplot_na_intervals</code>)</h2>
 <p>When a summary for certain time intervals (e. g. weeks) is needed, the <code><a href="../reference/ggplot_na_intervals.html">ggplot_na_intervals()</a></code> plot is useful. It shows the missing data percentage for each interval as a bar. This kind of summary plot is also quite useful for very long time series, which would not fit into the plot window as a lineplot.</p>
 <p>Like for <code><a href="../reference/ggplot_na_distribution.html">ggplot_na_distribution()</a></code> only parameter <code>x</code> (the univariate time series) is mandatory for creating a plot with <code><a href="../reference/ggplot_na_intervals.html">ggplot_na_intervals()</a></code>. With the parameter <code>interval_size</code> the size of the interval can be changed (default is a auto calculated interval size that gives a good overall overview). All other parameters are mostly needed for changing the appearance of the plot.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/ggplot_na_intervals.html">ggplot_na_intervals</a></span>(<span class="no">tsNH4</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ggplot_na_intervals.html">ggplot_na_intervals</a></span><span class="op">(</span><span class="va">tsNH4</span><span class="op">)</span></code></pre></div>
 <p><img src="gallery_visualizations_files/figure-html/ggplot-na-intervals-1.png" width="600" style="display: block; margin: auto;"></p>
 <p>Alternatively the missing data count for the interval (instead of the percentages) can be shown. Below is an example with a custom interval size of 144 and a custom color for the missing data bars. Since the example data is recorded in 10 minute time steps, a interval_size of 144 means that we are using daily intervals (6 measurements per hour, 24 hours per day, 6*24 = 144).</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/ggplot_na_intervals.html">ggplot_na_intervals</a></span>(<span class="no">tsNH4</span>, <span class="kw">measure</span> <span class="kw">=</span> <span class="st">"count"</span>, <span class="kw">interval_size</span> <span class="kw">=</span> <span class="fl">144</span>, <span class="kw">color_missing</span> <span class="kw">=</span> <span class="st">"gold3"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ggplot_na_intervals.html">ggplot_na_intervals</a></span><span class="op">(</span><span class="va">tsNH4</span>, measure <span class="op">=</span> <span class="st">"count"</span>, interval_size <span class="op">=</span> <span class="fl">144</span>, color_missing <span class="op">=</span> <span class="st">"gold3"</span><span class="op">)</span></code></pre></div>
 <p><img src="gallery_visualizations_files/figure-html/ggplot-na-intervals2-1.png" width="600" style="display: block; margin: auto;"></p>
 </div>
 <div id="insights-about-missing-data-patterns-ggplot_na_gapsize" class="section level2">
@@ -137,12 +141,14 @@
 <a href="#insights-about-missing-data-patterns-ggplot_na_gapsize" class="anchor"></a>Insights about missing data patterns (<code>ggplot_na_gapsize</code>)</h2>
 <p>Often deeper insights about the missing data are quite useful. These insights can give hints of possible causes of the missing data and an indication, which imputation algorithms might give good results. The plot gives an overview about how often different gapsizes (NAs in a row) occur in the time series.</p>
 <p>Only the parameter <code>x</code> (the univariate time series) is needed as mandatory input. By default the plot shows only the 10 most often occuring gapsizes. Use parameter <code>limit</code> to increase this number.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">imputeTS</span>)
-<span class="fu"><a href="../reference/ggplot_na_gapsize.html">ggplot_na_gapsize</a></span>(<span class="no">tsNH4</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/SteffenMoritz/imputeTS">imputeTS</a></span><span class="op">)</span>
+<span class="fu"><a href="../reference/ggplot_na_gapsize.html">ggplot_na_gapsize</a></span><span class="op">(</span><span class="va">tsNH4</span><span class="op">)</span></code></pre></div>
 <p><img src="gallery_visualizations_files/figure-html/ggplot-na-gapsize-1.png" width="600" style="display: block; margin: auto;"></p>
 <p>The plot shows both, the number of occurrence and the resulting NAs for the respective gapsizes. Resulting NAs can be explained as the number of NAs a certain gapsize accounts for in total. For example a gapsize of 3 that occurs 5 times results in 15 NAs overall. The parameter <code>include_total</code> can be used to change this behavior. Below is a example of the same plot with specific settings for <code>limit</code> and <code>include_total</code>.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">imputeTS</span>)
-<span class="fu"><a href="../reference/ggplot_na_gapsize.html">ggplot_na_gapsize</a></span>(<span class="no">tsNH4</span>, <span class="kw">include_total</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">limit</span> <span class="kw">=</span> <span class="fl">15</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/SteffenMoritz/imputeTS">imputeTS</a></span><span class="op">)</span>
+<span class="fu"><a href="../reference/ggplot_na_gapsize.html">ggplot_na_gapsize</a></span><span class="op">(</span><span class="va">tsNH4</span>, include_total <span class="op">=</span> <span class="cn">F</span>, limit <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></code></pre></div>
 <p><img src="gallery_visualizations_files/figure-html/ggplot-na-gapsize2-1.png" width="600" style="display: block; margin: auto;"></p>
 </div>
 <div id="evaluate-imputation-results-ggplot_na_imputations" class="section level2">
@@ -150,14 +156,16 @@
 <a href="#evaluate-imputation-results-ggplot_na_imputations" class="anchor"></a>Evaluate imputation results (<code>ggplot_na_imputations</code>)</h2>
 <p>After using imputation functions like <code><a href="../reference/na_kalman.html">na_kalman()</a></code>, <code><a href="../reference/na_interpolation.html">na_interpolation()</a></code>, <code><a href="../reference/na_seadec.html">na_seadec()</a></code> there is often the need to get a first impression on how good the algorithm performs. The <code><a href="../reference/ggplot_na_imputations.html">ggplot_na_imputations()</a></code> plot gives a good impression on how well the imputed values fit into the original time series.</p>
 <p>Mandatory inputs for this function are these two parameters: <code>x_with_na</code> (the time series as it was before imputation) and <code>x_with_imputations</code> (the time series without NAs after imputation).</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">imputeTS</span>)
-<span class="no">imp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/na_interpolation.html">na_interpolation</a></span>(<span class="no">tsAirgap</span>)
-<span class="fu"><a href="../reference/ggplot_na_imputations.html">ggplot_na_imputations</a></span>(<span class="no">tsAirgap</span>, <span class="no">imp</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/SteffenMoritz/imputeTS">imputeTS</a></span><span class="op">)</span>
+<span class="va">imp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/na_interpolation.html">na_interpolation</a></span><span class="op">(</span><span class="va">tsAirgap</span><span class="op">)</span>
+<span class="fu"><a href="../reference/ggplot_na_imputations.html">ggplot_na_imputations</a></span><span class="op">(</span><span class="va">tsAirgap</span>, <span class="va">imp</span><span class="op">)</span></code></pre></div>
 <p><img src="gallery_visualizations_files/figure-html/ggplot-na-imputations1-1.png" width="600" style="display: block; margin: auto;"></p>
 <p>In some cases (mostly when performing imputation experiments and benchmarks) the NAs were only artificially introduced into the original time series. Which means, there exists a ground truth for the NA values (the complete time series before introducing the NAs). In this case you can additionally use the <code>x_with_truth</code> parameter to get a plot that displays both, the imputations and the ground truth.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">imputeTS</span>)
-<span class="no">imp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/na_mean.html">na_mean</a></span>(<span class="no">tsAirgap</span>)
-<span class="fu"><a href="../reference/ggplot_na_imputations.html">ggplot_na_imputations</a></span>(<span class="kw">x_with_na</span> <span class="kw">=</span> <span class="no">tsAirgap</span>, <span class="kw">x_with_imputations</span> <span class="kw">=</span> <span class="no">imp</span>, <span class="kw">x_with_truth</span> <span class="kw">=</span> <span class="no">tsAirgapComplete</span> )</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/SteffenMoritz/imputeTS">imputeTS</a></span><span class="op">)</span>
+<span class="va">imp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/na_mean.html">na_mean</a></span><span class="op">(</span><span class="va">tsAirgap</span><span class="op">)</span>
+<span class="fu"><a href="../reference/ggplot_na_imputations.html">ggplot_na_imputations</a></span><span class="op">(</span>x_with_na <span class="op">=</span> <span class="va">tsAirgap</span>, x_with_imputations <span class="op">=</span> <span class="va">imp</span>, x_with_truth <span class="op">=</span> <span class="va">tsAirgapComplete</span> <span class="op">)</span></code></pre></div>
 <p><img src="gallery_visualizations_files/figure-html/ggplot-na-imputations2-1.png" width="600" style="display: block; margin: auto;"></p>
 </div>
 <div id="support" class="section level2">
@@ -185,7 +193,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
