@@ -6,7 +6,6 @@ cache: packages
 sudo: required
 
 r_github_packages:
-  - r-lib/covr
   - SteffenMoritz/imputeTS
 
 after_success:
