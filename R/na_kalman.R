@@ -181,6 +181,15 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
 
     # 1.7 Transformation to numeric as 'int' can't be given to KalmanRun
     data[1:length(data)] <- as.numeric(data)
+    
+    
+    # 1.8 Check for and mitigate all constant values in combination with StructTS
+    # See https://github.com/SteffenMoritz/imputeTS/issues/26
+    
+    if (model = "StructTS" && length(unique(as.vector(data))==2)) {
+      return(na_interpolation(x))
+    }
+    
 
     ##
     ## End Input Check and Transformation
