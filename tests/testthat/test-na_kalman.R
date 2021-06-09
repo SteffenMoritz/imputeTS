@@ -4,6 +4,11 @@ test_that("All NA vector gives warning", {
   expect_warning(na_kalman(c(NA, NA, NA, NA, NA)))
 })
 
+test_that("Workaround solution for constant values for StructTS works", {
+  x <- c(4,4,4,4,NA,4,4,4)
+  expect_equal(round(mean(na_kalman(x, model = "StructTS", smooth = T)), digits = 1), 4)
+})
+
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)", {
   skip_on_cran()
   # Using mean over resulting vector to check correctness
