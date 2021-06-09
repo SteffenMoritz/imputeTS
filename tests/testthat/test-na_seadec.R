@@ -62,7 +62,7 @@ test_that("Imputation works for data.frame", {
 
 
 test_that("Warning for wrong input for algorithm parameter", {
-  expect_warning(na_seadec(tsAirgap, algorithm = "wrong"))
+  expect_error(na_seadec(tsAirgap, algorithm = "wrong"))
 })
 
 

@@ -1,7 +1,6 @@
-#' @title Visualize Occurrences of NA gap sizes
+#' @title Visualize Patterns in NA occurrences
 #'
-#' @description Visualize the Number of Occurrences for existing NA Gap Sizes
-#' (NAs in a row) in a Time Series
+#' @description Visualize Patterns in NA occurrences. E.g. weakly, ...,..
 #'
 #' @param x Numeric Vector (\code{\link[base]{vector}}) or Time Series
 #' (\code{\link[stats]{ts}}) object containing NAs. This is the only mandatory
@@ -37,10 +36,6 @@
 #' @param color_total Defines the color for the bars of
 #' 'total resulting NAs'.
 #'
-#' @param color_border Defines the color for the border of the bars.
-#' 
-#' @param alpha_bars Alpha value used for filling the bars.
-#' 
 #' @param title Title of the Plot.
 #'
 #' @param subtitle Subtitle of the Plot.
@@ -139,19 +134,17 @@
 #'   ggplot2::theme(legend.position = "right")
 #' @importFrom magrittr %>%
 #'
-#' @importFrom ggplot2 theme_linedraw ggplot geom_bar position_dodge aes scale_x_discrete
+#' @importFrom ggplot2 theme_linedraw ggplot geom_bar aes scale_x_discrete
 #' scale_fill_manual ggtitle xlab ylab theme element_text element_blank
 #' coord_flip theme_classic
 #'
 #' @export
-ggplot_na_gapsize <- function(x,
+ggplot_na_pattern <- function(x,
                               limit = 10,
                               include_total = TRUE,
                               ranked_by = "occurrence",
                               color_occurrence = "indianred",
                               color_total = "steelblue",
-                              color_border = "black",
-                              alpha_bars = 1,
                               title = "Occurrence of gap sizes",
                               subtitle = "Gap sizes (NAs in a row) ordered by most common",
                               xlab = NULL,
@@ -307,10 +300,8 @@ ggplot_na_gapsize <- function(x,
   # Create ggplot
   gg <- ggplot2::ggplot(data = df) +
     ggplot2::geom_bar(aes(x = id, y = val, fill = label),
-      color = color_border,
-      width= 0.6,
-      alpha = alpha_bars,
-      stat = "identity", position = position_dodge(width = 0.7)
+      color = "black",
+      stat = "identity", position = "dodge"
     ) +
     ggplot2::scale_x_discrete(
       labels = labels1,
@@ -318,7 +309,7 @@ ggplot_na_gapsize <- function(x,
     ) +
     ggplot2::scale_fill_manual(
       values = c(color_occurrence, color_total),
-      labels = c(label_occurrence, label_total),
+      labels = c(label_occurrence, label_total)
     ) +
     ggplot2::ggtitle(title, subtitle = subtitle) +
     ggplot2::xlab(xlab) +
