@@ -58,7 +58,7 @@
 #' @param label_source Defines the label assigned to the violin
 #' for the distribution of all values.
 #' 
-#' '@param add_n_label Whether to automatically additionally add a 
+#' @param add_n_label Whether to automatically additionally add a 
 #' n-value (e.g. n = 100) to the labels as an indication
 #' how many observations are represented by the violins.
 #'

@@ -186,7 +186,7 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
     # 1.8 Check for and mitigate all constant values in combination with StructTS
     # See https://github.com/SteffenMoritz/imputeTS/issues/26
     
-    if (model == "StructTS" && length(unique(as.vector(data)))==2) {
+    if (is.character(model) && model == "StructTS" && length(unique(as.vector(data)))==2) {
       return(na_interpolation(x))
     }
     
