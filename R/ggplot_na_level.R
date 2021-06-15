@@ -57,8 +57,8 @@
 #'
 #' @param label_source Defines the label assigned to the violin
 #' for the distribution of all values.
-#' 
-#' @param add_n_label Whether to automatically additionally add a 
+#'
+#' @param add_n_label Whether to automatically additionally add a
 #' n-value (e.g. n = 100) to the labels as an indication
 #' how many observations are represented by the violins.
 #'
@@ -69,14 +69,14 @@
 #' values directly before/after NAs via violin plots. This is useful to
 #' determine if missing values appear more often when near to a
 #' certain value level.
-#' 
+#'
 #' As described in \link[ggplot2]{geom_violin}: 'A violin plot is a compact
 #' display of a continuous distribution. A violin plot is a mirrored density
 #' plot displayed in the same way as a boxplot.'
 #'
 #' The visualization of the before/after NA distributions in comparison
 #' to the overall distribution can provide information about the root
-#' cause of the missing values. It also can provide indications, about 
+#' cause of the missing values. It also can provide indications, about
 #' the missing data mechanism (MCAR,MAR, MNAR).
 #'
 #' The default plot consists of three violins/boplots combinations -
@@ -179,23 +179,28 @@
 #' @export
 
 ggplot_na_level <- function(x,
-                            inside_information = "boxplot",
-                            color_before = "pink3",
-                            color_after = "pink3",
-                            color_source = "steelblue",
-                            color_inside = "black",
-                            alpha_violin = 0.5,
-                            alpha_inside = 0.9,
+                            color_before = "steelblue",
+                            color_after = "yellowgreen",
+                            color_source = "gray66",
+                            alpha_before = 0.9,
+                            alpha_after = 0.9,
+                            alpha_source = 0.3,
+                            shape_before = 16,
+                            shape_after = 18,
+                            shape_source = 16,
+                            size_before = 1.5,
+                            size_after = 2.5,
+                            size_source = 1.5,
                             title = "Before/After Analysis",
                             subtitle = "Level of values occurring directly before and after NAs",
                             xlab = "",
                             ylab = "Value",
-                            legend = FALSE,
-                            orientation = "vertical",
-                            label_before = "before",
-                            label_after = "after",
-                            label_source = "source",
-                            add_n_label = T,
+                            legend = TRUE,
+                            legend_size = 5,
+                            orientation = "horizontal",
+                            label_before = "known values",
+                            label_after = "imputed values",
+                            label_source = "ground truth",
                             theme = ggplot2::theme_linedraw()) {
   data <- x
 
@@ -264,6 +269,7 @@ ggplot_na_level <- function(x,
   ## 2. Preparations
   ##
 
+
   # 2.1 Create required data
 
   # Get all indices of the data that comes directly before and after an NA
@@ -273,9 +279,9 @@ ggplot_na_level <- function(x,
   na_indx_before <- which(is.na(data[2:length(data)]))
 
   # Get the actual values to the indices and put them in a data frame with a label
-  before <- data.frame(type = "before", input = na_remove(data[na_indx_before]))
-  after <- data.frame(type = "after", input = na_remove(data[na_indx_after]))
-  all <- data.frame(type = "source", input = na_remove(data))
+  before <- data.frame(id = "1", type = "before", input = na_remove(data[na_indx_before]))
+  after <- data.frame(id = "1", type = "after", input = na_remove(data[na_indx_after]))
+  all <- data.frame(id = "1", type = "source", input = na_remove(data))
 
   # Get n values for the plot labels
   n_before <- length(before$input)
@@ -303,51 +309,43 @@ ggplot_na_level <- function(x,
   ## 3. Create the ggplot2 plot
   ##
 
+
   # Create the plot
 
-  gg <- ggplot2::ggplot(data = df, ggplot2::aes(x = type, y = input, fill = type)) +
+  gg <- ggplot(data = df) +
+    ggplot2::geom_jitter(mapping = ggplot2::aes(
+      x = id, y = input,
+      color = type, alpha = type
+    ), width = 0.5, height = 0.5)
 
-    # add violin shapes
-    ggplot2::geom_violin(width = 1, alpha = alpha_violin)
-
-
-  # Select inside of violin (either boxplot, points, nothing)
-  if (inside_information == "boxplot") {
-    gg <- gg + ggplot2::geom_boxplot(width = 0.1, color = color_inside, alpha = alpha_inside)
-  }
-  else if (inside_information == "points") {
-    gg <- gg + ggplot2::geom_jitter(width = 0.1, color = color_inside, alpha = alpha_inside)
-  }
-  else if (inside_information == "none") {
-    # add nothing
-  }
-  else {
-    stop("Wrong input for parameter inside_information Input must be either 'boxplot',
-  'points' or 'none'. Call ?ggplot_na_level to view the documentation.")
-  }
-
-
-  # Adding additional modifications like title, subtitle, theme,...
   gg <- gg + ggplot2::ggtitle(label = title, subtitle = subtitle) +
     ggplot2::xlab(xlab) +
     ggplot2::ylab(ylab) +
-    theme +
-    ggplot2::scale_x_discrete(
-      limits = c("before", "source", "after"),
-      labels = c(paste0(label_before, ifelse(add_n_label, paste0(" \n n = ", n_before),"")),
-                 paste0(label_source, ifelse(add_n_label, paste0(" \n n = ", n_all),"")),
-                 paste0(label_after, ifelse(add_n_label, paste0(" \n n = ", n_after),"")))
+    theme
+
+  # Get Size, Color, Shape, Alpha of the points right
+  gg <- gg +
+    ggplot2::scale_color_manual(
+      values = c("before" = color_before, "after" = color_after, "source" = color_source),
     ) +
-    ggplot2::scale_fill_manual(values = c(color_after, color_before, color_source))
+    ggplot2::scale_alpha_manual(
+      values = c("before" = alpha_before, "after" = alpha_after, "source" = alpha_source),
+    ) +
+  ggplot2::scale_shape_manual(
+    values = c("before" = shape_before, "after" = shape_after, "source" = shape_source),
+  ) +
+    ggplot2::scale_size_manual(
+      values = c("before" = size_before, "after" = size_after, "source" = size_source),
+    ) 
 
-
-  # For flipping from vertical to horizontal bars
   if (orientation == "horizontal") {
     gg <- gg + ggplot2::coord_flip()
   }
 
+
   # Select legend
   gg <- gg + ggplot2::theme(
+    aspect.ratio = 0.5,
     legend.position = base::ifelse(legend == TRUE, "right", "none"),
     legend.title = ggplot2::element_blank()
   )

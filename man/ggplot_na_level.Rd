@@ -6,23 +6,28 @@
 \usage{
 ggplot_na_level(
   x,
-  inside_information = "boxplot",
-  color_before = "pink3",
-  color_after = "pink3",
-  color_source = "steelblue",
-  color_inside = "black",
-  alpha_violin = 0.5,
-  alpha_inside = 0.9,
+  color_before = "steelblue",
+  color_after = "yellowgreen",
+  color_source = "gray66",
+  alpha_before = 0.9,
+  alpha_after = 0.9,
+  alpha_source = 0.3,
+  shape_before = 16,
+  shape_after = 18,
+  shape_source = 16,
+  size_before = 1.5,
+  size_after = 2.5,
+  size_source = 1.5,
   title = "Before/After Analysis",
   subtitle = "Level of values occurring directly before and after NAs",
   xlab = "",
   ylab = "Value",
-  legend = FALSE,
-  orientation = "vertical",
-  label_before = "before",
-  label_after = "after",
-  label_source = "source",
-  add_n_label = T,
+  legend = TRUE,
+  legend_size = 5,
+  orientation = "horizontal",
+  label_before = "known values",
+  label_after = "imputed values",
+  label_source = "ground truth",
   theme = ggplot2::theme_linedraw()
 )
 }
@@ -32,16 +37,6 @@ ggplot_na_level(
 This is the only mandatory parameter - all other parameters are
 only needed for adjusting the plot appearance.}
 
-\item{inside_information}{Defines what is inside the violin as an additional
-distribution visualization. Accepts the following input:
-
-\itemize{
-\item{"boxplot" - Adds a boxplot inside the violins } (default choice)
-\item{"points" - Adds jittered points inside the violins}
-\item{"none" - Adds nothing inside the violins}
-}
-Beware, though using jitter option "points" can lead to overlays for larger time series.}
-
 \item{color_before}{Color to fill the violin representing observations
 directly before NA gaps.}
 
@@ -50,14 +45,6 @@ observations directly after NA gaps.}
 
 \item{color_source}{Color to fill the violin representing the
 distribution of all non-NA values of a time series.}
-
-\item{color_inside}{Color used for the inside information
-(color of boxplot border or color of points).}
-
-\item{alpha_violin}{Transparency value used for the violin.}
-
-\item{alpha_inside}{Transparency value used for the inside
-information in the violin (boxplot, points).}
 
 \item{title}{Title of the plot (NULL for deactivating title).}
 
@@ -81,12 +68,30 @@ violin for values directly after NAs.}
 \item{label_source}{Defines the label assigned to the violin
 for the distribution of all values.}
 
+\item{theme}{Set a Theme for ggplot2. Default is ggplot2::theme_linedraw().
+(\code{\link[ggplot2]{theme_linedraw})}}
+
+\item{inside_information}{Defines what is inside the violin as an additional
+distribution visualization. Accepts the following input:
+
+\itemize{
+\item{"boxplot" - Adds a boxplot inside the violins } (default choice)
+\item{"points" - Adds jittered points inside the violins}
+\item{"none" - Adds nothing inside the violins}
+}
+Beware, though using jitter option "points" can lead to overlays for larger time series.}
+
+\item{color_inside}{Color used for the inside information
+(color of boxplot border or color of points).}
+
+\item{alpha_violin}{Transparency value used for the violin.}
+
+\item{alpha_inside}{Transparency value used for the inside
+information in the violin (boxplot, points).}
+
 \item{add_n_label}{Whether to automatically additionally add a
 n-value (e.g. n = 100) to the labels as an indication
 how many observations are represented by the violins.}
-
-\item{theme}{Set a Theme for ggplot2. Default is ggplot2::theme_linedraw().
-(\code{\link[ggplot2]{theme_linedraw})}}
 }
 \description{
 Visualize the distribution of values directly before/after NAs via violin plots.
