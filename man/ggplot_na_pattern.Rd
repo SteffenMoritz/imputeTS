@@ -156,7 +156,7 @@ ggplot_na_gapsize(tsNH4, color_total = "grey") +
 }
 \seealso{
 \code{\link[imputeTS]{ggplot_na_distribution}},
-\code{\link[imputeTS]{ggplot_na_intervals}},
+\code{\link[imputeTS]{ggplot_na_distribution2}},
 \code{\link[imputeTS]{ggplot_na_imputations}}
 }
 \author{

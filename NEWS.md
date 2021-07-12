@@ -7,6 +7,9 @@ Thanks to Sabrina Krys for bug / issue reporting.
 
 * Added ggplot_na_pattern plot
 
+* Improved notification message for na_seadec/na_seasplit when find_frequency couldn't find
+  a seasonal pattern.
+
 * Updates to ggplot_na_gapsize: Space between the bars adjusted for better optics.
   Added parameters for directly choosing the bar border color and alpha value for
   filling of the bars.

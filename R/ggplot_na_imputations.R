@@ -91,7 +91,7 @@
 #' data.frame, tibble, tsibble, zoo, xts as an input.
 #'
 #' The plot can be adjusted to your needs via the function parameters.
-#' Additionally for more complex adjustments, the output can also be
+#' Additionally, for more complex adjustments, the output can also be
 #' adjusted via ggplot2 syntax. This is possible, since the output
 #' of the function is a ggplot2 object. Also take a look at the Examples
 #' to see how adjustments are made.
@@ -100,7 +100,7 @@
 #'
 #'
 #' @seealso \code{\link[imputeTS]{ggplot_na_distribution}},
-#'  \code{\link[imputeTS]{ggplot_na_intervals}},
+#'  \code{\link[imputeTS]{ggplot_na_distribution2}},
 #'  \code{\link[imputeTS]{ggplot_na_gapsize}}
 #'
 #' @examples

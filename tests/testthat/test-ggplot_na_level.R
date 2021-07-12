@@ -1,9 +1,6 @@
-context("ggplot_na_gapsize")
+context("ggplot_na_level")
 
 
-test_that("Old functions give error", {
-  expect_error(plotNA.gapsize(tsAirgap))
-})
 
 test_that("Check that all parameters of plot  run without error", {
   if (!requireNamespace("ggplot2", quietly = TRUE)) {
@@ -13,27 +10,25 @@ test_that("Check that all parameters of plot  run without error", {
   }
   else {
     require("ggplot2")
-    expect_true(is.recursive(ggplot_na_gapsize(tsAirgap)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, ranked_by = "total")))
-    expect_true(is.list(ggplot_na_gapsize(tsNH4, limit = 2)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, legend = F)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, orientation = "horizontal")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, include_total = F)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_occurrence = "blue")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, limit = 1)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, include_total = F)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, ranked_by = "total")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_occurrence = "gold")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_total = "green")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, title = "test")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, subtitle = "test2")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, xlab = "test")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, ylab = "test")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, orientation = "vertical")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, label_occurrence = "occ")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, label_total = "total")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, theme = ggplot2::theme_classic())))
+    expect_true(is.recursive(ggplot_na_level(tsAirgap)))
+    expect_true(is.list(ggplot_na_level(tsAirgap)))
+    expect_true(is.list(ggplot_na_level(tsAirgap, number_bins =  40)))
+    expect_true(is.list(ggplot_na_level(tsNH4[1:300],number_bins =  100 )))
+    expect_true(is.list(ggplot_na_level(tsAirgap, legend = F)))
+    expect_true(is.list(ggplot_na_level(tsAirgap, orientation = "horizontal")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, orientation = "vertical")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, color_before = "blue")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, color_after = "green")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, color_regular = "red")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, legend_title = "l title")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, title = "test")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, subtitle = "test2")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, xlab = "test")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, ylab = "test")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, label_before = "be")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, label_after = "af")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, label_regular = "reg")))
+    expect_true(is.list(ggplot_na_level(tsAirgap, theme = ggplot2::theme_classic())))
   }
 })
 
@@ -44,19 +39,19 @@ test_that("Errors for wrong input", {
     x = runif(10, 0, 10),
     y = runif(10, 0, 10)
   )
-  expect_error(ggplot_na_gapsize(x))
+  expect_error(ggplot_na_level(x))
 
   ## input not numeric
   x <- c("a", 1, NA, 3)
-  expect_error(ggplot_na_gapsize(x))
+  expect_error(ggplot_na_level(x))
 
   ## No NA values
   x <- 1:10
-  expect_error(ggplot_na_gapsize(x))
+  expect_error(ggplot_na_level(x))
 
 
   all_na <- as.numeric(c(NA, NA, NA, NA, NA, NA, NA, NA))
-  expect_error(ggplot_na_gapsize(all_na))
+  expect_error(ggplot_na_level(all_na))
 })
 
 
@@ -86,17 +81,17 @@ test_that("Plot works with test ts", {
     ), class = "ts")
 
     expect_is(
-      ggplot_na_gapsize(nh),
+      ggplot_na_level(nh),
       "ggplot"
     )
 
     expect_is(
-      ggplot_na_gapsize(nh, title = "test"),
+      ggplot_na_level(nh, title = "test"),
       "ggplot"
     )
 
     expect_is(
-      ggplot_na_gapsize(nh, title = "test") +
+      ggplot_na_level(nh, title = "test") +
         ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1)),
       "ggplot"
     )
@@ -118,12 +113,12 @@ test_that(" tsAirgap data works", {
     require("ggplot2")
 
     expect_is(
-      ggplot_na_gapsize(tsAirgap),
+      ggplot_na_level(tsAirgap),
       "ggplot"
     )
 
     expect_is(
-      ggplot_na_gapsize(tsAirgap) +
+      ggplot_na_level(tsAirgap) +
         ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1)) +
         ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
         ggplot2::theme(plot.subtitle = ggplot2::element_text(hjust = 0.5)) +
@@ -170,7 +165,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_df <- data.frame(tsAirgap)
 
     expect_is(
-      ggplot_na_gapsize(tsAirgap_df),
+      ggplot_na_level(tsAirgap_df),
       "ggplot"
     )
 
@@ -180,7 +175,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_df2 <- data.frame(tsAirgap, tsAirgap)
 
     expect_error(
-      ggplot_na_gapsize(tsAirgap_df2)
+      ggplot_na_level(tsAirgap_df2)
     )
 
 
@@ -188,7 +183,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_zoo <- zoo::as.zoo(tsAirgap)
 
     expect_is(
-      ggplot_na_gapsize(tsAirgap_zoo) + ggplot2::theme_minimal(),
+      ggplot_na_level(tsAirgap_zoo) + ggplot2::theme_minimal(),
       "ggplot"
     )
 
@@ -198,7 +193,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_zoo2 <- zoo(cbind(tsAirgap, tsAirgap), zoo::as.Date(zoo::as.yearmon(time(tsAirgap))))
 
     expect_error(
-      ggplot_na_gapsize(tsAirgap_zoo2)
+      ggplot_na_level(tsAirgap_zoo2)
     )
 
 
@@ -208,7 +203,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_tsibble <- tsibble::as_tsibble(tsAirgap)
 
     expect_is(
-      ggplot_na_gapsize(tsAirgap_tsibble),
+      ggplot_na_level(tsAirgap_tsibble),
       "ggplot"
     )
 
@@ -219,7 +214,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
 
 
     expect_is(
-      ggplot_na_gapsize(tsAirgap_tsibble$value) + ggplot2::theme_minimal(),
+      ggplot_na_level(tsAirgap_tsibble$value) + ggplot2::theme_minimal(),
       "ggplot"
     )
 
@@ -229,7 +224,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_tsibble2 <- tsibble::as_tsibble(tsAirgap)
     tsAirgap_tsibble2$var2 <- tsAirgap
     expect_is(
-      ggplot_na_gapsize(tsAirgap_tsibble2),
+      ggplot_na_level(tsAirgap_tsibble2),
       "ggplot"
     )
 
@@ -238,7 +233,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # tibble
     tsAirgap_tibble <- tibble::as_tibble(tsAirgap)
     expect_is(
-      ggplot_na_gapsize(tsAirgap_tibble),
+      ggplot_na_level(tsAirgap_tibble),
       "ggplot"
     )
 
@@ -247,7 +242,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # tibble multivariate -  plots first variable (maybe error would be better)
     tsAirgap_tibble2 <- tibble::as_tibble(data.frame(tsAirgap, tsAirgap))
     expect_is(
-      ggplot_na_gapsize(tsAirgap_tibble2),
+      ggplot_na_level(tsAirgap_tibble2),
       "ggplot"
     )
   }

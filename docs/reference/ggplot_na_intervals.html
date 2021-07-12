@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Visualize Missing Values per Interval — ggplot_na_intervals • imputeTS</title>
+<title>Visualize Missing Values per Interval — ggplot_na_distribution2 • imputeTS</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Visualize Missing Values per Interval — ggplot_na_intervals" />
+<meta property="og:title" content="Visualize Missing Values per Interval — ggplot_na_distribution2" />
 <meta property="og:description" content="Visualization of missing values in barplot form.
 Especially useful when looking at specific intervals and for
 time series with a lot of observations." />
@@ -134,8 +134,8 @@ time series with a lot of observations." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Visualize Missing Values per Interval</h1>
-    <small class="dont-index">Source: <a href='https://github.com/SteffenMoritz/imputeTS/blob/master/R/ggplot_na_intervals.R'><code>R/ggplot_na_intervals.R</code></a></small>
-    <div class="hidden name"><code>ggplot_na_intervals.Rd</code></div>
+    <small class="dont-index">Source: <a href='https://github.com/SteffenMoritz/imputeTS/blob/master/R/ggplot_na_distribution2.R'><code>R/ggplot_na_distribution2.R</code></a></small>
+    <div class="hidden name"><code>ggplot_na_distribution2.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -144,7 +144,7 @@ Especially useful when looking at specific intervals and for
 time series with a lot of observations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggplot_na_intervals</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span>
   <span class='va'>x</span>,
   number_intervals <span class='op'>=</span> <span class='cn'>NULL</span>,
   interval_size <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -271,47 +271,47 @@ to see how adjustments are made.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Example 1: Visualize the missing values in tsNH4 time series as percentages</span>
-<span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='va'>tsNH4</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_intervals-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsNH4</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_distribution2-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 2: Visualize the missing values in tsNH4 time series as counts </span>
-<span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='va'>tsNH4</span>, measure <span class='op'>=</span> <span class='st'>"count"</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_intervals-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsNH4</span>, measure <span class='op'>=</span> <span class='st'>"count"</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_distribution2-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 3: Visualize the missing values in tsHeating time series</span>
-<span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='va'>tsHeating</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_intervals-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsHeating</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_distribution2-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 4: Same as example 1, just written with pipe operator</span>
-<span class='va'>tsNH4</span> <span class='op'>%&gt;%</span> <span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_intervals-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>tsNH4</span> <span class='op'>%&gt;%</span> <span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_distribution2-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 5: Visualize NAs in tsNH4 - exactly 8 intervals</span>
-<span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='va'>tsNH4</span>, number_intervals <span class='op'>=</span> <span class='fl'>8</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_intervals-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsNH4</span>, number_intervals <span class='op'>=</span> <span class='fl'>8</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_distribution2-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 6: Visualize NAs in tsNH4 - 300 observations per interval</span>
-<span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='va'>tsNH4</span>, interval_size <span class='op'>=</span> <span class='fl'>300</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_intervals-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsNH4</span>, interval_size <span class='op'>=</span> <span class='fl'>300</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_distribution2-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 7: Visualize NAs in tsAirgap - different color for NAs</span>
-<span class='co'># Plot adjustments via ggplot_na_intervals function parameters</span>
-<span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='va'>tsAirgap</span>, color_missing <span class='op'>=</span> <span class='st'>"pink"</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_intervals-7.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Plot adjustments via ggplot_na_distribution2 function parameters</span>
+<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsAirgap</span>, color_missing <span class='op'>=</span> <span class='st'>"pink"</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_distribution2-7.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 8: Visualize NAs in tsNH4 - different theme</span>
-<span class='co'># Plot adjustments via ggplot_na_intervals function parameters</span>
-<span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='va'>tsNH4</span>, theme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_classic</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_intervals-8.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Plot adjustments via ggplot_na_distribution2 function parameters</span>
+<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsNH4</span>, theme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_classic</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='ggplot_na_distribution2-8.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 9: Visualize NAs in tsAirgap - title, subtitle in center</span>
 <span class='co'># Plot adjustments via ggplot2 syntax</span>
-<span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.subtitle <span class='op'>=</span> <span class='fu'>ggtext</span><span class='fu'>::</span><span class='fu'><a href='https://wilkelab.org/ggtext/reference/element_markdown.html'>element_markdown</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_intervals-9.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='ggplot_na_distribution2-9.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 10: Visualize NAs in tsAirgap - title in center, no subtitle</span>
 <span class='co'># Plot adjustments via ggplot2 syntax and function parameters</span>
-<span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='va'>tsAirgap</span>, subtitle <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsAirgap</span>, subtitle <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_intervals-10.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='ggplot_na_distribution2-10.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 11: Visualize NAs in tsAirgap - x-axis texts with angle</span>
 <span class='co'># Plot adjustments via ggplot2 syntax and function parameters</span>
-<span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='va'>tsAirgap</span>, color_missing <span class='op'>=</span> <span class='st'>"grey"</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsAirgap</span>, color_missing <span class='op'>=</span> <span class='st'>"grey"</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>60</span>, hjust <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_intervals-11.png' alt='' width='700' height='433' /></div><div class='input'>  
+</div><div class='img'><img src='ggplot_na_distribution2-11.png' alt='' width='700' height='433' /></div><div class='input'>  
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

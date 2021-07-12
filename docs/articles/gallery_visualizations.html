@@ -104,7 +104,7 @@
 <p>There are multiple different plots for (univarate) time series missing data available in the imputeTS package. These can be grouped in the following three categories:</p>
 <ul>
 <li>Getting an Overview (<code>ggplot_na_distribution</code>)</li>
-<li>Deeper insights and missing data patterns (<code>ggplot_na_intervals</code>, <code>ggplot_na_gapsize</code>)</li>
+<li>Deeper insights and missing data patterns (<code>ggplot_na_distribution2</code>, <code>ggplot_na_gapsize</code>)</li>
 <li>Assessing/Exploring imputation results (<code>ggplot_na_imputations</code>)</li>
 </ul>
 <p><em>This vignette showcases all of the available visualizations in the imputeTS package. More information on time series imputation and the imputeTS package in general can be found in this paper: <a href="https://journal.r-project.org/archive/2017/RJ-2017-009/index.html">imputeTS: Time Series Missing Value Imputation in R</a>.</em></p>
@@ -123,17 +123,17 @@
 <code class="sourceCode R"><span class="fu"><a href="../reference/ggplot_na_distribution.html">ggplot_na_distribution</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">value</span>, x_axis_labels <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">date</span><span class="op">)</span></code></pre></div>
 <p><img src="gallery_visualizations_files/figure-html/ggplot-na-distribution2-1.png" width="600" style="display: block; margin: auto;"></p>
 </div>
-<div id="detailed-information-about-certain-intervals-ggplot_na_intervals" class="section level2">
+<div id="detailed-information-about-certain-intervals-ggplot_na_distribution2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#detailed-information-about-certain-intervals-ggplot_na_intervals" class="anchor"></a>Detailed information about certain intervals (<code>ggplot_na_intervals</code>)</h2>
-<p>When a summary for certain time intervals (e. g. weeks) is needed, the <code><a href="../reference/ggplot_na_intervals.html">ggplot_na_intervals()</a></code> plot is useful. It shows the missing data percentage for each interval as a bar. This kind of summary plot is also quite useful for very long time series, which would not fit into the plot window as a lineplot.</p>
-<p>Like for <code><a href="../reference/ggplot_na_distribution.html">ggplot_na_distribution()</a></code> only parameter <code>x</code> (the univariate time series) is mandatory for creating a plot with <code><a href="../reference/ggplot_na_intervals.html">ggplot_na_intervals()</a></code>. With the parameter <code>interval_size</code> the size of the interval can be changed (default is a auto calculated interval size that gives a good overall overview). All other parameters are mostly needed for changing the appearance of the plot.</p>
+<a href="#detailed-information-about-certain-intervals-ggplot_na_distribution2" class="anchor"></a>Detailed information about certain intervals (<code>ggplot_na_distribution2</code>)</h2>
+<p>When a summary for certain time intervals (e. g. weeks) is needed, the <code><a href="../reference/ggplot_na_distribution2.html">ggplot_na_distribution2()</a></code> plot is useful. It shows the missing data percentage for each interval as a bar. This kind of summary plot is also quite useful for very long time series, which would not fit into the plot window as a lineplot.</p>
+<p>Like for <code><a href="../reference/ggplot_na_distribution.html">ggplot_na_distribution()</a></code> only parameter <code>x</code> (the univariate time series) is mandatory for creating a plot with <code><a href="../reference/ggplot_na_distribution2.html">ggplot_na_distribution2()</a></code>. With the parameter <code>interval_size</code> the size of the interval can be changed (default is a auto calculated interval size that gives a good overall overview). All other parameters are mostly needed for changing the appearance of the plot.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ggplot_na_intervals.html">ggplot_na_intervals</a></span><span class="op">(</span><span class="va">tsNH4</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/ggplot_na_distribution2.html">ggplot_na_distribution2</a></span><span class="op">(</span><span class="va">tsNH4</span><span class="op">)</span></code></pre></div>
 <p><img src="gallery_visualizations_files/figure-html/ggplot-na-intervals-1.png" width="600" style="display: block; margin: auto;"></p>
 <p>Alternatively the missing data count for the interval (instead of the percentages) can be shown. Below is an example with a custom interval size of 144 and a custom color for the missing data bars. Since the example data is recorded in 10 minute time steps, a interval_size of 144 means that we are using daily intervals (6 measurements per hour, 24 hours per day, 6*24 = 144).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ggplot_na_intervals.html">ggplot_na_intervals</a></span><span class="op">(</span><span class="va">tsNH4</span>, measure <span class="op">=</span> <span class="st">"count"</span>, interval_size <span class="op">=</span> <span class="fl">144</span>, color_missing <span class="op">=</span> <span class="st">"gold3"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/ggplot_na_distribution2.html">ggplot_na_distribution2</a></span><span class="op">(</span><span class="va">tsNH4</span>, measure <span class="op">=</span> <span class="st">"count"</span>, interval_size <span class="op">=</span> <span class="fl">144</span>, color_missing <span class="op">=</span> <span class="st">"gold3"</span><span class="op">)</span></code></pre></div>
 <p><img src="gallery_visualizations_files/figure-html/ggplot-na-intervals2-1.png" width="600" style="display: block; margin: auto;"></p>
 </div>
 <div id="insights-about-missing-data-patterns-ggplot_na_gapsize" class="section level2">

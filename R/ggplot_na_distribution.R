@@ -1,4 +1,4 @@
-#' @title Visualize the Distribution of Missing Values
+#' @title Lineplot to Visualize the Distribution of Missing Values
 #'
 #' @description Visualize the distribution of missing values within a time series.
 #'
@@ -19,7 +19,7 @@
 #'
 #' @param color_missing_border Color used as border for time spans with NA values.
 #'
-#' @param alpha_missing Transparency value used for color_missing.
+#' @param alpha_missing Alpha (transparency) value used for color_missing.
 #'
 #' @param title Title of the Plot (NULL for deactivating title).
 #'
@@ -49,20 +49,20 @@
 #' data.frame, tibble, tsibble, zoo, xts as an input.
 #'
 #' The plot can be adjusted to your needs via the function parameters.
-#' Additionally for more complex adjustments, the output can also be
+#' Additionally, for more complex adjustments, the output can also be
 #' adjusted via ggplot2 syntax. This is possible, since the output
 #' of the function is a ggplot2 object. Also take a look at the Examples
 #' to see how adjustments are made.
 #'
 #' For very long time series it might happen, that the plot gets too crowded
 #' and overplotting issues occur. In this case the
-#' \code{\link[imputeTS]{ggplot_na_intervals}} plotting function can provide
+#' \code{\link[imputeTS]{ggplot_na_distribution2}} plotting function can provide
 #' a more condensed overview.
 #'
 #'
 #' @author Steffen Moritz, Sebastian Gatscha
 #'
-#' @seealso \code{\link[imputeTS]{ggplot_na_intervals}},
+#' @seealso \code{\link[imputeTS]{ggplot_na_distribution2}},
 #' \code{\link[imputeTS]{ggplot_na_gapsize}},
 #' \code{\link[imputeTS]{ggplot_na_imputations}}
 #'

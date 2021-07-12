@@ -39,7 +39,7 @@
 #'
 #' @param color_border Defines the color for the border of the bars.
 #' 
-#' @param alpha_bars Alpha value used for filling the bars.
+#' @param alpha_bars Alpha (transparency) value used for filling the bars.
 #' 
 #' @param title Title of the Plot.
 #'
@@ -85,17 +85,17 @@
 #' time series with NAs that shall be visualized). All other parameters
 #' are solely for altering the appearance of the plot.
 #'
-#' As long as the input is univariate and numeric the function also takes
+#' As long as the input is univariate and numeric, the function also takes
 #' data.frame, tibble, tsibble, zoo, xts as an input.
 #'
 #' The plot can be adjusted to your needs via the function parameters.
-#' Additionally for more complex adjustments, the output can also be
+#' Additionally, for more complex adjustments, the output can also be
 #' adjusted via ggplot2 syntax. This is possible, since the output
 #' of the function is a ggplot2 object. Also take a look at the Examples
 #' to see how adjustments are made.
 #'
 #' @seealso \code{\link[imputeTS]{ggplot_na_distribution}},
-#'   \code{\link[imputeTS]{ggplot_na_intervals}},
+#'   \code{\link[imputeTS]{ggplot_na_distribution2}},
 #'   \code{\link[imputeTS]{ggplot_na_imputations}}
 #'
 #' @examples
@@ -238,7 +238,7 @@ ggplot_na_gapsize <- function(x,
   
 
   # Calculation consecutive NA information
-  rle_na <- rle(is.na(data))
+  rle_na <- base::rle(is.na(data))
   vec <- rle_na$lengths[rle_na$values]
   occurrence_bar <- table(vec)
   gaps_vec <- as.integer(names(occurrence_bar))

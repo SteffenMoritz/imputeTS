@@ -2,32 +2,24 @@
 % Please edit documentation in R/ggplot_na_level.R
 \name{ggplot_na_level}
 \alias{ggplot_na_level}
-\title{Violin Plot of Value Distribution directly before/after NAs}
+\title{Dotplot of Value Distribution directly before/after NAs}
 \usage{
 ggplot_na_level(
   x,
+  number_bins = ifelse(length(x)/10 < 30, 30, length(x)/10),
   color_before = "steelblue",
   color_after = "yellowgreen",
-  color_source = "gray66",
-  alpha_before = 0.9,
-  alpha_after = 0.9,
-  alpha_source = 0.3,
-  shape_before = 16,
-  shape_after = 18,
-  shape_source = 16,
-  size_before = 1.5,
-  size_after = 2.5,
-  size_source = 1.5,
+  color_regular = "azure2",
   title = "Before/After Analysis",
-  subtitle = "Level of values occurring directly before and after NAs",
-  xlab = "",
-  ylab = "Value",
+  subtitle = "Values before and after NAs",
+  xlab = NULL,
+  ylab = NULL,
   legend = TRUE,
-  legend_size = 5,
-  orientation = "horizontal",
-  label_before = "known values",
-  label_after = "imputed values",
-  label_source = "ground truth",
+  legend_title = "",
+  orientation = "vertical",
+  label_before = "before",
+  label_after = "after",
+  label_regular = "regular",
   theme = ggplot2::theme_linedraw()
 )
 }
@@ -37,14 +29,18 @@ ggplot_na_level(
 This is the only mandatory parameter - all other parameters are
 only needed for adjusting the plot appearance.}
 
-\item{color_before}{Color to fill the violin representing observations
+\item{number_bins}{Number of bins of stacked observations to
+be created. Default is length of time series divided
+by ten - but with a minimum of 30 bins.}
+
+\item{color_before}{Color for the dots representing observations
 directly before NA gaps.}
 
-\item{color_after}{Color to fill the violin representing
+\item{color_after}{Color for the dots representing
 observations directly after NA gaps.}
 
-\item{color_source}{Color to fill the violin representing the
-distribution of all non-NA values of a time series.}
+\item{color_regular}{Color for the dots representing all values
+that are not next to NA observations.}
 
 \item{title}{Title of the plot (NULL for deactivating title).}
 
@@ -56,98 +52,70 @@ distribution of all non-NA values of a time series.}
 
 \item{legend}{If TRUE a legend is added at the bottom.}
 
+\item{legend_title}{Title for the legend.}
+
 \item{orientation}{Can be either 'vertical' or 'horizontal'. Defines
-if the violin plot is oriented vertically or horizontally.}
+if the  plot is oriented vertically or horizontally.}
 
-\item{label_before}{Defines the label assigned to the
-violin for values directly before NAs.}
+\item{label_before}{Defines the legend label assigned to the
+observations directly before NAs.}
 
-\item{label_after}{Defines the label assigned to the
-violin for values directly after NAs.}
+\item{label_after}{Defines the legend label assigned to the
+observations directly after NAs.}
 
-\item{label_source}{Defines the label assigned to the violin
-for the distribution of all values.}
+\item{label_regular}{Defines the legend label assigned to
+the observations, that are not next to NA values.}
 
 \item{theme}{Set a Theme for ggplot2. Default is ggplot2::theme_linedraw().
 (\code{\link[ggplot2]{theme_linedraw})}}
-
-\item{inside_information}{Defines what is inside the violin as an additional
-distribution visualization. Accepts the following input:
-
-\itemize{
-\item{"boxplot" - Adds a boxplot inside the violins } (default choice)
-\item{"points" - Adds jittered points inside the violins}
-\item{"none" - Adds nothing inside the violins}
-}
-Beware, though using jitter option "points" can lead to overlays for larger time series.}
-
-\item{color_inside}{Color used for the inside information
-(color of boxplot border or color of points).}
-
-\item{alpha_violin}{Transparency value used for the violin.}
-
-\item{alpha_inside}{Transparency value used for the inside
-information in the violin (boxplot, points).}
-
-\item{add_n_label}{Whether to automatically additionally add a
-n-value (e.g. n = 100) to the labels as an indication
-how many observations are represented by the violins.}
 }
 \description{
-Visualize the distribution of values directly before/after NAs via violin plots.
+Visualize the distribution of values directly
+before/after NAs via a dotplot.
 Useful to determine if missing values appear more often when a certain
 threshold level is reached.
 }
 \details{
 This function visualizes the distribution of missing
-values directly before/after NAs via violin plots. This is useful to
+values directly before/after NAs via a dotplot. This is useful to
 determine if missing values appear more often when near to a
 certain value level.
 
-As described in \link[ggplot2]{geom_violin}: 'A violin plot is a compact
-display of a continuous distribution. A violin plot is a mirrored density
-plot displayed in the same way as a boxplot.'
+In a \link[ggplot2]{geom_dotplot} each dot represents one observation
+in the time series. It can be directly seen how many values
+are stacked into a bin (a value range).
 
-The visualization of the before/after NA distributions in comparison
-to the overall distribution can provide information about the root
-cause of the missing values. It also can provide indications, about
-the missing data mechanism (MCAR,MAR, MNAR).
+The ggplot_na_level plot makes use of this and additionally
+colors observations before and after NAs differently.
 
-The default plot consists of three violins/boplots combinations -
-one for all values directly before NAs, one for all values directly
-after NAs and one for the overall distribution of all non-NA values.
+The visualization of the before/after NA observations in a bin in
+comparison to the regular observations can provide information
+about the root cause of the missing values. It also can provide
+indications, about the missing data mechanism (MCAR, MAR, MNAR).
 
-By looking at these plots it can be seen whether the NAs appear
+By looking at this plot it can be seen whether the NAs appear
 rather randomly after some values in the overall distribution or
 if e.g. it can be said NAs more likely appear after high values.
 
 It could, for example be the case, that a sensor can't measure
 values above 100 degree and always outputs NA values once the
-temperature reaches 100 degree. With these plots it could be realized,
+temperature reaches 100 degree. With this plot, it can be realized,
 that NAs in the next value always occur when the temperature is close
 to 100 degree.
 
-Some more technical implementation details:
+Thus, unusually high numbers of dots of before/after NA observations in a bin
+(in comparison the amount of dots of other observations in this bin)
+should draw the users' attention.
 
-The middle violin with the distribution of all non-NA observations also
-includes the values directly before/after the NAs.
-
-Only the values directly before and after the NA gap are used for
-the before/after violins.
-
-For the example series 6, 2, NA, NA, NA, 3, 6 this would mean:
-\itemize{
-\item{The 2 value goes into the before distribution}
-\item{The 3 value goes into the after distribution}
-\item{Both 6 are not in before or after, since only values directly
-before or after the gaps are considered}
-\item{No extra values added to before/after as representatives for the middle NAs}
-}
-So the source/overall distribution for this series would be \{6, 2, 3, 6\}
-the before \{2\} and after \{6\}.
-
-Of course the overall plot only makes sense with a longer time series
-with more missing values.
+The advantage of the dotplot of ggplot_na_level over the violin plots of ggplot_na_level2
+is that each observation in the time series is really displayed as a dot in the dotplot.
+For the user this can feel more intuitive. Especially, for very short time series
+the violins/boxplots and the summary statistics they provide are not so meaningful anymore.
+On the other hand, the ggplot_na_level is not a good choice for large time series.
+Drawing a visible dot for each observation comes to its limits, when the time series is larger
+than 500 observations. Also, while our assessment of distributions and anomalies usually
+works adequate on small amounts of data, we often struggle with large amounts of data.
+Here the violin/boxplot combination of ggplot_na_level2 is a great help.
 
 The only really needed parameter for this function is x (the univariate
 time series that shall be visualized). All other parameters are solely
@@ -157,30 +125,30 @@ As long as the input is univariate and numeric, the function also takes
 data.frame, tibble, tsibble, zoo, xts as an input.
 
 The plot can be adjusted to your needs via the function parameters.
-Additionally for more complex adjustments, the output can also be
+Additionally, for more complex adjustments, the output can also be
 adjusted via ggplot2 syntax. This is possible, since the output
 of the function is a ggplot2 object. Also take a look at the Examples
 to see how adjustments are made.
 }
 \examples{
-# Example 1: Visualize the before/after NA distributions
+# Example 1: Visualize the before/after NA distributions 
 x <- stats::ts(c(1:11, 4:9, NA, NA, NA, 11:15, 7:15, 15:6, NA, NA, 2:5, 3:7))
 ggplot_na_level(x)
 
-# Example 2: Visualize the before/after NA distributions in tsNH4 time series
-ggplot_na_level(tsNH4)
+# Example 2: Visualize the before/after in subset of tsNH4 time series, more bins
+ggplot_na_level(tsNH4[1:500], number_bins = 100)
 
 # Example 3: Same as example 1, just written with pipe operator
 x <- ts(c(1:11, 4:9, NA, NA, NA, 11:15, 7:15, 15:6, NA, NA, 2:5, 3:7))
 x \%>\% ggplot_na_level()
 
 # Example 4: Visualize the before/after NA in tsAirgap - different color for violins
-# Plot adjustments via ggplot_na_distribution function parameters
+# Plot adjustments via ggplot_na_level function parameters
 ggplot_na_level(tsAirgap, color_after = "green")
 
-# Example 5: Visualize before/after NA in tsAirgap - different theme
-# Plot adjustments via ggplot_na_distribution function parameters
-ggplot_na_level(tsAirgap, theme = ggplot2::theme_classic())
+# Example 5: Visualize before/after NA in tsAirgap - different theme and orientation
+# Plot adjustments via ggplot_na_level function parameters
+ggplot_na_level(tsAirgap, theme = ggplot2::theme_classic() , orientation = "horizontal")
 
 # Example 6: Visualize before/after NA in tsNH4 - title, subtitle in center
 # Plot adjustments via ggplot2 syntax
@@ -190,17 +158,19 @@ ggplot_na_level(tsAirgap) +
 
 # Example 7: Visualize before/after NA in tsAirgap - title in center, no subtitle
 # Plot adjustments via ggplot2 syntax and function parameters
-ggplot_na_level(tsAirgap, subtitle = NULL) +
+ggplot_na_level(tsAirgap, subtitle = NULL, orientation = "horizontal") +
   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
 
 # Example 8: Visualize before/after NA in tsAirgap - y-axis texts with angle
 # Plot adjustments via ggplot2 syntax and function parameters
-ggplot_na_level(tsAirgap, color_source = "grey") +
+ggplot_na_level(tsAirgap, color_regular = "grey") +
   ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 60, hjust = 1))
+  
 }
 \seealso{
-\code{\link[imputeTS]{ggplot_na_intervals}},
+\code{\link[imputeTS]{ggplot_na_distribution2}},
 \code{\link[imputeTS]{ggplot_na_gapsize}},
+\code{\link[imputeTS]{ggplot_na_level2}},
 \code{\link[imputeTS]{ggplot_na_distribution}},
 \code{\link[imputeTS]{ggplot_na_imputations}}
 }

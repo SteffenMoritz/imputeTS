@@ -51,7 +51,7 @@
 #' 
 #' # Example 3: Same as example 1, just written with pipe operator
 #' tsAirgap %>% na_seadec(algorithm = "interpolation")
-#' @importFrom stats frequency stl
+#' @importFrom stats frequency stl ts
 #' @importFrom forecast findfrequency
 #' @importFrom magrittr %>%
 #' @export
@@ -142,6 +142,14 @@ na_seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, ma
       freq <- forecast::findfrequency(na_interpolation(t))
       if (freq > 1) {
         data <- ts(t, frequency = freq)
+      }
+      else if (freq == 1){
+        message("Option find_frequency = TRUE could not detect a seasonal pattern. 
+        The algorithm will go on without seasonal decomposition. 
+        You might consider manually setting a frequency by creating a time series with frequency information.
+        Here is an example for weekly data: new_ts <- ts(old_ts, frequency = 7)")
+        data <- apply_base_algorithm(data, algorithm = algorithm, ...)
+        return(data)
       }
     }
 

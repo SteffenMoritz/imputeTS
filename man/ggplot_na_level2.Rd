@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot_na_level2.R
 \name{ggplot_na_level2}
 \alias{ggplot_na_level2}
-\title{Violin Plot of Value Distribution directly before/after NAs}
+\title{Parallel Violin Plots of Value Distributions directly before/after NAs}
 \usage{
 ggplot_na_level2(
   x,
@@ -54,9 +54,9 @@ distribution of all non-NA values of a time series.}
 \item{color_inside}{Color used for the inside information
 (color of boxplot border or color of points).}
 
-\item{alpha_violin}{Transparency value used for the violin.}
+\item{alpha_violin}{Alpha ((transparency) value used for the violin.}
 
-\item{alpha_inside}{Transparency value used for the inside
+\item{alpha_inside}{Alpha (transparency) value used for the inside
 information in the violin (boxplot, points).}
 
 \item{title}{Title of the plot (NULL for deactivating title).}
@@ -152,7 +152,7 @@ As long as the input is univariate and numeric, the function also takes
 data.frame, tibble, tsibble, zoo, xts as an input.
 
 The plot can be adjusted to your needs via the function parameters.
-Additionally for more complex adjustments, the output can also be
+Additionally, for more complex adjustments, the output can also be
 adjusted via ggplot2 syntax. This is possible, since the output
 of the function is a ggplot2 object. Also take a look at the Examples
 to see how adjustments are made.
@@ -170,11 +170,11 @@ x <- ts(c(1:11, 4:9, NA, NA, NA, 11:15, 7:15, 15:6, NA, NA, 2:5, 3:7))
 x \%>\% ggplot_na_level2()
 
 # Example 4: Visualize the before/after NA in tsAirgap - different color for violins
-# Plot adjustments via ggplot_na_distribution function parameters
+# Plot adjustments via ggplot_na_level2 function parameters
 ggplot_na_level2(tsAirgap, color_after = "green")
 
 # Example 5: Visualize before/after NA in tsAirgap - different theme
-# Plot adjustments via ggplot_na_distribution function parameters
+# Plot adjustments via ggplot_na_level2 function parameters
 ggplot_na_level2(tsAirgap, theme = ggplot2::theme_classic())
 
 # Example 6: Visualize before/after NA in tsNH4 - title, subtitle in center
@@ -194,7 +194,7 @@ ggplot_na_level2(tsAirgap, color_source = "grey") +
   ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 60, hjust = 1))
 }
 \seealso{
-\code{\link[imputeTS]{ggplot_na_intervals}},
+\code{\link[imputeTS]{ggplot_na_distribution2}},
 \code{\link[imputeTS]{ggplot_na_gapsize}},
 \code{\link[imputeTS]{ggplot_na_distribution}},
 \code{\link[imputeTS]{ggplot_na_imputations}}

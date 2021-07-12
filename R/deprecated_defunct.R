@@ -300,13 +300,39 @@ plotNA.distribution <- function(x, ... ) {
 #--------------------------------------------------------------------------------------#
 
 
+# ggplot_na_intervals
+# replaced by ggplot_na_intervals
+#--------------------------------------------------------------------------------------#
+#' @title Discontinued - Use \code{\link[imputeTS]{ggplot_na_distribution2}} instead.
+#' @description plotNA.distributionBar was replaced by \code{\link[imputeTS]{ggplot_na_distribution2}}.
+#' The new plotting function provides an improved version of the old plot e.g. it looks better now and is better adjustable, 
+#' because it is based on ggplot2. If you absolutely want to use the old function, 
+#' you need to download an older package version. Versions 3.0 and below still have the old functions.
+#' @keywords internal
+#' @export
+
+ggplot_na_intervals <- function(x, ... ) {
+  
+  .Defunct(
+    new = "ggplot_na_distribution2",
+    msg = "
+    ggplot_na_intervals was renamed to ggplot_na_distribution2.
+    Use this function instead.
+    
+    Functionality stays the same. "
+  )
+  
+}
+#--------------------------------------------------------------------------------------#
+
+
 
 
 # plotNA.distributionBar()
 # replaced by ggplot_na_intervals
 #--------------------------------------------------------------------------------------#
-#' @title Discontinued - Use \code{\link[imputeTS]{ggplot_na_intervals}} instead.
-#' @description plotNA.distributionBar was replaced by \code{\link[imputeTS]{ggplot_na_intervals}}.
+#' @title Discontinued - Use \code{\link[imputeTS]{ggplot_na_distribution2}} instead.
+#' @description plotNA.distributionBar was replaced by \code{\link[imputeTS]{ggplot_na_distribution2}}.
 #' The new plotting function provides an improved version of the old plot e.g. it looks better now and is better adjustable, 
 #' because it is based on ggplot2. If you absolutely want to use the old function, 
 #' you need to download an older package version. Versions 3.0 and below still have the old functions.
@@ -316,9 +342,9 @@ plotNA.distribution <- function(x, ... ) {
 plotNA.distributionBar <- function(x, ... ) {
   
   .Defunct(
-    new = "ggplot_na_intervals",
+    new = "ggplot_na_distribution2",
     msg = "
-    plotNA.distributionBar was replaced by ggplot_na_intervals.
+    plotNA.distributionBar was replaced by ggplot_na_distribution2.
     Use this function instead.
     
     The plot itself is the same, but looks better now and is better adjustable, because it is based on ggplot2.

@@ -1,4 +1,4 @@
-#' @title Violin Plot of Value Distribution directly before/after NAs
+#' @title Parallel Violin Plots of Value Distributions directly before/after NAs
 #'
 #' @description Visualize the distribution of values directly before/after NAs via violin plots.
 #' Useful to determine if missing values appear more often when a certain
@@ -31,9 +31,9 @@
 #' @param color_inside Color used for the inside information
 #' (color of boxplot border or color of points).
 #'
-#' @param alpha_violin Transparency value used for the violin.
+#' @param alpha_violin Alpha ((transparency) value used for the violin.
 #'
-#' @param alpha_inside Transparency value used for the inside
+#' @param alpha_inside Alpha (transparency) value used for the inside
 #' information in the violin (boxplot, points).
 #'
 #' @param title Title of the plot (NULL for deactivating title).
@@ -57,8 +57,8 @@
 #'
 #' @param label_source Defines the label assigned to the violin
 #' for the distribution of all values.
-#' 
-#' @param add_n_label Whether to automatically additionally add a 
+#'
+#' @param add_n_label Whether to automatically additionally add a
 #' n-value (e.g. n = 100) to the labels as an indication
 #' how many observations are represented by the violins.
 #'
@@ -69,14 +69,14 @@
 #' values directly before/after NAs via violin plots. This is useful to
 #' determine if missing values appear more often when near to a
 #' certain value level.
-#' 
+#'
 #' As described in \link[ggplot2]{geom_violin}: 'A violin plot is a compact
 #' display of a continuous distribution. A violin plot is a mirrored density
 #' plot displayed in the same way as a boxplot.'
 #'
 #' The visualization of the before/after NA distributions in comparison
 #' to the overall distribution can provide information about the root
-#' cause of the missing values. It also can provide indications, about 
+#' cause of the missing values. It also can provide indications, about
 #' the missing data mechanism (MCAR,MAR, MNAR).
 #'
 #' The default plot consists of three violins/boplots combinations -
@@ -124,14 +124,14 @@
 #' data.frame, tibble, tsibble, zoo, xts as an input.
 #'
 #' The plot can be adjusted to your needs via the function parameters.
-#' Additionally for more complex adjustments, the output can also be
+#' Additionally, for more complex adjustments, the output can also be
 #' adjusted via ggplot2 syntax. This is possible, since the output
 #' of the function is a ggplot2 object. Also take a look at the Examples
 #' to see how adjustments are made.
 #'
 #' @author Steffen Moritz
 #'
-#' @seealso \code{\link[imputeTS]{ggplot_na_intervals}},
+#' @seealso \code{\link[imputeTS]{ggplot_na_distribution2}},
 #' \code{\link[imputeTS]{ggplot_na_gapsize}},
 #' \code{\link[imputeTS]{ggplot_na_distribution}},
 #' \code{\link[imputeTS]{ggplot_na_imputations}}
@@ -149,11 +149,11 @@
 #' x %>% ggplot_na_level2()
 #'
 #' # Example 4: Visualize the before/after NA in tsAirgap - different color for violins
-#' # Plot adjustments via ggplot_na_distribution function parameters
+#' # Plot adjustments via ggplot_na_level2 function parameters
 #' ggplot_na_level2(tsAirgap, color_after = "green")
 #'
 #' # Example 5: Visualize before/after NA in tsAirgap - different theme
-#' # Plot adjustments via ggplot_na_distribution function parameters
+#' # Plot adjustments via ggplot_na_level2 function parameters
 #' ggplot_na_level2(tsAirgap, theme = ggplot2::theme_classic())
 #'
 #' # Example 6: Visualize before/after NA in tsNH4 - title, subtitle in center
@@ -171,32 +171,34 @@
 #' # Plot adjustments via ggplot2 syntax and function parameters
 #' ggplot_na_level2(tsAirgap, color_source = "grey") +
 #'   ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 60, hjust = 1))
+#' @importFrom stats ts
+#'
 #' @importFrom ggplot2 theme_linedraw ggplot geom_violin geom_boxplot geom_jitter ggtitle
-#' xlab ylab scale_x_discrete scale_fill_manual theme element_blank element_text theme_classic
+#' xlab ylab scale_x_discrete scale_fill_manual coord_flip theme element_blank element_text theme_classic
 #'
 #' @importFrom magrittr %>%
 #'
 #' @export
 
 ggplot_na_level2 <- function(x,
-                            inside_information = "boxplot",
-                            color_before = "pink3",
-                            color_after = "pink3",
-                            color_source = "steelblue",
-                            color_inside = "black",
-                            alpha_violin = 0.5,
-                            alpha_inside = 0.9,
-                            title = "Before/After Analysis",
-                            subtitle = "Level of values occurring directly before and after NAs",
-                            xlab = "",
-                            ylab = "Value",
-                            legend = FALSE,
-                            orientation = "vertical",
-                            label_before = "before",
-                            label_after = "after",
-                            label_source = "source",
-                            add_n_label = T,
-                            theme = ggplot2::theme_linedraw()) {
+                             inside_information = "boxplot",
+                             color_before = "pink3",
+                             color_after = "pink3",
+                             color_source = "steelblue",
+                             color_inside = "black",
+                             alpha_violin = 0.5,
+                             alpha_inside = 0.9,
+                             title = "Before/After Analysis",
+                             subtitle = "Level of values occurring directly before and after NAs",
+                             xlab = "",
+                             ylab = "Value",
+                             legend = FALSE,
+                             orientation = "vertical",
+                             label_before = "before",
+                             label_after = "after",
+                             label_source = "source",
+                             add_n_label = T,
+                             theme = ggplot2::theme_linedraw()) {
   data <- x
 
 
@@ -219,8 +221,6 @@ ggplot_na_level2 <- function(x,
     input for x. For data types with multiple variables/columns only input
     the column you want to plot as parameter x.")
   }
-
-
 
 
   # 1.3 Checks and corrections for wrong data dimension
@@ -251,6 +251,11 @@ ggplot_na_level2 <- function(x,
        be generated with more non-NA data available.)")
   }
 
+  # exclude inputs without NAs
+  if (!anyNA(data)) {
+    stop("Input data contains no NAs. At least one missing value is needed 
+         to create a meaningful ggplot_na_level2 plot)")
+  }
 
 
   ##
@@ -264,10 +269,9 @@ ggplot_na_level2 <- function(x,
   ## 2. Preparations
   ##
 
-  # 2.1 Create required data
+  # 2.1 Calculate the before and after NA values
 
   # Get all indices of the data that comes directly before and after an NA
-
   na_indx_after <- which(is.na(data[1:(length(data) - 1)])) + 1
   # starting from index 2 moves all indexes one in front, so no -1 needed for before
   na_indx_before <- which(is.na(data[2:length(data)]))
@@ -277,13 +281,16 @@ ggplot_na_level2 <- function(x,
   after <- data.frame(type = "after", input = na_remove(data[na_indx_after]))
   all <- data.frame(type = "source", input = na_remove(data))
 
+
+  # 2.2 Create additional info used by plots
+
   # Get n values for the plot labels
   n_before <- length(before$input)
   n_all <- length(all$input)
   n_after <- length(after$input)
 
 
-  # 2.4 Create dataframe for ggplot2
+  # 2.3 Create dataframe for ggplot2
 
   # join the data together in one dataframe
   df <- rbind(before, after, all)
@@ -334,9 +341,11 @@ ggplot_na_level2 <- function(x,
     theme +
     ggplot2::scale_x_discrete(
       limits = c("before", "source", "after"),
-      labels = c(paste0(label_before, ifelse(add_n_label, paste0(" \n n = ", n_before),"")),
-                 paste0(label_source, ifelse(add_n_label, paste0(" \n n = ", n_all),"")),
-                 paste0(label_after, ifelse(add_n_label, paste0(" \n n = ", n_after),"")))
+      labels = c(
+        paste0(label_before, ifelse(add_n_label, paste0(" \n n = ", n_before), "")),
+        paste0(label_source, ifelse(add_n_label, paste0(" \n n = ", n_all), "")),
+        paste0(label_after, ifelse(add_n_label, paste0(" \n n = ", n_after), ""))
+      )
     ) +
     ggplot2::scale_fill_manual(values = c(color_after, color_before, color_source))
 

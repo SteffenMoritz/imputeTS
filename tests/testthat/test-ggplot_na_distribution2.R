@@ -1,8 +1,12 @@
-context("ggplot_na_intervals")
+context("ggplot_na_distribution2")
 
 
 test_that("Old functions give error", {
   expect_error(plotNA.distributionBar(tsAirgap))
+})
+
+test_that("Old name of function gives error", {
+  expect_error(ggplot_na_intervals(tsAirgap))
 })
 
 test_that("Check that all parameters of plot  run without error", {
@@ -13,26 +17,26 @@ test_that("Check that all parameters of plot  run without error", {
   }
   else {
     require("ggplot2")
-    expect_true(is.recursive(ggplot_na_intervals(tsAirgap)))
-    expect_true(is.list(ggplot_na_intervals(tsAirgap)))
-    expect_true(is.list(ggplot_na_intervals(tsAirgap, number_intervals = 8)))
-    expect_true(is.list(ggplot_na_intervals(tsAirgap, interval_size = 25)))
-    expect_true(is.list(ggplot_na_intervals(tsNH4, measure = "count")))
-    expect_true(is.list(ggplot_na_intervals(tsAirgap,
+    expect_true(is.recursive(ggplot_na_distribution2(tsAirgap)))
+    expect_true(is.list(ggplot_na_distribution2(tsAirgap)))
+    expect_true(is.list(ggplot_na_distribution2(tsAirgap, number_intervals = 8)))
+    expect_true(is.list(ggplot_na_distribution2(tsAirgap, interval_size = 25)))
+    expect_true(is.list(ggplot_na_distribution2(tsNH4, measure = "count")))
+    expect_true(is.list(ggplot_na_distribution2(tsAirgap,
       color_missing = "blue",
       color_existing = "yellow"
     )))
-    expect_true(is.list(ggplot_na_intervals(tsAirgap,
+    expect_true(is.list(ggplot_na_distribution2(tsAirgap,
       alpha_missing = 1,
       alpha_existing = 1
     )))
-    expect_true(is.list(ggplot_na_intervals(tsAirgap,
+    expect_true(is.list(ggplot_na_distribution2(tsAirgap,
       title = "Test",
       subtitle = "test",
       ylab = "test", xlab = "test"
     )))
-    expect_true(is.list(ggplot_na_intervals(tsAirgap, color_border = "black")))
-    expect_true(is.list(ggplot_na_intervals(tsAirgap, theme = ggplot2::theme_classic())))
+    expect_true(is.list(ggplot_na_distribution2(tsAirgap, color_border = "black")))
+    expect_true(is.list(ggplot_na_distribution2(tsAirgap, theme = ggplot2::theme_classic())))
   }
 })
 
@@ -43,14 +47,14 @@ test_that("Errors for wrong input", {
     x = runif(10, 0, 10),
     y = runif(10, 0, 10)
   )
-  expect_error(ggplot_na_intervals(x))
+  expect_error(ggplot_na_distribution2(x))
 
   ## input not numeric
   x <- c("a", 1, NA, 3)
-  expect_error(ggplot_na_intervals(x))
+  expect_error(ggplot_na_distribution2(x))
 
   all_na <- as.numeric(c(NA, NA, NA, NA, NA, NA, NA, NA))
-  expect_error(ggplot_na_intervals(all_na))
+  expect_error(ggplot_na_distribution2(all_na))
 })
 
 
@@ -80,17 +84,17 @@ test_that("Plot works with test ts", {
     ), class = "ts")
 
     expect_is(
-      ggplot_na_intervals(nh),
+      ggplot_na_distribution2(nh),
       "ggplot"
     )
 
     expect_is(
-      ggplot_na_intervals(nh, title = "test"),
+      ggplot_na_distribution2(nh, title = "test"),
       "ggplot"
     )
 
     expect_is(
-      ggplot_na_intervals(nh, title = "test") +
+      ggplot_na_distribution2(nh, title = "test") +
         ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1)),
       "ggplot"
     )
@@ -112,12 +116,12 @@ test_that(" tsNH4 data works", {
     require("ggplot2")
 
     expect_is(
-      ggplot_na_intervals(tsNH4),
+      ggplot_na_distribution2(tsNH4),
       "ggplot"
     )
 
     expect_is(
-      ggplot_na_intervals(tsNH4) +
+      ggplot_na_distribution2(tsNH4) +
         ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1)) +
         ggplot2::ggtitle("hjsdhs"),
       "ggplot"
@@ -162,7 +166,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_df <- data.frame(tsAirgap)
 
     expect_is(
-      ggplot_na_intervals(tsAirgap_df),
+      ggplot_na_distribution2(tsAirgap_df),
       "ggplot"
     )
 
@@ -172,7 +176,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_df2 <- data.frame(tsAirgap, tsAirgap)
 
     expect_error(
-      ggplot_na_intervals(tsAirgap_df2)
+      ggplot_na_distribution2(tsAirgap_df2)
     )
 
 
@@ -180,7 +184,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_zoo <- zoo::as.zoo(tsAirgap)
 
     expect_is(
-      ggplot_na_intervals(tsAirgap_zoo) + ggplot2::theme_minimal(),
+      ggplot_na_distribution2(tsAirgap_zoo) + ggplot2::theme_minimal(),
       "ggplot"
     )
 
@@ -190,7 +194,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_zoo2 <- zoo(cbind(tsAirgap, tsAirgap), zoo::as.Date(zoo::as.yearmon(time(tsAirgap))))
 
     expect_error(
-      ggplot_na_intervals(tsAirgap_zoo2)
+      ggplot_na_distribution2(tsAirgap_zoo2)
     )
 
 
@@ -200,7 +204,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_tsibble <- tsibble::as_tsibble(tsAirgap)
 
     expect_is(
-      ggplot_na_intervals(tsAirgap_tsibble),
+      ggplot_na_distribution2(tsAirgap_tsibble),
       "ggplot"
     )
 
@@ -211,7 +215,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
 
 
     expect_is(
-      ggplot_na_intervals(tsAirgap_tsibble$value) + ggplot2::theme_minimal(),
+      ggplot_na_distribution2(tsAirgap_tsibble$value) + ggplot2::theme_minimal(),
       "ggplot"
     )
 
@@ -221,7 +225,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_tsibble2 <- tsibble::as_tsibble(tsAirgap)
     tsAirgap_tsibble2$var2 <- tsAirgap
     expect_is(
-      ggplot_na_intervals(tsAirgap_tsibble2),
+      ggplot_na_distribution2(tsAirgap_tsibble2),
       "ggplot"
     )
 
@@ -230,7 +234,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # tibble
     tsAirgap_tibble <- tibble::as_tibble(tsAirgap)
     expect_is(
-      ggplot_na_intervals(tsAirgap_tibble),
+      ggplot_na_distribution2(tsAirgap_tibble),
       "ggplot"
     )
 
@@ -239,7 +243,7 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # tibble multivariate -  plots first variable (maybe error would be better)
     tsAirgap_tibble2 <- tibble::as_tibble(data.frame(tsAirgap, tsAirgap))
     expect_is(
-      ggplot_na_intervals(tsAirgap_tibble2),
+      ggplot_na_distribution2(tsAirgap_tibble2),
       "ggplot"
     )
   }

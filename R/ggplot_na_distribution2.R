@@ -1,4 +1,4 @@
-#' @title Visualize Missing Values per Interval
+#' @title Stacked Barplot to Visualize Missing Values per Interval
 #'
 #' @description Visualization of missing values in barplot form.
 #' Especially useful when looking at specific intervals and for
@@ -69,7 +69,7 @@
 #' data.frame, tibble, tsibble, zoo, xts as an input.
 #'
 #' The plot can be adjusted to your needs via the function parameters.
-#' Additionally for more complex adjustments, the output can also be
+#' Additionally, for more complex adjustments, the output can also be
 #' adjusted via ggplot2 syntax. This is possible, since the output
 #' of the function is a ggplot2 object. Also take a look at the Examples
 #' to see how adjustments are made.
@@ -82,45 +82,45 @@
 #'
 #' @examples
 #' # Example 1: Visualize the missing values in tsNH4 time series as percentages
-#' ggplot_na_intervals(tsNH4)
+#' ggplot_na_distribution2(tsNH4)
 #' 
 #' # Example 2: Visualize the missing values in tsNH4 time series as counts 
-#' ggplot_na_intervals(tsNH4, measure = "count")
+#' ggplot_na_distribution2(tsNH4, measure = "count")
 #' 
 #' # Example 3: Visualize the missing values in tsHeating time series
-#' ggplot_na_intervals(tsHeating)
+#' ggplot_na_distribution2(tsHeating)
 #'
 #' # Example 4: Same as example 1, just written with pipe operator
-#' tsNH4 %>% ggplot_na_intervals()
+#' tsNH4 %>% ggplot_na_distribution2()
 #' 
 #' # Example 5: Visualize NAs in tsNH4 - exactly 8 intervals
-#' ggplot_na_intervals(tsNH4, number_intervals = 8)
+#' ggplot_na_distribution2(tsNH4, number_intervals = 8)
 #' 
 #' # Example 6: Visualize NAs in tsNH4 - 300 observations per interval
-#' ggplot_na_intervals(tsNH4, interval_size = 300)
+#' ggplot_na_distribution2(tsNH4, interval_size = 300)
 #' 
 #' # Example 7: Visualize NAs in tsAirgap - different color for NAs
-#' # Plot adjustments via ggplot_na_intervals function parameters
-#' ggplot_na_intervals(tsAirgap, color_missing = "pink")
+#' # Plot adjustments via ggplot_na_distribution2 function parameters
+#' ggplot_na_distribution2(tsAirgap, color_missing = "pink")
 #'
 #' # Example 8: Visualize NAs in tsNH4 - different theme
-#' # Plot adjustments via ggplot_na_intervals function parameters
-#' ggplot_na_intervals(tsNH4, theme = ggplot2::theme_classic())
+#' # Plot adjustments via ggplot_na_distribution2 function parameters
+#' ggplot_na_distribution2(tsNH4, theme = ggplot2::theme_classic())
 #'
 #' # Example 9: Visualize NAs in tsAirgap - title, subtitle in center
 #' # Plot adjustments via ggplot2 syntax
-#' ggplot_na_intervals(tsAirgap) +
+#' ggplot_na_distribution2(tsAirgap) +
 #'   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
 #'   ggplot2::theme(plot.subtitle = ggtext::element_markdown(hjust = 0.5))
 #'
 #' # Example 10: Visualize NAs in tsAirgap - title in center, no subtitle
 #' # Plot adjustments via ggplot2 syntax and function parameters
-#' ggplot_na_intervals(tsAirgap, subtitle = NULL) +
+#' ggplot_na_distribution2(tsAirgap, subtitle = NULL) +
 #'   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
 #'
 #' # Example 11: Visualize NAs in tsAirgap - x-axis texts with angle
 #' # Plot adjustments via ggplot2 syntax and function parameters
-#' ggplot_na_intervals(tsAirgap, color_missing = "grey") +
+#' ggplot_na_distribution2(tsAirgap, color_missing = "grey") +
 #'   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1))
 #'   
 #' @importFrom magrittr %>%
@@ -134,7 +134,7 @@
 #' @importFrom ggtext element_markdown
 #'
 #' @export
-ggplot_na_intervals <- function(x,
+ggplot_na_distribution2 <- function(x,
                                 number_intervals = NULL,
                                 interval_size = NULL,
                                 measure = "percent",
