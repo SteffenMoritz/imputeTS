@@ -10,3 +10,5 @@ Icon
 *.so
 doc
 Meta
+/doc/
+/Meta/

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot_na_distribution.R
 \name{ggplot_na_distribution}
 \alias{ggplot_na_distribution}
-\title{Visualize the Distribution of Missing Values}
+\title{Lineplot to Visualize the Distribution of Missing Values}
 \usage{
 ggplot_na_distribution(
   x,
@@ -39,7 +39,7 @@ observation numbers as  x-axis tick labels.}
 
 \item{color_missing_border}{Color used as border for time spans with NA values.}
 
-\item{alpha_missing}{Transparency value used for color_missing.}
+\item{alpha_missing}{Alpha (transparency) value used for color_missing.}
 
 \item{title}{Title of the Plot (NULL for deactivating title).}
 
@@ -73,14 +73,14 @@ As long as the input is univariate and numeric the function also takes
 data.frame, tibble, tsibble, zoo, xts as an input.
 
 The plot can be adjusted to your needs via the function parameters.
-Additionally for more complex adjustments, the output can also be
+Additionally, for more complex adjustments, the output can also be
 adjusted via ggplot2 syntax. This is possible, since the output
 of the function is a ggplot2 object. Also take a look at the Examples
 to see how adjustments are made.
 
 For very long time series it might happen, that the plot gets too crowded
 and overplotting issues occur. In this case the
-\code{\link[imputeTS]{ggplot_na_intervals}} plotting function can provide
+\code{\link[imputeTS]{ggplot_na_distribution2}} plotting function can provide
 a more condensed overview.
 }
 \examples{
@@ -121,7 +121,7 @@ ggplot_na_distribution(tsAirgap, color_points = "grey") +
   
 }
 \seealso{
-\code{\link[imputeTS]{ggplot_na_intervals}},
+\code{\link[imputeTS]{ggplot_na_distribution2}},
 \code{\link[imputeTS]{ggplot_na_gapsize}},
 \code{\link[imputeTS]{ggplot_na_imputations}}
 }

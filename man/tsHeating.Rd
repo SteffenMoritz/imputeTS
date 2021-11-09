@@ -8,7 +8,12 @@
 Time Series (\code{\link{ts}}) with 606837 rows including 57391 NAs.
 }
 \source{
-\url{http://www.spotseven.de/gecco-challenge/gecco-challenge-2015/}
+\cite{Moritz, Steffen, Friese, Martina, Fischbach, Andreas, Schlitt,
+Christopher, and Bartz-Beielstein, Thomas. (2015, May 1).
+GECCO Industrial Challenge 2015 Dataset: A heating system dataset for the 'Recovering
+missing information in heating system operating data' competition at the
+Genetic and Evolutionary Computation Conference 2015, Madrid, Spain.
+http://doi.org/10.5281/zenodo.3884899 }
 }
 \usage{
 tsHeating
@@ -22,7 +27,7 @@ missing values.
 The time series originates from the GECCO Industrial Challenge 2015.
 This Challenge was about "Recovering missing information in heating system operating data".
 Goal was to impute missing values in heating system sensor data as accurate as possible.
-(\url{http://www.spotseven.de/gecco-challenge/gecco-challenge-2015/})
+(\doi{10.5281/zenodo.3884899})
 
 In order to use this series for comparing imputation algorithm results,
 there are two time series provided. One series without missing values, which can

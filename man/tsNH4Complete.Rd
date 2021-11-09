@@ -8,7 +8,12 @@
 Time Series (\code{\link{ts}}) with 4552 rows.
 }
 \source{
-\url{http://www.spotseven.de/gecco-challenge/gecco-challenge-2014/}
+\cite{Friese, Martina, Fischbach, Andreas, Flasch, Oliver, Mersmann, Olaf,
+Bartz-Beielstein, Thomas, and Walbeck, Klaus. (2014, July 16).
+GECCO Industrial Challenge 2014 Dataset: A water quality dataset for the
+'Active protection against pollution of the surface water' competition at the
+Genetic and Evolutionary Computation Conference 2015, Vancouver, Canada.
+http://www.spotseven.de/gecco-challenge/gecco-challenge-2014}#'
 }
 \usage{
 tsNH4Complete

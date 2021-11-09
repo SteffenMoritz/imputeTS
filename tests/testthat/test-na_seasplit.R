@@ -1,7 +1,7 @@
 context("na_seasplit")
 
-test_that("All NA vector throws error", {
-  expect_error(na_seasplit(c(NA, NA, NA, NA, NA)))
+test_that("All NA vector gives warning", {
+  expect_warning(na_seasplit(c(NA, NA, NA, NA, NA)))
 })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)", {
@@ -62,7 +62,7 @@ test_that("Imputation works for data.frame", {
 
 
 
-test_that("Error for wrong input for algorithm parameter", {
+test_that("Warning for wrong input for algorithm parameter", {
   expect_error(na_seasplit(tsAirgap, algorithm = "wrong"))
 })
 

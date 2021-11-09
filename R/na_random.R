@@ -51,8 +51,10 @@
 #' @export
 
 na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
+  
+  # Variable 'data' is used for all transformations to the time series
+  # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
-
 
 
   #----------------------------------------------------------
@@ -68,9 +70,10 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
         next
       }
       # if imputing a column does not work - mostly because it is not numeric - the column is left unchanged
-      tryCatch(data[, i] <- na_random(data[, i], lower_bound, upper_bound, maxgap), error = function(cond) {
-        warning(paste("imputeTS: No imputation performed for column", i, "because of this", cond), call. = FALSE)
-      })
+      tryCatch(data[, i] <- na_random(data[, i], lower_bound, upper_bound, maxgap),
+               warning = function(cond) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond), call. = FALSE)},
+               error = function(cond2) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond2), call. = FALSE)}
+      )
     }
     return(data)
   }
@@ -92,7 +95,7 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
 
     # 1.1 Check if NAs are present
     if (!anyNA(data)) {
-      return(data)
+      return(x)
     }
 
     # 1.2 special handling data types
@@ -102,15 +105,17 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (sum(!missindx) < 2 && !(!is.null(upper_bound) && !is.null(lower_bound) )) {
-      stop("Input data needs at least 2 non-NA data point for applying na_random 
+      warning("No imputation performed: Input data needs at least 2 non-NA data points for applying na_random 
            with default lower_bound and upper_bound settings.")
+      return(x)
     }
 
     # 1.4 Checks and corrections for wrong data dimension
 
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
-      stop("Wrong input type for parameter x")
+      warning("No imputation performed: Wrong input type for parameter x")
+      return(x)
     }
 
     # Altering multivariate objects with 1 column (which are essentially
@@ -123,12 +128,13 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
     
     # Combined with check if all NA present, since an all NA vector returns FALSE for is.numeric
     if (!is.numeric(data) & !all(is.na(data))) {
-      stop("Input x is not numeric")
+      warning("No imputation performed: Input x is not numeric")
+      return(x)
     }
 
     # 1.6 Check and set values for param lower_bound and upper_bound
 
-    # If lower or upper bound is NULL, which is the funtion default usw min/max
+    # If lower or upper bound is NULL, which is the function default usw min/max
     if (is.null(lower_bound)) {
       lower_bound <- min(data, na.rm = TRUE)
     }
@@ -137,22 +143,25 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
     }
     
     if (!is.numeric(lower_bound)) {
-      stop("Error for parameter lower_bound: Has to be a numeric value or NULL")
+      warning("No imputation performed: Error for parameter lower_bound: Has to be a numeric value or NULL")
+      return(x)
     }
     
     if (!is.numeric(upper_bound)) {
-      stop("Error for parameter upper_bound: Has to be a numeric value or NULL")
+      warning("No imputation performed: Error for parameter upper_bound: Has to be a numeric value or NULL")
+      return(x)
     }
     
     # For user set upper and lower bounds check if they make sense
     if (lower_bound >= upper_bound) {
-      stop("Error for parameter lower_bound: lower_bound must be smaller than upper_bound.
+      warning("No imputation performed: Error for parameter lower_bound: lower_bound must be smaller than upper_bound.
 
            In case you are using the default settings for these two parameters 
            (which use the min and max of the input series as bounds for the random numbers)
            appearance of this error message means all values of your time series have the same 
            unique value. In this case try to set the bounds manually."
       )
+      return(x)
     }
 
 

@@ -1,12 +1,61 @@
+## Changes in Version 3.3
+Thanks to Sabrina Krys for bug / issue reporting.
+Thanks to RicardaP for fixing documentation error.
+
+* Added ggplot_na_level plot
+
+* Added ggplot_na_level2 plot
+
+* Added ggplot_na_gapsize2 plot
+
+* Renamed ggplot_na_intervals to ggplot_na_distribution2
+
+* Updates to ggplot_na_gapsize: Space between the bars adjusted for better optics.
+  Added parameters for directly choosing the bar border color and alpha value for
+  filling of the bars.
+  
+* Improved notification message for na_seadec/na_seasplit when find_frequency couldn't find
+  a seasonal pattern.
+
+* Corrected error in na_kalman documentation - auto.arima was wrongly described as default parameter choice,
+  while in reality it is StructTS
+  (reported and fixed by RicardaP)
+
+* Bugfix for issue when using imputeTS together with pipes. For some specific cases the  input checks performed by imputeTS stopped the whole pipe workflow. To prevent this, stop() is now only called, when the  user supplied imputeTS algorithm parameter options are wrong or misspelled. Unsupported input data will only give a warning() in the future (and of course don't perform any action on the data). Thus, there is no call to stop(), that cancels the whole pipe workflow. This was e.g. a problem when group_by lead to single all NA subsets - which failed the input check and then stopped the whole pipe workflow.
+(issue reported by Sabrina Krys)
+
+* Corrected typo in 'Input data needs at least x non-NA data points' error message
+
+* Added capability to alter rule for linear extrapolation outside the interval [min(x), max(x)]
+
+
 ## Changes in Version 3.2
+
+Thanks to Mark J. Lamias for bug / issue reporting.
+Thanks to Cyrus Mohammadian for bug reporting.
+Thanks to Miroslaw Janik for issue reporting. 
 
 * Fix to remove CRAN note - removed not used utils from DESCRIPTION imports
 
+* Minor fix to ggplot_na_distribution (bars end now at max(timeseries)*1.05)
+
+* Typo corrections in statsNA
+
+* Specified ggplot2 (>= 3.3.0) in imports, to prevent errors with older ggplot2 versions (reported by Cyrus Mohammadian)
+
+* Updated na_locf documentation to make behavior of na_remaining parameter more clear (issue reported by Mark J. Lamias)
+
+* ggplot_na_intervals, has now percentages with % sign (e.g. 10%) on y-scale instead of just numbers (e.g. 0,1)
+  (suggestion from Miroslaw Janik)
+  
+* Added some figures and the Cheat Sheet .pptx to .Rbuildignore to avoid CRAN warning about  
+  package size. These files and figures were not needed for the CRAN version. 
+
 
 ## Changes in Version 3.1
-Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting, 
-Thanks to Earo Wang for speedup of plotNA.gapsize,
-Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options, new unit tests
+Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting. 
+Thanks to Earo Wang for speedup of plotNA.gapsize.
+Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options, new unit tests.
 
 * Plotting functions are all in ggplot now (way better looking). Additionally they got renamed accordingly ggplot_na_distribution, ggplot_na_intervals, ggplot_na_gapsize, ggplot_na_imputations.
 
@@ -18,7 +67,7 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
  it requires no minimum of non-NA values (reported by Jan - jmablans)
  
 * Improved na.random input check (usable with all NA input now if upper and lower bound
-  paramters are exlicitly set to numeric values)
+  paramters are explicitly set to numeric values)
 
 * Additional unit tests for the plotting functions
 
@@ -43,8 +92,8 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
 
 ## Changes in Version 3.0
 
-Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs
-Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementation
+Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs.
+Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementation.
 
  * tibble and tstibble compatibility
  

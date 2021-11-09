@@ -128,13 +128,13 @@ As long as the input is univariate and numeric the function also takes
 data.frame, tibble, tsibble, zoo, xts as an input.
 
 The plot can be adjusted to your needs via the function parameters.
-Additionally for more complex adjustments, the output can also be
+Additionally, for more complex adjustments, the output can also be
 adjusted via ggplot2 syntax. This is possible, since the output
 of the function is a ggplot2 object. Also take a look at the Examples
 to see how adjustments are made.
 }
 \examples{
-# Example 1: Visualize imputation by na.mean
+# Example 1: Visualize imputation by na_mean
 imp_mean <- na_mean(tsAirgap)
 ggplot_na_imputations(tsAirgap, imp_mean)
 
@@ -194,7 +194,7 @@ ggplot_na_imputations(x_with_na = tsAirgap,
 }
 \seealso{
 \code{\link[imputeTS]{ggplot_na_distribution}},
-\code{\link[imputeTS]{ggplot_na_intervals}},
+\code{\link[imputeTS]{ggplot_na_distribution2}},
 \code{\link[imputeTS]{ggplot_na_gapsize}}
 }
 \author{

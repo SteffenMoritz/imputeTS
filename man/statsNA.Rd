@@ -60,7 +60,7 @@ tsNH4 \%>\% statsNA()
 }
 \seealso{
 \code{\link[imputeTS]{ggplot_na_distribution}},
-\code{\link[imputeTS]{ggplot_na_intervals}},
+\code{\link[imputeTS]{ggplot_na_distribution2}},
 \code{\link[imputeTS]{ggplot_na_gapsize}}
 }
 \author{

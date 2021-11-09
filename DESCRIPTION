@@ -1,6 +1,6 @@
 Package: imputeTS
-Version: 3.2
-Date: 2020-08-04
+Version: 3.3
+Date: 2021-06-27
 Title: Time Series Missing Value Imputation
 Description: Imputation (replacement) of missing values 
              in univariate time series. 
@@ -17,7 +17,8 @@ Authors@R:
   c(
   person("Steffen", "Moritz", email="steffen.moritz10@gmail.com", role=c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-0085-1804")),
   person("Sebastian", "Gatscha", email="sebastian_gatscha@gmx.at", role="aut"),
-  person("Earo", "Wang", email = "earo.wang@gmail.com", role = c("ctb"), comment = c(ORCID = "0000-0001-6448-5260"))
+  person("Earo", "Wang", email = "earo.wang@gmail.com", role = c("ctb"), comment = c(ORCID = "0000-0001-6448-5260")),
+  person("Ron", "Hause", email = "ronaldhause@gmail.com", role = c("ctb"), comment = c(ORCID = "0000-0002-5229-7366"))
   )
 Maintainer: Steffen Moritz <steffen.moritz10@gmail.com>
 LazyData: yes
@@ -31,17 +32,17 @@ Depends:
 Imports:
     stats,
     grDevices,
-    ggplot2,
+    ggplot2 (>= 3.3.0),
     ggtext,
     stinepack,
     forecast,
     magrittr,
     Rcpp
 Suggests:
-    testthat,  R.rsp, knitr, zoo, timeSeries, tis, xts, tibble, tsibble, rmarkdown
+    testthat,  R.rsp, knitr, zoo, timeSeries, tis, xts, tibble, tsibble, rmarkdown, covr
 License: GPL-3
 VignetteBuilder: R.rsp, knitr, rmarkdown
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 LinkingTo: Rcpp
 Encoding: UTF-8

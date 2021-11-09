@@ -82,7 +82,7 @@ imputation separately for each of the resulting time series datasets
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">imputeTS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@ imputation separately for each of the resulting time series datasets
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -116,7 +116,7 @@ imputation separately for each of the resulting time series datasets
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/SteffenMoritz/imputeTS/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -144,13 +144,13 @@ imputation separately for each of the resulting time series datasets
 (each containing the data for one specific season).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>na_seasplit</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>algorithm</span> <span class='kw'>=</span> <span class='st'>"interpolation"</span>,
-  <span class='kw'>find_frequency</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>maxgap</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>na_seasplit</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  algorithm <span class='op'>=</span> <span class='st'>"interpolation"</span>,
+  find_frequency <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  maxgap <span class='op'>=</span> <span class='cn'>Inf</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,7 +164,7 @@ object in which missing values shall be replaced</p></td>
       <th>algorithm</th>
       <td><p>Algorithm to be used after splits.
 Accepts the following input:</p><ul>
-<li><p>"interpolation" - Imputation by Interpolation</p></li>
+<li><p>"interpolation" - Imputation by Interpolation (default choice)</p></li>
 <li><p>"locf" - Imputation by Last Observation Carried Forward</p></li>
 <li><p>"mean" - Imputation by Mean Value</p></li>
 <li><p>"random" - Imputation by Random Sample</p></li>
@@ -205,10 +205,14 @@ object (dependent on given input at parameter x)</p>
 <code><a href='na_ma.html'>na_ma</a></code>, <code><a href='na_mean.html'>na_mean</a></code>,
 <code><a href='na_random.html'>na_random</a></code>, <code><a href='na_replace.html'>na_replace</a></code>,
 <code><a href='na_seadec.html'>na_seadec</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Steffen Moritz</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Example 1: Perform seasonal splitted imputation using algorithm = "interpolation"</span>
-<span class='fu'>na_seasplit</span>(<span class='no'>tsAirgap</span>, <span class='kw'>algorithm</span> <span class='kw'>=</span> <span class='st'>"interpolation"</span>)</div><div class='output co'>#&gt;        Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
+<span class='fu'>na_seasplit</span><span class='op'>(</span><span class='va'>tsAirgap</span>, algorithm <span class='op'>=</span> <span class='st'>"interpolation"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
 #&gt; 1949 112.0 118.0 132.0 129.0 125.0 135.0 148.0 148.0 184.0 119.0 104.0 118.0
 #&gt; 1950 115.0 126.0 141.0 135.0 125.0 149.0 170.0 170.0 184.0 133.0 125.0 140.0
 #&gt; 1951 145.0 150.0 178.0 163.0 172.0 178.0 199.0 199.0 184.0 162.0 146.0 166.0
@@ -222,7 +226,8 @@ object (dependent on given input at parameter x)</p>
 #&gt; 1959 360.0 342.0 406.0 396.0 420.0 472.0 548.0 559.0 463.0 407.0 362.0 384.5
 #&gt; 1960 417.0 391.0 419.0 461.0 420.0 535.0 622.0 606.0 508.0 461.0 390.0 432.0</div><div class='input'>
 <span class='co'># Example 2: Perform seasonal splitted imputation using algorithm = "mean"</span>
-<span class='fu'>na_seasplit</span>(<span class='no'>tsAirgap</span>, <span class='kw'>algorithm</span> <span class='kw'>=</span> <span class='st'>"mean"</span>)</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
+<span class='fu'>na_seasplit</span><span class='op'>(</span><span class='va'>tsAirgap</span>, algorithm <span class='op'>=</span> <span class='st'>"mean"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
 #&gt; 1949 112.0000 118.0000 132.0000 129.0000 261.2222 135.0000 148.0000 148.0000
 #&gt; 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000
 #&gt; 1951 145.0000 150.0000 178.0000 163.0000 172.0000 178.0000 199.0000 199.0000
@@ -249,7 +254,8 @@ object (dependent on given input at parameter x)</p>
 #&gt; 1959 463.0000 407.0000 362.0000 248.8182
 #&gt; 1960 508.0000 461.0000 390.0000 432.0000</div><div class='input'>
 <span class='co'># Example 3: Same as example 1, just written with pipe operator</span>
-<span class='no'>tsAirgap</span> <span class='kw'>%&gt;%</span> <span class='fu'>na_seasplit</span>(<span class='kw'>algorithm</span> <span class='kw'>=</span> <span class='st'>"interpolation"</span>)</div><div class='output co'>#&gt;        Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
+<span class='va'>tsAirgap</span> <span class='op'>%&gt;%</span> <span class='fu'>na_seasplit</span><span class='op'>(</span>algorithm <span class='op'>=</span> <span class='st'>"interpolation"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
 #&gt; 1949 112.0 118.0 132.0 129.0 125.0 135.0 148.0 148.0 184.0 119.0 104.0 118.0
 #&gt; 1950 115.0 126.0 141.0 135.0 125.0 149.0 170.0 170.0 184.0 133.0 125.0 140.0
 #&gt; 1951 145.0 150.0 178.0 163.0 172.0 178.0 199.0 199.0 184.0 162.0 146.0 166.0
@@ -278,7 +284,7 @@ object (dependent on given input at parameter x)</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

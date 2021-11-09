@@ -91,7 +91,7 @@
 #' data.frame, tibble, tsibble, zoo, xts as an input.
 #'
 #' The plot can be adjusted to your needs via the function parameters.
-#' Additionally for more complex adjustments, the output can also be
+#' Additionally, for more complex adjustments, the output can also be
 #' adjusted via ggplot2 syntax. This is possible, since the output
 #' of the function is a ggplot2 object. Also take a look at the Examples
 #' to see how adjustments are made.
@@ -100,11 +100,11 @@
 #'
 #'
 #' @seealso \code{\link[imputeTS]{ggplot_na_distribution}},
-#'  \code{\link[imputeTS]{ggplot_na_intervals}},
+#'  \code{\link[imputeTS]{ggplot_na_distribution2}},
 #'  \code{\link[imputeTS]{ggplot_na_gapsize}}
 #'
 #' @examples
-#' # Example 1: Visualize imputation by na.mean
+#' # Example 1: Visualize imputation by na_mean
 #' imp_mean <- na_mean(tsAirgap)
 #' ggplot_na_imputations(tsAirgap, imp_mean)
 #'
@@ -313,8 +313,8 @@ ggplot_na_imputations <- function(x_with_na,
      Something with the input likely went wrong.
      Creating a ggplot_na_imputations plot does not make sense with an all NA input.
      This are the required inputs:
-     x_with_na (time series before imputation) - still has NAs,
-     x_with_imputations (time series after imputation) - NAs replaced by imputation")
+     x_with_na (time series before imputation that still has NAs),
+     x_with_imputations (time series after imputation, where NAs were replaced by imputation")
   }
 
   missindx_x_with_imputations <- is.na(x_with_imputations)
@@ -323,8 +323,8 @@ ggplot_na_imputations <- function(x_with_na,
      Something with the input likely went wrong.
      Creating a ggplot_na_imputations plot does not make sense with an all NA input.
      This are the required inputs:
-     x_with_na (time series before imputation),
-     x_with_imputations (time series after imputation)")
+     x_with_na (time series before imputation that still has NAs),
+     x_with_imputations (time series after imputation, where NAs were replaced by imputation")
   }
 
 
@@ -333,8 +333,8 @@ ggplot_na_imputations <- function(x_with_na,
     stop("Input x_with_na contains no NAs. At least one missing value is needed
      to create a meaningful ggplot_na_imputations plot)
      This are the required inputs:
-     x_with_na (time series before imputation) - still has NAs,
-     x_with_imputations (time series after imputation) - NAs replaced by imputation")
+     x_with_na (time series before imputation that still has NAs),
+     x_with_imputations (time series after imputation, where NAs were replaced by imputation")
   }
 
 

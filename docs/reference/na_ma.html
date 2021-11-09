@@ -81,7 +81,7 @@ Uses semi-adaptive window size to ensure all NAs are replaced." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">imputeTS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@ Uses semi-adaptive window size to ensure all NAs are replaced." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,7 +115,7 @@ Uses semi-adaptive window size to ensure all NAs are replaced." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/SteffenMoritz/imputeTS/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -142,7 +142,7 @@ Uses semi-adaptive window size to ensure all NAs are replaced." />
 Uses semi-adaptive window size to ensure all NAs are replaced.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>na_ma</span>(<span class='no'>x</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>weighting</span> <span class='kw'>=</span> <span class='st'>"exponential"</span>, <span class='kw'>maxgap</span> <span class='kw'>=</span> <span class='fl'>Inf</span>)</pre>
+    <pre class="usage"><span class='fu'>na_ma</span><span class='op'>(</span><span class='va'>x</span>, k <span class='op'>=</span> <span class='fl'>4</span>, weighting <span class='op'>=</span> <span class='st'>"exponential"</span>, maxgap <span class='op'>=</span> <span class='cn'>Inf</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,7 +165,7 @@ values present.</p></td>
       <td><p>Weighting to be used. Accepts the following input:</p><ul>
 <li><p>"simple" - Simple Moving Average (SMA)</p></li>
 <li><p>"linear" - Linear Weighted Moving Average (LWMA)</p></li>
-<li><p>"exponential" - Exponential Weighted Moving Average (EWMA)</p></li>
+<li><p>"exponential" - Exponential Weighted Moving Average (EWMA) (default choice)</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -213,10 +213,14 @@ further away (i-2,i+2) have weight 1/2^2, the next (i-3,i+3) have weight 1/2^3, 
 <code><a href='na_mean.html'>na_mean</a></code>,
 <code><a href='na_random.html'>na_random</a></code>, <code><a href='na_replace.html'>na_replace</a></code>,
 <code><a href='na_seadec.html'>na_seadec</a></code>, <code><a href='na_seasplit.html'>na_seasplit</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Steffen Moritz</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Example 1: Perform imputation with simple moving average</span>
-<span class='fu'>na_ma</span>(<span class='no'>tsAirgap</span>, <span class='kw'>weighting</span> <span class='kw'>=</span> <span class='st'>"simple"</span>)</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
+<span class='fu'>na_ma</span><span class='op'>(</span><span class='va'>tsAirgap</span>, weighting <span class='op'>=</span> <span class='st'>"simple"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
 #&gt; 1949 112.0000 118.0000 132.0000 129.0000 131.7143 135.0000 148.0000 148.0000
 #&gt; 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000
 #&gt; 1951 145.0000 150.0000 178.0000 163.0000 172.0000 178.0000 199.0000 199.0000
@@ -243,7 +247,8 @@ further away (i-2,i+2) have weight 1/2^2, the next (i-3,i+3) have weight 1/2^3, 
 #&gt; 1959 463.0000 407.0000 362.0000 434.8750
 #&gt; 1960 508.0000 461.0000 390.0000 432.0000</div><div class='input'>
 <span class='co'># Example 2: Perform imputation with exponential weighted moving average</span>
-<span class='fu'>na_ma</span>(<span class='no'>tsAirgap</span>)</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
+<span class='fu'>na_ma</span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
 #&gt; 1949 112.0000 118.0000 132.0000 129.0000 133.6552 135.0000 148.0000 148.0000
 #&gt; 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000
 #&gt; 1951 145.0000 150.0000 178.0000 163.0000 172.0000 178.0000 199.0000 199.0000
@@ -270,7 +275,8 @@ further away (i-2,i+2) have weight 1/2^2, the next (i-3,i+3) have weight 1/2^3, 
 #&gt; 1959 463.0000 407.0000 362.0000 406.9333
 #&gt; 1960 508.0000 461.0000 390.0000 432.0000</div><div class='input'>
 <span class='co'># Example 3: Perform imputation with exponential weighted moving average, window size 6</span>
-<span class='fu'>na_ma</span>(<span class='no'>tsAirgap</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>6</span>)</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
+<span class='fu'>na_ma</span><span class='op'>(</span><span class='va'>tsAirgap</span>, k <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
 #&gt; 1949 112.0000 118.0000 132.0000 129.0000 133.1597 135.0000 148.0000 148.0000
 #&gt; 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000
 #&gt; 1951 145.0000 150.0000 178.0000 163.0000 172.0000 178.0000 199.0000 199.0000
@@ -297,7 +303,8 @@ further away (i-2,i+2) have weight 1/2^2, the next (i-3,i+3) have weight 1/2^3, 
 #&gt; 1959 463.0000 407.0000 362.0000 410.7661
 #&gt; 1960 508.0000 461.0000 390.0000 432.0000</div><div class='input'>
 <span class='co'># Example 4: Same as example 1, just written with pipe operator</span>
-<span class='no'>tsAirgap</span> <span class='kw'>%&gt;%</span> <span class='fu'>na_ma</span>(<span class='kw'>weighting</span> <span class='kw'>=</span> <span class='st'>"simple"</span>)</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
+<span class='va'>tsAirgap</span> <span class='op'>%&gt;%</span> <span class='fu'>na_ma</span><span class='op'>(</span>weighting <span class='op'>=</span> <span class='st'>"simple"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
 #&gt; 1949 112.0000 118.0000 132.0000 129.0000 131.7143 135.0000 148.0000 148.0000
 #&gt; 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000
 #&gt; 1951 145.0000 150.0000 178.0000 163.0000 172.0000 178.0000 199.0000 199.0000
@@ -339,7 +346,7 @@ further away (i-2,i+2) have weight 1/2^2, the next (i-3,i+3) have weight 1/2^3, 
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

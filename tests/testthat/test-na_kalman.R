@@ -1,7 +1,12 @@
 context("na_kalman")
 
-test_that("All NA vector throws error", {
-  expect_error(na_kalman(c(NA, NA, NA, NA, NA)))
+test_that("All NA vector gives warning", {
+  expect_warning(na_kalman(c(NA, NA, NA, NA, NA)))
+})
+
+test_that("Workaround solution for constant values for StructTS works", {
+  x <- c(4,4,4,4,NA,4,4,4)
+  expect_equal(round(mean(na_kalman(x, model = "StructTS", smooth = T)), digits = 1), 4)
 })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)", {
@@ -44,11 +49,11 @@ test_that("Imputation works for data.frame", {
   expect_false(anyNA(na_kalman(x, model = "auto.arima", smooth = F)))
 })
 
-test_that("Error for wrong input for model parameter", {
+test_that("Warning for wrong input for model parameter", {
   expect_error(na_kalman(tsAirgap, model = "wrongModel"))
 })
 
-test_that("Error for wrong input for smooth parameter", {
+test_that("Warning for wrong input for smooth parameter", {
   expect_error(na_kalman(tsAirgap, smooth = "Wrong"))
 })
 

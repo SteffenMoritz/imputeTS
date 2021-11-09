@@ -19,7 +19,7 @@ knitr::opts_chunk$set(fig.align = "center",
 There are multiple different plots for (univarate) time series missing data available in the imputeTS package. These can be grouped in the following three categories:
 
 - Getting an Overview (`ggplot_na_distribution`)
-- Deeper insights and missing data patterns (`ggplot_na_intervals`, `ggplot_na_gapsize`)
+- Deeper insights and missing data patterns (`ggplot_na_distribution2`, `ggplot_na_gapsize`)
 - Assessing/Exploring imputation results (`ggplot_na_imputations`)
 
 
@@ -33,7 +33,7 @@ The best starting point for getting an overview about the missing data in your (
 
 Usage is easy: just supply the (univariate) time series to the function call. Only the time series is needed as input - all additional parameters are only needed to alter the appearance of the plot.
 
-```{r ggplot-na-distribution, message=FALSE}
+```{r ggplot-na-distribution-example1, message=FALSE}
 library("imputeTS")
 ggplot_na_distribution(tsAirgap)
 ```
@@ -60,24 +60,24 @@ df <- structure(list(date = structure(c(-21185, -20819, -20454, -20089,
 -60L))
 ```
 
-```{r ggplot-na-distribution2}
+```{r ggplot-na-distribution-example2}
 ggplot_na_distribution(x = df$value, x_axis_labels = df$date)
 ```
 
-## Detailed information about certain intervals (`ggplot_na_intervals`)
+## Detailed information about certain intervals (`ggplot_na_distribution2`)
 
-When a summary for certain time intervals (e. g. weeks) is needed, the `ggplot_na_intervals()` plot is useful. It shows the missing data percentage for each interval as a bar. This kind of summary plot is also quite useful for very long time series, which would not fit into the plot window as a lineplot. 
+When a summary for certain time intervals (e. g. weeks) is needed, the `ggplot_na_distribution2()` plot is useful. It shows the missing data percentage for each interval as a bar. This kind of summary plot is also quite useful for very long time series, which would not fit into the plot window as a lineplot. 
 
-Like for `ggplot_na_distribution()` only parameter `x` (the univariate time series) is mandatory for creating a plot with `ggplot_na_intervals()`. With the parameter `interval_size` the size of the interval can be changed (default is a auto calculated interval size that gives a good overall overview). All other parameters are mostly needed for changing the appearance of the plot.
+Like for `ggplot_na_distribution()` only parameter `x` (the univariate time series) is mandatory for creating a plot with `ggplot_na_distribution2()`. With the parameter `interval_size` the size of the interval can be changed (default is a auto calculated interval size that gives a good overall overview). All other parameters are mostly needed for changing the appearance of the plot.
 
-```{r ggplot-na-intervals}
-ggplot_na_intervals(tsNH4)
+```{r ggplot-na-distribution2-example1}
+ggplot_na_distribution2(tsNH4)
 ```
 
 Alternatively the missing data count for the interval (instead of the percentages) can be shown. Below is an example with a custom interval size of 144 and a custom color for the missing data bars. Since the example data is recorded in 10 minute time steps, a interval_size of 144 means that we are using daily intervals (6 measurements per hour, 24 hours per day, 6*24 = 144).
 
-```{r ggplot-na-intervals2}
-ggplot_na_intervals(tsNH4, measure = "count", interval_size = 144, color_missing = "gold3")
+```{r ggplot-na-distribution2-example2}
+ggplot_na_distribution2(tsNH4, measure = "count", interval_size = 144, color_missing = "gold3")
 ```
 
 
@@ -89,14 +89,14 @@ Often deeper insights about the missing data are quite useful. These insights ca
 
 Only the parameter `x` (the univariate time series) is needed as mandatory input. By default the plot shows only the 10 most often occuring gapsizes. Use parameter `limit` to increase this number.
 
-```{r ggplot-na-gapsize}
+```{r ggplot-na-gapsize-example1}
 library(imputeTS)
 ggplot_na_gapsize(tsNH4)
 ```
 
 The plot shows both, the number of occurrence and the resulting NAs for the respective gapsizes. Resulting NAs can be explained as the number of NAs a certain gapsize accounts for in total. For example a gapsize of 3 that occurs 5 times results in 15 NAs overall. The parameter `include_total` can be used to change this behavior. Below is a example of the same plot with specific settings for `limit` and `include_total`.
 
-```{r ggplot-na-gapsize2}
+```{r ggplot-na-gapsize-example2}
 library(imputeTS)
 ggplot_na_gapsize(tsNH4, include_total = F, limit = 15)
 ```
@@ -109,7 +109,7 @@ After using imputation functions like `na_kalman()`, `na_interpolation()`, `na_s
 
 Mandatory inputs for this function are these two parameters: `x_with_na` (the time series as it was before imputation) and `x_with_imputations` (the time series without NAs after imputation).
 
-```{r ggplot-na-imputations1}
+```{r ggplot-na-imputations-example1}
 library(imputeTS)
 imp <- na_interpolation(tsAirgap)
 ggplot_na_imputations(tsAirgap, imp)
@@ -117,7 +117,7 @@ ggplot_na_imputations(tsAirgap, imp)
 
 In some cases (mostly when performing imputation experiments and benchmarks) the NAs were only artificially introduced into the original time series. Which means, there exists a ground truth for the NA values (the complete time series before introducing the NAs). In this case you can additionally use the `x_with_truth` parameter to get a plot that displays both, the imputations and the ground truth.
 
-```{r ggplot-na-imputations2}
+```{r ggplot-na-imputations-example2}
 library(imputeTS)
 imp <- na_mean(tsAirgap)
 ggplot_na_imputations(x_with_na = tsAirgap, x_with_imputations = imp, x_with_truth = tsAirgapComplete )

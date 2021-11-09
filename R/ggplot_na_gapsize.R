@@ -37,6 +37,10 @@
 #' @param color_total Defines the color for the bars of
 #' 'total resulting NAs'.
 #'
+#' @param color_border Defines the color for the border of the bars.
+#' 
+#' @param alpha_bars Alpha (transparency) value used for filling the bars.
+#' 
 #' @param title Title of the Plot.
 #'
 #' @param subtitle Subtitle of the Plot.
@@ -81,17 +85,17 @@
 #' time series with NAs that shall be visualized). All other parameters
 #' are solely for altering the appearance of the plot.
 #'
-#' As long as the input is univariate and numeric the function also takes
+#' As long as the input is univariate and numeric, the function also takes
 #' data.frame, tibble, tsibble, zoo, xts as an input.
 #'
 #' The plot can be adjusted to your needs via the function parameters.
-#' Additionally for more complex adjustments, the output can also be
+#' Additionally, for more complex adjustments, the output can also be
 #' adjusted via ggplot2 syntax. This is possible, since the output
 #' of the function is a ggplot2 object. Also take a look at the Examples
 #' to see how adjustments are made.
 #'
 #' @seealso \code{\link[imputeTS]{ggplot_na_distribution}},
-#'   \code{\link[imputeTS]{ggplot_na_intervals}},
+#'   \code{\link[imputeTS]{ggplot_na_distribution2}},
 #'   \code{\link[imputeTS]{ggplot_na_imputations}}
 #'
 #' @examples
@@ -135,7 +139,7 @@
 #'   ggplot2::theme(legend.position = "right")
 #' @importFrom magrittr %>%
 #'
-#' @importFrom ggplot2 theme_linedraw ggplot geom_bar aes scale_x_discrete
+#' @importFrom ggplot2 theme_linedraw ggplot geom_bar position_dodge aes scale_x_discrete
 #' scale_fill_manual ggtitle xlab ylab theme element_text element_blank
 #' coord_flip theme_classic
 #'
@@ -146,6 +150,8 @@ ggplot_na_gapsize <- function(x,
                               ranked_by = "occurrence",
                               color_occurrence = "indianred",
                               color_total = "steelblue",
+                              color_border = "black",
+                              alpha_bars = 1,
                               title = "Occurrence of gap sizes",
                               subtitle = "Gap sizes (NAs in a row) ordered by most common",
                               xlab = NULL,
@@ -232,7 +238,7 @@ ggplot_na_gapsize <- function(x,
   
 
   # Calculation consecutive NA information
-  rle_na <- rle(is.na(data))
+  rle_na <- base::rle(is.na(data))
   vec <- rle_na$lengths[rle_na$values]
   occurrence_bar <- table(vec)
   gaps_vec <- as.integer(names(occurrence_bar))
@@ -301,8 +307,10 @@ ggplot_na_gapsize <- function(x,
   # Create ggplot
   gg <- ggplot2::ggplot(data = df) +
     ggplot2::geom_bar(aes(x = id, y = val, fill = label),
-      color = "black",
-      stat = "identity", position = "dodge"
+      color = color_border,
+      width= 0.6,
+      alpha = alpha_bars,
+      stat = "identity", position = position_dodge(width = 0.7)
     ) +
     ggplot2::scale_x_discrete(
       labels = labels1,
@@ -310,7 +318,7 @@ ggplot_na_gapsize <- function(x,
     ) +
     ggplot2::scale_fill_manual(
       values = c(color_occurrence, color_total),
-      labels = c(label_occurrence, label_total)
+      labels = c(label_occurrence, label_total),
     ) +
     ggplot2::ggtitle(title, subtitle = subtitle) +
     ggplot2::xlab(xlab) +

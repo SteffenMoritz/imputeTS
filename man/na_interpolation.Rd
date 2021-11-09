@@ -12,7 +12,7 @@ object in which missing values shall be replaced}
 
 \item{option}{Algorithm to be used. Accepts the following input:
 \itemize{
-\item{"linear" - for linear interpolation using \link{approx} }
+\item{"linear" - for linear interpolation using \link{approx} } (default choice)
 \item{"spline" - for spline interpolation using \link{spline}}
 \item{"stine" - for Stineman interpolation using \link[stinepack]{stinterp}}
 }}

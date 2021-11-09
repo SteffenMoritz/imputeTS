@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">imputeTS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,7 +115,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/SteffenMoritz/imputeTS/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -142,7 +142,7 @@
 (or on the state space representation of an arima model) for imputation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>na_kalman</span>(<span class='no'>x</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='st'>"StructTS"</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>nit</span> <span class='kw'>=</span> -<span class='fl'>1</span>, <span class='kw'>maxgap</span> <span class='kw'>=</span> <span class='fl'>Inf</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>na_kalman</span><span class='op'>(</span><span class='va'>x</span>, model <span class='op'>=</span> <span class='st'>"StructTS"</span>, smooth <span class='op'>=</span> <span class='cn'>TRUE</span>, nit <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>, maxgap <span class='op'>=</span> <span class='cn'>Inf</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,9 +158,9 @@ object in which missing values shall be replaced</p></td>
 (on which KalmanSmooth is performed) can be chosen. Accepts the following input:</p>
 <ul>
 <li><p>"auto.arima" - For using the state space representation of
-arima model (using <a href='https://rdrr.io/pkg/forecast/man/auto.arima.html'>auto.arima</a>)</p></li>
+arima model (using <a href='https://pkg.robjhyndman.com/forecast/reference/auto.arima.html'>auto.arima</a>) </p></li>
 <li><p>"StructTS" - For using a structural model fitted by maximum
-likelihood (using <a href='https://rdrr.io/r/stats/StructTS.html'>StructTS</a>)</p></li>
+likelihood (using <a href='https://rdrr.io/r/stats/StructTS.html'>StructTS</a>) (default choice) </p></li>
 </ul>
 
 <p>For both auto.arima and StructTS additional parameters for model building can
@@ -198,7 +198,7 @@ treat long runs of NA afterwards separately.</p></td>
     <tr>
       <th>...</th>
       <td><p>Additional parameters to be passed through to the functions that
-build the State Space Models (<a href='https://rdrr.io/r/stats/StructTS.html'>StructTS</a> or <a href='https://rdrr.io/pkg/forecast/man/auto.arima.html'>auto.arima</a>).</p></td>
+build the State Space Models (<a href='https://rdrr.io/r/stats/StructTS.html'>StructTS</a> or <a href='https://pkg.robjhyndman.com/forecast/reference/auto.arima.html'>auto.arima</a>).</p></td>
     </tr>
     </table>
 
@@ -211,7 +211,7 @@ object (dependent on given input at parameter x)</p>
     <p>The KalmanSmoother used in this function is <code><a href='https://rdrr.io/r/stats/KalmanLike.html'>KalmanSmooth</a></code>.
 It operates either on a <code>Basic Structural Model</code> obtained by
 <code><a href='https://rdrr.io/r/stats/StructTS.html'>StructTS</a></code> or the state space representation of a ARMA model
-obtained by <code><a href='https://rdrr.io/pkg/forecast/man/auto.arima.html'>auto.arima</a></code>.</p>
+obtained by <code><a href='https://pkg.robjhyndman.com/forecast/reference/auto.arima.html'>auto.arima</a></code>.</p>
 <p>For an detailed explanation of Kalman Filtering and Space Space Models the
 following literature is a good starting point:</p><ul>
 <li><p><cite>G. Welch, G. Bishop, An Introduction to the Kalman Filter. SIGGRAPH 2001 Course 8, 1995</cite></p></li>
@@ -229,10 +229,14 @@ following literature is a good starting point:</p><ul>
 <code><a href='na_ma.html'>na_ma</a></code>, <code><a href='na_mean.html'>na_mean</a></code>,
 <code><a href='na_random.html'>na_random</a></code>, <code><a href='na_replace.html'>na_replace</a></code>,
 <code><a href='na_seadec.html'>na_seadec</a></code>, <code><a href='na_seasplit.html'>na_seasplit</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Steffen Moritz</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Example 1: Perform imputation with KalmanSmoother and state space representation of arima model</span>
-<span class='fu'>na_kalman</span>(<span class='no'>tsAirgap</span>)</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
+<span class='fu'>na_kalman</span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
 #&gt; 1949 112.0000 118.0000 132.0000 129.0000 123.5734 135.0000 148.0000 148.0000
 #&gt; 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000
 #&gt; 1951 145.0000 150.0000 178.0000 163.0000 172.0000 178.0000 199.0000 199.0000
@@ -259,7 +263,8 @@ following literature is a good starting point:</p><ul>
 #&gt; 1959 463.0000 407.0000 362.0000 390.9089
 #&gt; 1960 508.0000 461.0000 390.0000 432.0000</div><div class='input'>
 <span class='co'># Example 2: Perform imputation with KalmanRun and state space representation of arima model</span>
-<span class='fu'>na_kalman</span>(<span class='no'>tsAirgap</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
+<span class='fu'>na_kalman</span><span class='op'>(</span><span class='va'>tsAirgap</span>, smooth <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
 #&gt; 1949 112.0000 118.0000 132.0000 129.0000 123.9264 135.0000 148.0000 148.0000
 #&gt; 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000
 #&gt; 1951 145.0000 150.0000 178.0000 163.0000 172.0000 178.0000 199.0000 199.0000
@@ -286,7 +291,8 @@ following literature is a good starting point:</p><ul>
 #&gt; 1959 463.0000 407.0000 362.0000 400.7839
 #&gt; 1960 508.0000 461.0000 390.0000 432.0000</div><div class='input'>
 <span class='co'># Example 3: Perform imputation with KalmanSmooth and StructTS model</span>
-<span class='fu'>na_kalman</span>(<span class='no'>tsAirgap</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='st'>"StructTS"</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
+<span class='fu'>na_kalman</span><span class='op'>(</span><span class='va'>tsAirgap</span>, model <span class='op'>=</span> <span class='st'>"StructTS"</span>, smooth <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
 #&gt; 1949 112.0000 118.0000 132.0000 129.0000 123.5734 135.0000 148.0000 148.0000
 #&gt; 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000
 #&gt; 1951 145.0000 150.0000 178.0000 163.0000 172.0000 178.0000 199.0000 199.0000
@@ -313,7 +319,8 @@ following literature is a good starting point:</p><ul>
 #&gt; 1959 463.0000 407.0000 362.0000 390.9089
 #&gt; 1960 508.0000 461.0000 390.0000 432.0000</div><div class='input'>
 <span class='co'># Example 4: Perform imputation with KalmanSmooth and StructTS model with additional parameters</span>
-<span class='fu'>na_kalman</span>(<span class='no'>tsAirgap</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='st'>"StructTS"</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"trend"</span>)</div><div class='output co'>#&gt;         Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct
+<span class='fu'>na_kalman</span><span class='op'>(</span><span class='va'>tsAirgap</span>, model <span class='op'>=</span> <span class='st'>"StructTS"</span>, smooth <span class='op'>=</span> <span class='cn'>TRUE</span>, type <span class='op'>=</span> <span class='st'>"trend"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct
 #&gt; 1949 112.00 118.00 132.00 129.00 132.00 135.00 148.00 148.00 133.50 119.00
 #&gt; 1950 115.00 126.00 141.00 135.00 125.00 149.00 170.00 170.00 151.50 133.00
 #&gt; 1951 145.00 150.00 178.00 163.00 172.00 178.00 199.00 199.00 184.00 162.00
@@ -340,8 +347,9 @@ following literature is a good starting point:</p><ul>
 #&gt; 1959 362.00 389.50
 #&gt; 1960 390.00 432.00</div><div class='input'>
 <span class='co'># Example 5:  Perform imputation with KalmanSmooth and user created model</span>
-<span class='no'>usermodel</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.html'>arima</a></span>(<span class='no'>tsAirgap</span>, <span class='kw'>order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>1</span>))$<span class='no'>model</span>
-<span class='fu'>na_kalman</span>(<span class='no'>tsAirgap</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>usermodel</span>)</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
+<span class='va'>usermodel</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.html'>arima</a></span><span class='op'>(</span><span class='va'>tsAirgap</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>model</span>
+<span class='fu'>na_kalman</span><span class='op'>(</span><span class='va'>tsAirgap</span>, model <span class='op'>=</span> <span class='va'>usermodel</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
 #&gt; 1949 112.0000 118.0000 132.0000 129.0000 128.9291 135.0000 148.0000 148.0000
 #&gt; 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000
 #&gt; 1951 145.0000 150.0000 178.0000 163.0000 172.0000 178.0000 199.0000 199.0000
@@ -368,7 +376,8 @@ following literature is a good starting point:</p><ul>
 #&gt; 1959 463.0000 407.0000 362.0000 388.2858
 #&gt; 1960 508.0000 461.0000 390.0000 432.0000</div><div class='input'>
 <span class='co'># Example 6: Same as example 1, just written with pipe operator</span>
-<span class='no'>tsAirgap</span> <span class='kw'>%&gt;%</span> <span class='fu'>na_kalman</span>()</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
+<span class='va'>tsAirgap</span> <span class='op'>%&gt;%</span> <span class='fu'>na_kalman</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
 #&gt; 1949 112.0000 118.0000 132.0000 129.0000 123.5734 135.0000 148.0000 148.0000
 #&gt; 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000
 #&gt; 1951 145.0000 150.0000 178.0000 163.0000 172.0000 178.0000 199.0000 199.0000
@@ -410,7 +419,7 @@ following literature is a good starting point:</p><ul>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

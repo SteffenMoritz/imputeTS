@@ -91,7 +91,7 @@ As can be seen in Table~\ref{tab:generaloverview}, beyond several imputation alg
 \toprule
 \textbf{Simple Imputation} & \textbf{Imputation} & \textbf{Plots \& Statistics} & \textbf{Datasets} \\ \midrule
 na\_locf                    & na\_interpolation    & ggplot\_na\_distribution          & tsAirgap          \\
-na\_mean                    & na\_kalman           & ggplot\_na\_intervals      & tsAirgapComplete  \\
+na\_mean                    & na\_kalman           & ggplot\_na\_distribution2      & tsAirgapComplete  \\
 na\_random                  & na\_ma               & ggplot\_na\_gapsize           & tsHeating             \\
 na\_replace                 & na\_seadec           & ggplot\_na\_imputations      & tsHeatingComplete     \\
 na\_remove                  & na\_seasplit         & statsNA                      & tsNH4         \\
@@ -114,7 +114,7 @@ An overview about the available plots and statistics functions can be found in T
 \toprule
 \textbf{Function}      & \textbf{Description}                               \\ \midrule
 ggplot\_na\_distribution    & Visualize Distribution of Missing Values           \\
-ggplot\_na\_intervals & Visualize Distribution of Missing Values (Barplot) \\
+ggplot\_na\_distribution2 & Visualize Distribution of Missing Values (Barplot) \\
 ggplot\_na\_gapsize         & Visualize Distribution of NA gap sizes              \\
 ggplot\_na\_imputations     & Visualize Imputed Values                           \\
 statsNA                & Print Statistics about the Missing Data            \\ \bottomrule
@@ -329,22 +329,22 @@ As can be seen in Figure~\ref{fig:distribution}, in areas with missing data the 
 \FloatBarrier
 \noindent\\
 
-\subsection{ggplot\_na\_intervals}
+\subsection{ggplot\_na\_distribution2}
 This function also visualizes the distribution of missing values within a time series. This is done as a barplot, which is especially useful if the time series would otherwise be too large to be plotted. Multiple observations for time intervals are grouped together and represented as bars. For these intervals, information about the amount of missing values are shown. An example usage of the function can be seen below (for the plot see Figure~\ref{fig:distributionBar}).
 
 \begin{example}
-# Example Code 'ggplot_na_intervals'
+# Example Code 'ggplot_na_distribution2'
 # (tsHeating is an example time series provided by the imputeTS package)
 
 # Visualize the missing values in this time series
-ggplot_na_intervals(tsNH4)
+ggplot_na_distribution2(tsNH4)
 
 \end{example}
 
 \begin{figure} [h]
 \centering
 \includegraphics[width=5.7in]{Figures.d/distributionbar.png}
-\caption{Example for ggplot\_na\_intervals}
+\caption{Example for ggplot\_na\_distribution2}
 \label{fig:distributionBar}
 \end{figure}
 \FloatBarrier

@@ -1,5 +1,5 @@
 
-[![Project Status: Active The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Active The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/SteffenMoritz/imputeTS.svg?branch=master)](https://travis-ci.org/SteffenMoritz/imputeTS)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/steffenmoritz/imputeTS?branch=master&svg=true)](https://ci.appveyor.com/project/steffenmoritz/imputeTS)
 [![codecov](https://codecov.io/gh/SteffenMoritz/imputeTS/branch/master/graph/badge.svg)](https://codecov.io/gh/SteffenMoritz/imputeTS)
@@ -110,7 +110,7 @@ Here is a table with available plots to choose from:
 |      Function           |           Description                                        | 
 | :-----------------------|:-------------------------------------------------------------|
 | ggplot_na_distribution  |Visualize Distribution of Missing Values                      |
-| ggplot_na_intervals     |Missing Values Summarized in Intervals                        |
+| ggplot_na_distribution2     |Missing Values Summarized in Intervals                        |
 | ggplot_na_gapsize       |Visualize Distribution of NA Gapsizes                         |
 | ggplot_na_imputations   |Visualize Imputed Values                                      | 
 
@@ -157,7 +157,7 @@ If you found a bug or have suggestions, feel free to get in contact via steffen.
 
 
 ### Version
-**3.2**
+**3.3**
 
 ### License
 GPL-3

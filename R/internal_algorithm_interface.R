@@ -32,7 +32,10 @@ apply_base_algorithm <- function(x, algorithm, ...) {
   { data <- na_ma(data,  ...) }
   
   else 
-  {stop("Wrong parameter for option algorithm choosen.")}
+  {
+    stop("No imputation performed: Wrong parameter for option algorithm choosen.")
+    return(x)
+  }
   
   
   

@@ -9,7 +9,7 @@
 #' @param algorithm Algorithm to be used after decomposition.
 #' Accepts the following input:
 #' \itemize{
-#'    \item{"interpolation" - Imputation by Interpolation}
+#'    \item{"interpolation" - Imputation by Interpolation} (default choice)
 #'    \item{"locf" - Imputation by Last Observation Carried Forward}
 #'    \item{"mean" - Imputation by Mean Value}
 #'    \item{"random" - Imputation by Random Sample}
@@ -51,14 +51,16 @@
 #' 
 #' # Example 3: Same as example 1, just written with pipe operator
 #' tsAirgap %>% na_seadec(algorithm = "interpolation")
-#' @importFrom stats frequency stl
+#' @importFrom stats frequency stl ts
 #' @importFrom forecast findfrequency
 #' @importFrom magrittr %>%
 #' @export
 
 na_seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, maxgap = Inf, ...) {
+  
+  # Variable 'data' is used for all transformations to the time series
+  # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
-
 
 
   #----------------------------------------------------------
@@ -74,9 +76,10 @@ na_seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, ma
         next
       }
       # if imputing a column does not work - mostly because it is not numeric - the column is left unchanged
-      tryCatch(data[, i] <- na_seadec(data[, i], algorithm, find_frequency, maxgap, ...), error = function(cond) {
-        warning(paste("imputeTS: No imputation performed for column", i, "because of this", cond), call. = FALSE)
-      })
+      tryCatch(data[, i] <- na_seadec(data[, i], algorithm, find_frequency, maxgap, ...),
+               warning = function(cond) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond), call. = FALSE)},
+               error = function(cond2) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond2), call. = FALSE)}
+      )
     }
     return(data)
   }
@@ -97,7 +100,7 @@ na_seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, ma
 
     # 1.1 Check if NAs are present
     if (!anyNA(data)) {
-      return(data)
+      return(x)
     }
 
     # 1.2 special handling data types
@@ -107,14 +110,16 @@ na_seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, ma
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (sum(!missindx) < 3) {
-      stop("Input data needs at least 3 non-NA data point for applying na_seadec")
+      warning("No imputation performed: Input data needs at least 3 non-NA data points for applying na_seadec")
+      return(x)
     }
 
     # 1.4 Checks and corrections for wrong data dimension
 
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
-      stop("Wrong input type for parameter x")
+      warning("No imputation performed: Wrong input type for parameter x")
+      return(x)
     }
 
     # Altering multivariate objects with 1 column (which are essentially
@@ -125,7 +130,8 @@ na_seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, ma
 
     # 1.5 Check if input is numeric
     if (!is.numeric(data)) {
-      stop("Input x is not numeric")
+      warning("No imputation performed: Input x is not numeric")
+      return(x)
     }
 
     # 1.6 Checks and corrections for time series frequency
@@ -137,17 +143,25 @@ na_seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, ma
       if (freq > 1) {
         data <- ts(t, frequency = freq)
       }
+      else if (freq == 1){
+        message("Option find_frequency = TRUE could not detect a seasonal pattern. 
+        The algorithm will go on without seasonal decomposition. 
+        You might consider manually setting a frequency by creating a time series with frequency information.
+        Here is an example for weekly data: new_ts <- ts(old_ts, frequency = 7)")
+        data <- apply_base_algorithm(data, algorithm = algorithm, ...)
+        return(data)
+      }
     }
 
     if (stats::frequency(data) == 1) {
-      warning("No seasonality information for dataset could be found, going on without decomposition.
+      message("No seasonality information for dataset could be found, going on without decomposition.
               Setting find_frequency=TRUE might be an option.")
       data <- apply_base_algorithm(data, algorithm = algorithm, ...)
       return(data)
     }
 
     if (length(data) < stats::frequency(data) * 2) {
-      warning("More than 2 complete periods needed to perform a seasonal decomposition The algorithm will go on without seasonal decomposition.")
+      message("More than 2 complete periods needed to perform a seasonal decomposition The algorithm will go on without seasonal decomposition.")
       data <- apply_base_algorithm(data, algorithm = algorithm, ...)
       return(data)
     }

@@ -11,7 +11,7 @@
 #'
 #' \itemize{
 #'    \item{"auto.arima" - For using the state space representation of
-#'    arima model (using \link[forecast]{auto.arima})}
+#'    arima model (using \link[forecast]{auto.arima})} (default choice)
 #'
 #'    \item{"StructTS" - For using a structural model fitted by maximum
 #'     likelihood (using \link[stats]{StructTS}) }
@@ -97,6 +97,9 @@
 #' @export
 
 na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = Inf, ...) {
+  
+  # Variable 'data' is used for all transformations to the time series
+  # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
 
 
@@ -136,7 +139,7 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
 
     # 1.1 Check if NAs are present
     if (!anyNA(data)) {
-      return(data)
+      return(x)
     }
 
     # 1.2 special handling data types
@@ -146,7 +149,8 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (sum(!missindx) < 3) {
-      stop("Input data needs at least 3 non-NA data point for applying na_kalman")
+      warning("No imputation performed: Input data needs at least 3 non-NA data points for applying na_kalman")
+      return(x)
     }
 
 
@@ -154,7 +158,8 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
 
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
-      stop("Wrong input type for parameter x")
+      warning("No imputation performed: Wrong input type for parameter x")
+      return(x)
     }
 
     # Altering multivariate objects with 1 column (which are essentially
@@ -165,16 +170,26 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
 
     # 1.5 Check if input is numeric
     if (!is.numeric(data)) {
-      stop("Input x is not numeric")
+      warning("No imputation performed: Input x is not numeric")
+      return(x)
     }
 
     # 1.6 Check if type of parameter smooth is correct
     if (!is.logical(smooth)) {
-      stop("Parameter smooth must be of type logical ( TRUE / FALSE)")
+      stop("No imputation performed: Parameter smooth must be of type logical ( TRUE / FALSE)")
     }
 
     # 1.7 Transformation to numeric as 'int' can't be given to KalmanRun
     data[1:length(data)] <- as.numeric(data)
+    
+    
+    # 1.8 Check for and mitigate all constant values in combination with StructTS
+    # See https://github.com/SteffenMoritz/imputeTS/issues/26
+    
+    if (is.character(model) && model == "StructTS" && length(unique(as.vector(data)))==2) {
+      return(na_interpolation(x))
+    }
+    
 
     ##
     ## End Input Check and Transformation
@@ -203,12 +218,12 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
     else {
       mod <- model
       if (length(mod) < 7) {
-        stop("Parameter model has either to be \"StructTS\"/\"auto.arima\" or a user supplied model in
+        stop("No imputation performed: Parameter model has either to be \"StructTS\"/\"auto.arima\" or a user supplied model in
             form of a list with at least components T, Z, h , V, a, P, Pn specified")
       }
 
       if (is.null(mod$Z)) {
-        stop("Something is wrong with the user supplied model. Either choose \"auto.arima\" or \"StructTS\"
+        stop("No imputation performed: Something is wrong with the user supplied model. Either choose \"auto.arima\" or \"StructTS\"
              or supply a state space model with at least components T, Z, h , V, a, P, Pn as specified
              under Details on help page for KalmanLike")
       }
@@ -228,7 +243,7 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
 
     # Check if everything is right with the model
     if (dim(erg)[2] != length(mod$Z)) {
-      stop("Error with number of components $Z")
+      stop("No imputation performed: Error with number of components $Z")
     }
 
     # 2.3 Getting Results

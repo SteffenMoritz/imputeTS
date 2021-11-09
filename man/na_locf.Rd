@@ -12,16 +12,16 @@ object in which missing values shall be replaced}
 
 \item{option}{Algorithm to be used. Accepts the following input:
 \itemize{
-\item{"locf" - for Last Observation Carried Forward}
+\item{"locf" - for Last Observation Carried Forward} (default choice)
 \item{"nocb" - for Next Observation Carried Backward}
 }}
 
 \item{na_remaining}{Method to be used for remaining NAs.
 \itemize{
+\item{"rev" - to perform nocb / locf from the reverse direction} (default choice)
 \item{"keep" - to return the series with NAs}
 \item{"rm" - to remove remaining NAs}
 \item{"mean" - to replace remaining NAs by overall mean}
-\item{"rev" - to perform nocb / locf from the reverse direction}
 }}
 
 \item{maxgap}{Maximum number of successive NAs to still perform imputation on.
@@ -41,15 +41,43 @@ also be done starting from the back of the series (Next Observation Carried
 Backward - NOCB).
 }
 \details{
+\subsection{General Functionality}{
+
 Replaces each missing value with the most recent present value
-prior to it (Last Observation Carried Forward- LOCF). This can also be
-done from the reverse direction -starting from the back (Next Observation
-Carried Backward - NOCB). Both options have the issue, that NAs at the
-beginning (or for nocb at the end) of the time series cannot be imputed
-(since there is no last value to be carried forward present yet). In this
-case there are remaining NAs in the imputed time series. Since this only
-concerns very few values at the beginning of the series, na_remaining
-offers some quick solutions to get a series without NAs back.
+prior to it (Last Observation Carried Forward - LOCF). This can also be
+done in reverse direction, starting from the end of the series (then
+called Next Observation Carried Backward - NOCB).
+}
+
+\subsection{Handling for NAs at the beginning of the series}{
+
+In case one or more successive observations directly at the start of the
+time series are NA, there exists no 'last value' yet, that can be carried
+forward. Thus, no LOCF imputation can be performed for these NAs. As soon
+as the first non-NA value appears, LOCF can be performed as expected. The
+same applies to NOCB, but from the opposite direction.
+
+While this problem might appear seldom and will only affect a very small
+amount of values at the beginning, it is something to consider.
+The \code{na_remaining} parameter helps to define, what should happen
+with these values at the start, that would remain NA after pure LOCF.
+
+Default setting is \code{na_remaining = "rev"}, which performs
+nocb / locf from the other direction to fill these NAs. So a NA
+at the beginning will be filled with the next non-NA value appearing
+in the series.
+
+With \code{na_remaining = "keep"} NAs at the beginning (that can not
+be imputed with pure LOCF) are just left as remaining NAs.
+
+With \code{na_remaining = "rm"} NAs at the beginning of the series are
+completely removed. Thus, the time series is basically shortened.
+
+Also available is \code{na_remaining = "mean"}, which uses the overall
+mean of the time series to replace these remaining NAs. (but beware,
+mean is usually not a good imputation choice - even if it  only affects
+the values at the beginning)
+}
 }
 \examples{
 # Prerequisite: Create Time series with missing values
