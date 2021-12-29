@@ -17,3 +17,4 @@ Docs
 ^revdep
 
 ^\.github$
+^codecov\.yml$
