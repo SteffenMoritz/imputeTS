@@ -112,7 +112,7 @@ The only really needed parameter for this function is x (the univariate
 time series with NAs that shall be visualized). All other parameters
 are solely for altering the appearance of the plot.
 
-As long as the input is univariate and numeric the function also takes
+As long as the input is univariate and numeric, the function also takes
 data.frame, tibble, tsibble, zoo, xts as an input.
 
 The plot can be adjusted to your needs via the function parameters.

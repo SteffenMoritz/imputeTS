@@ -30,32 +30,39 @@ ggplot_na_gapsize2(
 }
 \arguments{
 \item{x}{Numeric Vector (\code{\link[base]{vector}}) or Time Series
-(\code{\link[stats]{ts}}) object containing NAs. This is the only mandatory
-parameter - all other parameters are only needed for adjusting the plot appearance.}
+(\code{\link[stats]{ts}}) object containing NAs. This is the only
+mandatory parameter - all other parameters are only needed for adjusting
+the plot appearance.}
 
-\item{colors_bubbles}{Choose a color gradient that encodes lower to higher total NA counts.
+\item{colors_bubbles}{Choose a color gradient that encodes lower to
+higher total NA counts.
 Color codes can be given as vector. Using color palettes from  colorspace,
 grDevices, RColorBrewer or other packages is useful here.
-E.g. grDevices::heat.colors(10) would be a possible inpute.}
+E.g. grDevices::heat.colors(10) would be a possible input.}
 
 \item{color_border}{Color for the border of the bubbles.}
 
 \item{alpha_bubbles}{Alpha (transparency) value used for filling the bubbles.}
 
-\item{labels_bubbles}{Should labels be added to the individual bubbles inside the plot.
-For many datasets there will be overplotting issues once labels are added - in these
-cases using the mix_gapsize, min_totals or min_occurrence options might be useful, to
-any display the most relevant gap sizes.
+\item{labels_bubbles}{Should labels be added to the individual bubbles inside
+the plot.
+For many datasets there will be overplotting issues once labels are added.
+In these cases using the min_gapsize, min_totals or min_occurrence options
+might be useful to only display the most relevant gap sizes.
 
 You can choose between these labels to be added:
 \itemize{
-\item{"none" - No labels get added to the individual bubbles} (default choice)
+\item{"none" - No label gets added to the bubbles}
+(default choice)
 
-\item{"gap" - Adds a label displaying the gap size belonging to the respective bubble}
+\item{"gap" - Adds a label displaying the gap size belonging to the
+respective bubble}
 
-\item{"total" - Adds a label displaying the total NA count for the respective bubble}
+\item{"total" - Adds a label displaying the total NA count for the
+respective bubble}
 
-\item{"gap-occurrence" - Adds a label displaying the respective gap size and number of its occurrence }
+\item{"gap-occurrence" - Adds a label displaying the respective
+gap size and number of its occurrence}
 }
 
 The default setting is "none".}
@@ -84,31 +91,37 @@ min_gapsize enables zooming into in certain regions of interest.}
 
 \item{ylab}{Label for y-Axis.}
 
-\item{legend}{If TRUE a legend is added at the right side}
+\item{legend}{If TRUE a legend is added on the right side}
 
 \item{legend_breaks}{Number of displayed breaks / labels in the legend.
-Input a integer giving the desired number of breaks. Breakpoints are internally calculated by
-R's pretty() function, which can also lead to values slightly smaller or larger than the desired number.}
+Needs an integer giving the desired number of breaks as input. Breakpoints are
+internally calculated by R's pretty() function, which can also lead to
+values slightly smaller or larger than the desired number.}
 
 \item{legend_title}{Defines the title of the legend.}
 
-\item{legend_position}{Defines position of the legend. Choose either 'botton', 'right', 'left' or 'top'.}
+\item{legend_position}{Defines position of the legend. Choose either
+'bottom', right', 'left' or 'top'.}
 
-\item{legend_point_sizes}{Defines the size of the symbols for the total NA bubbles in the legend.
+\item{legend_point_sizes}{Defines the size of the symbols representing the total
+NA bubbles in the legend.
 
 You can choose between "default", "actual" or a custom vector of sizes.
 
 \itemize{
-\item{"default" - Scales the points in the legend to smybolically resemble the size differences} (default choice)
+\item{"default" - Scales the points in the legend to symbolically
+resemble the size differences} (default choice)
 
-\item{"actual" - Scales the points in the legend accoording to their actual size in the plot}
+\item{"actual" - Scales the points in the legend according
+to their actual size in the plot}
 }
 
-Since these two options are not be always sufficient, a custom vector of sizes can be used as input.
-This would look like this: c(4,5,6,7). Be aware, that the length of this vector must match the
-number of breakpoints (can be adjusted with legend_breaks).}
+Since these two options are not be always sufficient, a custom vector of
+sizes can be used as input. This would look like this: c(4,5,6,7). Be
+aware, that the length of this vector must match the number of breakpoints
+(can be adjusted with legend_breaks).}
 
-\item{theme}{Set a Theme for ggplot2. Default is ggplot2::theme_linedraw().
+\item{theme}{Set a theme for ggplot2. Default is ggplot2::theme_linedraw().
 (\code{\link[ggplot2]{theme_linedraw})}}
 }
 \value{
@@ -116,37 +129,40 @@ The output is a \code{\link[ggplot2]{ggplot2}} object that can be
 further adjusted by using the ggplot syntax
 }
 \description{
-Visualize the total NA count (gap size * occurrence) for the existing gaps sizes.
+Visualize the total NA count (gap size * occurrence) for
+the existing gaps sizes (NAs in a row).
 }
 \details{
-This function can be used to visualize the total NA counts for individual
-NA gaps (NAs in a row) in a time series. The bubble plots makes it easy to see, which
-gap sizes  account for most of the NAs in the series. The size and color of the bubbles
-contains the information about the total NAs of the gap size.
+This function can be used to visualize the total NA counts for
+individual NA gap sizes (NAs in a row) in a time series. The bubble plot
+makes it easy to see, which gap sizes  account for most of the NAs in
+the series. The size and color of the bubbles represents the total NAs a
+certain gap size accounts for.
 
 Total NAs for a gap size is calculated the following:
-total NA = occurrence * gap length
+total NAs = occurrence * gap length
 
 You could e.g. interpret a bubble for gap size 2  the following:
 A 2 NA-gap (2 NAs in a row) occurred 27 times in the time series
 and thus was responsible for 54 total NAs.
 
-On the x-axis are the different gap sizes. The y-axis shows the number of
-occurrence of these gap sizes in the time series.
+On the x-axis  the different gap sizes are plotted in increasing order.
+The y-axis shows the occurrence count of these gap sizes in the time series.
 
-The plot is useful for finding out more about possible root causes of the missing data.
-It can give an indication, if the missing data appears randomly or if there are certain
-patterns of interest.
+The plot is useful for finding out more about possible root causes of
+the missing data. It can give an indication, if the missing data appears
+randomly or if there are certain patterns of interest.
 
-Dependend on the time series input, there might be too much information in the plot,
-which leads to overplotting issues. In these cases using the min_totals, min_occurrence,
-min_gapsize parameters can be used to display only the information of interest.
+Dependent on the time series input, there might be too much information
+in the plot, which leads to overplotting issues. In these cases, using the
+min_totals, min_occurrence, min_gapsize parameters can be used to display
+only the information of interest.
 
 The only really needed parameter for this function is x (the univariate
 time series with NAs that shall be visualized). All other parameters
 are solely for altering the appearance of the plot.
 
-As long as the input is univariate and numeric the function also takes
+As long as the input is univariate and numeric, the function also takes
 data.frame, tibble, tsibble, zoo, xts as an input.
 
 The plot can be adjusted to your needs via the function parameters.
@@ -156,7 +172,7 @@ of the function is a ggplot2 object. Also take a look at the Examples
 to see how adjustments are made.
 }
 \examples{
-# Example 1: Visualize total NA counts sizes in tsNH4
+# Example 1: Visualize total NA counts in tsNH4
 ggplot_na_gapsize2(tsNH4)
 
 # Example 2: Visualize total NA counts in tsNH4, different color gradient
@@ -169,13 +185,13 @@ tsNH4 \%>\% ggplot_na_gapsize2()
 # Limited to gap sizes that account for a total of > 600 NAs
 ggplot_na_gapsize2(tsHeating, min_totals = 600)
 
-# Example 5: Visualize total NA counts in tsNH4 - no legend 
+# Example 5: Visualize total NA counts in tsNH4 - no legend
 ggplot_na_gapsize2(tsNH4, legend = FALSE)
 
 # Example 6: Visualize total NA counts in tsAirgap - increased bubble size
 ggplot_na_gapsize2(tsAirgap, size_bubbles = 35)
 
-# Example 7: Visualize total NA counts in tsNH4 
+# Example 7: Visualize total NA counts in tsNH4
 # Plot adjustments via ggplot_na_gapsize2 function parameters
 ggplot_na_gapsize2(tsNH4, theme = ggplot2::theme_classic())
 
@@ -194,8 +210,6 @@ ggplot_na_gapsize2(tsNH4, subtitle = NULL) +
 # Plot adjustments via ggplot2 syntax and function parameters
 ggplot_na_gapsize2(tsNH4, colors_bubbles = grDevices::heat.colors(10)) +
   ggplot2::theme(legend.position = "bottom")
-  
-  
 }
 \seealso{
 \code{\link[imputeTS]{ggplot_na_distribution}},

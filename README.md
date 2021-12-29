@@ -1,13 +1,14 @@
-
+  <!-- badges: start -->
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/SteffenMoritz/imputeTS.svg?branch=master)](https://travis-ci.org/SteffenMoritz/imputeTS)
+ [![R-CMD-check](https://github.com/SteffenMoritz/imputeTS/workflows/R-CMD-check/badge.svg)](https://github.com/SteffenMoritz/imputeTS/actions)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/steffenmoritz/imputeTS?branch=master&svg=true)](https://ci.appveyor.com/project/steffenmoritz/imputeTS)
 [![codecov](https://codecov.io/gh/SteffenMoritz/imputeTS/branch/master/graph/badge.svg)](https://codecov.io/gh/SteffenMoritz/imputeTS)
 [![CRAN Version](https://www.r-pkg.org/badges/version/imputeTS)](https://cran.r-project.org/package=imputeTS)
 [![CRAN Release](https://www.r-pkg.org/badges/last-release/imputeTS
 )](https://cran.r-project.org/package=imputeTS)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/imputeTS)](https://cran.r-project.org/package=imputeTS)
-
+  <!-- badges: end -->
 
 # imputeTS: Time Series Missing Value Imputation <img src="man/figures/imputeTS-logo.png" align="right" width="565" height="382" alt="imputeTS Logo" />
 
