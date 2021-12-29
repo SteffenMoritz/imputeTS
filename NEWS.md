@@ -1,4 +1,6 @@
-## Changes in Version 3.3
+
+# Changes in Version 3.3
+
 Thanks to Sabrina Krys for bug / issue reporting.
 Thanks to RicardaP for fixing documentation error.
 
@@ -27,7 +29,7 @@ Thanks to RicardaP for fixing documentation error.
 * Corrected typo in 'Input data needs at least x non-NA data points' error message
 
 
-## Changes in Version 3.2
+# Changes in Version 3.2
 
 Thanks to Mark J. Lamias for bug / issue reporting.
 Thanks to Cyrus Mohammadian for bug reporting.
@@ -50,7 +52,8 @@ Thanks to Miroslaw Janik for issue reporting.
   package size. These files and figures were not needed for the CRAN version. 
 
 
-## Changes in Version 3.1
+# Changes in Version 3.1
+
 Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting. 
 Thanks to Earo Wang for speedup of plotNA.gapsize.
 Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options, new unit tests.
@@ -88,7 +91,7 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
 
 * Added revdep
 
-## Changes in Version 3.0
+# Changes in Version 3.0
 
 Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs.
 Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementation.
@@ -134,18 +137,8 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
 
 * Fixed bug with na.random() output (reported by Jim Maas)
 
-## Outlook - Planned for Version 3.1
 
- * Better plots using ggplot2
- 
- * Better and more unit tests 
- 
- * Additional vignettes
- 
- * Adding harmonic and geometric mean as option for na_mean
-
-
-## Changes in Version 2.7
+# Changes in Version 2.7
 
   * Updated Description: Orcid Id added, packages required for unit test add as "Suggested"
 
@@ -154,20 +147,20 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Replaced NEWS with NEWS.md for better formatting
   
 
-## Changes in Version 2.6
+# Changes in Version 2.6
 
   * Updated citation file
   
   * Minor changes to vignette
 
 
-## Changes in Version 2.5
+# Changes in Version 2.5
 
   * Adjusted unit test to a update of forecast package
   
+  
 
-
-## Changes in Version 2.4
+# Changes in Version 2.4
 
   * Small speed improvments for na.kalman
   
@@ -178,7 +171,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Changes to unit test (because of zoo update)
   
 
-## Changes in Version 2.3
+# Changes in Version 2.3
 
   * Bugfix for na.kalman with integer input
   
@@ -189,19 +182,19 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Minor vignette changes
 
 
-## Changes in Version 2.2
+# Changes in Version 2.2
 
   * Bugfix for na.locf (also concerned na.kalman) 
   
 
-## Changes in Version 2.1
+# Changes in Version 2.1
 
   * Fixed for problems with Solaris/Sparc
   
   * Fixes for problems with vignette on osx
 
 
-## Changes in Version 2.0
+# Changes in Version 2.0
 
   * Bugfix for plots without missing data
   
@@ -216,12 +209,12 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Added new software tests
 
 
-## Changes in Version 1.9
+# Changes in Version 1.9
 
   * Added Vignette
 
 
-## Changes in Version 1.8
+# Changes in Version 1.8
 
   * Computation time improvments for na.locf (up to 10000 times faster)
   
@@ -236,7 +229,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Fixed issue with too sensitive input checking
   
 
-## Changes in Version 1.7
+# Changes in Version 1.7
   
   * Enabled usage of multivariate input (data.frame, mts, matrix,...) for all imputation 
     functions except na.remove. This means users do not have to loop through all columns 
@@ -269,7 +262,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Added better x-axes labels for plotNA.distribution
   
 
-## Changes in Version 1.6
+# Changes in Version 1.6
   
   * Added github links to description file
   
@@ -286,7 +279,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Added references to used packages in na.kalman and na.interpolation documentation
 
 
-## Changes in Version 1.5
+# Changes in Version 1.5
 
   * Allows now also numeric vectors as input
 
@@ -329,7 +322,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Improved dataset documentation 
 
 
-## Changes in Version 0.4
+# Changes in Version 0.4
 
   * Update of vis.differences (better looking plot now)
   
@@ -341,14 +334,14 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
     for all interpolation algorithms to pass through parameters to the underlying functions)
 
 
-## Changes in Version 0.3
+# Changes in Version 0.3
 
   * Added two datasets of sensor data
   
   * vis.differences for plotting differences between real and imputed values
   
 
-## Changes in Version 0.2
+# Changes in Version 0.2
 
   * Removed internal functions from visible package documentation
 
@@ -357,7 +350,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * internal function for algorithm selection
   
 
-## Changes in Version 0.1
+# Changes in Version 0.1
 
   * Created initial version of imputeTS package for univariate time series imputation
 
