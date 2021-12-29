@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Visualize Missing Values per Interval — ggplot_na_distribution2 • imputeTS</title>
+<title>Discontinued - Use ggplot_na_distribution2 instead. — ggplot_na_intervals • imputeTS</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,11 @@
 
 
 
-<meta property="og:title" content="Visualize Missing Values per Interval — ggplot_na_distribution2" />
-<meta property="og:description" content="Visualization of missing values in barplot form.
-Especially useful when looking at specific intervals and for
-time series with a lot of observations." />
+<meta property="og:title" content="Discontinued - Use ggplot_na_distribution2 instead. — ggplot_na_intervals" />
+<meta property="og:description" content="plotNA.distributionBar was replaced by ggplot_na_distribution2.
+The new plotting function provides an improved version of the old plot e.g. it looks better now and is better adjustable,
+because it is based on ggplot2. If you absolutely want to use the old function,
+you need to download an older package version. Versions 3.0 and below still have the old functions." />
 <meta property="og:image" content="https://SteffenMoritz.github.io/imputeTS/logo.png" />
 
 
@@ -133,186 +134,22 @@ time series with a lot of observations." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Visualize Missing Values per Interval</h1>
-    <small class="dont-index">Source: <a href='https://github.com/SteffenMoritz/imputeTS/blob/master/R/ggplot_na_distribution2.R'><code>R/ggplot_na_distribution2.R</code></a></small>
-    <div class="hidden name"><code>ggplot_na_distribution2.Rd</code></div>
+    <h1>Discontinued - Use <code><a href='ggplot_na_distribution2.html'>ggplot_na_distribution2</a></code> instead.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/SteffenMoritz/imputeTS/blob/master/R/deprecated_defunct.R'><code>R/deprecated_defunct.R</code></a></small>
+    <div class="hidden name"><code>ggplot_na_intervals.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Visualization of missing values in barplot form.
-Especially useful when looking at specific intervals and for
-time series with a lot of observations.</p>
+    <p>plotNA.distributionBar was replaced by <code><a href='ggplot_na_distribution2.html'>ggplot_na_distribution2</a></code>.
+The new plotting function provides an improved version of the old plot e.g. it looks better now and is better adjustable,
+because it is based on ggplot2. If you absolutely want to use the old function,
+you need to download an older package version. Versions 3.0 and below still have the old functions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span>
-  <span class='va'>x</span>,
-  number_intervals <span class='op'>=</span> <span class='cn'>NULL</span>,
-  interval_size <span class='op'>=</span> <span class='cn'>NULL</span>,
-  measure <span class='op'>=</span> <span class='st'>"percent"</span>,
-  color_missing <span class='op'>=</span> <span class='st'>"indianred2"</span>,
-  color_existing <span class='op'>=</span> <span class='st'>"steelblue"</span>,
-  alpha_missing <span class='op'>=</span> <span class='fl'>0.8</span>,
-  alpha_existing <span class='op'>=</span> <span class='fl'>0.3</span>,
-  title <span class='op'>=</span> <span class='st'>"Missing Values per Interval"</span>,
-  subtitle <span class='op'>=</span> <span class='st'>"Amount of NA and non-NA for successive intervals"</span>,
-  xlab <span class='op'>=</span> <span class='st'>"Time Lapse (Interval Size: XX)"</span>,
-  ylab <span class='op'>=</span> <span class='cn'>NULL</span>,
-  color_border <span class='op'>=</span> <span class='st'>"white"</span>,
-  theme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>ggplot_na_intervals</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>Numeric Vector (<code><a href='https://rdrr.io/r/base/vector.html'>vector</a></code>) or Time Series
-(<code><a href='https://rdrr.io/r/stats/ts.html'>ts</a></code>) object containing NAs. This is the only mandatory
-parameter - all other parameters are only needed for adjusting the plot appearance.</p></td>
-    </tr>
-    <tr>
-      <th>number_intervals</th>
-      <td><p>Defines the number of bins to be created. Default
-number of intervals (denoted by NULL) is calculated by <code><a href='https://rdrr.io/r/grDevices/nclass.html'>nclass.Sturges</a></code>
-using Sturges' formula. If the interval_size parameter is set to a value
-different to NULL this parameter is ignored.</p></td>
-    </tr>
-    <tr>
-      <th>interval_size</th>
-      <td><p>Defines how many observations should be in one bin/interval.
-The required number of overall bins is afterwards calculated automatically.
-If used this parameter overwrites the number_intervals parameter.
-For a very long time series be sure to make the interval_size not extremely
-small, otherwise because of  overplotting issues nothing can be seen until
-you also increase the plot width.</p></td>
-    </tr>
-    <tr>
-      <th>measure</th>
-      <td><p>Whether the NA / non-NA ratio should be given as
-percent or absolute numbers.</p>
-<ul>
-<li><p>"percent" - for percentages</p></li>
-<li><p>"count" - for absolute numbers of NAs</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>color_missing</th>
-      <td><p>Color for the amount of missing values.</p></td>
-    </tr>
-    <tr>
-      <th>color_existing</th>
-      <td><p>Color for the amount of existing values.</p></td>
-    </tr>
-    <tr>
-      <th>alpha_missing</th>
-      <td><p>Alpha (transparency) value for the missing values.</p></td>
-    </tr>
-    <tr>
-      <th>alpha_existing</th>
-      <td><p>Alpha (transparency) value for the existing values.</p></td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td><p>Title of the Plot (NULL for deactivating title).</p></td>
-    </tr>
-    <tr>
-      <th>subtitle</th>
-      <td><p>Subtitle of the Plot (NULL for deactivating subtitle).</p></td>
-    </tr>
-    <tr>
-      <th>xlab</th>
-      <td><p>Label for x-Axis. Automatically set to the current interval size, if
-no custom text is chosen.</p></td>
-    </tr>
-    <tr>
-      <th>ylab</th>
-      <td><p>Label for y-Axis. As default (NULL), the axis is automatically set
-to either 'Percent' or 'Count' dependent on the settings of parameter <code>measure</code>.</p></td>
-    </tr>
-    <tr>
-      <th>color_border</th>
-      <td><p>Color for the small borders between the intervals/bins.
-Default is 'white'.</p></td>
-    </tr>
-    <tr>
-      <th>theme</th>
-      <td><p>Set a Theme for ggplot2. Default is ggplot2::theme_linedraw().
-(<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a>)</code></p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function visualizes the distribution of missing values within
-a time series. In comparison to the <code><a href='ggplot_na_distribution.html'>ggplot_na_distribution</a></code>
-function this is not done by plotting each observation of the time series
-separately. Instead observations for time intervals are represented as
-intervals/bins of multiple values. For these intervals information about
-the amount of missing values are shown. This has the advantage, that also
-for large time series a plot which is easy to overview can be created.</p>
-<p>The only really needed parameter for this function is x (the univariate
-time series that shall be visualized). All other parameters are solely
-for altering the appearance of the plot.</p>
-<p>As long as the input is univariate and numeric the function also takes
-data.frame, tibble, tsibble, zoo, xts as an input.</p>
-<p>The plot can be adjusted to your needs via the function parameters.
-Additionally for more complex adjustments, the output can also be
-adjusted via ggplot2 syntax. This is possible, since the output
-of the function is a ggplot2 object. Also take a look at the Examples
-to see how adjustments are made.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='ggplot_na_distribution.html'>ggplot_na_distribution</a></code>,
-<code><a href='ggplot_na_gapsize.html'>ggplot_na_gapsize</a></code>,
-<code><a href='ggplot_na_imputations.html'>ggplot_na_imputations</a></code></p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>Steffen Moritz, Sebastian Gatscha</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example 1: Visualize the missing values in tsNH4 time series as percentages</span>
-<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsNH4</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_distribution2-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 2: Visualize the missing values in tsNH4 time series as counts </span>
-<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsNH4</span>, measure <span class='op'>=</span> <span class='st'>"count"</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_distribution2-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 3: Visualize the missing values in tsHeating time series</span>
-<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsHeating</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_distribution2-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 4: Same as example 1, just written with pipe operator</span>
-<span class='va'>tsNH4</span> <span class='op'>%&gt;%</span> <span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_distribution2-4.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 5: Visualize NAs in tsNH4 - exactly 8 intervals</span>
-<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsNH4</span>, number_intervals <span class='op'>=</span> <span class='fl'>8</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_distribution2-5.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 6: Visualize NAs in tsNH4 - 300 observations per interval</span>
-<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsNH4</span>, interval_size <span class='op'>=</span> <span class='fl'>300</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_distribution2-6.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 7: Visualize NAs in tsAirgap - different color for NAs</span>
-<span class='co'># Plot adjustments via ggplot_na_distribution2 function parameters</span>
-<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsAirgap</span>, color_missing <span class='op'>=</span> <span class='st'>"pink"</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_distribution2-7.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 8: Visualize NAs in tsNH4 - different theme</span>
-<span class='co'># Plot adjustments via ggplot_na_distribution2 function parameters</span>
-<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsNH4</span>, theme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_classic</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_distribution2-8.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 9: Visualize NAs in tsAirgap - title, subtitle in center</span>
-<span class='co'># Plot adjustments via ggplot2 syntax</span>
-<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.subtitle <span class='op'>=</span> <span class='fu'>ggtext</span><span class='fu'>::</span><span class='fu'><a href='https://wilkelab.org/ggtext/reference/element_markdown.html'>element_markdown</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_distribution2-9.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 10: Visualize NAs in tsAirgap - title in center, no subtitle</span>
-<span class='co'># Plot adjustments via ggplot2 syntax and function parameters</span>
-<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsAirgap</span>, subtitle <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_distribution2-10.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 11: Visualize NAs in tsAirgap - x-axis texts with angle</span>
-<span class='co'># Plot adjustments via ggplot2 syntax and function parameters</span>
-<span class='fu'>ggplot_na_distribution2</span><span class='op'>(</span><span class='va'>tsAirgap</span>, color_missing <span class='op'>=</span> <span class='st'>"grey"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>60</span>, hjust <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_distribution2-11.png' alt='' width='700' height='433' /></div><div class='input'>  
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
