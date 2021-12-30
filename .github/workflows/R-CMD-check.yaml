@@ -63,6 +63,7 @@ jobs:
           tinytex::parse_install(text = "! LaTeX Error: File `tikz.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `fancyhdr.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `microtype.sty' not found.")
+          tinytex::parse_install(text = "! LaTeX Error: File `setspace.sty' not found.")
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v1
