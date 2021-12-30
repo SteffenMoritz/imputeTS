@@ -60,6 +60,7 @@ jobs:
       - name: Install dependencies
         run: |
           tinytex::parse_install(text = "! LaTeX Error: File `etex.sty' not found.")
+          tinytex::parse_install(text = "! LaTeX Error: File `tikz.sty' not found.")
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v1
