@@ -57,9 +57,11 @@ jobs:
         with:
           extra-packages: rcmdcheck
 
-      - name: add TeX deps
+      - name: Install dependencies
         run: |
-          tinytex::tlmgr_install("etex")
+          remotes::install_deps(dependencies = TRUE)
+          remotes::install_cran("rcmdcheck")
+          tinytex::parse_install(text = "! LaTeX Error: File `etex.sty' not found.")
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v1
