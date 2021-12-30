@@ -67,6 +67,7 @@ jobs:
           tinytex::parse_install(text = "! LaTeX Error: File `placeins.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `caption.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `environ.sty' not found.")
+          tinytex::parse_install(text = "! LaTeX Error: File `upquote.sty' not found.")
           tinytex::parse_install(text = "! Font T1/ppl/m/n/10=pplr8t at 10.0pt not loadable: Metric (TFM) file not found.")
         shell: Rscript {0}
 
