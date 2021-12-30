@@ -34,7 +34,6 @@ jobs:
           - {os: ubuntu-18.04,   r: 'oldrel-1'}
           - {os: ubuntu-18.04,   r: 'oldrel-2'}
           - {os: ubuntu-18.04,   r: 'oldrel-3'}
-          - {os: ubuntu-18.04,   r: 'oldrel-4'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -64,6 +63,7 @@ jobs:
           tinytex::parse_install(text = "! LaTeX Error: File `fancyhdr.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `microtype.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `setspace.sty' not found.")
+          tinytex::parse_install(text = "! LaTeX Error: File `titlesec.sty' not found.")
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v1
