@@ -21,8 +21,8 @@ test_that("Check that all parameters of plot  run without error", {
     expect_true(is.list(ggplot_na_gapsize2(tsNH4, labels_bubbles = "occurrence")))
     expect_true(is.list(ggplot_na_gapsize2(tsNH4, size_bubbles = 50)))
     expect_true(is.list(ggplot_na_gapsize2(tsNH4, size_bubbles = 3)))
-    expect_true(is.list(ggplot_na_gapsize2(tsNH4, min_totals = 400)))
-    expect_true(is.list(ggplot_na_gapsize2(tsNH4, min_occurrence = 1000)))
+    expect_true(is.list(ggplot_na_gapsize2(tsNH4, min_totals = 50)))
+    expect_true(is.list(ggplot_na_gapsize2(tsNH4, min_occurrence = 10)))
     expect_true(is.list(ggplot_na_gapsize2(tsNH4, min_gap = 10)))
     expect_true(is.list(ggplot_na_gapsize2(tsNH4, max_gap = 200)))
     expect_true(is.list(ggplot_na_gapsize2(tsAirgap, title = "test")))
@@ -61,6 +61,14 @@ test_that("Errors for wrong input", {
   all_na <- as.numeric(c(NA, NA, NA, NA, NA, NA, NA, NA))
   expect_error(ggplot_na_gapsize2(all_na))
   
+  ## Empty plot because of too restrictive filters
+  expect_error(ggplot_na_gapsize2(tsAirgap, min_totals = 400))
+  expect_error(ggplot_na_gapsize2(tsAirgap, max_gapsize = 0))
+  expect_error(ggplot_na_gapsize2(tsAirgap, min_occurrence = 11))
+  expect_error(ggplot_na_gapsize2(tsAirgap, max_gapsize = 0))
+  
+  
+
   
   ## Wrong legend input for custom legend_point_sizes
   expect_error(ggplot_na_gapsize2(tsAirgap, legend_point_sizes = c(1,2)))

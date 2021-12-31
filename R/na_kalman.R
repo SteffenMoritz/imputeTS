@@ -10,11 +10,13 @@
 #' (on which KalmanSmooth is performed) can be chosen. Accepts the following input:
 #'
 #' \itemize{
-#'    \item{"auto.arima" - For using the state space representation of
-#'    arima model (using \link[forecast]{auto.arima})} (default choice)
-#'
+#' 
 #'    \item{"StructTS" - For using a structural model fitted by maximum
-#'     likelihood (using \link[stats]{StructTS}) }
+#'     likelihood (using \link[stats]{StructTS}) } (default choice)
+#'     
+#'    \item{"auto.arima" - For using the state space representation of
+#'    arima model (using \link[forecast]{auto.arima})} 
+#'
 #'    }
 #'
 #'  For both auto.arima and StructTS additional parameters for model building can

@@ -1,8 +1,9 @@
 
 # Changes in Version 3.3
 
-Thanks to Sabrina Krys for bug / issue reporting.
+Thanks to Sabrina Krys, Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu for bug / issue reporting.
 Thanks to RicardaP for fixing documentation error.
+Thanks to Rondald Hause for commit to optimize parameter pass trough from approx to na_interpolation.
 
 * Added ggplot_na_level plot
 
@@ -19,15 +20,17 @@ Thanks to RicardaP for fixing documentation error.
 * Improved notification message for na_seadec/na_seasplit when find_frequency couldn't find
   a seasonal pattern.
 
-* Corrected error in na_kalman documentation - auto.arima was wrongly described as default parameter choice,
-  while in reality it is StructTS
-  (reported and fixed by RicardaP)
+* Corrected error in na_kalman documentation - auto.arima was wrongly described as default parameter choice, while in reality it is StructTS (reported by RicardaP)
 
-* Bugfix for issue when using imputeTS together with pipes. For some specific cases the  input checks performed by imputeTS stopped the whole pipe workflow. To prevent this, stop() is now only called, when the  user supplied imputeTS algorithm parameter options are wrong or misspelled. Unsupported input data will only give a warning() in the future (and of course don't perform any action on the data). Thus, there is no call to stop(), that cancels the whole pipe workflow. This was e.g. a problem when group_by lead to single all NA subsets - which failed the input check and then stopped the whole pipe workflow.
-(issue reported by Sabrina Krys)
+* Bugfix for issue when using imputeTS together with pipes. For some specific cases the  input checks performed by imputeTS stopped the whole pipe workflow. To prevent this, stop() is now only called, when the  user supplied imputeTS algorithm parameter options are wrong or misspelled. Unsupported input data will only give a warning() in the future (and of course don't perform any action on the data). Thus, there is no call to stop(), that cancels the whole pipe workflow. This was e.g. a problem when group_by lead to single all NA subsets - which failed the input check and then stopped the whole pipe workflow. (issue reported by Sabrina Krys)
 
 * Corrected typo in 'Input data needs at least x non-NA data points' error message
 
+* Additional unit tests
+
+* Moved to Github Actions instead of TravisCI / AppVeyor.
+
+* Bugfix for "Error in optim(init[mask], getLike, method = "L-BFGS-B", lower = rep(0, : L-BFGS-B needs finite values of 'fn'.", which comes for completely constant input to na_kalman e.g. 4,4,4,NA,4,4. (reported by Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu)
 
 # Changes in Version 3.2
 
