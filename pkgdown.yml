@@ -3,7 +3,7 @@ pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   gallery_visualizations: gallery_visualizations.html
-last_built: 2021-12-30T13:45Z
+last_built: 2021-12-31T18:47Z
 urls:
   reference: https://SteffenMoritz.github.io/imputeTS/reference
   article: https://SteffenMoritz.github.io/imputeTS/articles

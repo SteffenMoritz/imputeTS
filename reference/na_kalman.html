@@ -76,10 +76,10 @@ object in which missing values shall be replaced</p></dd>
 <dt>model</dt>
 <dd><p>Model to be used. With this parameter the State Space Model
 (on which KalmanSmooth is performed) can be chosen. Accepts the following input:</p>
-<ul><li><p>"auto.arima" - For using the state space representation of
-arima model (using <a href="https://pkg.robjhyndman.com/forecast/reference/auto.arima.html" class="external-link">auto.arima</a>) (default choice)</p></li>
-<li><p>"StructTS" - For using a structural model fitted by maximum
-likelihood (using <a href="https://rdrr.io/r/stats/StructTS.html" class="external-link">StructTS</a>)</p></li>
+<ul><li><p>"StructTS" - For using a structural model fitted by maximum
+likelihood (using <a href="https://rdrr.io/r/stats/StructTS.html" class="external-link">StructTS</a>)  (default choice)</p></li>
+<li><p>"auto.arima" - For using the state space representation of
+arima model (using <a href="https://pkg.robjhyndman.com/forecast/reference/auto.arima.html" class="external-link">auto.arima</a>)</p></li>
 </ul><p>For both auto.arima and StructTS additional parameters for model building can
 be given with the ... parameter</p>
 <p>Additionally it is also possible to use a user created state space model

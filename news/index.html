@@ -59,16 +59,19 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="3.3" id="changes-in-version-33">Changes in Version 3.3<a class="anchor" aria-label="anchor" href="#changes-in-version-33"></a></h2>
-<p>Thanks to Sabrina Krys for bug / issue reporting. Thanks to RicardaP for fixing documentation error.</p>
+<p>Thanks to Sabrina Krys, Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu for bug / issue reporting. Thanks to RicardaP for fixing documentation error. Thanks to Rondald Hause for commit to optimize parameter pass trough from approx to na_interpolation.</p>
 <ul><li><p>Added ggplot_na_level plot</p></li>
 <li><p>Added ggplot_na_level2 plot</p></li>
 <li><p>Added ggplot_na_gapsize2 plot</p></li>
 <li><p>Renamed ggplot_na_intervals to ggplot_na_distribution2</p></li>
 <li><p>Updates to ggplot_na_gapsize: Space between the bars adjusted for better optics. Added parameters for directly choosing the bar border color and alpha value for filling of the bars.</p></li>
 <li><p>Improved notification message for na_seadec/na_seasplit when find_frequency couldn’t find a seasonal pattern.</p></li>
-<li><p>Corrected error in na_kalman documentation - auto.arima was wrongly described as default parameter choice, while in reality it is StructTS (reported and fixed by RicardaP)</p></li>
+<li><p>Corrected error in na_kalman documentation - auto.arima was wrongly described as default parameter choice, while in reality it is StructTS (reported by RicardaP)</p></li>
 <li><p>Bugfix for issue when using imputeTS together with pipes. For some specific cases the input checks performed by imputeTS stopped the whole pipe workflow. To prevent this, stop() is now only called, when the user supplied imputeTS algorithm parameter options are wrong or misspelled. Unsupported input data will only give a warning() in the future (and of course don’t perform any action on the data). Thus, there is no call to stop(), that cancels the whole pipe workflow. This was e.g. a problem when group_by lead to single all NA subsets - which failed the input check and then stopped the whole pipe workflow. (issue reported by Sabrina Krys)</p></li>
 <li><p>Corrected typo in ‘Input data needs at least x non-NA data points’ error message</p></li>
+<li><p>Additional unit tests</p></li>
+<li><p>Moved to Github Actions instead of TravisCI / AppVeyor.</p></li>
+<li><p>Bugfix for “Error in optim(init[mask], getLike, method =”L-BFGS-B“, lower = rep(0, : L-BFGS-B needs finite values of ‘fn’.”, which comes for completely constant input to na_kalman e.g. 4,4,4,NA,4,4. (reported by Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu)</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="3.2" id="changes-in-version-32">Changes in Version 3.2<small>2021-01-16</small><a class="anchor" aria-label="anchor" href="#changes-in-version-32"></a></h2>
