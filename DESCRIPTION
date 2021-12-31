@@ -27,7 +27,7 @@ BugReports: https://github.com/SteffenMoritz/imputeTS/issues
 URL: https://github.com/SteffenMoritz/imputeTS, https://steffenmoritz.github.io/imputeTS/
 Repository: CRAN
 Depends:
-    R (>= 3.0.1)
+    R (>= 3.6)
 Imports:
     stats,
     grDevices,

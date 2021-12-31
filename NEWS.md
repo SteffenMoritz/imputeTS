@@ -32,6 +32,10 @@ Thanks to Rondald Hause for commit to optimize parameter pass trough from approx
 
 * Bugfix for "Error in optim(init[mask], getLike, method = "L-BFGS-B", lower = rep(0, : L-BFGS-B needs finite values of 'fn'.", which comes for completely constant input to na_kalman e.g. 4,4,4,NA,4,4. (reported by Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu)
 
+* Improved na_seadec documentation (algorithm details)
+
+* Description R (>= 3.6) since used ggtext anyway depends on R > 3.5 and also some testthat tests
+
 # Changes in Version 3.2
 
 Thanks to Mark J. Lamias for bug / issue reporting.

@@ -33,7 +33,36 @@
 #' @return Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
 #' object (dependent on given input at parameter x)
 #'
+#' @details The algorithm first performs a Seasonal Decomposition of Time Series by Loess
+#' via \code{\link[stats]{stl}}. Decomposing the time series into seasonal, trend and irregular 
+#' components. The seasonal component gets then removed (subtracted) from the original series. 
+#' As a second step the selected imputation algorithm e.g. na_locf, na_ma, ...  is applied
+#' on the deseasonalized series. Thus, the algorithm can work without being affected by seasonal
+#' patterns. After filling the NA gaps, the seasonal component is added to the deseasonalized 
+#' series again.
+#' 
+#' Implementation details:
+#' A paper about the STL Decomposition procedure is linked in the references.
+#' Since the function only works with complete data, the initial NA data is temporarily filled
+#' via linear interpolation in order to perform the decomposition. These temporarily imputed
+#' values are replaced with NAs again after obtaining the decomposition for the non-NA
+#' observations. STL decomposition is run with robust = TRUE and s.window = 11. Additionally,
+#' applying STL decomposition needs a preset frequency. This can be passed by the frequency
+#' set in the input ts object or by setting 'find_frequency=TRUE' in order to find
+#' a appropriate frequency for the time series. The find_frequency parameter internally uses
+#' \code{\link[forecast]{findfrequency}}, which does a spectral analysis of the time series
+#' for identifying a suitable frequency. Using find_frequency will update the previously set
+#' frequency of a ts object to the newly found frequency. The default is 'find_frequency = FALSE',
+#' which gives a warning if no seasonality is set for the supplied time series object.
+#' If neither seasonality is set nor find_frequency is set to TRUE, the function goes on without
+#' decomposition and just applies the selected secondary algorithm to the original time series
+#' that still includes seasonality.
 #'
+#'
+#' @references R. B. Cleveland, W. S. Cleveland, J.E. McRae, and I. 
+#' Terpenning (1990) STL: A Seasonal-Trend Decomposition Procedure 
+#' Based on Loess. Journal of Official Statistics, 6, 3–73.
+#' 
 #' @author Steffen Moritz
 #'
 #' @seealso  \code{\link[imputeTS]{na_interpolation}},
