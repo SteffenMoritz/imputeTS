@@ -127,7 +127,7 @@ values are replaced with NAs again after obtaining the decomposition for the non
 observations. STL decomposition is run with robust = TRUE and s.window = 11. Additionally,
 applying STL decomposition needs a preset frequency. This can be passed by the frequency
 set in the input ts object or by setting 'find_frequency=TRUE' in order to find
-a appropriate frequency for the time series. The find_frequency parameter internally uses
+an appropriate frequency for the time series. The find_frequency parameter internally uses
 <code><a href="https://pkg.robjhyndman.com/forecast/reference/findfrequency.html" class="external-link">findfrequency</a></code>, which does a spectral analysis of the time series
 for identifying a suitable frequency. Using find_frequency will update the previously set
 frequency of a ts object to the newly found frequency. The default is 'find_frequency = FALSE',

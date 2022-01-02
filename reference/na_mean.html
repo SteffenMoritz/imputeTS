@@ -95,11 +95,13 @@ object (dependent on given input at parameter x)</p>
     <div id="details">
     <h2>Details</h2>
     <p>Missing values get replaced by overall mean values. The function
-calculates the mean, median or mode over all the non-NA values and replaces
-all NAs with this value. Option 'mode' replaces NAs with the most frequent
-value in the time series. If two or more values occur equally frequent, the
-function imputes with the lower value. That's why 'mode' is not the best
-option for decimal values.</p>
+calculates the mean, median, mode, harmonic or geometric mean over all the non-NA
+values and replaces all NAs with this value. Option 'mode' replaces NAs with
+the most frequent value in the time series. If two or more values occur equally frequent,
+the function imputes the lower value. Due to their calculation formula geometric and harmonic
+mean are not well defined for negative values or zero values in the input series.</p>
+<p>In general using the mean for imputation imputation is mostly a suboptimal choice and should
+be handled with great caution.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
