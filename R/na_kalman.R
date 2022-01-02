@@ -117,10 +117,13 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
       if (!anyNA(data[, i])) {
         next
       }
-      # if imputing a column does not work - mostly because it is not numeric - the column is left unchanged
-      tryCatch(data[, i] <- na_kalman(data[, i], model, smooth, nit, maxgap,...), error = function(cond) {
-        warning(paste("imputeTS: No imputation performed for column", i, "because of this", cond), call. = FALSE)
-      })
+      # Perform imputation for the specific column. Error handling passes warnings for single columns
+      # while still continuing workflow. Only errors shall stop the workflow.
+      withCallingHandlers(data[, i] <- na_kalman(data[, i], model, smooth, nit, maxgap,...), 
+                          warning = function(cond) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond), call. = FALSE)
+                            invokeRestart("muffleWarning")},
+                          error = function(cond2) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond2), call. = FALSE)}
+      )
     }
     return(data)
   }

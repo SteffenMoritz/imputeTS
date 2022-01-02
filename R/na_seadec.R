@@ -49,7 +49,7 @@
 #' observations. STL decomposition is run with robust = TRUE and s.window = 11. Additionally,
 #' applying STL decomposition needs a preset frequency. This can be passed by the frequency
 #' set in the input ts object or by setting 'find_frequency=TRUE' in order to find
-#' a appropriate frequency for the time series. The find_frequency parameter internally uses
+#' an appropriate frequency for the time series. The find_frequency parameter internally uses
 #' \code{\link[forecast]{findfrequency}}, which does a spectral analysis of the time series
 #' for identifying a suitable frequency. Using find_frequency will update the previously set
 #' frequency of a ts object to the newly found frequency. The default is 'find_frequency = FALSE',
@@ -104,10 +104,12 @@ na_seadec <- function(x, algorithm = "interpolation", find_frequency = FALSE, ma
       if (!anyNA(data[, i])) {
         next
       }
-      # if imputing a column does not work - mostly because it is not numeric - the column is left unchanged
-      tryCatch(data[, i] <- na_seadec(data[, i], algorithm, find_frequency, maxgap, ...),
-               warning = function(cond) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond), call. = FALSE)},
-               error = function(cond2) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond2), call. = FALSE)}
+      # Perform imputation for the specific column. Error handling passes warnings for single columns
+      # while still continuing workflow. Only errors shall stop the workflow.
+      withCallingHandlers(data[, i] <- na_seadec(data[, i], algorithm, find_frequency, maxgap, ...), 
+                          warning = function(cond) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond), call. = FALSE)
+                            invokeRestart("muffleWarning")},
+                          error = function(cond2) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond2), call. = FALSE)}
       )
     }
     return(data)
