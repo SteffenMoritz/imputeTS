@@ -210,9 +210,9 @@ na_kalman <- function(x, model = "StructTS", smooth = TRUE, nit = -1, maxgap = I
     }
     # State space model, default is BSM - basic structural model
     else if (model[1] == "StructTS") {
-      # Fallback, because for StructTS first value is not allowed to be NA
+      # Fallback, in StructTS first value is not allowed to be NA, thus take first non-NA 
       if (is.na(data[1])) {
-        data[1] <- na_locf(data, option = "nocb", na_remaining = "rev")[1]
+        data[1] <- data[which.min(is.na(data))]
       }
       mod <- stats::StructTS(data, ...)$model0
     }
