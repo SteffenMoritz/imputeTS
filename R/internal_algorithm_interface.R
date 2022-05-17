@@ -33,7 +33,7 @@ apply_base_algorithm <- function(x, algorithm, ...) {
   
   else 
   {
-    stop("No imputation performed: Wrong parameter for option algorithm choosen.")
+    stop("No imputation performed: Wrong parameter chosen for option algorithm.")
     return(x)
   }
   
