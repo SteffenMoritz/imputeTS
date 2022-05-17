@@ -87,7 +87,7 @@ ggplot_na_distribution2(tsNH4, measure = "count", interval_size = 144, color_mis
 
 Often deeper insights about the missing data are quite useful. These insights can give hints of possible causes of the missing data and an indication, which imputation algorithms might give good results. The plot gives an overview about how often different gapsizes (NAs in a row) occur in the time series.
 
-Only the parameter `x` (the univariate time series) is needed as mandatory input. By default the plot shows only the 10 most often occuring gapsizes. Use parameter `limit` to increase this number.
+Only the parameter `x` (the univariate time series) is needed as mandatory input. By default the plot shows only the 10 most often occurring gapsizes. Use parameter `limit` to increase this number.
 
 ```{r ggplot-na-gapsize-example1}
 library(imputeTS)
