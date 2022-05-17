@@ -101,7 +101,7 @@ Here is a table with available algorithms to choose from:
 | na_remove            |Remove Missing Values                                       | 
 | na_replace           |Replace Missing Values by a Defined Value                   | 
 | na_seadec            |Seasonally Decomposed Missing Value Imputation              | 
-| na_seasplit          |Seasonally Splitted Missing Value Imputation                | 
+| na_seasplit          |Seasonally Split Missing Value Imputation                | 
 
   > This is a rather broad overview. The functions itself mostly offer more
   > than just one algorithm. For example na_interpolation can be set to linear
