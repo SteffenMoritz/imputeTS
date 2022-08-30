@@ -33,7 +33,7 @@ apply_base_algorithm <- function(x, algorithm, ...) {
   
   else 
   {
-    stop("Wrong parameter for option algorithm choosen.")
+    stop("Wrong parameter for option algorithm chosen.")
   }
   
   return(data)

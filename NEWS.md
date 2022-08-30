@@ -79,7 +79,7 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
  it requires no minimum of non-NA values (reported by Jan - jmablans)
  
 * Improved na.random input check (usable with all NA input now if upper and lower bound
-  paramters are explicitly set to numeric values)
+  parameters are explicitly set to numeric values)
 
 * Additional unit tests for the plotting functions
 
@@ -119,7 +119,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
  
  * Made some changes to better follow tidyverse style guide
  
- * Replaced na. with na_ e.g na.mean with na_mean usw.This fits better to modern code
+ * Replaced na. with na_ e.g. na.mean with na_mean usw.This fits better to modern code
    style guidelines. The old function names will still work for a while,
    but give a warning.
 
