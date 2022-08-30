@@ -97,7 +97,7 @@ like median, mean, mode possible." />
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -179,11 +179,13 @@ object (dependent on given input at parameter x)</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Missing values get replaced by overall mean values. The function
-calculates the mean, median or mode over all the non-NA values and replaces
-all NAs with this value. Option 'mode' replaces NAs with the most frequent
-value in the time series. If two or more values occur equally frequent, the
-function imputes with the lower value. That's why 'mode' is not the best
-option for decimal values.</p>
+calculates the mean, median, mode, harmonic or geometric mean over all the non-NA
+values and replaces all NAs with this value. Option 'mode' replaces NAs with
+the most frequent value in the time series. If two or more values occur equally frequent,
+the function imputes the lower value. Due to their calculation formula geometric and harmonic
+mean are not well defined for negative values or zero values in the input series.</p>
+<p>In general using the mean for imputation imputation is mostly a suboptimal choice and should
+be handled with great caution.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='na_interpolation.html'>na_interpolation</a></code>,
