@@ -94,7 +94,6 @@ na_kalman(tsAirgap, model = usermodel)
 
 # Example 6: Same as example 1, just written with pipe operator
 tsAirgap \%>\% na_kalman()
-
 }
 \references{
 Hyndman RJ and Khandakar Y (2008). "Automatic time series forecasting: the forecast package for R". Journal of Statistical Software, 26(3).

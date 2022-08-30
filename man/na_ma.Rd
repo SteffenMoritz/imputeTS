@@ -79,7 +79,6 @@ na_ma(tsAirgap, k = 6)
 
 # Example 4: Same as example 1, just written with pipe operator
 tsAirgap \%>\% na_ma(weighting = "simple")
-
 }
 \seealso{
 \code{\link[imputeTS]{na_interpolation}},

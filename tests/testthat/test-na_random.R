@@ -1,19 +1,19 @@
 context("na_random")
 
-test_that("All NA vector gives warning", {
-  expect_warning(na_random(c(NA, NA, NA, NA, NA)))
+test_that("All NA vector throws error", {
+  expect_error(na_random(c(NA, NA, NA, NA, NA)))
 })
 
 test_that("Wrong input", {
   x <- data.frame(tsAirgap)
-  expect_warning(na_random(x, lower_bound = 1, upper_bound = -1))
+  expect_error(na_random(x, lower_bound = 1, upper_bound = -1))
 
   x <- rep("string", 144)
   x[3] <- NA
-  expect_warning(na_random(x))
+  expect_error(na_random(x))
 
   x <- rep(NA, 144)
-  expect_warning(na_random(x))
+  expect_error(na_random(x))
 })
 
 test_that("Imputation works for data.frame", {
@@ -23,8 +23,8 @@ test_that("Imputation works for data.frame", {
 })
 
 
-test_that("Warning for lower_bound > upper_bound", {
-  expect_warning(na_random(tsAirgap, lower_bound = 300, upper_bound = 100))
+test_that("Error for lower_bound > upper_bound", {
+  expect_error(na_random(tsAirgap, lower_bound = 300, upper_bound = 100))
 })
 
 

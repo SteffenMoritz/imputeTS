@@ -26,22 +26,21 @@
 #' # Example 1: Remove all NAs
 #' # Create Time series with missing values
 #' x <- ts(c(2, 3, NA, 5, 6, NA, 7, 8))
-#' 
+#'
 #' # Example 1: Remove all NAs
 #' na_remove(x)
-#' 
+#'
 #' # Example 2: Remove all NAs in tsAirgap
 #' na_remove(tsAirgap)
-#' 
+#'
 #' # Example 3: Same as example 1, just written with pipe operator
 #' x %>% na_remove()
-#' 
 #' @importFrom stats ts
 #' @importFrom magrittr %>%
 #' @export
 
 na_remove <- function(x) {
-  
+
   # Variable 'data' is used for all transformations to the time series
   # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
@@ -83,8 +82,7 @@ na_remove <- function(x) {
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (all(missindx)) {
-      warning("No action performed: Input data has only NAs")
-      return(x)
+      stop("Input data has solely NA values.")
     }
 
 
@@ -92,8 +90,7 @@ na_remove <- function(x) {
 
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
-      warning("No action performed: Wrong input type for parameter x")
-      return(x)
+      stop("Wrong input type for parameter x.")
     }
 
     # Altering multivariate objects with 1 column (which are essentially

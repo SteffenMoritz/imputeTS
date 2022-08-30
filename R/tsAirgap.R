@@ -4,7 +4,7 @@
 #' This time series contains missing values. In the package included is also the \code{\link{tsAirgapComplete}} time series providing the true values for the
 #' missing values.
 #' 
-#' @details The dataset originates from Box & Jenkins (see citation) and is a commonly used example in
+#' @details The dataset originates from Box and Jenkins (see citation) and is a commonly used example in
 #' time series analysis literature.
 #' 
 #' It characteristics (strong trend, strong seasonal behavior) make it also a great 

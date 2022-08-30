@@ -59,7 +59,6 @@ na_seasplit(tsAirgap, algorithm = "mean")
 
 # Example 3: Same as example 1, just written with pipe operator
 tsAirgap \%>\% na_seasplit(algorithm = "interpolation")
-
 }
 \seealso{
 \code{\link[imputeTS]{na_interpolation}},

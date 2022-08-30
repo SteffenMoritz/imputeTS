@@ -28,11 +28,11 @@
 #' calculates the mean, median, mode, harmonic or geometric mean over all the non-NA
 #' values and replaces all NAs with this value. Option 'mode' replaces NAs with
 #' the most frequent value in the time series. If two or more values occur equally frequent,
-#' the function imputes the lower value. Due to their calculation formula geometric and harmonic 
+#' the function imputes the lower value. Due to their calculation formula geometric and harmonic
 #' mean are not well defined for negative values or zero values in the input series.
-#' 
+#'
 #' In general using the mean for imputation imputation is mostly a suboptimal choice and should
-#' be handled with great caution. 
+#' be handled with great caution.
 #'
 #' @author Steffen Moritz
 #'
@@ -59,7 +59,7 @@
 #' @export
 #'
 na_mean <- function(x, option = "mean", maxgap = Inf) {
-  
+
   # Variable 'data' is used for all transformations to the time series
   # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
@@ -77,12 +77,15 @@ na_mean <- function(x, option = "mean", maxgap = Inf) {
       if (!anyNA(data[, i])) {
         next
       }
-      # Perform imputation for the specific column. Error handling passes warnings for single columns
-      # while still continuing workflow. Only errors shall stop the workflow.
-      withCallingHandlers(data[, i] <- na_mean(data[, i], option, maxgap), 
-               warning = function(cond) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond), call. = FALSE)
-               invokeRestart("muffleWarning")},
-               error = function(cond2) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond2), call. = FALSE)}
+      # if imputing a column does not work - mostly because it is not numeric - the column is left unchanged
+      tryCatch(
+        data[, i] <- na_mean(data[, i], option, maxgap),
+        error = function(cond) {
+          warning(paste(
+            "na_mean: No imputation performed for column", i, "of the input dataset.
+                Reason:", cond[1]
+          ), call. = FALSE)
+        }
       )
     }
     return(data)
@@ -114,16 +117,14 @@ na_mean <- function(x, option = "mean", maxgap = Inf) {
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (all(missindx)) {
-      warning("No imputation performed: Input data has only NAs. Input data needs at least 1 non-NA data point for applying na_mean")
-      return(x)
+      stop("Input data has only NA values. At least 1 non-NA data point required in the time series to apply na_mean.")
     }
 
     # 1.4 Checks and corrections for wrong data dimension
 
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
-      warning("No imputation performed: Wrong input type for parameter x")
-      return(x)
+      stop("Wrong input type for parameter x.")
     }
 
     # Altering multivariate objects with 1 column (which are essentially
@@ -134,8 +135,7 @@ na_mean <- function(x, option = "mean", maxgap = Inf) {
 
     # 1.5 Check if input is numeric
     if (!is.numeric(data)) {
-      warning("No imputation performed: Input x is not numeric")
-      return(x)
+      stop("Input x is not numeric.")
     }
 
     ##
@@ -166,36 +166,34 @@ na_mean <- function(x, option = "mean", maxgap = Inf) {
     }
     else if (option == "geometric") {
       # Use geometric Mean
-      
+
       # Check preconditions
       if (any(data == 0 | data < 0, na.rm = T)) {
-        warning("No imputation performed:", 
+        stop(
           "The input data contains 0 and/or negative values.\n",
           "The geometric and harmonic mean are not well defined for these cases.\n",
           "Please another option like e.g. option = 'mean' in this case."
         )
-        return(x)
       }
       mean <- exp(mean(log(data), na.rm = TRUE))
       data[missindx] <- mean
     }
     else if (option == "harmonic") {
       # Use harmonic Mean
-      
+
       # Check preconditions
       if (any(data == 0 | data < 0, na.rm = T)) {
-        warning("No imputation performed:",
+        stop(
           "The input data contains 0 and/or negative values.\n",
           "The geometric and harmonic mean are not well defined for these cases.\n",
           "Please another option like e.g. option = 'mean' in this case."
         )
-        return(x)
       }
       mean <- 1 / mean(1 / data, na.rm = TRUE)
       data[missindx] <- mean
     }
     else {
-      stop("No imputation performed: Wrong 'option' parameter given, must be either: \n'mean', 'mode', 'median', 'harmonic' or 'geometric'")
+      stop("Wrong 'option' parameter given, must be either: \n'mean', 'mode', 'median', 'harmonic' or 'geometric'.")
     }
 
     ##
