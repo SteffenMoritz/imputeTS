@@ -69,21 +69,20 @@
 #' @examples
 #' # Example 1: Perform imputation with simple moving average
 #' na_ma(tsAirgap, weighting = "simple")
-#' 
+#'
 #' # Example 2: Perform imputation with exponential weighted moving average
 #' na_ma(tsAirgap)
-#' 
+#'
 #' # Example 3: Perform imputation with exponential weighted moving average, window size 6
 #' na_ma(tsAirgap, k = 6)
-#' 
+#'
 #' # Example 4: Same as example 1, just written with pipe operator
 #' tsAirgap %>% na_ma(weighting = "simple")
-#' 
 #' @importFrom magrittr %>%
 #' @export
 
 na_ma <- function(x, k = 4, weighting = "exponential", maxgap = Inf) {
-  
+
   # Variable 'data' is used for all transformations to the time series
   # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
@@ -102,9 +101,14 @@ na_ma <- function(x, k = 4, weighting = "exponential", maxgap = Inf) {
         next
       }
       # if imputing a column does not work - mostly because it is not numeric - the column is left unchanged
-      tryCatch(data[, i] <- na_ma(data[, i], k, weighting, maxgap), 
-               warning = function(cond) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond), call. = FALSE)},
-               error = function(cond2) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond2), call. = FALSE)}
+      tryCatch(
+        data[, i] <- na_ma(data[, i], k, weighting, maxgap),
+        error = function(cond) {
+          warning(paste(
+            "na_ma: No imputation performed for column", i, "of the input dataset.
+                Reason:", cond[1]
+          ), call. = FALSE)
+        }
       )
     }
     return(data)
@@ -136,16 +140,14 @@ na_ma <- function(x, k = 4, weighting = "exponential", maxgap = Inf) {
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (sum(!missindx) < 2) {
-      warning("No imputation performed: Input data needs at least 2 non-NA data points for applying na_ma")
-      return(x)
+      stop("At least 2 non-NA data points required in the time series to apply na_ma.")
     }
 
     # 1.4 Checks and corrections for wrong data dimension
 
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
-      warning("No imputation performed: Wrong input type for parameter x")
-      return(x)
+      stop("Wrong input type for parameter x.")
     }
 
     # Altering multivariate objects with 1 column (which are essentially
@@ -156,13 +158,12 @@ na_ma <- function(x, k = 4, weighting = "exponential", maxgap = Inf) {
 
     # 1.5 Check if input is numeric
     if (!is.numeric(data)) {
-      warning("No imputation performed: Input x is not numeric")
-      return(x)
+      stop("Input x is not numeric.")
     }
 
     # 1.6 Check for wrong values of param k
     if (k < 1) {
-      stop("No imputation performed: Parameter k has  to be larger than 0")
+      stop("Parameter k has to be larger than 0.")
     }
 
     ##

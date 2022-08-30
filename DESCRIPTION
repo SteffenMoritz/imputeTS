@@ -1,6 +1,6 @@
 Package: imputeTS
 Version: 3.3
-Date: 2021-12-30
+Date: 2022-08-30
 Title: Time Series Missing Value Imputation
 Description: Imputation (replacement) of missing values 
              in univariate time series. 
@@ -41,7 +41,7 @@ Suggests:
     testthat,  R.rsp, knitr, zoo, timeSeries, tis, xts, tibble, tsibble, rmarkdown, covr
 License: GPL-3
 VignetteBuilder: R.rsp, knitr, rmarkdown
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
 Roxygen: list(markdown = TRUE)
 LinkingTo: Rcpp
 Encoding: UTF-8

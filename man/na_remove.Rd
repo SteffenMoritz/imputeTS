@@ -37,7 +37,6 @@ na_remove(tsAirgap)
 
 # Example 3: Same as example 1, just written with pipe operator
 x \%>\% na_remove()
-
 }
 \seealso{
 \code{\link[imputeTS]{na_interpolation}},
