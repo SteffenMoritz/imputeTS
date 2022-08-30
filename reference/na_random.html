@@ -27,7 +27,7 @@ between two given bounds."><meta property="og:image" content="https://SteffenMor
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -65,7 +65,7 @@ between two given bounds.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">na_random</span><span class="op">(</span><span class="va">x</span>, lower_bound <span class="op">=</span> <span class="cn">NULL</span>, upper_bound <span class="op">=</span> <span class="cn">NULL</span>, maxgap <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">na_random</span><span class="op">(</span><span class="va">x</span>, lower_bound <span class="op">=</span> <span class="cn">NULL</span>, upper_bound <span class="op">=</span> <span class="cn">NULL</span>, maxgap <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -73,22 +73,31 @@ between two given bounds.</p>
     <dl><dt>x</dt>
 <dd><p>Numeric Vector (<code><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></code>) or Time Series (<code><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></code>)
 object in which missing values shall be replaced</p></dd>
+
+
 <dt>lower_bound</dt>
 <dd><p>Lower bound for the random samples.
 If nothing or NULL is set min(x) will be used.</p></dd>
+
+
 <dt>upper_bound</dt>
 <dd><p>Upper bound for the random samples.
 If nothing or NULL is set man(x) will be used.</p></dd>
+
+
 <dt>maxgap</dt>
 <dd><p>Maximum number of successive NAs to still perform imputation on.
 Default setting is to replace all NAs without restrictions. With this
 option set, consecutive NAs runs, that are longer than 'maxgap' will
 be left NA. This option mostly makes sense if you want to
 treat long runs of NA afterwards separately.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Vector (<code><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></code>) or Time Series (<code><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></code>)
+    
+
+<p>Vector (<code><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></code>) or Time Series (<code><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></code>)
 object (dependent on given input at parameter x)</p>
     </div>
     <div id="details">
@@ -113,32 +122,32 @@ the random values.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Prerequisite: Create Time series with missing values</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="cn">NA</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="cn">NA</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 1: Replace all NAs by random values that are between min and max of the input time series</span></span>
-<span class="r-in"><span class="fu">na_random</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Prerequisite: Create Time series with missing values</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="cn">NA</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="cn">NA</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 1: Replace all NAs by random values that are between min and max of the input time series</span></span></span>
+<span class="r-in"><span><span class="fu">na_random</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time Series:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Start = 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> End = 8 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Frequency = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.000000 3.000000 7.981061 5.000000 6.000000 5.479802 7.000000 8.000000</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 2: Replace all NAs by random values between 1 and 10</span></span>
-<span class="r-in"><span class="fu">na_random</span><span class="op">(</span><span class="va">x</span>, lower_bound <span class="op">=</span> <span class="fl">1</span>, upper_bound <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.000000 3.000000 4.890992 5.000000 6.000000 7.948909 7.000000 8.000000</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 2: Replace all NAs by random values between 1 and 10</span></span></span>
+<span class="r-in"><span><span class="fu">na_random</span><span class="op">(</span><span class="va">x</span>, lower_bound <span class="op">=</span> <span class="fl">1</span>, upper_bound <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time Series:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Start = 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> End = 8 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Frequency = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.000000 3.000000 6.449491 5.000000 6.000000 2.994679 7.000000 8.000000</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 3: Same as example 1, just written with pipe operator</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">na_random</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.000000 3.000000 9.676605 5.000000 6.000000 6.570656 7.000000 8.000000</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 3: Same as example 1, just written with pipe operator</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">na_random</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time Series:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Start = 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> End = 8 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Frequency = 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.000000 3.000000 3.402731 5.000000 6.000000 3.560192 7.000000 8.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.000000 3.000000 6.360370 5.000000 6.000000 2.076666 7.000000 8.000000</span>
 </code></pre></div>
     </div>
   </div>
@@ -153,7 +162,7 @@ the random values.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

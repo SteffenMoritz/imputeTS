@@ -1,9 +1,9 @@
 pandoc: 2.7.3
-pkgdown: 2.0.1
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   gallery_visualizations: gallery_visualizations.html
-last_built: 2022-01-02T04:30Z
+last_built: 2022-08-30T06:34Z
 urls:
   reference: https://SteffenMoritz.github.io/imputeTS/reference
   article: https://SteffenMoritz.github.io/imputeTS/articles

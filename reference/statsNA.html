@@ -27,7 +27,7 @@ missing values in a univariate time series."><meta property="og:image" content="
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -65,7 +65,7 @@ missing values in a univariate time series.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">statsNA</span><span class="op">(</span><span class="va">x</span>, bins <span class="op">=</span> <span class="fl">4</span>, print_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">statsNA</span><span class="op">(</span><span class="va">x</span>, bins <span class="op">=</span> <span class="fl">4</span>, print_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -73,11 +73,15 @@ missing values in a univariate time series.</p>
     <dl><dt>x</dt>
 <dd><p>Numeric Vector (<code><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></code>) or
 Time Series (<code><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></code>) object containing NAs</p></dd>
+
+
 <dt>bins</dt>
 <dd><p>Split number for bin stats. Number of bins the time series gets
 divided into. For each bin information about amount/percentage of missing
 values is printed. Default value is 4 - what means stats about the
 1st,2nd,3rd,4th quarter of the time series are shown.</p></dd>
+
+
 <dt>print_only</dt>
 <dd><p>Choose if the function Prints or Returns.
 For print_only = TRUE the function has no return value and just prints out
@@ -85,10 +89,13 @@ missing value stats. If print_only is changed to FALSE, nothing is printed
 and the function returns a list.Print gives a little bit more information,
 since the returned list does not include "Stats for Bins"
 and "overview NA series"</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></code> containing the stats. Beware: Function gives
+    
+
+<p>A <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></code> containing the stats. Beware: Function gives
 only a return value if print_only = FALSE.</p>
     </div>
     <div id="details">
@@ -120,8 +127,8 @@ the function returns a list or prints the information only.
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Example 1: Print stats about the missing data in tsNH4</span></span>
-<span class="r-in"><span class="fu">statsNA</span><span class="op">(</span><span class="va">tsNH4</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example 1: Print stats about the missing data in tsNH4</span></span></span>
+<span class="r-in"><span><span class="fu">statsNA</span><span class="op">(</span><span class="va">tsNH4</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Length of time series:"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4552</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "-------------------------"</span>
@@ -176,9 +183,9 @@ the function returns a list or prints the information only.
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "  42 NA in a row: 2 times"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "  91 NA in a row: 1 times"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "  157 NA in a row: 1 times"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 2: Return list with stats about the missing data in tsAirgap</span></span>
-<span class="r-in"><span class="fu">statsNA</span><span class="op">(</span><span class="va">tsAirgap</span>, print_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 2: Return list with stats about the missing data in tsAirgap</span></span></span>
+<span class="r-in"><span><span class="fu">statsNA</span><span class="op">(</span><span class="va">tsAirgap</span>, print_only <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $length_series</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 144</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -211,9 +218,9 @@ the function returns a list or prints the information only.
 <span class="r-out co"><span class="r-pr">#&gt;</span> [101]  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [126]  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 3: Same as example 1, just written with pipe operator</span></span>
-<span class="r-in"><span class="va">tsNH4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">statsNA</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 3: Same as example 1, just written with pipe operator</span></span></span>
+<span class="r-in"><span><span class="va">tsNH4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">statsNA</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Length of time series:"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4552</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "-------------------------"</span>
@@ -282,7 +289,7 @@ the function returns a list or prints the information only.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

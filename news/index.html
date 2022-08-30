@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -59,21 +59,23 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="3.3" id="changes-in-version-33">Changes in Version 3.3<a class="anchor" aria-label="anchor" href="#changes-in-version-33"></a></h2>
-<p>Thanks to Sabrina Krys, Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu for bug / issue reporting. Thanks to RicardaP for fixing documentation error. Thanks to Rondald Hause for commit to optimize parameter pass trough from approx to na_interpolation.</p>
+<p>Thanks to Sabrina Krys, Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu for bug / issue reporting. Thanks to RicardaP for fixing documentation error. Thanks to Ronald Hause for the commit to optimize parameter pass trough from approx to na_interpolation.</p>
 <ul><li><p>Added ggplot_na_level plot</p></li>
 <li><p>Added ggplot_na_level2 plot</p></li>
 <li><p>Added ggplot_na_gapsize2 plot</p></li>
+<li><p>Better parameter pass trough from approx to na_interpolation (commit by Ronald Hause)</p></li>
 <li><p>Renamed ggplot_na_intervals to ggplot_na_distribution2</p></li>
 <li><p>Updates to ggplot_na_gapsize: Space between the bars adjusted for better optics. Added parameters for directly choosing the bar border color and alpha value for filling of the bars.</p></li>
 <li><p>Improved notification message for na_seadec/na_seasplit when find_frequency couldn’t find a seasonal pattern.</p></li>
 <li><p>Corrected error in na_kalman documentation - auto.arima was wrongly described as default parameter choice, while in reality it is StructTS (reported by RicardaP)</p></li>
-<li><p>Bugfix for issue when using imputeTS together with pipes. For some specific cases the input checks performed by imputeTS stopped the whole pipe workflow. To prevent this, stop() is now only called, when the user supplied imputeTS algorithm parameter options are wrong or misspelled. Unsupported input data will only give a warning() in the future (and of course don’t perform any action on the data). Thus, there is no call to stop(), that cancels the whole pipe workflow. This was e.g. a problem when group_by lead to single all NA subsets - which failed the input check and then stopped the whole pipe workflow. (issue reported by Sabrina Krys)</p></li>
+<li><p>Changes for the error handling. (<strong>These changes got reverted and did not make it into the CRAN release</strong>). For some specific cases the input checks performed by imputeTS stop pipe workflows in their entirety. E.g. a problem when group_by leads to all NA subsets - which fail the input check and then stop the whole pipe workflow. To prevent this, stop() is only called, when the user supplied imputeTS algorithm parameter options are wrong or misspelled. Unsupported input data will only give a warning() (and do not perform any action on the data). Thus, there is no call to stop(), that cancels the whole pipe workflow. (issue reported by Sabrina Krys). This works fine, but after closer consideration we figured people fail to notice warnings way too often and thus it is more user friendly to clearly stop with an error for these issues. After all, the users data analysis clearly profits from taking a closer look in these specific cases. If you are anyhow interested in the version without the reverted changes, it can be installed from github with the following command: devtools::install_github(“<a href="https://github.com/SteffenMoritz/imputeTS/commit/aaf759216b4091e36dee6e8e3a10185ff8f4647b" class="external-link uri">https://github.com/SteffenMoritz/imputeTS/commit/aaf759216b4091e36dee6e8e3a10185ff8f4647b</a>”)</p></li>
+<li><p>Improved error messages (especially for multivariate inputs) and unit tests for the warnings and errors.</p></li>
 <li><p>Corrected typo in ‘Input data needs at least x non-NA data points’ error message</p></li>
 <li><p>Additional unit tests</p></li>
 <li><p>Moved to Github Actions instead of TravisCI / AppVeyor.</p></li>
 <li><p>Bugfix for “Error in optim(init[mask], getLike, method =”L-BFGS-B“, lower = rep(0, : L-BFGS-B needs finite values of ‘fn’.”, which comes for completely constant input to na_kalman e.g. 4,4,4,NA,4,4. (reported by Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu)</p></li>
 <li><p>Improved na_seadec documentation (algorithm details)</p></li>
-<li><p>Description R (&gt;= 3.6) since used ggtext anyway depends on R &gt; 3.5 and also some testthat tests</p></li>
+<li><p>Changed R Version requirement in Description to R (&gt;= 3.6) since imported packages like ggtext and also some testthat tests were already requiring newer versions than the old R (≥ 3.0.1) requirement of imputeTS</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="3.2" id="changes-in-version-32">Changes in Version 3.2<small>2021-01-16</small><a class="anchor" aria-label="anchor" href="#changes-in-version-32"></a></h2>
@@ -142,8 +144,7 @@ stop(“Wrong parameter ‘option’ given. Value must be either ‘linear’, �
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.5" id="changes-in-version-25">Changes in Version 2.5<small>2017-06-13</small><a class="anchor" aria-label="anchor" href="#changes-in-version-25"></a></h2>
-<ul><li>Adjusted unit test to a update of forecast package</li>
-</ul></div>
+<ul><li>Adjusted unit test to a update of forecast package</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.4" id="changes-in-version-24">Changes in Version 2.4<small>2017-06-05</small><a class="anchor" aria-label="anchor" href="#changes-in-version-24"></a></h2>
 <ul><li><p>Small speed improvments for na.kalman</p></li>
@@ -160,8 +161,7 @@ stop(“Wrong parameter ‘option’ given. Value must be either ‘linear’, �
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.2" id="changes-in-version-22">Changes in Version 2.2<small>2017-04-23</small><a class="anchor" aria-label="anchor" href="#changes-in-version-22"></a></h2>
-<ul><li>Bugfix for na.locf (also concerned na.kalman)</li>
-</ul></div>
+<ul><li>Bugfix for na.locf (also concerned na.kalman)</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.1" id="changes-in-version-21">Changes in Version 2.1<small>2017-04-18</small><a class="anchor" aria-label="anchor" href="#changes-in-version-21"></a></h2>
 <ul><li><p>Fixed for problems with Solaris/Sparc</p></li>
@@ -178,8 +178,7 @@ stop(“Wrong parameter ‘option’ given. Value must be either ‘linear’, �
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.9" id="changes-in-version-19">Changes in Version 1.9<small>2017-03-09</small><a class="anchor" aria-label="anchor" href="#changes-in-version-19"></a></h2>
-<ul><li>Added Vignette</li>
-</ul></div>
+<ul><li>Added Vignette</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.8" id="changes-in-version-18">Changes in Version 1.8<small>2017-01-25</small><a class="anchor" aria-label="anchor" href="#changes-in-version-18"></a></h2>
 <ul><li><p>Computation time improvments for na.locf (up to 10000 times faster)</p></li>
@@ -273,7 +272,7 @@ stop(“Wrong parameter ‘option’ given. Value must be either ‘linear’, �
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

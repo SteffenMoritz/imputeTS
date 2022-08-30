@@ -27,7 +27,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -65,7 +65,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">na_kalman</span><span class="op">(</span><span class="va">x</span>, model <span class="op">=</span> <span class="st">"StructTS"</span>, smooth <span class="op">=</span> <span class="cn">TRUE</span>, nit <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, maxgap <span class="op">=</span> <span class="cn">Inf</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">na_kalman</span><span class="op">(</span><span class="va">x</span>, model <span class="op">=</span> <span class="st">"StructTS"</span>, smooth <span class="op">=</span> <span class="cn">TRUE</span>, nit <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, maxgap <span class="op">=</span> <span class="cn">Inf</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -73,6 +73,8 @@
     <dl><dt>x</dt>
 <dd><p>Numeric Vector (<code><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></code>) or Time Series (<code><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></code>)
 object in which missing values shall be replaced</p></dd>
+
+
 <dt>model</dt>
 <dd><p>Model to be used. With this parameter the State Space Model
 (on which KalmanSmooth is performed) can be chosen. Accepts the following input:</p>
@@ -91,27 +93,38 @@ that user created state space models must meet the requirements specified
 under <a href="https://rdrr.io/r/stats/KalmanLike.html" class="external-link">KalmanLike</a>. This means the user supplied state space
 model has to be in form of a list with at least components T, Z, h , V, a, P, Pn.
 (more details under <a href="https://rdrr.io/r/stats/KalmanLike.html" class="external-link">KalmanLike</a>)</p></dd>
+
+
 <dt>smooth</dt>
 <dd><p>if <code>TRUE</code> - <code><a href="https://rdrr.io/r/stats/KalmanLike.html" class="external-link">KalmanSmooth</a></code> is used for
 estimation, if <code>FALSE</code> - <code><a href="https://rdrr.io/r/stats/KalmanLike.html" class="external-link">KalmanRun</a></code> is used.
 Since KalmanRun is often considered extrapolation KalmanSmooth is usually
 the better choice for imputation.</p></dd>
+
+
 <dt>nit</dt>
 <dd><p>Parameter from Kalman Filtering (see <a href="https://rdrr.io/r/stats/KalmanLike.html" class="external-link">KalmanLike</a>).
 Usually no need to change from default.</p></dd>
+
+
 <dt>maxgap</dt>
 <dd><p>Maximum number of successive NAs to still perform imputation on.
 Default setting is to replace all NAs without restrictions. With this
 option set, consecutive NAs runs, that are longer than 'maxgap' will
 be left NA. This option mostly makes sense if you want to
 treat long runs of NA afterwards separately.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional parameters to be passed through to the functions that
 build the State Space Models (<a href="https://rdrr.io/r/stats/StructTS.html" class="external-link">StructTS</a> or <a href="https://pkg.robjhyndman.com/forecast/reference/auto.arima.html" class="external-link">auto.arima</a>).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Vector (<code><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></code>) or Time Series (<code><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></code>)
+    
+
+<p>Vector (<code><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></code>) or Time Series (<code><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></code>)
 object (dependent on given input at parameter x)</p>
     </div>
     <div id="details">
@@ -144,8 +157,8 @@ following literature is a good starting point:</p><ul><li><p><cite>G. Welch, G. 
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Example 1: Perform imputation with KalmanSmoother and state space representation of arima model</span></span>
-<span class="r-in"><span class="fu">na_kalman</span><span class="op">(</span><span class="va">tsAirgap</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example 1: Perform imputation with KalmanSmoother and state space representation of arima model</span></span></span>
+<span class="r-in"><span><span class="fu">na_kalman</span><span class="op">(</span><span class="va">tsAirgap</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1949 112.0000 118.0000 132.0000 129.0000 123.5734 135.0000 148.0000 148.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000</span>
@@ -172,9 +185,9 @@ following literature is a good starting point:</p><ul><li><p><cite>G. Welch, G. 
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1958 404.0000 359.0000 310.0000 337.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1959 463.0000 407.0000 362.0000 390.9089</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1960 508.0000 461.0000 390.0000 432.0000</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 2: Perform imputation with KalmanRun and state space representation of arima model</span></span>
-<span class="r-in"><span class="fu">na_kalman</span><span class="op">(</span><span class="va">tsAirgap</span>, smooth <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 2: Perform imputation with KalmanRun and state space representation of arima model</span></span></span>
+<span class="r-in"><span><span class="fu">na_kalman</span><span class="op">(</span><span class="va">tsAirgap</span>, smooth <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1949 112.0000 118.0000 132.0000 129.0000 123.9264 135.0000 148.0000 148.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000</span>
@@ -201,9 +214,9 @@ following literature is a good starting point:</p><ul><li><p><cite>G. Welch, G. 
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1958 404.0000 359.0000 310.0000 337.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1959 463.0000 407.0000 362.0000 400.7839</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1960 508.0000 461.0000 390.0000 432.0000</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 3: Perform imputation with KalmanSmooth and StructTS model</span></span>
-<span class="r-in"><span class="fu">na_kalman</span><span class="op">(</span><span class="va">tsAirgap</span>, model <span class="op">=</span> <span class="st">"StructTS"</span>, smooth <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 3: Perform imputation with KalmanSmooth and StructTS model</span></span></span>
+<span class="r-in"><span><span class="fu">na_kalman</span><span class="op">(</span><span class="va">tsAirgap</span>, model <span class="op">=</span> <span class="st">"StructTS"</span>, smooth <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1949 112.0000 118.0000 132.0000 129.0000 123.5734 135.0000 148.0000 148.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000</span>
@@ -230,9 +243,9 @@ following literature is a good starting point:</p><ul><li><p><cite>G. Welch, G. 
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1958 404.0000 359.0000 310.0000 337.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1959 463.0000 407.0000 362.0000 390.9089</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1960 508.0000 461.0000 390.0000 432.0000</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 4: Perform imputation with KalmanSmooth and StructTS model with additional parameters</span></span>
-<span class="r-in"><span class="fu">na_kalman</span><span class="op">(</span><span class="va">tsAirgap</span>, model <span class="op">=</span> <span class="st">"StructTS"</span>, smooth <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="st">"trend"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 4: Perform imputation with KalmanSmooth and StructTS model with additional parameters</span></span></span>
+<span class="r-in"><span><span class="fu">na_kalman</span><span class="op">(</span><span class="va">tsAirgap</span>, model <span class="op">=</span> <span class="st">"StructTS"</span>, smooth <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="st">"trend"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1949 112.00 118.00 132.00 129.00 132.00 135.00 148.00 148.00 133.50 119.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1950 115.00 126.00 141.00 135.00 125.00 149.00 170.00 170.00 151.50 133.00</span>
@@ -259,10 +272,10 @@ following literature is a good starting point:</p><ul><li><p><cite>G. Welch, G. 
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1958 310.00 337.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1959 362.00 389.50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1960 390.00 432.00</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 5:  Perform imputation with KalmanSmooth and user created model</span></span>
-<span class="r-in"><span class="va">usermodel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.html" class="external-link">arima</a></span><span class="op">(</span><span class="va">tsAirgap</span>, order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">model</span></span>
-<span class="r-in"><span class="fu">na_kalman</span><span class="op">(</span><span class="va">tsAirgap</span>, model <span class="op">=</span> <span class="va">usermodel</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 5:  Perform imputation with KalmanSmooth and user created model</span></span></span>
+<span class="r-in"><span><span class="va">usermodel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.html" class="external-link">arima</a></span><span class="op">(</span><span class="va">tsAirgap</span>, order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">model</span></span></span>
+<span class="r-in"><span><span class="fu">na_kalman</span><span class="op">(</span><span class="va">tsAirgap</span>, model <span class="op">=</span> <span class="va">usermodel</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1949 112.0000 118.0000 132.0000 129.0000 128.9291 135.0000 148.0000 148.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000</span>
@@ -289,9 +302,9 @@ following literature is a good starting point:</p><ul><li><p><cite>G. Welch, G. 
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1958 404.0000 359.0000 310.0000 337.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1959 463.0000 407.0000 362.0000 388.2858</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1960 508.0000 461.0000 390.0000 432.0000</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 6: Same as example 1, just written with pipe operator</span></span>
-<span class="r-in"><span class="va">tsAirgap</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">na_kalman</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 6: Same as example 1, just written with pipe operator</span></span></span>
+<span class="r-in"><span><span class="va">tsAirgap</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">na_kalman</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1949 112.0000 118.0000 132.0000 129.0000 123.5734 135.0000 148.0000 148.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1950 115.0000 126.0000 141.0000 135.0000 125.0000 149.0000 170.0000 170.0000</span>
@@ -318,7 +331,6 @@ following literature is a good starting point:</p><ul><li><p><cite>G. Welch, G. 
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1958 404.0000 359.0000 310.0000 337.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1959 463.0000 407.0000 362.0000 390.9089</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1960 508.0000 461.0000 390.0000 432.0000</span>
-<span class="r-in"></span>
 </code></pre></div>
     </div>
   </div>
@@ -333,7 +345,7 @@ following literature is a good starting point:</p><ul><li><p><cite>G. Welch, G. 
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

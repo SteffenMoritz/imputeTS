@@ -29,7 +29,7 @@ Backward - NOCB)."><meta property="og:image" content="https://SteffenMoritz.gith
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -69,7 +69,7 @@ Backward - NOCB).</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">na_locf</span><span class="op">(</span><span class="va">x</span>, option <span class="op">=</span> <span class="st">"locf"</span>, na_remaining <span class="op">=</span> <span class="st">"rev"</span>, maxgap <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">na_locf</span><span class="op">(</span><span class="va">x</span>, option <span class="op">=</span> <span class="st">"locf"</span>, na_remaining <span class="op">=</span> <span class="st">"rev"</span>, maxgap <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -77,26 +77,35 @@ Backward - NOCB).</p>
     <dl><dt>x</dt>
 <dd><p>Numeric Vector (<code><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></code>) or Time Series (<code><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></code>)
 object in which missing values shall be replaced</p></dd>
+
+
 <dt>option</dt>
 <dd><p>Algorithm to be used. Accepts the following input:</p><ul><li><p>"locf" - for Last Observation Carried Forward (default choice)</p></li>
 <li><p>"nocb" - for Next Observation Carried Backward</p></li>
 </ul></dd>
+
+
 <dt>na_remaining</dt>
 <dd><p>Method to be used for remaining NAs.</p><ul><li><p>"rev" - to perform nocb / locf from the reverse direction (default choice)</p></li>
 <li><p>"keep" - to return the series with NAs</p></li>
 <li><p>"rm" - to remove remaining NAs</p></li>
 <li><p>"mean" - to replace remaining NAs by overall mean</p></li>
 </ul></dd>
+
+
 <dt>maxgap</dt>
 <dd><p>Maximum number of successive NAs to still perform imputation on.
 Default setting is to replace all NAs without restrictions. With this
 option set, consecutive NAs runs, that are longer than 'maxgap' will
 be left NA. This option mostly makes sense if you want to
 treat long runs of NA afterwards separately.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Vector (<code><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></code>) or Time Series (<code><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></code>)
+    
+
+<p>Vector (<code><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></code>) or Time Series (<code><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></code>)
 object (dependent on given input at parameter x)</p>
     </div>
     <div id="details">
@@ -155,31 +164,31 @@ the values at the beginning)</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Prerequisite: Create Time series with missing values</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="cn">NA</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 1: Perform LOCF</span></span>
-<span class="r-in"><span class="fu">na_locf</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Prerequisite: Create Time series with missing values</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="cn">NA</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 1: Perform LOCF</span></span></span>
+<span class="r-in"><span><span class="fu">na_locf</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time Series:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Start = 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> End = 8 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Frequency = 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3 3 4 5 6 6 7 8</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 2: Perform NOCF</span></span>
-<span class="r-in"><span class="fu">na_locf</span><span class="op">(</span><span class="va">x</span>, option <span class="op">=</span> <span class="st">"nocb"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 2: Perform NOCF</span></span></span>
+<span class="r-in"><span><span class="fu">na_locf</span><span class="op">(</span><span class="va">x</span>, option <span class="op">=</span> <span class="st">"nocb"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time Series:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Start = 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> End = 8 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Frequency = 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3 3 4 5 6 7 7 8</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 3: Perform LOCF and remove remaining NAs</span></span>
-<span class="r-in"><span class="fu">na_locf</span><span class="op">(</span><span class="va">x</span>, na_remaining <span class="op">=</span> <span class="st">"rm"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 3: Perform LOCF and remove remaining NAs</span></span></span>
+<span class="r-in"><span><span class="fu">na_locf</span><span class="op">(</span><span class="va">x</span>, na_remaining <span class="op">=</span> <span class="st">"rm"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3 4 5 6 6 7 8</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Example 4: Same as example 1, just written with pipe operator</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">na_locf</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 4: Same as example 1, just written with pipe operator</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">na_locf</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time Series:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Start = 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> End = 8 </span>
@@ -199,7 +208,7 @@ the values at the beginning)</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

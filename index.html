@@ -59,7 +59,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -103,10 +103,10 @@
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>The imputeTS package can be found on <a href="https://cran.r-project.org/package=imputeTS" class="external-link">CRAN</a>. For installation execute in R:</p>
-<pre><code><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"imputeTS"</span><span class="op">)</span></code></pre>
+<pre><code><span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"imputeTS"</span><span class="op">)</span></span></code></pre>
 <p>If you want to install the latest version from GitHub (can be unstable) run:</p>
-<pre><code><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span>
-<span class="fu">install_github</span><span class="op">(</span><span class="st">"SteffenMoritz/imputeTS"</span><span class="op">)</span></code></pre>
+<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
+<span><span class="fu">install_github</span><span class="op">(</span><span class="st">"SteffenMoritz/imputeTS"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -115,38 +115,30 @@
 <li>
 <h4 id="imputation">Imputation</h4>
 <p>To impute (fill all missing values) in a time series <strong><em>x</em></strong>, run the following command:</p>
-<pre><code><span class="fu"><a href="reference/na_interpolation.html">na_interpolation</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre>
+<pre><code><span> <span class="fu"><a href="reference/na_interpolation.html">na_interpolation</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre>
 <p>Output is the time series <strong><em>x</em></strong> with all NA’s replaced by reasonable values.</p>
-<blockquote>
-<p>This is just one example for an imputation algorithm. In this case interpolation was the algorithm of choice for calculating the NA replacements. There are several other algorithms (see also under caption “Imputation Algorithms”). All imputation functions are named alike starting with na_ followed by a algorithm label e.g. na_mean, na_kalman, …</p>
-</blockquote>
+<blockquote><p>This is just one example for an imputation algorithm. In this case interpolation was the algorithm of choice for calculating the NA replacements. There are several other algorithms (see also under caption “Imputation Algorithms”). All imputation functions are named alike starting with na_ followed by a algorithm label e.g. na_mean, na_kalman, …</p></blockquote>
 </li>
 <li>
 <h4 id="plotting">Plotting</h4>
 <p>To plot missing data statistics for a time series <strong><em>x</em></strong>, run the following command:</p>
-<pre><code><span class="fu"><a href="reference/ggplot_na_distribution.html">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre>
+<pre><code><span> <span class="fu"><a href="reference/ggplot_na_distribution.html">ggplot_na_distribution</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre>
 <p> </p>
-<p align="center">
-</p>
+<p align="center"></p>
 <p><img src="reference/figures/ggplot_na_distribution.png" width="600" height="350" alt="Example ggplot_na_distribution plot"></p>
-
-<blockquote>
-<p>This is also just one example for a plot. Overall there are four different types of missing data plots. (see also under caption “Missing Data Plots”).</p>
-</blockquote>
+<blockquote><p>This is also just one example for a plot. Overall there are four different types of missing data plots. (see also under caption “Missing Data Plots”).</p></blockquote>
 </li>
 <li>
 <h4 id="printing">Printing</h4>
 <p>To print statistics about the missing data in a time series <strong><em>x</em></strong>, run the following command:</p>
-<pre><code><span class="fu"><a href="reference/statsNA.html">statsNA</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre>
+<pre><code><span> <span class="fu"><a href="reference/statsNA.html">statsNA</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre>
 </li>
 <li>
 <h3 id="datasets">Datasets</h3>
 <p>To load the <em>‘heating’</em> time series (with missing values) into a variable <strong><em>y</em></strong> and the <em>‘heating’</em> time series (without missing values) into a variable <strong><em>z</em></strong>, run:</p>
-<pre><code><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">tsHeating</span>
- <span class="va">z</span> <span class="op">&lt;-</span> <span class="va">tsHeatingComplete</span></code></pre>
-<blockquote>
-<p>There are three datasets provided with the package, the <em>‘tsHeating’</em>, the <em>‘tsAirgap’</em> and the <em>‘tsNH4’</em> time series. (see also under caption “Datasets”).</p>
-</blockquote>
+<pre><code><span> <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">tsHeating</span></span>
+<span> <span class="va">z</span> <span class="op">&lt;-</span> <span class="va">tsHeatingComplete</span></span></code></pre>
+<blockquote><p>There are three datasets provided with the package, the <em>‘tsHeating’</em>, the <em>‘tsAirgap’</em> and the <em>‘tsNH4’</em> time series. (see also under caption “Datasets”).</p></blockquote>
 </li>
 </ul>
 </div>
@@ -202,9 +194,7 @@
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>This is a rather broad overview. The functions itself mostly offer more than just one algorithm. For example na_interpolation can be set to linear or spline interpolation.</p>
-</blockquote>
+<blockquote><p>This is a rather broad overview. The functions itself mostly offer more than just one algorithm. For example na_interpolation can be set to linear or spline interpolation.</p></blockquote>
 <p>More detailed information about the algorithms and their options can be found in the <a href="https://cran.r-project.org/package=imputeTS" class="external-link">imputeTS reference manual</a>.</p>
 </div>
 <div class="section level2">
@@ -276,9 +266,7 @@
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>The tsAirgap, tsHeating and tsNH4 time series are with NAs. Their <strong>complete</strong> versions are without NAs. Except the missing values their versions are identical. The NAs for the time series were artifically inserted by simulating the missing data pattern observed in similar non-complete time series from the same domain. Having a complete and incomplete version of the same dataset is useful for conducting experiments of imputation functions.</p>
-</blockquote>
+<blockquote><p>The tsAirgap, tsHeating and tsNH4 time series are with NAs. Their <strong>complete</strong> versions are without NAs. Except the missing values their versions are identical. The NAs for the time series were artifically inserted by simulating the missing data pattern observed in similar non-complete time series from the same domain. Having a complete and incomplete version of the same dataset is useful for conducting experiments of imputation functions.</p></blockquote>
 <p>More detailed information about the datasets can be found in the <a href="https://cran.r-project.org/package=imputeTS" class="external-link">imputeTS reference manual</a>.</p>
 </div>
 </div>
@@ -286,24 +274,18 @@
 <h2 id="reference">Reference<a class="anchor" aria-label="anchor" href="#reference"></a>
 </h2>
 <p>You can cite imputeTS the following:</p>
-<blockquote>
-<p>Moritz, Steffen, and Bartz-Beielstein, Thomas. “imputeTS: Time Series Missing Value Imputation in R.” R Journal 9.1 (2017). doi: 10.32614/RJ-2017-009.</p>
-</blockquote>
+<blockquote><p>Moritz, Steffen, and Bartz-Beielstein, Thomas. “imputeTS: Time Series Missing Value Imputation in R.” R Journal 9.1 (2017). doi: 10.32614/RJ-2017-009.</p></blockquote>
 </div>
 <div class="section level2">
 <h2 id="need-help">Need Help?<a class="anchor" aria-label="anchor" href="#need-help"></a>
 </h2>
 <p>If you have general programming problems or need help using the package please ask your question on <a href="https://stackoverflow.com/tags/imputets/info" class="external-link">StackOverflow</a>. By doing so all users will be able to benefit in the future from your question.</p>
-<blockquote>
-<p>Don’t forget to mark your question with the <a href="https://stackoverflow.com/questions/tagged/imputets" class="external-link">imputets</a> tag on StackOverflow to get me notified</p>
-</blockquote>
+<blockquote><p>Don’t forget to mark your question with the <a href="https://stackoverflow.com/questions/tagged/imputets" class="external-link">imputets</a> tag on StackOverflow to get me notified</p></blockquote>
 <div class="section level3">
 <h3 id="support">Support<a class="anchor" aria-label="anchor" href="#support"></a>
 </h3>
 <p>If you found a bug or have suggestions, feel free to get in contact via steffen.moritz10 at gmail.com.</p>
-<blockquote>
-<p>All feedback is welcome</p>
-</blockquote>
+<blockquote><p>All feedback is welcome</p></blockquote>
 </div>
 <div class="section level3">
 <h3 id="version">Version<a class="anchor" aria-label="anchor" href="#version"></a>
@@ -367,7 +349,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

@@ -28,7 +28,7 @@ style guidelines (which prefer _ over . in function names)."><meta property="og:
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -67,7 +67,7 @@ style guidelines (which prefer _ over . in function names).</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">na.ma</span><span class="op">(</span><span class="va">x</span>, k <span class="op">=</span> <span class="fl">4</span>, weighting <span class="op">=</span> <span class="st">"exponential"</span>, maxgap <span class="op">=</span> <span class="cn">Inf</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">na.ma</span><span class="op">(</span><span class="va">x</span>, k <span class="op">=</span> <span class="fl">4</span>, weighting <span class="op">=</span> <span class="st">"exponential"</span>, maxgap <span class="op">=</span> <span class="cn">Inf</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -75,23 +75,30 @@ style guidelines (which prefer _ over . in function names).</p>
     <dl><dt>x</dt>
 <dd><p>Numeric Vector (<code><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></code>) or Time Series (<code><a href="https://rdrr.io/r/stats/ts.html" class="external-link">ts</a></code>)
 object in which missing values shall be replaced</p></dd>
+
+
 <dt>k</dt>
 <dd><p>integer width of the moving average window. Expands to both sides
 of the center element e.g. k=2 means 4 observations (2 left, 2 right) are
 taken into account. If all observations in the current window are NA, the
 window size is automatically increased until there are at least 2 non-NA
 values present.</p></dd>
+
+
 <dt>weighting</dt>
 <dd><p>Weighting to be used. Accepts the following input:</p><ul><li><p>"simple" - Simple Moving Average (SMA)</p></li>
 <li><p>"linear" - Linear Weighted Moving Average (LWMA)</p></li>
 <li><p>"exponential" - Exponential Weighted Moving Average (EWMA) (default choice)</p></li>
 </ul></dd>
+
+
 <dt>maxgap</dt>
 <dd><p>Maximum number of successive NAs to still perform imputation on.
 Default setting is to replace all NAs without restrictions. With this
 option set, consecutive NAs runs, that are longer than 'maxgap' will
 be left NA. This option mostly makes sense if you want to
 treat long runs of NA afterwards separately.</p></dd>
+
 </dl></div>
 
   </div>
@@ -106,7 +113,7 @@ treat long runs of NA afterwards separately.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
