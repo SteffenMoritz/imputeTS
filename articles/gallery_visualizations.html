@@ -136,7 +136,7 @@
 <h2 id="insights-about-missing-data-patterns-ggplot_na_gapsize">Insights about missing data patterns (<code>ggplot_na_gapsize</code>)<a class="anchor" aria-label="anchor" href="#insights-about-missing-data-patterns-ggplot_na_gapsize"></a>
 </h2>
 <p>Often deeper insights about the missing data are quite useful. These insights can give hints of possible causes of the missing data and an indication, which imputation algorithms might give good results. The plot gives an overview about how often different gapsizes (NAs in a row) occur in the time series.</p>
-<p>Only the parameter <code>x</code> (the univariate time series) is needed as mandatory input. By default the plot shows only the 10 most often occuring gapsizes. Use parameter <code>limit</code> to increase this number.</p>
+<p>Only the parameter <code>x</code> (the univariate time series) is needed as mandatory input. By default the plot shows only the 10 most often occurring gapsizes. Use parameter <code>limit</code> to increase this number.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/SteffenMoritz/imputeTS" class="external-link">imputeTS</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/ggplot_na_gapsize.html">ggplot_na_gapsize</a></span><span class="op">(</span><span class="va">tsNH4</span><span class="op">)</span></span></code></pre></div>
