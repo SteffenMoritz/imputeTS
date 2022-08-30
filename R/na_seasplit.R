@@ -1,4 +1,4 @@
-#' @title Seasonally Split Missing Value Imputation
+#' @title Seasonally Splitted Missing Value Imputation
 #'
 #' @description Splits the times series into seasons and afterwards performs
 #' imputation separately for each of the resulting time series datasets
@@ -43,10 +43,10 @@
 #'  \code{\link[imputeTS]{na_seadec}}
 #'
 #' @examples
-#' # Example 1: Perform seasonal split imputation using algorithm = "interpolation"
+#' # Example 1: Perform seasonal splitted imputation using algorithm = "interpolation"
 #' na_seasplit(tsAirgap, algorithm = "interpolation")
 #' 
-#' # Example 2: Perform seasonal split imputation using algorithm = "mean"
+#' # Example 2: Perform seasonal splitted imputation using algorithm = "mean"
 #' na_seasplit(tsAirgap, algorithm = "mean")
 #' 
 #' # Example 3: Same as example 1, just written with pipe operator
