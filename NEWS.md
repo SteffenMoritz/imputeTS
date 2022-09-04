@@ -32,6 +32,8 @@ Thanks to Ronald Hause for the commit to optimize parameter pass trough from app
 *  Better parameter pass trough from approx to na_interpolation- Added capability to alter rule for linear extrapolation outside the interval [min(x), max(x)] 
    (commit by Ronald Hause)
 
+* Improved na_interpolation documentation (more information about possible parameter pass 
+  through from underlying spline, approx,stinterp functions)
 
 * Additional unit tests
 

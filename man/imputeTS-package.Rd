@@ -53,6 +53,7 @@ Authors:
 Other contributors:
 \itemize{
   \item Earo Wang \email{earo.wang@gmail.com} (\href{https://orcid.org/0000-0001-6448-5260}{ORCID}) [contributor]
+  \item Ron Hause \email{ronaldhause@gmail.com} (\href{https://orcid.org/0000-0002-5229-7366}{ORCID}) [contributor]
 }
 
 }

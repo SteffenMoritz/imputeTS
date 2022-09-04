@@ -37,6 +37,7 @@ Imports:
     stinepack,
     forecast,
     magrittr,
+    methods,
     Rcpp
 Suggests:
     testthat,  R.rsp, knitr, zoo, timeSeries, tis, xts, tibble, tsibble, rmarkdown, covr

@@ -25,10 +25,30 @@
 #' @return Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
 #'  object (dependent on given input at parameter x)
 #'
-#' @details Missing values get replaced by values of a \link{approx}, \link{spline}
+#' @details Missing values get replaced by values of \link{approx}, \link{spline}
 #' or \link[stinepack]{stinterp} interpolation.
+#' 
+#'  The na_interpolation function also supports the use of additional parameters from the respective
+#'  underlying interpolation functions. While usually not really needed, it is useful to know that 
+#'  this advanced use is in principle possible. These additional parameters are not specified explicitly 
+#'  in the na_interpolation function documentation. Take a look into the documentation of the \link[stinepack]{stinterp}, \link{approx} and \link{spline} functions to get an overview about these additional parameters.
+#'  
+#'  An example for such a parameter is the 'method' argument of spline, which can be used to
+#'  further specify the type of spline to be used. Possible values are "fmm", "natural", 
+#'  "periodic", "monoH.FC" and "hyman" (as can be seen in the \link{spline}
+#'   documentation). The respective function call using this additional parameter would  
+#'   look like this: 
+#'   \code{na_interpolation(x, option ="spline", method ="natural")}
+#'   
+#'  Like in this example other additional detail parameters (gained from \link{approx}, 
+#'  \link{spline}, \link[stinepack]{stinterp} documentation) can be used by just including 
+#'  them in the na_interpolation function call. As already mentioned, these advanced possibilities
+#'  for settings parameters are only helpful for specific use cases. For regular use
+#'  the standard parameters provided directly in the na_interpolation documentation should be
+#'  more than enough.
+#'  
 #'
-#' @author Steffen Moritz
+#' @author Steffen Moritz, Ron Hause
 #'
 #' @seealso  \code{\link[imputeTS]{na_kalman}}, \code{\link[imputeTS]{na_locf}},
 #'  \code{\link[imputeTS]{na_ma}}, \code{\link[imputeTS]{na_mean}},
@@ -47,14 +67,19 @@
 #'
 #' # Example 3: Perform stine interpolation
 #' na_interpolation(x, option = "stine")
-#'
-#' # Example 4: Same as example 1, just written with pipe operator
+#' 
+#' # Example 4: Perform linear interpolation, with additional parameter pass through from spline()
+#' # Take a look at the 'Details' section of the na_interpolation documentation for more information about advanced parameter pass through options
+#' na_interpolation(x, option ="spline", method ="natural")
+#' 
+#' # Example 5: Same as example 1, just written with pipe operator
 #' x %>% na_interpolation()
 #'
-#' # Example 5: Same as example 2, just written with pipe operator
+#' # Example 6: Same as example 2, just written with pipe operator
 #' x %>% na_interpolation(option = "spline")
 #' @references Johannesson, Tomas, et al. (2015). "Package stinepack".
 #' @importFrom stats ts approx spline
+#' @importFrom methods hasArg
 #' @importFrom stinepack stinterp
 #' @importFrom magrittr %>%
 #' @export
@@ -152,18 +177,22 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
 
     data_vec <- as.vector(data)
 
+    # Linear Interpolation
     if (option == "linear") {
-      # Check whether an optional approximation rule is supplied. If rule is 1 then NAs are returned for  points outside the interval [min(x), max(x)]; otherwise, if rule is [default] 2, the value at the closest data extreme will be used. If rule = 2:1 for instance, the left and right side extrapolation will differ if there are missing data points outside of both the lower and higher end of the data.
-      if (hasArg(rule)){
+      # Check if 'rule' is used in function call, to allow parameter pass through for rule
+      # Needed since parameter pass through via (...) to approx does not work, when value for 'rule' is also set in the code. 
+      if (methods::hasArg(rule)) {
         interp <- stats::approx(indx, data_vec[indx], 1:n, ...)$y
       }
       else {
         interp <- stats::approx(indx, data_vec[indx], 1:n, rule = 2, ...)$y
       }
     }
+    # Spline Interpolation
     else if (option == "spline") {
       interp <- stats::spline(indx, data_vec[indx], n = n, ...)$y
     }
+    # Stineman Interpolation
     else if (option == "stine") {
       interp <- stinepack::stinterp(indx, data_vec[indx], 1:n, ...)$y
       # avoid NAs at the beginning and end of series // same behavior like
@@ -172,6 +201,7 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
         interp <- na_locf(interp, na_remaining = "rev")
       }
     }
+    # Wrong parameter option
     else {
       stop("Wrong parameter 'option' given. Value must be either 'linear', 'spline' or 'stine'.")
     }

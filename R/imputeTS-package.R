@@ -30,6 +30,7 @@
 #' 
 #' @import stats
 #' @importFrom magrittr %>%
+#' @importFrom utils globalVariables
 #' @importFrom Rcpp sourceCpp
 #' @useDynLib imputeTS
 NULL
@@ -38,6 +39,7 @@ NULL
   library.dynam.unload("imputeTS", libpath)
 }
 
+utils::globalVariables(c("rule"))
 
 #' @export 
 magrittr::`%>%`

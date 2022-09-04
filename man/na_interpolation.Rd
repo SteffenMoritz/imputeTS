@@ -35,8 +35,27 @@ Uses either linear, spline or stineman interpolation
 to replace missing values.
 }
 \details{
-Missing values get replaced by values of a \link{approx}, \link{spline}
+Missing values get replaced by values of \link{approx}, \link{spline}
 or \link[stinepack]{stinterp} interpolation.
+
+The na_interpolation function also supports the use of additional parameters from the respective
+underlying interpolation functions. While usually not really needed, it is useful to know that
+this advanced use is in principle possible. These additional parameters are not specified explicitly
+in the na_interpolation function documentation. Take a look into the documentation of the \link[stinepack]{stinterp}, \link{approx} and \link{spline} functions to get an overview about these additional parameters.
+
+An example for such a parameter is the 'method' argument of spline, which can be used to
+further specify the type of spline to be used. Possible values are "fmm", "natural",
+"periodic", "monoH.FC" and "hyman" (as can be seen in the \link{spline}
+documentation). The respective function call using this additional parameter would
+look like this:
+\code{na_interpolation(x, option ="spline", method ="natural")}
+
+Like in this example other additional detail parameters (gained from \link{approx},
+\link{spline}, \link[stinepack]{stinterp} documentation) can be used by just including
+them in the na_interpolation function call. As already mentioned, these advanced possibilities
+for settings parameters are only helpful for specific use cases and for regular use
+the standard parameters provided directly in the na_interpolation documentation should be
+more than enough.
 }
 \examples{
 # Prerequisite: Create Time series with missing values
@@ -51,10 +70,14 @@ na_interpolation(x, option = "spline")
 # Example 3: Perform stine interpolation
 na_interpolation(x, option = "stine")
 
-# Example 4: Same as example 1, just written with pipe operator
+# Example 4: Perform linear interpolation, with additional parameter pass through from spline()
+# Take a look at the 'Details' section of the na_interpolation documentation for more information about advanced parameter pass through options
+na_interpolation(x, option ="spline", method ="natural")
+
+# Example 5: Same as example 1, just written with pipe operator
 x \%>\% na_interpolation()
 
-# Example 5: Same as example 2, just written with pipe operator
+# Example 6: Same as example 2, just written with pipe operator
 x \%>\% na_interpolation(option = "spline")
 }
 \references{
