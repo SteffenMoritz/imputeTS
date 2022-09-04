@@ -65,7 +65,6 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
   # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
 
-
   #----------------------------------------------------------
   # Mulivariate Input
   # The next 20 lines are just for checking and handling multivariate input.
@@ -92,7 +91,6 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
     return(data)
   }
 
-
   #----------------------------------------------------------
   # Univariate Input
   # All relveant imputation / pre- postprocessing  code is within this part
@@ -104,7 +102,6 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
     ##
     ## 1. Input Check and Transformation
     ##
-
 
     # 1.1 Check if NAs are present
     if (!anyNA(data)) {
@@ -156,7 +153,13 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
     data_vec <- as.vector(data)
 
     if (option == "linear") {
-      interp <- stats::approx(indx, data_vec[indx], 1:n, rule = 2, ...)$y
+      # Check whether an optional approximation rule is supplied. If rule is 1 then NAs are returned for  points outside the interval [min(x), max(x)]; otherwise, if rule is [default] 2, the value at the closest data extreme will be used. If rule = 2:1 for instance, the left and right side extrapolation will differ if there are missing data points outside of both the lower and higher end of the data.
+      if (hasArg(rule)){
+        interp <- stats::approx(indx, data_vec[indx], 1:n, ...)$y
+      }
+      else {
+        interp <- stats::approx(indx, data_vec[indx], 1:n, rule = 2, ...)$y
+      }
     }
     else if (option == "spline") {
       interp <- stats::spline(indx, data_vec[indx], n = n, ...)$y

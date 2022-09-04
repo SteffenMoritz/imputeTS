@@ -11,8 +11,6 @@ Thanks to Ronald Hause for the commit to optimize parameter pass trough from app
 
 * Added ggplot_na_gapsize2 plot
 
-* Better parameter pass trough from approx to na_interpolation (commit by Ronald Hause)
-
 * Renamed ggplot_na_intervals to ggplot_na_distribution2
 
 * Updates to ggplot_na_gapsize: Space between the bars adjusted for better optics.
@@ -22,13 +20,18 @@ Thanks to Ronald Hause for the commit to optimize parameter pass trough from app
 * Improved notification message for na_seadec/na_seasplit when find_frequency couldn't find
   a seasonal pattern.
 
-* Corrected error in na_kalman documentation - auto.arima was wrongly described as default parameter choice, while in reality it is StructTS (reported by RicardaP)
+* Corrected error in na_kalman documentation - auto.arima was wrongly described as default parameter choice, while in reality it is StructTS 
+  (reported by RicardaP)
 
 * Changes for the error handling. (**These changes got reverted and did not make it into the CRAN release**). For some specific cases the input checks performed by imputeTS stop pipe workflows in their entirety. E.g. a problem when group_by leads to  all NA subsets - which fail the input check and then stop the whole pipe workflow. To prevent this, stop() is only called, when the user supplied imputeTS algorithm parameter options are wrong or misspelled. Unsupported input data will only give a warning() (and do not perform any action on the data). Thus, there is no call to stop(), that cancels the whole pipe workflow.  (issue reported by Sabrina Krys). This works fine, but after closer consideration we figured people fail to notice warnings way too often and thus it is more user friendly to clearly stop with an error for these issues. After all, the users data analysis clearly profits from taking a closer look in these specific cases. If you are anyhow interested in the version without the reverted changes, it can be installed from github with the following command: devtools::install_github("https://github.com/SteffenMoritz/imputeTS/commit/aaf759216b4091e36dee6e8e3a10185ff8f4647b")
 
 * Improved error messages (especially for multivariate inputs) and unit tests for the warnings and errors.
 
 * Corrected typo in 'Input data needs at least x non-NA data points' error message
+
+*  Better parameter pass trough from approx to na_interpolation- Added capability to alter rule for linear extrapolation outside the interval [min(x), max(x)] 
+   (commit by Ronald Hause)
+
 
 * Additional unit tests
 
@@ -39,6 +42,7 @@ Thanks to Ronald Hause for the commit to optimize parameter pass trough from app
 * Improved na_seadec documentation (algorithm details)
 
 * Changed R Version requirement in Description to R (>= 3.6) since imported packages like ggtext and also some testthat   tests were already requiring newer versions than the old R (≥ 3.0.1) requirement of imputeTS
+
 
 # Changes in Version 3.2
 
