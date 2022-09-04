@@ -104,8 +104,24 @@ object (dependent on given input at parameter x)</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Missing values get replaced by values of a <a href="https://rdrr.io/r/stats/approxfun.html" class="external-link">approx</a>, <a href="https://rdrr.io/r/stats/splinefun.html" class="external-link">spline</a>
+    <p>Missing values get replaced by values of <a href="https://rdrr.io/r/stats/approxfun.html" class="external-link">approx</a>, <a href="https://rdrr.io/r/stats/splinefun.html" class="external-link">spline</a>
 or <a href="https://rdrr.io/pkg/stinepack/man/stinterp.html" class="external-link">stinterp</a> interpolation.</p>
+<p>The na_interpolation function also supports the use of additional parameters from the respective
+underlying interpolation functions. While usually not really needed, it is useful to know that
+this advanced use is in principle possible. These additional parameters are not specified explicitly
+in the na_interpolation function documentation. Take a look into the documentation of the <a href="https://rdrr.io/pkg/stinepack/man/stinterp.html" class="external-link">stinterp</a>, <a href="https://rdrr.io/r/stats/approxfun.html" class="external-link">approx</a> and <a href="https://rdrr.io/r/stats/splinefun.html" class="external-link">spline</a> functions to get an overview about these additional parameters.</p>
+<p>An example for such a parameter is the 'method' argument of spline, which can be used to
+further specify the type of spline to be used. Possible values are "fmm", "natural",
+"periodic", "monoH.FC" and "hyman" (as can be seen in the <a href="https://rdrr.io/r/stats/splinefun.html" class="external-link">spline</a>
+documentation). The respective function call using this additional parameter would
+look like this:
+<code>na_interpolation(x, option ="spline", method ="natural")</code></p>
+<p>Like in this example other additional detail parameters (gained from <a href="https://rdrr.io/r/stats/approxfun.html" class="external-link">approx</a>,
+<a href="https://rdrr.io/r/stats/splinefun.html" class="external-link">spline</a>, <a href="https://rdrr.io/pkg/stinepack/man/stinterp.html" class="external-link">stinterp</a> documentation) can be used by just including
+them in the na_interpolation function call. As already mentioned, these advanced possibilities
+for settings parameters are only helpful for specific use cases and for regular use
+the standard parameters provided directly in the na_interpolation documentation should be
+more than enough.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -152,7 +168,16 @@ or <a href="https://rdrr.io/pkg/stinepack/man/stinterp.html" class="external-lin
 <span class="r-out co"><span class="r-pr">#&gt;</span> Frequency = 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.0 3.0 4.0 5.0 6.0 6.5 7.0 8.0</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Example 4: Same as example 1, just written with pipe operator</span></span></span>
+<span class="r-in"><span><span class="co"># Example 4: Perform linear interpolation, with additional parameter pass through from spline()</span></span></span>
+<span class="r-in"><span><span class="co"># Take a look at the 'Details' section of the na_interpolation documentation for more information about advanced parameter pass through options</span></span></span>
+<span class="r-in"><span><span class="fu">na_interpolation</span><span class="op">(</span><span class="va">x</span>, option <span class="op">=</span><span class="st">"spline"</span>, method <span class="op">=</span><span class="st">"natural"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time Series:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Start = 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> End = 8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Frequency = 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.00000 3.00000 4.00000 5.00000 6.00000 6.50661 7.00000 8.00000</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 5: Same as example 1, just written with pipe operator</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">na_interpolation</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time Series:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Start = 1 </span>
@@ -160,7 +185,7 @@ or <a href="https://rdrr.io/pkg/stinepack/man/stinterp.html" class="external-lin
 <span class="r-out co"><span class="r-pr">#&gt;</span> Frequency = 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.0 3.0 4.0 5.0 6.0 6.5 7.0 8.0</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Example 5: Same as example 2, just written with pipe operator</span></span></span>
+<span class="r-in"><span><span class="co"># Example 6: Same as example 2, just written with pipe operator</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">na_interpolation</span><span class="op">(</span>option <span class="op">=</span> <span class="st">"spline"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Time Series:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Start = 1 </span>

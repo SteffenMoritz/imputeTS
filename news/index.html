@@ -71,6 +71,7 @@
 <li><p>Improved error messages (especially for multivariate inputs) and unit tests for the warnings and errors.</p></li>
 <li><p>Corrected typo in ‘Input data needs at least x non-NA data points’ error message</p></li>
 <li><p>Better parameter pass trough from approx to na_interpolation- Added capability to alter rule for linear extrapolation outside the interval [min(x), max(x)] (commit by Ronald Hause)</p></li>
+<li><p>Improved na_interpolation documentation (more information about possible parameter pass through from underlying spline, approx,stinterp functions)</p></li>
 <li><p>Additional unit tests</p></li>
 <li><p>Moved to Github Actions instead of TravisCI / AppVeyor.</p></li>
 <li><p>Bugfix for “Error in optim(init[mask], getLike, method =”L-BFGS-B“, lower = rep(0, : L-BFGS-B needs finite values of ‘fn’.”, which comes for completely constant input to na_kalman e.g. 4,4,4,NA,4,4. (reported by Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu)</p></li>
