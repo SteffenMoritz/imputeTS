@@ -69,7 +69,8 @@
 #' na_interpolation(x, option = "stine")
 #' 
 #' # Example 4: Perform linear interpolation, with additional parameter pass through from spline()
-#' # Take a look at the 'Details' section of the na_interpolation documentation for more information about advanced parameter pass through options
+#' # Take a look at the 'Details' section of the na_interpolation documentation 
+#' # for more information about advanced parameter pass through options
 #' na_interpolation(x, option ="spline", method ="natural")
 #' 
 #' # Example 5: Same as example 1, just written with pipe operator
