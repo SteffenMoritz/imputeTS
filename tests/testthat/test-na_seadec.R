@@ -1,7 +1,7 @@
 context("na_seadec")
 
-test_that("All NA vector gives warning", {
-  expect_warning(na_seadec(c(NA, NA, NA, NA, NA)))
+test_that("All NA vector throws error", {
+  expect_error(na_seadec(c(NA, NA, NA, NA, NA)))
 })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)", {
@@ -34,6 +34,11 @@ test_that("Correct results for all options with a modifed tsAirgap dataset (addi
   expect_equal(round(mean(na_seadec(x, algorithm = "ma")), digits = 1), 280.0)
 })
 
+test_that("Given frequency is  overwritten by findFrequency=T", {
+  x <- ts(data = c(1,1,99,99,1,1,99,99,1,NA,99,99,1,1,99,99,1,1,99,99,1,1,99,99,1,1), frequency = 12)
+  imp <- na_seadec(x, find_frequency = TRUE) # new detected frequency = 4
+  expect_equal(frequency(imp),4)
+})
 
 test_that("Correct results for all options with the tsAirgap dataset", {
   skip_on_cran()

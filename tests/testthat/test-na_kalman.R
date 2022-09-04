@@ -1,7 +1,7 @@
 context("na_kalman")
 
-test_that("All NA vector gives warning", {
-  expect_warning(na_kalman(c(NA, NA, NA, NA, NA)))
+test_that("All NA vector throws error", {
+  expect_error(na_kalman(c(NA, NA, NA, NA, NA)))
 })
 
 test_that("Workaround solution for constant values for StructTS works", {

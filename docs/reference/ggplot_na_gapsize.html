@@ -97,7 +97,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -149,6 +149,8 @@
   ranked_by <span class='op'>=</span> <span class='st'>"occurrence"</span>,
   color_occurrence <span class='op'>=</span> <span class='st'>"indianred"</span>,
   color_total <span class='op'>=</span> <span class='st'>"steelblue"</span>,
+  color_border <span class='op'>=</span> <span class='st'>"black"</span>,
+  alpha_bars <span class='op'>=</span> <span class='fl'>1</span>,
   title <span class='op'>=</span> <span class='st'>"Occurrence of gap sizes"</span>,
   subtitle <span class='op'>=</span> <span class='st'>"Gap sizes (NAs in a row) ordered by most common"</span>,
   xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -206,6 +208,14 @@ are calculated by (total = number occurrence x gap size).</p><ul>
       <th>color_total</th>
       <td><p>Defines the color for the bars of
 'total resulting NAs'.</p></td>
+    </tr>
+    <tr>
+      <th>color_border</th>
+      <td><p>Defines the color for the border of the bars.</p></td>
+    </tr>
+    <tr>
+      <th>alpha_bars</th>
+      <td><p>Alpha (transparency) value used for filling the bars.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -270,10 +280,10 @@ a 27 NA-gap (27 NAs in a row) occurred  1 times, ...</p>
 <p>The only really needed parameter for this function is x (the univariate
 time series with NAs that shall be visualized). All other parameters
 are solely for altering the appearance of the plot.</p>
-<p>As long as the input is univariate and numeric the function also takes
+<p>As long as the input is univariate and numeric, the function also takes
 data.frame, tibble, tsibble, zoo, xts as an input.</p>
 <p>The plot can be adjusted to your needs via the function parameters.
-Additionally for more complex adjustments, the output can also be
+Additionally, for more complex adjustments, the output can also be
 adjusted via ggplot2 syntax. This is possible, since the output
 of the function is a ggplot2 object. Also take a look at the Examples
 to see how adjustments are made.</p>

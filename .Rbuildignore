@@ -16,3 +16,5 @@ Docs
 ^Meta$
 ^revdep
 
+^\.github$
+^codecov\.yml$

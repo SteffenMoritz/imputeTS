@@ -4,7 +4,7 @@
 #' This time series provides the truth for the missing values of the \code{\link{tsAirgap}} time series. Thus it is identical
 #' to the tsAirgap time series except that no value is missing.
 #' 
-#' @details The dataset originates from Box & Jenkins (see citation) and is a commonly used example in
+#' @details The dataset originates from Box and Jenkins (see citation) and is a commonly used example in
 #' time series analysis literature.
 #' 
 #' It characteristics (strong trend, strong seasonal behavior) make it also a great 

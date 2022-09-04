@@ -331,6 +331,14 @@ ggplot_na_gapsize2 <- function(x,
   if (!is.null(min_occurrence)) {
     df <- subset(df, occurrence >= min_occurrence)
   }
+  
+  # Error for too restrictive filters leaving no NA data to display
+  if (length(df$gap) < 1) {
+    stop("Too restrictive filter options set - nothing to display left.
+          Your setting of either max_gapsize, min_gapsize, min_totals, min_occurrence or the
+          combination of them left no NA data to display.)")
+  }
+  
 
   # 2.4 Calculate legend breaks and sizes
 
@@ -387,7 +395,7 @@ ggplot_na_gapsize2 <- function(x,
   gap <- df$gap
   occurrence <- df$occurrence
   total <- df$total
-
+  
 
   # Create ggplot
 

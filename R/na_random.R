@@ -6,10 +6,10 @@
 #' @param x Numeric Vector (\code{\link{vector}}) or Time Series (\code{\link{ts}})
 #' object in which missing values shall be replaced
 #'
-#' @param lower_bound Lower bound for the random samples. 
+#' @param lower_bound Lower bound for the random samples.
 #' If nothing or NULL is set min(x) will be used.
 #'
-#' @param upper_bound Upper bound for the random samples. 
+#' @param upper_bound Upper bound for the random samples.
 #' If nothing or NULL is set man(x) will be used.
 #'
 #' @param maxgap Maximum number of successive NAs to still perform imputation on.
@@ -37,13 +37,13 @@
 #' @examples
 #' # Prerequisite: Create Time series with missing values
 #' x <- ts(c(2, 3, NA, 5, 6, NA, 7, 8))
-#' 
+#'
 #' # Example 1: Replace all NAs by random values that are between min and max of the input time series
 #' na_random(x)
-#' 
+#'
 #' # Example 2: Replace all NAs by random values between 1 and 10
 #' na_random(x, lower_bound = 1, upper_bound = 10)
-#' 
+#'
 #' # Example 3: Same as example 1, just written with pipe operator
 #' x %>% na_random()
 #' @importFrom stats runif ts
@@ -51,7 +51,7 @@
 #' @export
 
 na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
-  
+
   # Variable 'data' is used for all transformations to the time series
   # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
@@ -70,9 +70,14 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
         next
       }
       # if imputing a column does not work - mostly because it is not numeric - the column is left unchanged
-      tryCatch(data[, i] <- na_random(data[, i], lower_bound, upper_bound, maxgap),
-               warning = function(cond) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond), call. = FALSE)},
-               error = function(cond2) { warning( paste("imputeTS - warning for column", i, "of the dataset: \n ", cond2), call. = FALSE)}
+      tryCatch(
+        data[, i] <- na_random(data[, i], lower_bound, upper_bound, maxgap),
+        error = function(cond) {
+          warning(paste(
+            "na_random: No imputation performed for column", i, "of the input dataset.
+                Reason:", cond[1]
+          ), call. = FALSE)
+        }
       )
     }
     return(data)
@@ -104,18 +109,16 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
     }
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
-    if (sum(!missindx) < 2 && !(!is.null(upper_bound) && !is.null(lower_bound) )) {
-      warning("No imputation performed: Input data needs at least 2 non-NA data points for applying na_random 
-           with default lower_bound and upper_bound settings.")
-      return(x)
+    if (sum(!missindx) < 2 && !(!is.null(upper_bound) && !is.null(lower_bound))) {
+      stop("At least 2 non-NA data points required in the time series to apply na_random
+           with the default lower_bound and upper_bound settings.")
     }
 
     # 1.4 Checks and corrections for wrong data dimension
 
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
-      warning("No imputation performed: Wrong input type for parameter x")
-      return(x)
+      stop("Wrong input type for parameter x.")
     }
 
     # Altering multivariate objects with 1 column (which are essentially
@@ -125,11 +128,10 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
     }
 
     # 1.5 Check if input is numeric
-    
+
     # Combined with check if all NA present, since an all NA vector returns FALSE for is.numeric
     if (!is.numeric(data) & !all(is.na(data))) {
-      warning("No imputation performed: Input x is not numeric")
-      return(x)
+      stop("Input x is not numeric.")
     }
 
     # 1.6 Check and set values for param lower_bound and upper_bound
@@ -141,27 +143,23 @@ na_random <- function(x, lower_bound = NULL, upper_bound = NULL, maxgap = Inf) {
     if (is.null(upper_bound)) {
       upper_bound <- max(data, na.rm = TRUE)
     }
-    
+
     if (!is.numeric(lower_bound)) {
-      warning("No imputation performed: Error for parameter lower_bound: Has to be a numeric value or NULL")
-      return(x)
+      stop("Error for parameter lower_bound: Has to be a numeric value or NULL.")
     }
-    
+
     if (!is.numeric(upper_bound)) {
-      warning("No imputation performed: Error for parameter upper_bound: Has to be a numeric value or NULL")
-      return(x)
+      stop("Error for parameter upper_bound: Has to be a numeric value or NULL.")
     }
-    
+
     # For user set upper and lower bounds check if they make sense
     if (lower_bound >= upper_bound) {
-      warning("No imputation performed: Error for parameter lower_bound: lower_bound must be smaller than upper_bound.
+      stop("Error for parameter lower_bound: lower_bound must be smaller than upper_bound.
 
-           In case you are using the default settings for these two parameters 
+           In case you are using the default settings for these two parameters
            (which use the min and max of the input series as bounds for the random numbers)
-           appearance of this error message means all values of your time series have the same 
-           unique value. In this case try to set the bounds manually."
-      )
-      return(x)
+           appearance of this error message means all values of your time series have the same
+           unique value. In this case try to set the bounds manually.")
     }
 
 

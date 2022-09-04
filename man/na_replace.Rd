@@ -37,7 +37,6 @@ na_replace(x, fill = 0)
 
 # Example 3: Same as example 1, just written with pipe operator
 x \%>\% na_replace(fill = 3.5)
-
 }
 \seealso{
 \code{\link[imputeTS]{na_interpolation}},

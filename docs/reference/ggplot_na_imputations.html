@@ -96,7 +96,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -317,7 +317,7 @@ are msotly for altering the appearance of the plot.</p>
 <p>As long as the input is univariate and numeric the function also takes
 data.frame, tibble, tsibble, zoo, xts as an input.</p>
 <p>The plot can be adjusted to your needs via the function parameters.
-Additionally for more complex adjustments, the output can also be
+Additionally, for more complex adjustments, the output can also be
 adjusted via ggplot2 syntax. This is possible, since the output
 of the function is a ggplot2 object. Also take a look at the Examples
 to see how adjustments are made.</p>
@@ -342,18 +342,18 @@ to see how adjustments are made.</p>
                       x_with_imputations <span class='op'>=</span> <span class='va'>imp_locf</span>,
                       x_with_truth <span class='op'>=</span> <span class='va'>tsAirgapComplete</span>
                       <span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_imputations-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in ggplot_na_imputations(x_with_na = tsAirgap, x_with_imputations = imp_locf,     x_with_truth = tsAirgapComplete): object 'imp_locf' not found</span></div><div class='input'>
 
 <span class='co'># Example 3: Visualize imputation by na_kalman</span>
 <span class='va'>imp_kalman</span> <span class='op'>&lt;-</span> <span class='fu'><a href='na_kalman.html'>na_kalman</a></span><span class='op'>(</span><span class='va'>tsAirgap</span><span class='op'>)</span>
 <span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>x_with_na <span class='op'>=</span> <span class='va'>tsAirgap</span>, x_with_imputations <span class='op'>=</span> <span class='va'>imp_kalman</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_imputations-3.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='ggplot_na_imputations-2.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># Example 4: Same as example 1, just written with pipe operator</span>
 <span class='va'>tsAirgap</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='na_mean.html'>na_mean</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>x_with_na <span class='op'>=</span> <span class='va'>tsAirgap</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_imputations-4.png' alt='' width='700' height='433' /></div><div class='input'>  
+</div><div class='img'><img src='ggplot_na_imputations-3.png' alt='' width='700' height='433' /></div><div class='input'>  
 
 <span class='co'># Example 5: Visualize imputation by na_seadec - different color for imputed points</span>
 <span class='co'># Plot adjustments via ggplot_na_imputations function parameters</span>
@@ -361,7 +361,7 @@ to see how adjustments are made.</p>
 <span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>x_with_na <span class='op'>=</span> <span class='va'>tsAirgap</span>, 
                       x_with_imputations <span class='op'>=</span> <span class='va'>imp_seadec</span>,
                       color_imputations <span class='op'>=</span> <span class='st'>"gold"</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_imputations-5.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='ggplot_na_imputations-4.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># Example 6: Visualize imputation - different theme, point size imputations</span>
 <span class='co'># Plot adjustments via ggplot_na_imputations function parameters</span>
@@ -370,7 +370,7 @@ to see how adjustments are made.</p>
                       x_with_imputations <span class='op'>=</span> <span class='va'>imp_seadec</span>,
                       theme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_classic</a></span><span class='op'>(</span><span class='op'>)</span>,
                       size_imputations <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_imputations-6.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='ggplot_na_imputations-5.png' alt='' width='700' height='433' /></div><div class='input'>
                  
 <span class='co'># Example 7: Visualize imputation - title, subtitle in center</span>
 <span class='co'># Plot adjustments via ggplot2 syntax</span>
@@ -378,7 +378,7 @@ to see how adjustments are made.</p>
 <span class='fu'>ggplot_na_imputations</span><span class='op'>(</span>x_with_na <span class='op'>=</span> <span class='va'>tsAirgap</span>,  x_with_imputations <span class='op'>=</span> <span class='va'>imp_seadec</span><span class='op'>)</span> <span class='op'>+</span> 
     <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
     <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.subtitle <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>   
-</div><div class='img'><img src='ggplot_na_imputations-7.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='ggplot_na_imputations-6.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># Example 8: Visualize imputation - title in center, no subtitle</span>
 <span class='co'># Plot adjustments via ggplot2 syntax and function parameters</span>
@@ -387,7 +387,7 @@ to see how adjustments are made.</p>
                       x_with_imputations <span class='op'>=</span> <span class='va'>imp_mean</span>,
                       subtitle <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>+</span>
      <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='ggplot_na_imputations-8.png' alt='' width='700' height='433' /></div><div class='input'>  
+</div><div class='img'><img src='ggplot_na_imputations-7.png' alt='' width='700' height='433' /></div><div class='input'>  
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

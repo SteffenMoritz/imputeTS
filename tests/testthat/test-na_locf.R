@@ -1,7 +1,7 @@
 context("na_locf")
 
-test_that("All NA vector gives warning", {
-  expect_warning(na_locf(c(NA, NA, NA, NA, NA)))
+test_that("All NA vector throws error", {
+  expect_error(na_locf(c(NA, NA, NA, NA, NA)))
 })
 
 test_that("Correct results for all options with a modifed tsAirgap dataset (additionalNAs at end)", {

@@ -35,11 +35,14 @@ like median, mean, mode possible.
 }
 \details{
 Missing values get replaced by overall mean values. The function
-calculates the mean, median or mode over all the non-NA values and replaces
-all NAs with this value. Option 'mode' replaces NAs with the most frequent
-value in the time series. If two or more values occur equally frequent, the
-function imputes with the lower value. That's why 'mode' is not the best
-option for decimal values.
+calculates the mean, median, mode, harmonic or geometric mean over all the non-NA
+values and replaces all NAs with this value. Option 'mode' replaces NAs with
+the most frequent value in the time series. If two or more values occur equally frequent,
+the function imputes the lower value. Due to their calculation formula geometric and harmonic
+mean are not well defined for negative values or zero values in the input series.
+
+In general using the mean for imputation imputation is mostly a suboptimal choice and should
+be handled with great caution.
 }
 \examples{
 # Prerequisite: Create Time series with missing values

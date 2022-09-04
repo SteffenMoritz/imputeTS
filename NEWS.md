@@ -1,6 +1,9 @@
-## Changes in Version 3.3
-Thanks to Sabrina Krys for bug / issue reporting.
+
+# Changes in Version 3.3
+
+Thanks to Sabrina Krys, Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu for bug / issue reporting.
 Thanks to RicardaP for fixing documentation error.
+Thanks to Ronald Hause for the commit to optimize parameter pass trough from approx to na_interpolation.
 
 * Added ggplot_na_level plot
 
@@ -17,19 +20,31 @@ Thanks to RicardaP for fixing documentation error.
 * Improved notification message for na_seadec/na_seasplit when find_frequency couldn't find
   a seasonal pattern.
 
-* Corrected error in na_kalman documentation - auto.arima was wrongly described as default parameter choice,
-  while in reality it is StructTS
-  (reported and fixed by RicardaP)
+* Corrected error in na_kalman documentation - auto.arima was wrongly described as default parameter choice, while in reality it is StructTS 
+  (reported by RicardaP)
 
-* Bugfix for issue when using imputeTS together with pipes. For some specific cases the  input checks performed by imputeTS stopped the whole pipe workflow. To prevent this, stop() is now only called, when the  user supplied imputeTS algorithm parameter options are wrong or misspelled. Unsupported input data will only give a warning() in the future (and of course don't perform any action on the data). Thus, there is no call to stop(), that cancels the whole pipe workflow. This was e.g. a problem when group_by lead to single all NA subsets - which failed the input check and then stopped the whole pipe workflow.
-(issue reported by Sabrina Krys)
+* Changes for the error handling. (**These changes got reverted and did not make it into the CRAN release**). For some specific cases the input checks performed by imputeTS stop pipe workflows in their entirety. E.g. a problem when group_by leads to  all NA subsets - which fail the input check and then stop the whole pipe workflow. To prevent this, stop() is only called, when the user supplied imputeTS algorithm parameter options are wrong or misspelled. Unsupported input data will only give a warning() (and do not perform any action on the data). Thus, there is no call to stop(), that cancels the whole pipe workflow.  (issue reported by Sabrina Krys). This works fine, but after closer consideration we figured people fail to notice warnings way too often and thus it is more user friendly to clearly stop with an error for these issues. After all, the users data analysis clearly profits from taking a closer look in these specific cases. If you are anyhow interested in the version without the reverted changes, it can be installed from github with the following command: devtools::install_github("https://github.com/SteffenMoritz/imputeTS/commit/aaf759216b4091e36dee6e8e3a10185ff8f4647b")
+
+* Improved error messages (especially for multivariate inputs) and unit tests for the warnings and errors.
 
 * Corrected typo in 'Input data needs at least x non-NA data points' error message
 
-* Added capability to alter rule for linear extrapolation outside the interval [min(x), max(x)]
+*  Better parameter pass trough from approx to na_interpolation- Added capability to alter rule for linear extrapolation outside the interval [min(x), max(x)] 
+   (commit by Ronald Hause)
 
 
-## Changes in Version 3.2
+* Additional unit tests
+
+* Moved to Github Actions instead of TravisCI / AppVeyor.
+
+* Bugfix for "Error in optim(init[mask], getLike, method = "L-BFGS-B", lower = rep(0, : L-BFGS-B needs finite values of 'fn'.", which comes for completely constant input to na_kalman e.g. 4,4,4,NA,4,4. (reported by Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu)
+
+* Improved na_seadec documentation (algorithm details)
+
+* Changed R Version requirement in Description to R (>= 3.6) since imported packages like ggtext and also some testthat   tests were already requiring newer versions than the old R (≥ 3.0.1) requirement of imputeTS
+
+
+# Changes in Version 3.2
 
 Thanks to Mark J. Lamias for bug / issue reporting.
 Thanks to Cyrus Mohammadian for bug reporting.
@@ -52,7 +67,8 @@ Thanks to Miroslaw Janik for issue reporting.
   package size. These files and figures were not needed for the CRAN version. 
 
 
-## Changes in Version 3.1
+# Changes in Version 3.1
+
 Thanks to Johannes Menzel for bug reporting, Thanks to Jan (jmablans) for bug reporting. 
 Thanks to Earo Wang for speedup of plotNA.gapsize.
 Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options, new unit tests.
@@ -67,7 +83,7 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
  it requires no minimum of non-NA values (reported by Jan - jmablans)
  
 * Improved na.random input check (usable with all NA input now if upper and lower bound
-  paramters are explicitly set to numeric values)
+  parameters are explicitly set to numeric values)
 
 * Additional unit tests for the plotting functions
 
@@ -90,7 +106,7 @@ Special Thanks to Sebastian Gatscha for plotting functions, new na_mean options,
 
 * Added revdep
 
-## Changes in Version 3.0
+# Changes in Version 3.0
 
 Thanks to Jim Maas, shreydesai, Breza, CameronNemo for reporting bugs.
 Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementation.
@@ -107,7 +123,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
  
  * Made some changes to better follow tidyverse style guide
  
- * Replaced na. with na_ e.g na.mean with na_mean usw.This fits better to modern code
+ * Replaced na. with na_ e.g. na.mean with na_mean usw.This fits better to modern code
    style guidelines. The old function names will still work for a while,
    but give a warning.
 
@@ -136,18 +152,8 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
 
 * Fixed bug with na.random() output (reported by Jim Maas)
 
-## Outlook - Planned for Version 3.1
 
- * Better plots using ggplot2
- 
- * Better and more unit tests 
- 
- * Additional vignettes
- 
- * Adding harmonic and geometric mean as option for na_mean
-
-
-## Changes in Version 2.7
+# Changes in Version 2.7
 
   * Updated Description: Orcid Id added, packages required for unit test add as "Suggested"
 
@@ -156,20 +162,20 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Replaced NEWS with NEWS.md for better formatting
   
 
-## Changes in Version 2.6
+# Changes in Version 2.6
 
   * Updated citation file
   
   * Minor changes to vignette
 
 
-## Changes in Version 2.5
+# Changes in Version 2.5
 
   * Adjusted unit test to a update of forecast package
   
+  
 
-
-## Changes in Version 2.4
+# Changes in Version 2.4
 
   * Small speed improvments for na.kalman
   
@@ -180,7 +186,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Changes to unit test (because of zoo update)
   
 
-## Changes in Version 2.3
+# Changes in Version 2.3
 
   * Bugfix for na.kalman with integer input
   
@@ -191,19 +197,19 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Minor vignette changes
 
 
-## Changes in Version 2.2
+# Changes in Version 2.2
 
   * Bugfix for na.locf (also concerned na.kalman) 
   
 
-## Changes in Version 2.1
+# Changes in Version 2.1
 
   * Fixed for problems with Solaris/Sparc
   
   * Fixes for problems with vignette on osx
 
 
-## Changes in Version 2.0
+# Changes in Version 2.0
 
   * Bugfix for plots without missing data
   
@@ -218,12 +224,12 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Added new software tests
 
 
-## Changes in Version 1.9
+# Changes in Version 1.9
 
   * Added Vignette
 
 
-## Changes in Version 1.8
+# Changes in Version 1.8
 
   * Computation time improvments for na.locf (up to 10000 times faster)
   
@@ -238,7 +244,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Fixed issue with too sensitive input checking
   
 
-## Changes in Version 1.7
+# Changes in Version 1.7
   
   * Enabled usage of multivariate input (data.frame, mts, matrix,...) for all imputation 
     functions except na.remove. This means users do not have to loop through all columns 
@@ -271,7 +277,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Added better x-axes labels for plotNA.distribution
   
 
-## Changes in Version 1.6
+# Changes in Version 1.6
   
   * Added github links to description file
   
@@ -288,7 +294,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Added references to used packages in na.kalman and na.interpolation documentation
 
 
-## Changes in Version 1.5
+# Changes in Version 1.5
 
   * Allows now also numeric vectors as input
 
@@ -331,7 +337,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * Improved dataset documentation 
 
 
-## Changes in Version 0.4
+# Changes in Version 0.4
 
   * Update of vis.differences (better looking plot now)
   
@@ -343,14 +349,14 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
     for all interpolation algorithms to pass through parameters to the underlying functions)
 
 
-## Changes in Version 0.3
+# Changes in Version 0.3
 
   * Added two datasets of sensor data
   
   * vis.differences for plotting differences between real and imputed values
   
 
-## Changes in Version 0.2
+# Changes in Version 0.2
 
   * Removed internal functions from visible package documentation
 
@@ -359,7 +365,7 @@ Thanks to  Sebastian Gatscha providing the (way faster) C++ na.ma() implementati
   * internal function for algorithm selection
   
 
-## Changes in Version 0.1
+# Changes in Version 0.1
 
   * Created initial version of imputeTS package for univariate time series imputation
 

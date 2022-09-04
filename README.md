@@ -1,20 +1,19 @@
-
+  <!-- badges: start -->
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Build Status](https://travis-ci.org/SteffenMoritz/imputeTS.svg?branch=master)](https://travis-ci.org/SteffenMoritz/imputeTS)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/steffenmoritz/imputeTS?branch=master&svg=true)](https://ci.appveyor.com/project/steffenmoritz/imputeTS)
-[![codecov](https://codecov.io/gh/SteffenMoritz/imputeTS/branch/master/graph/badge.svg)](https://codecov.io/gh/SteffenMoritz/imputeTS)
+[![R-CMD-check](https://github.com/SteffenMoritz/imputeTS/workflows/R-CMD-check/badge.svg)](https://github.com/SteffenMoritz/imputeTS/actions)
+[![Codecov test coverage](https://codecov.io/gh/SteffenMoritz/imputeTS/branch/master/graph/badge.svg)](https://codecov.io/gh/SteffenMoritz/imputeTS?branch=master)
 [![CRAN Version](https://www.r-pkg.org/badges/version/imputeTS)](https://cran.r-project.org/package=imputeTS)
 [![CRAN Release](https://www.r-pkg.org/badges/last-release/imputeTS
 )](https://cran.r-project.org/package=imputeTS)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/imputeTS)](https://cran.r-project.org/package=imputeTS)
-
+  <!-- badges: end -->
 
 # imputeTS: Time Series Missing Value Imputation <img src="man/figures/imputeTS-logo.png" align="right" width="565" height="382" alt="imputeTS Logo" />
 
 The imputeTS package specializes on (univariate) time series imputation. 
 It offers several different imputation algorithm implementations. Beyond the imputation algorithms the package also provides plotting and printing functions of time series missing data statistics. Additionally three time series datasets for imputation experiments are included.
 
-### Installation
+## Installation
 
 The imputeTS package can be found on [CRAN]. For installation execute in R:
 
@@ -29,8 +28,8 @@ library(devtools)
 install_github("SteffenMoritz/imputeTS")
 ```
 
-### Usage
-- ###### Imputation
+## Usage
+* #### Imputation
 
   To impute (fill all missing values) in a time series ***x***, run the following
   command:
@@ -47,13 +46,17 @@ install_github("SteffenMoritz/imputeTS")
   > na_ followed by a algorithm label  e.g. na_mean, na_kalman, ...
 
 
-- ###### Plotting
+* #### Plotting
 
   To plot missing data statistics for a time series ***x***, run the following
   command:
+  
   ```
    ggplot_na_distribution(x)
   ```
+  
+  &nbsp;
+
   <p align="center">
   <img src="man/figures/ggplot_na_distribution.png" width="600" height="350" alt="Example ggplot_na_distribution plot" />
  </p>
@@ -62,7 +65,7 @@ install_github("SteffenMoritz/imputeTS")
   > This is also just one example for a plot. Overall there are four different types 
   > of missing data plots. (see also under caption "Missing Data Plots"). 
 
-- ###### Printing
+* #### Printing
 
   To print statistics about the missing data in a time series ***x***, run the
   following command:
@@ -70,17 +73,20 @@ install_github("SteffenMoritz/imputeTS")
    statsNA(x)
   ```
   
-- ###### Datasets
+* ### Datasets
 
   To load the *'heating'* time series (with missing values)  into  a variable ***y*** and the *'heating'* time series (without missing values) into a variable ***z***, run: 
+  
   ```
    y <- tsHeating
    z <- tsHeatingComplete
   ```
+  
   > There are three datasets provided with the package, the *'tsHeating'*, the 
   > *'tsAirgap'* and the *'tsNH4'* time series. (see also under caption "Datasets"). 
 
-### Imputation Algorithms
+
+## Imputation Algorithms
 
 Here is a table with available algorithms to choose from:
 
@@ -103,7 +109,7 @@ Here is a table with available algorithms to choose from:
 
 More detailed information about the algorithms and their options can be found in the [imputeTS reference manual].
 
-### Missing Data Plots
+## Missing Data Plots
 
 Here is a table with available plots to choose from:
 
@@ -115,6 +121,7 @@ Here is a table with available plots to choose from:
 | ggplot_na_imputations   |Visualize Imputed Values                                      | 
 
 More detailed information about the plots can be found in the [imputeTS reference manual].
+
 
 ### Datasets
 
@@ -138,13 +145,13 @@ There are three datasets (each in two versions) available:
  
   More detailed information about the datasets can be found in the [imputeTS reference manual].
 
-### Reference
+## Reference
 You can cite imputeTS the following: 
 
   > Moritz, Steffen, and Bartz-Beielstein, Thomas. "imputeTS: Time Series Missing Value Imputation in R." R Journal 9.1 (2017). doi: 10.32614/RJ-2017-009.
  
 
-### Need Help?
+## Need Help?
 If you have general programming problems or need help using the package please ask your question on [StackOverflow]. By doing so all users will be able to benefit in the future from your question.
 
 > Don't forget to mark your question with the [imputets] tag on StackOverflow to get me notified

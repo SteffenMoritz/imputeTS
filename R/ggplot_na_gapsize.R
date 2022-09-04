@@ -73,7 +73,7 @@
 #' the NA gaps (NAs in a row) in a time series. It shows a ranking of which
 #' gap sizes occur most often. This ranking can be ordered by the number
 #' occurrence of the gap sizes or by total resulting NAs for this gap size
-#' (occurrence * gap length). A NA-gap of 3 occuring 10 times means 30 total
+#' (occurrence * gap length). A NA-gap of 3 occurring 10 times means 30 total
 #' resulting NAs.
 #'
 #' A resulting plot can for example be described like this:

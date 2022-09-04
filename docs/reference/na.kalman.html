@@ -98,7 +98,7 @@ style guidelines (which prefer _ over . in function names)." />
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -159,10 +159,10 @@ object in which missing values shall be replaced</p></td>
       <td><p>Model to be used. With this parameter the State Space Model
 (on which KalmanSmooth is performed) can be chosen. Accepts the following input:</p>
 <ul>
-<li><p>"auto.arima" - For using the state space representation of
-arima model (using <a href='https://pkg.robjhyndman.com/forecast/reference/auto.arima.html'>auto.arima</a>) (default choice)</p></li>
 <li><p>"StructTS" - For using a structural model fitted by maximum
-likelihood (using <a href='https://rdrr.io/r/stats/StructTS.html'>StructTS</a>)</p></li>
+likelihood (using <a href='https://rdrr.io/r/stats/StructTS.html'>StructTS</a>)  (default choice)</p></li>
+<li><p>"auto.arima" - For using the state space representation of
+arima model (using <a href='https://pkg.robjhyndman.com/forecast/reference/auto.arima.html'>auto.arima</a>)</p></li>
 </ul>
 
 <p>For both auto.arima and StructTS additional parameters for model building can

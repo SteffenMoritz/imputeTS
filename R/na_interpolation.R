@@ -38,19 +38,19 @@
 #' @examples
 #' # Prerequisite: Create Time series with missing values
 #' x <- ts(c(2, 3, 4, 5, 6, NA, 7, 8))
-#' 
+#'
 #' # Example 1: Perform linear interpolation
 #' na_interpolation(x)
-#' 
+#'
 #' # Example 2: Perform spline interpolation
 #' na_interpolation(x, option = "spline")
-#' 
+#'
 #' # Example 3: Perform stine interpolation
 #' na_interpolation(x, option = "stine")
-#' 
+#'
 #' # Example 4: Same as example 1, just written with pipe operator
 #' x %>% na_interpolation()
-#' 
+#'
 #' # Example 5: Same as example 2, just written with pipe operator
 #' x %>% na_interpolation(option = "spline")
 #' @references Johannesson, Tomas, et al. (2015). "Package stinepack".
@@ -60,7 +60,7 @@
 #' @export
 
 na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
-  
+
   # Variable 'data' is used for all transformations to the time series
   # 'x' needs to stay unchanged to be able to return the same ts class in the end
   data <- x
@@ -78,9 +78,15 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
         next
       }
       # if imputing a column does not work - mostly because it is not numeric - the column is left unchanged
-      tryCatch(data[, i] <- na_interpolation(data[, i], option, maxgap), error = function(cond) {
-        warning(paste("imputeTS: No imputation performed for column", i, "because of this", cond), call. = FALSE)
-      })
+      tryCatch(
+        data[, i] <- na_interpolation(data[, i], option, maxgap),
+        error = function(cond) {
+          warning(paste(
+            "na_interpolation: No imputation performed for column", i, "of the input dataset.
+                Reason:", cond[1]
+          ), call. = FALSE)
+        }
+      )
     }
     return(data)
   }
@@ -109,16 +115,14 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
 
     # 1.3 Check for algorithm specific minimum amount of non-NA values
     if (sum(!missindx) < 2) {
-      warning("No imputation performed: Input data needs at least 2 non-NA data points for applying na_interpolation")
-      return(x)
+      stop("At least 2 non-NA data points required in the time series to apply na_interpolation.")
     }
 
     # 1.4 Checks and corrections for wrong data dimension
 
     # Check if input dimensionality is not as expected
     if (!is.null(dim(data)[2]) && !dim(data)[2] == 1) {
-      warning("No imputation performed: Wrong input type for parameter x")
-      return(x)
+      stop("Wrong input type for parameter x.")
     }
 
     # Altering multivariate objects with 1 column (which are essentially
@@ -129,8 +133,7 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
 
     # 1.5 Check if input is numeric
     if (!is.numeric(data)) {
-      warning("No imputation performed: Input x is not numeric")
-      return(x)
+      stop("Input x is not numeric.")
     }
 
     ##
@@ -163,14 +166,14 @@ na_interpolation <- function(x, option = "linear", maxgap = Inf, ...) {
     }
     else if (option == "stine") {
       interp <- stinepack::stinterp(indx, data_vec[indx], 1:n, ...)$y
-      # avoid NAs at the beginning and end of series // same behavior like 
+      # avoid NAs at the beginning and end of series // same behavior like
       # for approx with rule = 2.
       if (any(is.na(interp))) {
         interp <- na_locf(interp, na_remaining = "rev")
       }
     }
     else {
-      stop("No imputation performed: Wrong parameter 'option' given. Value must be either 'linear', 'spline' or 'stine'.")
+      stop("Wrong parameter 'option' given. Value must be either 'linear', 'spline' or 'stine'.")
     }
 
     # Merge interpolated values back into original time series
