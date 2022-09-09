@@ -1,7 +1,7 @@
   <!-- badges: start -->
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/SteffenMoritz/imputeTS/workflows/R-CMD-check/badge.svg)](https://github.com/SteffenMoritz/imputeTS/actions)
-[![Codecov test coverage](https://codecov.io/gh/SteffenMoritz/imputeTS/branch/master/graph/badge.svg)](https://codecov.io/gh/SteffenMoritz/imputeTS?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/SteffenMoritz/imputeTS/branch/master/graph/badge.svg)](https://app.codecov.io/gh/SteffenMoritz/imputeTS?branch=master)
 [![CRAN Version](https://www.r-pkg.org/badges/version/imputeTS)](https://cran.r-project.org/package=imputeTS)
 [![CRAN Release](https://www.r-pkg.org/badges/last-release/imputeTS
 )](https://cran.r-project.org/package=imputeTS)

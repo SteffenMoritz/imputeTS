@@ -26,7 +26,7 @@
 #'   
 #' @name imputeTS-package
 #' 
-#' @references Moritz, Steffen, and Thomas Bartz-Beielstein. "imputeTS: Time Series Missing Value Imputation in R." R Journal 9.1 (2017). doi: 10.32614/RJ-2017-009.
+#' @references Moritz, Steffen, and Thomas Bartz-Beielstein. "imputeTS: Time Series Missing Value Imputation in R." R Journal 9.1 (2017). doi:10.32614/RJ-2017-009.
 #' 
 #' @import stats
 #' @importFrom magrittr %>%
