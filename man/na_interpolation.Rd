@@ -53,7 +53,7 @@ look like this:
 Like in this example other additional detail parameters (gained from \link{approx},
 \link{spline}, \link[stinepack]{stinterp} documentation) can be used by just including
 them in the na_interpolation function call. As already mentioned, these advanced possibilities
-for settings parameters are only helpful for specific use cases and for regular use
+for settings parameters are only helpful for specific use cases. For regular use
 the standard parameters provided directly in the na_interpolation documentation should be
 more than enough.
 }
@@ -71,7 +71,8 @@ na_interpolation(x, option = "spline")
 na_interpolation(x, option = "stine")
 
 # Example 4: Perform linear interpolation, with additional parameter pass through from spline()
-# Take a look at the 'Details' section of the na_interpolation documentation for more information about advanced parameter pass through options
+# Take a look at the 'Details' section of the na_interpolation documentation 
+# for more information about advanced parameter pass through options
 na_interpolation(x, option ="spline", method ="natural")
 
 # Example 5: Same as example 1, just written with pipe operator
@@ -90,5 +91,5 @@ Johannesson, Tomas, et al. (2015). "Package stinepack".
 \code{\link[imputeTS]{na_seadec}}, \code{\link[imputeTS]{na_seasplit}}
 }
 \author{
-Steffen Moritz
+Steffen Moritz, Ron Hause
 }

@@ -27,6 +27,6 @@
 #' @seealso \code{\link[imputeTS]{tsHeating}}, \code{\link[imputeTS]{tsNH4}}
 #' @name tsAirgapComplete
 #' @usage tsAirgapComplete
-#' @source \cite{Box, G. E. P., Jenkins, G. M., Reinsel, G. C. and Ljung, G. M. (2015). Time series analysis: forecasting and control. Fifth Edition. John Wiley \& Sons.}
+#' @source \cite{Box, G. E. P., Jenkins, G. M., Reinsel, G. C. and Ljung, G. M. (2015). Time series analysis: forecasting and control. Fifth Edition. John Wiley and Sons.}
 #' @format Time Series (\code{\link{ts}}) with 144 rows.
 NULL
