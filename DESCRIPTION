@@ -11,7 +11,7 @@ Description: Imputation (replacement) of missing values
             'Moving Average', 'Seasonal Decomposition', 
             'Kalman Smoothing on Structural Time Series models',
             'Kalman Smoothing on ARIMA models'. Published in Moritz and Bartz-Beielstein (2017) 
-            <doi: 10.32614/RJ-2017-009>.
+            <doi:10.32614/RJ-2017-009>.
 Author: Steffen Moritz [aut, cre, cph] (<https://orcid.org/0000-0002-0085-1804>), Sebastian Gatscha [aut], Earo Wang [ctb] (<https://orcid.org/0000-0001-6448-5260>), Ron Hause [ctb] (<https://orcid.org/0000-0002-5229-7366>)
 Authors@R: 
   c(
