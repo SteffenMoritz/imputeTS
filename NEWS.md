@@ -5,11 +5,6 @@ Thanks to Sabrina Krys, Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu f
 Thanks to RicardaP for fixing documentation error.
 Thanks to Ronald Hause for the commit to optimize parameter pass trough from approx to na_interpolation.
 
-* Added ggplot_na_level plot
-
-* Added ggplot_na_level2 plot
-
-* Added ggplot_na_gapsize2 plot
 
 * Renamed ggplot_na_intervals to ggplot_na_distribution2
 
