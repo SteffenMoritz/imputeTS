@@ -195,7 +195,8 @@ ggplot_na_imputations(x_with_na = tsAirgap,
 \seealso{
 \code{\link[imputeTS]{ggplot_na_distribution}},
 \code{\link[imputeTS]{ggplot_na_distribution2}},
-\code{\link[imputeTS]{ggplot_na_gapsize}}
+\code{\link[imputeTS]{ggplot_na_gapsize}},
+\code{\link[imputeTS]{ggplot_na_gapsize2}}
 }
 \author{
 Steffen Moritz, Sebastian Gatscha
