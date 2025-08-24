@@ -29,6 +29,7 @@ install_github("SteffenMoritz/imputeTS")
 ```
 
 ## Usage
+
 * #### Imputation
 
   To impute (fill all missing values) in a time series ***x***, run the following
@@ -41,7 +42,7 @@ install_github("SteffenMoritz/imputeTS")
   > This is just one example for an imputation algorithm. 
   > In this case interpolation was the algorithm of choice for 
   > calculating the NA replacements. There are several other 
-  > algorithms (see also under caption "Imputation Algorithms"). All 
+  > algorithms (see also under caption [Imputation Algorithms](#imputation-algorithms)). All 
   > imputation functions   are named alike starting with
   > na_ followed by a algorithm label  e.g. na_mean, na_kalman, ...
 
@@ -62,18 +63,21 @@ install_github("SteffenMoritz/imputeTS")
  </p>
   
   
-  > This is also just one example for a plot. Overall there are four different types 
-  > of missing data plots. (see also under caption "Missing Data Plots"). 
+  > This is just one exemplary plot. Overall there are five different types 
+  > of missing data plots (see also under caption [Missing Data Plots](#missing-data-plots)). 
+  > There is an additional tutorial just about plots available - the [Gallery of Visualizations].
+
 
 * #### Printing
 
-  To print statistics about the missing data in a time series ***x***, run the
+  To print descriptive statistics about the missing data in a time series ***x***, run the
   following command:
   ```
    statsNA(x)
   ```
+
   
-* ### Datasets
+* #### Example Datasets
 
   To load the *'heating'* time series (with missing values)  into  a variable ***y*** and the *'heating'* time series (without missing values) into a variable ***z***, run: 
   
@@ -83,10 +87,10 @@ install_github("SteffenMoritz/imputeTS")
   ```
   
   > There are three datasets provided with the package, the *'tsHeating'*, the 
-  > *'tsAirgap'* and the *'tsNH4'* time series. (see also under caption "Datasets"). 
+  > *'tsAirgap'* and the *'tsNH4'* time series (see also under caption [Datasets](#datasets)). 
 
 
-## Imputation Algorithms
+## Imputation Algorithms {#imputation-algorithms}
 
 Here is a table with available algorithms to choose from:
 
@@ -109,21 +113,22 @@ Here is a table with available algorithms to choose from:
 
 More detailed information about the algorithms and their options can be found in the [imputeTS reference manual].
 
-## Missing Data Plots
+## Missing Data Plots {#missing-data-plots}
 
 Here is a table with available plots to choose from:
 
 |      Function           |           Description                                        | 
 | :-----------------------|:-------------------------------------------------------------|
 | ggplot_na_distribution  |Visualize Distribution of Missing Values                      |
-| ggplot_na_distribution2     |Missing Values Summarized in Intervals                        |
+| ggplot_na_distribution2 |Missing Values Summarized in Time Intervals                   |
 | ggplot_na_gapsize       |Visualize Distribution of NA Gapsizes                         |
+| ggplot_na_gapsize2      |Visualize Total NAs of Different NA Gapsizes                  |
 | ggplot_na_imputations   |Visualize Imputed Values                                      | 
 
-More detailed information about the plots can be found in the [imputeTS reference manual].
+More detailed information about the plots can be found in the [imputeTS reference manual] and in the [Gallery of Visualizations].
 
 
-### Datasets
+### Datasets {#datasets}
 
 There are three datasets (each in two versions) available:
 
@@ -164,7 +169,7 @@ If you found a bug or have suggestions, feel free to get in contact via steffen.
 
 
 ### Version
-**3.3**
+**3.4**
 
 ### License
 GPL-3
@@ -175,4 +180,5 @@ GPL-3
    [Citation]: <https://cran.r-project.org/web/packages/imputeTS/citation.html>
    [StackOverflow]: <https://stackoverflow.com/tags/imputets/info> 
    [imputets]: <https://stackoverflow.com/questions/tagged/imputets>
+   [Gallery of Visualizations]: <https://cran.r-project.org/web/packages/imputeTS/vignettes/gallery_visualizations.html>
  

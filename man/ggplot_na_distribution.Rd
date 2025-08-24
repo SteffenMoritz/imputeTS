@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot_na_distribution.R
 \name{ggplot_na_distribution}
 \alias{ggplot_na_distribution}
-\title{Lineplot to Visualize the Distribution of Missing Values}
+\title{Line Plot to Visualize the Distribution of Missing Values}
 \usage{
 ggplot_na_distribution(
   x,
@@ -123,6 +123,7 @@ ggplot_na_distribution(tsAirgap, color_points = "grey") +
 \seealso{
 \code{\link[imputeTS]{ggplot_na_distribution2}},
 \code{\link[imputeTS]{ggplot_na_gapsize}},
+\code{\link[imputeTS]{ggplot_na_gapsize2}},
 \code{\link[imputeTS]{ggplot_na_imputations}}
 }
 \author{

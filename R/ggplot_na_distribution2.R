@@ -1,4 +1,4 @@
-#' @title Stacked Barplot to Visualize Missing Values per Interval
+#' @title Stacked Bar Plot to Visualize Missing Values per Time Interval
 #'
 #' @description Visualization of missing values in barplot form.
 #' Especially useful when looking at specific intervals and for
@@ -78,6 +78,7 @@
 #'
 #' @seealso \code{\link[imputeTS]{ggplot_na_distribution}},
 #'  \code{\link[imputeTS]{ggplot_na_gapsize}},
+#'  \code{\link[imputeTS]{ggplot_na_gapsize2}},
 #'  \code{\link[imputeTS]{ggplot_na_imputations}}
 #'
 #' @examples

@@ -1,4 +1,4 @@
-#' @title Visualize Occurrences of NA gap sizes
+#' @title Bar Plot to Visualize Occurrences of Different NA Gap Sizes
 #'
 #' @description Visualize the Number of Occurrences for existing NA Gap Sizes
 #' (NAs in a row) in a Time Series
@@ -94,7 +94,8 @@
 #' of the function is a ggplot2 object. Also take a look at the Examples
 #' to see how adjustments are made.
 #'
-#' @seealso \code{\link[imputeTS]{ggplot_na_distribution}},
+#' @seealso \code{\link[imputeTS]{ggplot_na_gapsize2}},
+#'   \code{\link[imputeTS]{ggplot_na_distribution}},
 #'   \code{\link[imputeTS]{ggplot_na_distribution2}},
 #'   \code{\link[imputeTS]{ggplot_na_imputations}}
 #'

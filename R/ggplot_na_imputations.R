@@ -1,4 +1,4 @@
-#' @title Visualize Imputed Values
+#' @title Line Plot to Visualize Imputed Values
 #'
 #' @description Visualize the imputed values in a time series.
 #'
@@ -101,7 +101,8 @@
 #'
 #' @seealso \code{\link[imputeTS]{ggplot_na_distribution}},
 #'  \code{\link[imputeTS]{ggplot_na_distribution2}},
-#'  \code{\link[imputeTS]{ggplot_na_gapsize}}
+#'  \code{\link[imputeTS]{ggplot_na_gapsize}},
+#'  \code{\link[imputeTS]{ggplot_na_gapsize2}}
 #'
 #' @examples
 #' # Example 1: Visualize imputation by na_mean

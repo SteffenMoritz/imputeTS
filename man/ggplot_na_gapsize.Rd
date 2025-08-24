@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot_na_gapsize.R
 \name{ggplot_na_gapsize}
 \alias{ggplot_na_gapsize}
-\title{Visualize Occurrences of NA gap sizes}
+\title{Bar Plot to Visualize Occurrences of Different NA Gap Sizes}
 \usage{
 ggplot_na_gapsize(
   x,
@@ -162,6 +162,7 @@ ggplot_na_gapsize(tsNH4, color_total = "grey") +
   ggplot2::theme(legend.position = "right")
 }
 \seealso{
+\code{\link[imputeTS]{ggplot_na_gapsize2}},
 \code{\link[imputeTS]{ggplot_na_distribution}},
 \code{\link[imputeTS]{ggplot_na_distribution2}},
 \code{\link[imputeTS]{ggplot_na_imputations}}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot_na_distribution2.R
 \name{ggplot_na_distribution2}
 \alias{ggplot_na_distribution2}
-\title{Stacked Barplot to Visualize Missing Values per Interval}
+\title{Stacked Bar Plot to Visualize Missing Values per Time Interval}
 \usage{
 ggplot_na_distribution2(
   x,
@@ -145,6 +145,7 @@ ggplot_na_distribution2(tsAirgap, color_missing = "grey") +
 \seealso{
 \code{\link[imputeTS]{ggplot_na_distribution}},
 \code{\link[imputeTS]{ggplot_na_gapsize}},
+\code{\link[imputeTS]{ggplot_na_gapsize2}},
 \code{\link[imputeTS]{ggplot_na_imputations}}
 }
 \author{

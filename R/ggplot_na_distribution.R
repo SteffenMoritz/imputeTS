@@ -1,4 +1,4 @@
-#' @title Lineplot to Visualize the Distribution of Missing Values
+#' @title Line Plot to Visualize the Distribution of Missing Values
 #'
 #' @description Visualize the distribution of missing values within a time series.
 #'
@@ -64,6 +64,7 @@
 #'
 #' @seealso \code{\link[imputeTS]{ggplot_na_distribution2}},
 #' \code{\link[imputeTS]{ggplot_na_gapsize}},
+#' \code{\link[imputeTS]{ggplot_na_gapsize2}},
 #' \code{\link[imputeTS]{ggplot_na_imputations}}
 #'
 #' @examples

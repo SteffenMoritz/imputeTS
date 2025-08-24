@@ -1,6 +1,9 @@
 
 # Changes in Version 3.4
 
+* Added ggplot_na_gapsize2 plot (and unit tests). 
+  Nice way to illustrate how different NA gapsizes (consecutive NAs in a row) amount for NA totals.
+
 * Fix of the CITATION file to comply with newer CRAN rules
 
 * Update of ggplot_na_imputations() to avoid using now depreciated ggplot2 options

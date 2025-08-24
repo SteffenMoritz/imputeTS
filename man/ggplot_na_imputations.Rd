@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot_na_imputations.R
 \name{ggplot_na_imputations}
 \alias{ggplot_na_imputations}
-\title{Visualize Imputed Values}
+\title{Line Plot to Visualize Imputed Values}
 \usage{
 ggplot_na_imputations(
   x_with_na,
