@@ -180,5 +180,5 @@ GPL-3
    [Citation]: <https://cran.r-project.org/web/packages/imputeTS/citation.html>
    [StackOverflow]: <https://stackoverflow.com/tags/imputets/info> 
    [imputets]: <https://stackoverflow.com/questions/tagged/imputets>
-   [Gallery of Visualizations]: <https://cran.r-project.org/web/packages/imputeTS/vignettes/gallery_visualizations.html>
+   [Gallery of Visualizations]: <https://steffenmoritz.github.io/imputeTS/articles/gallery_visualizations.html>
  
