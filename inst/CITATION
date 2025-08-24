@@ -5,7 +5,7 @@ citHeader("To cite the imputeTS package, use:")
 
 bibentry(bibtype = "Article",
   title     = "{imputeTS: Time Series Missing Value Imputation in R}",
-  author    = personList(as.person("Steffen Moritz"),as.person("Thomas Bartz-Beielstein")),
+  author    = c(person("Steffen Moritz"),person("Thomas Bartz-Beielstein")),
   journal   = "{The R Journal}",
   volume    =  9,
   number    =  1,

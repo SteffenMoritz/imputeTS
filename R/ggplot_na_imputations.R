@@ -56,7 +56,7 @@
 #'
 #' @param color_lines Color for the Lines connecting the Observations/Points.
 #'
-#' @param size_lines Size for the Lines connecting the Observations/Points.
+#' @param width_lines Width for the Lines connecting the Observations/Points.
 #'
 #' @param linetype Linetype for the Lines connecting the Observations/Points.
 #'
@@ -188,7 +188,7 @@ ggplot_na_imputations <- function(x_with_na,
                                   size_points = 1.5,
                                   size_imputations = 2.5,
                                   size_truth = 1.5,
-                                  size_lines = 0.5,
+                                  width_lines = 0.5,
                                   linetype = "solid",
                                   connect_na = TRUE,
                                   legend = TRUE,
@@ -393,7 +393,7 @@ ggplot_na_imputations <- function(x_with_na,
     gg <- gg + ggplot2::geom_line(
       data = df, ggplot2::aes(x = time, y = x_with_na),
       na.rm = TRUE, color = color_lines,
-      linetype = linetype, size = size_lines
+      linetype = linetype, linewidth = width_lines
     )
   }
   # If truth available connect the true values in the missing areas
@@ -401,7 +401,7 @@ ggplot_na_imputations <- function(x_with_na,
     gg <- gg + ggplot2::geom_line(
       data = df, ggplot2::aes(x = time, y = x_with_truth),
       na.rm = TRUE, color = color_lines,
-      linetype = linetype, size = size_lines
+      linetype = linetype, linewidth = width_lines
     )
   }
   # If no truth available connect the imputed values in the missing areas
@@ -409,7 +409,7 @@ ggplot_na_imputations <- function(x_with_na,
     gg <- gg + ggplot2::geom_line(
       data = df, ggplot2::aes(x = time, y = x_with_imputations),
       na.rm = TRUE, color = color_lines,
-      linetype = linetype, size = size_lines
+      linetype = linetype, linewidth = width_lines
     )
   }
 

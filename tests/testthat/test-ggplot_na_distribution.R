@@ -12,8 +12,8 @@ test_that("Check that all parameters of plot run without error", {
   }
   {
     require("ggplot2")
-    expect_true(is.list(ggplot_na_distribution(tsAirgap)))
-    expect_true(is.list(ggplot_na_distribution(tsAirgap,
+    expect_true(is_ggplot(ggplot_na_distribution(tsAirgap)))
+    expect_true(is_ggplot(ggplot_na_distribution(tsAirgap,
       color_points = "blue",
       color_lines = "gold",
       color_missing = "darkgreen",
@@ -31,7 +31,6 @@ test_that("Check that all parameters of plot run without error", {
 })
 
 test_that("Errors for wrong input", {
-
   ## input not univariate
   x <- data.frame(
     x = runif(10, 0, 10),
@@ -49,10 +48,9 @@ test_that("Errors for wrong input", {
 })
 
 test_that("Works with tsNH4", {
-  expect_is(
-    ggplot_na_distribution(tsNH4),
-    "ggplot"
-  )
+  expect_true(is_ggplot(
+    ggplot_na_distribution(tsNH4)
+  ))
 })
 
 test_that("Plot with x_axis_labels works and yearly data works", {
@@ -61,13 +59,11 @@ test_that("Plot with x_axis_labels works and yearly data works", {
     warning("Pkg ggplot2 needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("zoo", quietly = TRUE)) {
+  } else if (!requireNamespace("zoo", quietly = TRUE)) {
     warning("Pkg zoo needed for this test.",
       call. = FALSE
     )
-  }
-  else {
+  } else {
     require("zoo")
     require("ggplot2")
     # Yearly data
@@ -89,31 +85,26 @@ test_that("Plot with x_axis_labels works and yearly data works", {
     nh_date <- zoo::as.Date(nh_yearmon)
     nh_posix <- as.POSIXct(nh_date)
 
-    expect_is(
-      ggplot_na_distribution(nh),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(nh)
+    ))
 
-    expect_is(
-      ggplot_na_distribution(nh, x_axis_labels = nh_date),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(nh, x_axis_labels = nh_date)
+    ))
 
-    expect_is(
-      ggplot_na_distribution(nh, x_axis_labels = nh_posix),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(nh, x_axis_labels = nh_posix)
+    ))
 
-    expect_is(
-      ggplot_na_distribution(nh, x_axis_labels = nh_posix, title = "test"),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(nh, x_axis_labels = nh_posix, title = "test")
+    ))
 
-    expect_is(
+    expect_true(is_ggplot(
       ggplot_na_distribution(nh, x_axis_labels = nh_posix, title = "test") +
-        ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1)),
-      "ggplot"
-    )
+        ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1))
+    ))
   }
 })
 
@@ -126,13 +117,11 @@ test_that("Plot with x_axis_labels works and tsAirgap data works", {
     warning("Pkg ggplot2 needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("zoo", quietly = TRUE)) {
+  } else if (!requireNamespace("zoo", quietly = TRUE)) {
     warning("Pkg zoo needed for this test.",
       call. = FALSE
     )
-  }
-  else {
+  } else {
     require("zoo")
     require("ggplot2")
 
@@ -142,33 +131,29 @@ test_that("Plot with x_axis_labels works and tsAirgap data works", {
     airgap_date <- zoo::as.Date(airgap_yearmon)
     airgap_posix <- as.POSIXct(airgap_yearmon)
 
-    expect_is(
-      ggplot_na_distribution(tsAirgap),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(tsAirgap)
+    ))
 
 
-    expect_is(
-      ggplot_na_distribution(tsAirgap, x_axis_labels = airgap_date),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(tsAirgap, x_axis_labels = airgap_date)
+    ))
 
 
-    expect_is(
-      ggplot_na_distribution(tsAirgap, x_axis_labels = airgap_posix),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(tsAirgap, x_axis_labels = airgap_posix)
+    ))
 
 
-    expect_is(
+    expect_true(is_ggplot(
       ggplot_na_distribution(tsAirgap, x_axis_labels = airgap_date) +
         ggplot2::scale_x_date(date_breaks = "6 month", date_labels = "%m-%Y") +
         ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1)) +
         ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
         ggplot2::theme(plot.subtitle = ggplot2::element_text(hjust = 0.5)) +
-        ggtitle("hjsdhs"),
-      "ggplot"
-    )
+        ggtitle("hjsdhs")
+    ))
   }
 })
 
@@ -180,28 +165,23 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     warning("Pkg ggplot2 needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("zoo", quietly = TRUE)) {
+  } else if (!requireNamespace("zoo", quietly = TRUE)) {
     warning("Pkg zoo needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("tibble", quietly = TRUE)) {
+  } else if (!requireNamespace("tibble", quietly = TRUE)) {
     warning("Pkg tibble needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("zoo", quietly = TRUE)) {
+  } else if (!requireNamespace("zoo", quietly = TRUE)) {
     warning("Pkg zoo needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("tsibble", quietly = TRUE)) {
+  } else if (!requireNamespace("tsibble", quietly = TRUE)) {
     warning("Pkg tsibble needed for this test.",
       call. = FALSE
     )
-  }
-  else {
+  } else {
     require("zoo")
     require("ggplot2")
     require("tibble")
@@ -209,10 +189,9 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # data.frame
     tsAirgap_df <- data.frame(tsAirgap)
 
-    expect_is(
-      ggplot_na_distribution(tsAirgap_df),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(tsAirgap_df)
+    ))
 
 
 
@@ -227,10 +206,9 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # zoo and theme adjustment
     tsAirgap_zoo <- zoo::as.zoo(tsAirgap)
 
-    expect_is(
-      ggplot_na_distribution(tsAirgap_zoo) + ggplot2::theme_minimal(),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(tsAirgap_zoo) + ggplot2::theme_minimal()
+    ))
 
 
 
@@ -247,10 +225,9 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # tsibble
     tsAirgap_tsibble <- tsibble::as_tsibble(tsAirgap)
 
-    expect_is(
-      ggplot_na_distribution(tsAirgap_tsibble),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(tsAirgap_tsibble)
+    ))
 
 
 
@@ -258,37 +235,33 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_tsibble <- tsibble::as_tsibble(tsAirgap)
 
 
-    expect_is(
-      ggplot_na_distribution(tsAirgap_tsibble$value) + ggplot2::theme_minimal(),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(tsAirgap_tsibble$value) + ggplot2::theme_minimal()
+    ))
 
 
 
     # tsibble multivariate - plots first non index variable (maybe error would be better)
     tsAirgap_tsibble2 <- tsibble::as_tsibble(tsAirgap)
     tsAirgap_tsibble2$var2 <- tsAirgap
-    expect_is(
-      ggplot_na_distribution(tsAirgap_tsibble2),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(tsAirgap_tsibble2)
+    ))
 
 
 
     # tibble
     tsAirgap_tibble <- tibble::as_tibble(tsAirgap)
-    expect_is(
-      ggplot_na_distribution(tsAirgap_tibble),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(tsAirgap_tibble)
+    ))
 
 
 
     # tibble multivariate -  plots first variable (maybe error would be better)
     tsAirgap_tibble2 <- tibble::as_tibble(data.frame(tsAirgap, tsAirgap))
-    expect_is(
-      ggplot_na_distribution(tsAirgap_tibble2),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_distribution(tsAirgap_tibble2)
+    ))
   }
 })

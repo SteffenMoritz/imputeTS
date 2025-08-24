@@ -1,4 +1,9 @@
 
+# Changes in Version 3.4
+
+* Fix of the citation file to comply with newer CRAN rules
+
+
 # Changes in Version 3.3
 
 Thanks to Sabrina Krys, Kevin Villalobos, Tracy Shen, hezhichao1991, englianhu for bug / issue reporting.

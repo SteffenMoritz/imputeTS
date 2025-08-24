@@ -15,16 +15,16 @@ test_that("Check that all parameters of plot run without error", {
   {
     require("ggplot2")
     imp_mean <- na_mean(tsAirgap)
-    expect_true(is.recursive(ggplot_na_imputations(tsAirgap, imp_mean)))
-    expect_true(is.recursive(ggplot_na_imputations(tsAirgap, imp_mean, tsAirgapComplete)))
+    expect_true(is_ggplot(ggplot_na_imputations(tsAirgap, imp_mean)))
+    expect_true(is_ggplot(ggplot_na_imputations(tsAirgap, imp_mean, tsAirgapComplete)))
 
-    expect_true(is.list(ggplot_na_imputations(
+    expect_true(is_ggplot(ggplot_na_imputations(
       x_with_na = tsAirgap,
       x_with_imputations = imp_mean
     )))
 
 
-    expect_true(is.list(ggplot_na_imputations(
+    expect_true(is_ggplot(ggplot_na_imputations(
       x_with_na = tsAirgap,
       x_with_imputations = imp_mean,
       x_with_truth = tsAirgapComplete,
@@ -34,7 +34,7 @@ test_that("Check that all parameters of plot run without error", {
       ylab = "test"
     )))
 
-    expect_true(is.list(ggplot_na_imputations(
+    expect_true(is_ggplot(ggplot_na_imputations(
       x_with_na = tsAirgap,
       x_with_imputations = imp_mean,
       x_with_truth = tsAirgapComplete,
@@ -43,7 +43,7 @@ test_that("Check that all parameters of plot run without error", {
       color_truth = "yellow"
     )))
 
-    expect_true(is.list(ggplot_na_imputations(
+    expect_true(is_ggplot(ggplot_na_imputations(
       x_with_na = tsAirgap,
       x_with_imputations = imp_mean,
       x_with_truth = tsAirgapComplete,
@@ -52,7 +52,7 @@ test_that("Check that all parameters of plot run without error", {
       shape_truth = 15
     )))
 
-    expect_true(is.list(ggplot_na_imputations(
+    expect_true(is_ggplot(ggplot_na_imputations(
       x_with_na = tsAirgap,
       x_with_imputations = imp_mean,
       x_with_truth = tsAirgapComplete,
@@ -62,15 +62,15 @@ test_that("Check that all parameters of plot run without error", {
     )))
 
 
-    expect_true(is.list(ggplot_na_imputations(
+    expect_true(is_ggplot(ggplot_na_imputations(
       x_with_na = tsAirgap,
       x_with_imputations = imp_mean,
       x_with_truth = tsAirgapComplete,
-      size_lines = 0.6,
+      width_lines = 0.6,
       linetype = "dotted"
     )))
 
-    expect_true(is.list(ggplot_na_imputations(
+    expect_true(is_ggplot(ggplot_na_imputations(
       x_with_na = tsAirgap,
       x_with_imputations = imp_mean,
       x_with_truth = tsAirgapComplete,
@@ -78,7 +78,7 @@ test_that("Check that all parameters of plot run without error", {
       legend = FALSE
     )))
 
-    expect_true(is.list(ggplot_na_imputations(
+    expect_true(is_ggplot(ggplot_na_imputations(
       x_with_na = tsAirgap,
       x_with_imputations = imp_mean,
       x_with_truth = tsAirgapComplete,
@@ -93,8 +93,6 @@ test_that("Check that all parameters of plot run without error", {
 
 
 test_that("Errors for wrong input", {
-
-
   ## input not univariate
   x <- data.frame(
     x = runif(10, 0, 10),
@@ -123,10 +121,9 @@ test_that("Errors for wrong input", {
 })
 
 test_that("Works with tsNH4", {
-  expect_is(
-    ggplot_na_imputations(tsNH4, na_mean(tsNH4), tsNH4Complete),
-    "ggplot"
-  )
+  expect_true(is_ggplot(
+    ggplot_na_imputations(tsNH4, na_mean(tsNH4), tsNH4Complete)
+  ))
 })
 
 test_that("Plot with x_axis_labels works and yearly data works", {
@@ -135,13 +132,11 @@ test_that("Plot with x_axis_labels works and yearly data works", {
     warning("Pkg ggplot2 needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("zoo", quietly = TRUE)) {
+  } else if (!requireNamespace("zoo", quietly = TRUE)) {
     warning("Pkg zoo needed for this test.",
       call. = FALSE
     )
-  }
-  else {
+  } else {
     require("zoo")
     require("ggplot2")
     # Yearly data
@@ -163,31 +158,26 @@ test_that("Plot with x_axis_labels works and yearly data works", {
     nh_date <- zoo::as.Date(nh_yearmon)
     nh_posix <- as.POSIXct(nh_date)
 
-    expect_is(
-      ggplot_na_imputations(nh, na_mean(nh)),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_imputations(nh, na_mean(nh))
+    ))
 
-    expect_is(
-      ggplot_na_imputations(nh, na_mean(nh), x_axis_labels = nh_date),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_imputations(nh, na_mean(nh), x_axis_labels = nh_date)
+    ))
 
-    expect_is(
-      ggplot_na_imputations(nh, na_mean(nh), x_axis_labels = nh_posix),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_imputations(nh, na_mean(nh), x_axis_labels = nh_posix)
+    ))
 
-    expect_is(
-      ggplot_na_imputations(nh, na_mean(nh), x_axis_labels = nh_posix, title = "test"),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_imputations(nh, na_mean(nh), x_axis_labels = nh_posix, title = "test")
+    ))
 
-    expect_is(
+    expect_true(is_ggplot(
       ggplot_na_imputations(nh, na_mean(nh), x_axis_labels = nh_posix, title = "test") +
-        ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1)),
-      "ggplot"
-    )
+        ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1))
+    ))
   }
 })
 
@@ -200,28 +190,23 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     warning("Pkg ggplot2 needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("zoo", quietly = TRUE)) {
+  } else if (!requireNamespace("zoo", quietly = TRUE)) {
     warning("Pkg zoo needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("tibble", quietly = TRUE)) {
+  } else if (!requireNamespace("tibble", quietly = TRUE)) {
     warning("Pkg tibble needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("zoo", quietly = TRUE)) {
+  } else if (!requireNamespace("zoo", quietly = TRUE)) {
     warning("Pkg zoo needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("tsibble", quietly = TRUE)) {
+  } else if (!requireNamespace("tsibble", quietly = TRUE)) {
     warning("Pkg tsibble needed for this test.",
       call. = FALSE
     )
-  }
-  else {
+  } else {
     require("zoo")
     require("ggplot2")
     require("tibble")
@@ -229,10 +214,9 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # data.frame
     tsAirgap_df <- data.frame(tsAirgap)
 
-    expect_is(
-      ggplot_na_imputations(tsAirgap_df, na_mean(tsAirgap_df)),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_imputations(tsAirgap_df, na_mean(tsAirgap_df))
+    ))
 
 
 
@@ -247,10 +231,9 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # zoo and theme adjustment
     tsAirgap_zoo <- zoo::as.zoo(tsAirgap)
 
-    expect_is(
-      ggplot_na_imputations(tsAirgap_zoo, na_mean(tsAirgap_zoo)) + ggplot2::theme_minimal(),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_imputations(tsAirgap_zoo, na_mean(tsAirgap_zoo)) + ggplot2::theme_minimal()
+    ))
 
 
 
@@ -267,10 +250,9 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # tsibble
     tsAirgap_tsibble <- tsibble::as_tsibble(tsAirgap)
 
-    expect_is(
-      ggplot_na_imputations(tsAirgap_tsibble, na_mean(tsAirgap_tsibble)),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_imputations(tsAirgap_tsibble, na_mean(tsAirgap_tsibble))
+    ))
 
 
 
@@ -278,38 +260,34 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     tsAirgap_tsibble <- tsibble::as_tsibble(tsAirgap)
 
 
-    expect_is(
+    expect_true(is_ggplot(
       ggplot_na_imputations(tsAirgap_tsibble$value, na_mean(tsAirgap_tsibble$value)) +
-        ggplot2::theme_minimal(),
-      "ggplot"
-    )
+        ggplot2::theme_minimal()
+    ))
 
 
 
     # tsibble multivariate - plots first non index variable (maybe error would be better)
     tsAirgap_tsibble2 <- tsibble::as_tsibble(tsAirgap)
     tsAirgap_tsibble2$var2 <- tsAirgap
-    expect_is(
-      ggplot_na_imputations(tsAirgap_tsibble2, na_mean(tsAirgap_tsibble2)),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_imputations(tsAirgap_tsibble2, na_mean(tsAirgap_tsibble2))
+    ))
 
 
 
     # tibble
     tsAirgap_tibble <- tibble::as_tibble(tsAirgap)
-    expect_is(
-      ggplot_na_imputations(tsAirgap_tibble, na_mean(tsAirgap_tibble)),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_imputations(tsAirgap_tibble, na_mean(tsAirgap_tibble))
+    ))
 
 
 
     # tibble multivariate -  plots first variable (maybe error would be better)
     tsAirgap_tibble2 <- tibble::as_tibble(data.frame(tsAirgap, tsAirgap))
-    expect_is(
-      ggplot_na_imputations(tsAirgap_tibble2, na_mean(tsAirgap_tibble2)),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_imputations(tsAirgap_tibble2, na_mean(tsAirgap_tibble2))
+    ))
   }
 })

@@ -10,35 +10,32 @@ test_that("Check that all parameters of plot  run without error", {
     warning("Pkg ggplot2 needed for this test.",
       call. = FALSE
     )
-  }
-  else {
+  } else {
     require("ggplot2")
-    expect_true(is.recursive(ggplot_na_gapsize(tsAirgap)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, ranked_by = "total")))
-    expect_true(is.list(ggplot_na_gapsize(tsNH4, limit = 2)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, legend = F)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, orientation = "horizontal")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, include_total = F)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_occurrence = "blue")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, limit = 1)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, include_total = F)))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, ranked_by = "total")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_occurrence = "gold")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, color_total = "green")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, title = "test")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, subtitle = "test2")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, xlab = "test")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, ylab = "test")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, orientation = "vertical")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, label_occurrence = "occ")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, label_total = "total")))
-    expect_true(is.list(ggplot_na_gapsize(tsAirgap, theme = ggplot2::theme_classic())))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap)))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, ranked_by = "total")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsNH4, limit = 2)))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, legend = F)))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, orientation = "horizontal")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, include_total = F)))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, color_occurrence = "blue")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, limit = 1)))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, include_total = F)))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, ranked_by = "total")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, color_occurrence = "gold")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, color_total = "green")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, title = "test")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, subtitle = "test2")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, xlab = "test")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, ylab = "test")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, orientation = "vertical")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, label_occurrence = "occ")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, label_total = "total")))
+    expect_true(is_ggplot(ggplot_na_gapsize(tsAirgap, theme = ggplot2::theme_classic())))
   }
 })
 
 test_that("Errors for wrong input", {
-
   ## input not univariate
   x <- data.frame(
     x = runif(10, 0, 10),
@@ -68,9 +65,7 @@ test_that("Plot works with test ts", {
     warning("Pkg ggplot2 needed for this test.",
       call. = FALSE
     )
-  }
-
-  else {
+  } else {
     require("ggplot2")
     # Yearly data
     nh <- structure(c(
@@ -85,21 +80,18 @@ test_that("Plot works with test ts", {
       1
     ), class = "ts")
 
-    expect_is(
-      ggplot_na_gapsize(nh),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_gapsize(nh)
+    ))
 
-    expect_is(
-      ggplot_na_gapsize(nh, title = "test"),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_gapsize(nh, title = "test")
+    ))
 
-    expect_is(
+    expect_true(is_ggplot(
       ggplot_na_gapsize(nh, title = "test") +
-        ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1)),
-      "ggplot"
-    )
+        ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1))
+    ))
   }
 })
 
@@ -112,24 +104,20 @@ test_that(" tsAirgap data works", {
     warning("Pkg ggplot2 needed for this test.",
       call. = FALSE
     )
-  }
-
-  else {
+  } else {
     require("ggplot2")
 
-    expect_is(
-      ggplot_na_gapsize(tsAirgap),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_gapsize(tsAirgap)
+    ))
 
-    expect_is(
+    expect_true(is_ggplot(
       ggplot_na_gapsize(tsAirgap) +
         ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 60, hjust = 1)) +
         ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
         ggplot2::theme(plot.subtitle = ggplot2::element_text(hjust = 0.5)) +
-        ggplot2::ggtitle("hjsdhs"),
-      "ggplot"
-    )
+        ggplot2::ggtitle("hjsdhs")
+    ))
   }
 })
 
@@ -140,28 +128,23 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     warning("Pkg ggplot2 needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("zoo", quietly = TRUE)) {
+  } else if (!requireNamespace("zoo", quietly = TRUE)) {
     warning("Pkg zoo needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("tibble", quietly = TRUE)) {
+  } else if (!requireNamespace("tibble", quietly = TRUE)) {
     warning("Pkg tibble needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("zoo", quietly = TRUE)) {
+  } else if (!requireNamespace("zoo", quietly = TRUE)) {
     warning("Pkg zoo needed for this test.",
       call. = FALSE
     )
-  }
-  else if (!requireNamespace("tsibble", quietly = TRUE)) {
+  } else if (!requireNamespace("tsibble", quietly = TRUE)) {
     warning("Pkg tsibble needed for this test.",
       call. = FALSE
     )
-  }
-  else {
+  } else {
     require("zoo")
     require("ggplot2")
     require("tibble")
@@ -169,10 +152,9 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # data.frame
     tsAirgap_df <- data.frame(tsAirgap)
 
-    expect_is(
-      ggplot_na_gapsize(tsAirgap_df),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_gapsize(tsAirgap_df)
+    ))
 
 
 
@@ -187,10 +169,9 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # zoo and theme adjustment
     tsAirgap_zoo <- zoo::as.zoo(tsAirgap)
 
-    expect_is(
-      ggplot_na_gapsize(tsAirgap_zoo) + ggplot2::theme_minimal(),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_gapsize(tsAirgap_zoo) + ggplot2::theme_minimal()
+    ))
 
 
 
@@ -207,48 +188,42 @@ test_that("Non standard input - data.frame, tsibble, tibble, zoo", {
     # tsibble
     tsAirgap_tsibble <- tsibble::as_tsibble(tsAirgap)
 
-    expect_is(
-      ggplot_na_gapsize(tsAirgap_tsibble),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_gapsize(tsAirgap_tsibble)
+    ))
 
 
 
     # tsibble just value, theme adjustment
     tsAirgap_tsibble <- tsibble::as_tsibble(tsAirgap)
 
-
-    expect_is(
-      ggplot_na_gapsize(tsAirgap_tsibble$value) + ggplot2::theme_minimal(),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_gapsize(tsAirgap_tsibble$value) + ggplot2::theme_minimal()
+    ))
 
 
 
     # tsibble multivariate - plots first non index variable (maybe error would be better)
     tsAirgap_tsibble2 <- tsibble::as_tsibble(tsAirgap)
     tsAirgap_tsibble2$var2 <- tsAirgap
-    expect_is(
-      ggplot_na_gapsize(tsAirgap_tsibble2),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_gapsize(tsAirgap_tsibble2)
+    ))
 
 
 
     # tibble
     tsAirgap_tibble <- tibble::as_tibble(tsAirgap)
-    expect_is(
-      ggplot_na_gapsize(tsAirgap_tibble),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_gapsize(tsAirgap_tibble)
+    ))
 
 
 
     # tibble multivariate -  plots first variable (maybe error would be better)
     tsAirgap_tibble2 <- tibble::as_tibble(data.frame(tsAirgap, tsAirgap))
-    expect_is(
-      ggplot_na_gapsize(tsAirgap_tibble2),
-      "ggplot"
-    )
+    expect_true(is_ggplot(
+      ggplot_na_gapsize(tsAirgap_tibble2)
+    ))
   }
 })

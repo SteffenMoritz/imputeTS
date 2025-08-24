@@ -23,7 +23,7 @@ ggplot_na_imputations(
   size_points = 1.5,
   size_imputations = 2.5,
   size_truth = 1.5,
-  size_lines = 0.5,
+  width_lines = 0.5,
   linetype = "solid",
   connect_na = TRUE,
   legend = TRUE,
@@ -89,7 +89,7 @@ See https://ggplot2.tidyverse.org/articles/ggplot2-specs.html as reference.}
 \item{size_truth}{Size for the Symbols/Points of the NA value Ground Truth
 (only relevant when x_with_truth available).}
 
-\item{size_lines}{Size for the Lines connecting the Observations/Points.}
+\item{width_lines}{Width for the Lines connecting the Observations/Points.}
 
 \item{linetype}{Linetype for the Lines connecting the Observations/Points.}
 
