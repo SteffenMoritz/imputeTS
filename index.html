@@ -108,7 +108,7 @@
 <pre><code><span> <span class="fu"><a href="reference/na_interpolation.html">na_interpolation</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre>
 <p>Output is the time series <strong><em>x</em></strong> with all NA’s replaced by reasonable values.</p>
 <blockquote>
-<p>This is just one example for an imputation algorithm. In this case interpolation was the algorithm of choice for calculating the NA replacements. There are several other algorithms (see also under caption “Imputation Algorithms”). All imputation functions are named alike starting with na_ followed by a algorithm label e.g. na_mean, na_kalman, …</p>
+<p>This is just one example for an imputation algorithm. In this case interpolation was the algorithm of choice for calculating the NA replacements. There are several other algorithms (see also under caption <a href="#imputation-algorithms">Imputation Algorithms</a>). All imputation functions are named alike starting with na_ followed by a algorithm label e.g. na_mean, na_kalman, …</p>
 </blockquote>
 </li>
 <li>
@@ -121,21 +121,21 @@
 <p><img src="reference/figures/ggplot_na_distribution.png" width="600" height="350" alt="Example ggplot_na_distribution plot"></p>
 
 <blockquote>
-<p>This is also just one example for a plot. Overall there are four different types of missing data plots. (see also under caption “Missing Data Plots”).</p>
+<p>This is just one exemplary plot. Overall there are five different types of missing data plots (see also under caption <a href="#missing-data-plots">Missing Data Plots</a>). There is an additional tutorial just about plots available - the <a href="https://cran.r-project.org/web/packages/imputeTS/vignettes/gallery_visualizations.html" class="external-link">Gallery of Visualizations</a>.</p>
 </blockquote>
 </li>
 <li>
 <h4 id="printing">Printing</h4>
-<p>To print statistics about the missing data in a time series <strong><em>x</em></strong>, run the following command:</p>
+<p>To print descriptive statistics about the missing data in a time series <strong><em>x</em></strong>, run the following command:</p>
 <pre><code><span> <span class="fu"><a href="reference/statsNA.html">statsNA</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre>
 </li>
 <li>
-<h3 id="datasets">Datasets</h3>
+<h4 id="example-datasets">Example Datasets</h4>
 <p>To load the <em>‘heating’</em> time series (with missing values) into a variable <strong><em>y</em></strong> and the <em>‘heating’</em> time series (without missing values) into a variable <strong><em>z</em></strong>, run:</p>
 <pre><code><span> <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">tsHeating</span></span>
 <span> <span class="va">z</span> <span class="op">&lt;-</span> <span class="va">tsHeatingComplete</span></span></code></pre>
 <blockquote>
-<p>There are three datasets provided with the package, the <em>‘tsHeating’</em>, the <em>‘tsAirgap’</em> and the <em>‘tsNH4’</em> time series. (see also under caption “Datasets”).</p>
+<p>There are three datasets provided with the package, the <em>‘tsHeating’</em>, the <em>‘tsAirgap’</em> and the <em>‘tsNH4’</em> time series (see also under caption <a href="#datasets">Datasets</a>).</p>
 </blockquote>
 </li>
 </ul>
@@ -221,21 +221,25 @@
 </tr>
 <tr class="even">
 <td align="left">ggplot_na_distribution2</td>
-<td align="left">Missing Values Summarized in Intervals</td>
+<td align="left">Missing Values Summarized in Time Intervals</td>
 </tr>
 <tr class="odd">
 <td align="left">ggplot_na_gapsize</td>
 <td align="left">Visualize Distribution of NA Gapsizes</td>
 </tr>
 <tr class="even">
+<td align="left">ggplot_na_gapsize2</td>
+<td align="left">Visualize Total NAs of Different NA Gapsizes</td>
+</tr>
+<tr class="odd">
 <td align="left">ggplot_na_imputations</td>
 <td align="left">Visualize Imputed Values</td>
 </tr>
 </tbody>
 </table>
-<p>More detailed information about the plots can be found in the <a href="https://cran.r-project.org/package=imputeTS" class="external-link">imputeTS reference manual</a>.</p>
+<p>More detailed information about the plots can be found in the <a href="https://cran.r-project.org/package=imputeTS" class="external-link">imputeTS reference manual</a> and in the <a href="https://cran.r-project.org/web/packages/imputeTS/vignettes/gallery_visualizations.html" class="external-link">Gallery of Visualizations</a>.</p>
 <div class="section level3">
-<h3 id="datasets-1">Datasets<a class="anchor" aria-label="anchor" href="#datasets-1"></a>
+<h3 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
 </h3>
 <p>There are three datasets (each in two versions) available:</p>
 <table class="table">
@@ -306,7 +310,7 @@
 <div class="section level3">
 <h3 id="version">Version<a class="anchor" aria-label="anchor" href="#version"></a>
 </h3>
-<p><strong>3.3</strong></p>
+<p><strong>3.4</strong></p>
 </div>
 <div class="section level3">
 <h3 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
