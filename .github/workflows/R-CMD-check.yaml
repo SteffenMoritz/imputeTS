@@ -21,37 +21,36 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        config:
-          - {os: macOS-latest,   r: 'release'}
-
+         config:
+          - {os: macos-latest,   r: 'release'}
           - {os: windows-latest, r: 'release'}
-          # Use 3.6 to trigger usage of RTools35
-          - {os: windows-latest, r: '3.6'}
-
-          # Use older ubuntu to maximise backward compatibility
-          - {os: ubuntu-18.04,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-18.04,   r: 'release'}
-          - {os: ubuntu-18.04,   r: 'oldrel-1'}
-          - {os: ubuntu-18.04,   r: 'oldrel-2'}
+          # exercise older Windows toolchain via oldrel-4 (R 4.1.x, rtools40)
+          - {os: windows-latest, r: 'oldrel-4'}
+          - {os: ubuntu-latest,  r: 'devel',   http-user-agent: 'release'}
+          - {os: ubuntu-latest,  r: 'release'}
+          - {os: ubuntu-latest,  r: 'oldrel-1'}
+          - {os: ubuntu-latest,  r: 'oldrel-2'}
+          - {os: ubuntu-latest,  r: 'oldrel-3'}
+          - {os: ubuntu-latest,  r: 'oldrel-4'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: r-lib/actions/setup-pandoc@v1
+      - uses: r-lib/actions/setup-pandoc@v2
       
       - uses: r-lib/actions/setup-tinytex@master
 
-      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-r@v2
         with:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v1
+      - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: rcmdcheck
 
@@ -71,7 +70,7 @@ jobs:
           tinytex::parse_install(text = "! Font T1/ppl/m/n/10=pplr8t at 10.0pt not loadable: Metric (TFM) file not found.")
         shell: Rscript {0}
 
-      - uses: r-lib/actions/check-r-package@v1
+      - uses: r-lib/actions/check-r-package@v2
       
       - name: Show testthat output
         if: always()
